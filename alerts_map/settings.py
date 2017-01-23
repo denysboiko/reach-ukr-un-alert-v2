@@ -38,9 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'django.core.mail',
     'widget_tweaks',
     'rest_framework',
-    'AlertsMap',
+    'smart_selects',
+    'moderation',
+    'AlertsMap'
 ]
 
 REST_FRAMEWORK = {
@@ -54,7 +58,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 250
 }
 
-MIDDLEWARE = [
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -153,8 +157,18 @@ USE_L10N = True
 
 USE_TZ = True
 
+DEFAULT_FROM_EMAIL = 'denys.boiko@reach-initiative.org'
+MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
+EMAIL_PORT = '25'
+EMAIL_HOST_USER = 'AKIAIBCENXV4NXKGE5DQ'
+EMAIL_HOST_PASSWORD = 'AgNaVerGvOx6DE9l9Y2asZszbrCA2ueXaeq6zovB6Qfk'
+EMAIL_USE_TLS = True
+
+
+SITE_ID = 1
 STATIC_URL = '/static/'

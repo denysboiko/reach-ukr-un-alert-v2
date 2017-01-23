@@ -1,7 +1,7 @@
 decorator==4.0.9
-Django==1.10.3
+Django==1.9.12
 django-registration==2.2
 django-widget-tweaks==1.4.1
 djangorestframework==3.5.3
 virtualenv==14.0.3
-django-mssql
+django-moderate

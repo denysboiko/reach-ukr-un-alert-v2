@@ -66,8 +66,6 @@
 
         <script src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'js/jQDateRangeSlider-withRuler-min.js' %}"></script>
-
-        <script type="text/javascript" src="{% static 'js/FileSaver.js' %}"></script>
         <style type="text/css">
             header .button, header button {
                 background: #1da7ee;
@@ -130,17 +128,17 @@
 			<header>
 				<button class="header-button fleft translate resetFilters" id = "resetFilters">RESET FILTERS</button>
 				<a href="/admin/AlertsMap/alert/add/"><button class="header-button fleft translate">ADD AN ALERT</button></a>
-				{% comment %}<div class="header-button fleft">
+				<div class="header-button fleft">
 					<button class="button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
 					<button class="button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
 					<button class="button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
-				</div>{% endcomment %}
+				</div>
 				<span class="header-text" id="filterCounter"></span>
 				<div class="header-separator"></div>
 
 				<script type="text/template" id="tplFilterCounter"><%= data.value %> <span class="translate">alerts selected of</span> <%= data.total %></script>
 				<button class="header-button translate" id="openDataTable">DATA TABLE</button>
-				<button class="button header-button translate save-data">DOWNLOAD DATA</button>
+				<a href="<?= $dataFile ?>" class="button header-button translate">DOWNLOAD DATA</a>
 				
 			</header>
 		</div>
@@ -346,38 +344,35 @@
 				, markerMaxDiam: 50
 				, data: {
 					referals: {
-						urls: ['{{ data }}']
-
-                        {#{% static 'data/alerts/alerts_1.csv' %}#}
-                        {% comment %}<?= implode("', '", $dataFiles) ?>{% endcomment %}
-						, loader: d3.json
+						urls: ['{% static 'data/alerts/alerts_1.csv' %}']{% comment %}<?= implode("', '", $dataFiles) ?>{% endcomment %}
+						, loader: d3.csv
 						, fields: {
-							settlement: 'settlement'
-							, oblast: 'oblast'
-							, raion: 'raion'
-							, raionCode: 'raionCode'
+							settlement: 'SETTLEMENTS'
+							, oblast: 'OBLAST'
+							, raion: 'RAION'
+							, raionCode: 'ADMIN2'
 							, latitude: 'latitude'
 							, longitude: 'longitude'
-							, affected: 'no_affected'
-							, date: 'date_referal'
-							, status: 'status'
-							, cluster: 'cluster'
-							, partner: 'response_partner'
-							, type: 'type'
-							, need: 'need'
-							, covered: 'gap_beneficiaries'
-							, context: 'context'
-							, description: 'description'
-							, infoLink: 'additional_info_link'
-							, notCoveredNeeds: 'uncovered_needs'
-							, conflictRelated: 'conflict_related'
+							, affected: 'NO_AFFECTED'
+							, date: 'DATE_REFERAL'
+							, status: 'STATUS'
+							, cluster: 'CLUSTER'
+							, partner: 'RESPONSE_PARTNER'
+							, type: 'ALERT_TYPE'
+							, need: 'NEED_TYPE'
+							, covered: 'GAP_BENEFICIARIES'
+							, context: 'CONTEXT'
+							, description: 'DESCRIPTION'
+							, infoLink: 'ADDITIONAL_INFO_LINK'
+							, notCoveredNeeds: 'UNCOVERED_NEEDS'
+							, conflictRelated: 'CONFLICT_RELATED'
 						}
 					}
 				}
 				, filterStatus: [
-					{key: 'Resolved', text: 'Resolved', color: '#70A800'}
-					, {key: 'Addressed But Unresolved', text: 'Addressed, not resolved', color: '#F69E61'}
-					, {key: 'Not Addressed', text: 'Not addressed', color: '#EE5859'}
+					{key: 'resolved', text: 'Resolved', color: '#70A800'}
+					, {key: 'Addressed but unresolved', text: 'Addressed, not resolved', color: '#F69E61'}
+					, {key: 'Not addressed', text: 'Not addressed', color: '#EE5859'}
 				]
 				, filterCluster: [
 					{ key: 'Education' }
@@ -472,8 +467,7 @@
 			
 		</script>
 
-
-		<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/script-old.js' %}"></script>
 
 	</body>
 </html>

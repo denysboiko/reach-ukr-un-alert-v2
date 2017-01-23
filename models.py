@@ -10,6 +10,9 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+
+
+
 class Alerts(models.Model):
     user_id = models.IntegerField()
     date_referal = models.DateField()
@@ -23,7 +26,6 @@ class Alerts(models.Model):
     admin4 = models.CharField(max_length=10)
     gca_ngca = models.CharField(max_length=255, blank=True, null=True)
     alert_type = models.CharField(max_length=255)
-    conflict_related = models.CharField(max_length=255, blank=True, null=True)
     need_type = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)
     context = models.TextField(blank=True, null=True)
@@ -32,7 +34,7 @@ class Alerts(models.Model):
     source_info = models.CharField(max_length=255, blank=True, null=True)
     cluster = models.CharField(max_length=255)
     response_partner = models.CharField(max_length=255, blank=True, null=True)
-    confirmation = models.CharField(max_length=255, blank=True, null=True)
+    confirmation = models.IntegerField()
     action = models.CharField(max_length=255, blank=True, null=True)
     no_beneficiaries = models.IntegerField(blank=True, null=True)
     status = models.CharField(max_length=255, blank=True, null=True)
@@ -43,6 +45,16 @@ class Alerts(models.Model):
     comments = models.TextField(blank=True, null=True)
     latitude = models.FloatField()
     longitude = models.FloatField()
+    cluster_0 = models.ForeignKey('Clusters', models.DO_NOTHING, db_column='cluster_id', blank=True, null=True)  # Field renamed because of name conflict.
+    gca_ngca_0 = models.ForeignKey('GcaNgca', models.DO_NOTHING, db_column='gca_ngca_id', blank=True, null=True)  # Field renamed because of name conflict.
+    settlement_id = models.BigIntegerField(blank=True, null=True)
+    oblast_0 = models.ForeignKey('Oblasts', models.DO_NOTHING, db_column='oblast_id', blank=True, null=True)  # Field renamed because of name conflict.
+    raion_0 = models.ForeignKey('Raions', models.DO_NOTHING, db_column='raion_id', blank=True, null=True)  # Field renamed because of name conflict.
+    conflict_related = models.IntegerField(blank=True, null=True)
+    status_0 = models.ForeignKey('Status', models.DO_NOTHING, db_column='status_id', blank=True, null=True)  # Field renamed because of name conflict.
+    need_type_0 = models.ForeignKey('NeedTypes', models.DO_NOTHING, db_column='need_type_id', blank=True, null=True)  # Field renamed because of name conflict.
+    alert_type_0 = models.ForeignKey(AlertTypes, models.DO_NOTHING, db_column='alert_type_id', blank=True, null=True)  # Field renamed because of name conflict.
+    affected_group = models.ForeignKey(AffectedGroups, models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -115,6 +127,14 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Clusters(models.Model):
+    cluster_name = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'clusters'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -157,3 +177,58 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class GcaNgca(models.Model):
+    type_of_area = models.CharField(max_length=4)
+
+    class Meta:
+        managed = False
+        db_table = 'gca_ngca'
+
+
+class NeedTypes(models.Model):
+    need_type = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'need_types'
+
+
+class Oblasts(models.Model):
+    oblast_name = models.CharField(max_length=100)
+    id = models.BigAutoField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'oblasts'
+
+
+class Raions(models.Model):
+    raion_name = models.CharField(max_length=100)
+    id = models.BigAutoField(primary_key=True)
+    oblast = models.ForeignKey(Oblasts, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'raions'
+
+
+class Settlements(models.Model):
+    settlement_name = models.CharField(max_length=120)
+    raion = models.ForeignKey(Raions, models.DO_NOTHING)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    id = models.BigAutoField(primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'settlements'
+
+
+class Status(models.Model):
+    status = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'status'

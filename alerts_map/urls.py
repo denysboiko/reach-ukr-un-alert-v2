@@ -9,6 +9,17 @@ router.register(r'alerts', AlertsViewSet)
 
 urlpatterns = [
     url(r'^$', home),
+    url(r'^test/$', test),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include(router.urls))
+
+    url(r'^logout/$', logout_page),
+    url(r'^login/$', auth_views.login),
+    url(r'^accounts/login/$', auth_views.login),
+    url(r'^accounts/login/$', auth_views.login),
+    url(r'^register/$', register),
+    url(r'^register/success/$', register_success),
+
+
+    url(r'^', include(router.urls)),
+    url(r'^', include('smart_selects.urls')),
 ]

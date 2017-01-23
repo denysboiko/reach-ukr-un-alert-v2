@@ -102,7 +102,7 @@
 		attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a>'
 	});
 
-	map.leaflet.addLayer(map.osmLayer)
+	map.leaflet.addLayer(map.osmLayer);
 
 	map.ukrainianLayer = L.geoJson(conf.admUkrainian, {
 		style: function(feature) {
@@ -118,7 +118,7 @@
 				, clickable: false
 			}
 		}
-	})
+	});
 	map.leaflet.addLayer(map.ukrainianLayer)
 
 	map.raionsLayer = L.geoJson(conf.admRaions, {
@@ -190,12 +190,12 @@
 		var referals = data.referals;
 
 		var referalsCleaned = referals.data.map(function(record) {
-			//console.dir(record)
+
 			var res = {
 				settlementRaw: record[referals.fields.settlement]
 				, settlement: record[referals.fields.settlement]
 				, raion: record[referals.fields.raion]
-				, raionCode: record[referals.fields.raionCode]
+				, raionCode: record[referals.fields.raionCode].toString()
 				, oblast: record[referals.fields.oblast]
 				, latitude: parseFloat(record[referals.fields.latitude]) || 0
 				, longitude: parseFloat(record[referals.fields.longitude]) || 0
@@ -213,12 +213,13 @@
 				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
-
+			// console.log(res);
 			res.coords = [res.latitude, res.longitude]
 			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast
 			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement
 
 			return res
+
 		});
 
 		
@@ -237,26 +238,25 @@
 		=            Init crossfilter            =
 		========================================*/
 		
-		var cf = crossfilter(referalsCleaned)
+		var cf = crossfilter(referalsCleaned);
 
-		cf.allDim = cf.dimension(function(d) { return d.titleRevers })
-		cf.allGrp = cf.allDim.groupAll()
-		cf.settlementDim = cf.dimension(function(d) { return d.settlementRaw })
+		cf.allDim = cf.dimension(function(d) { return d.titleRevers });
+		cf.allGrp = cf.allDim.groupAll();
+		cf.settlementDim = cf.dimension(function(d) { return d.settlementRaw });
 		cf.affectedGrp = cf.settlementDim.group().reduce(
 				function(p, v) {
-					if(!p.key) p.key = v.settlementRaw
-					if(!p.coords) p.coords = v.coords
-					if(!p.record) p.record = v
+					if(!p.key) p.key = v.settlementRaw;
+					if(!p.coords) p.coords = v.coords;
+					if(!p.record) p.record = v;
 
-					++p.count
+					++p.count;
 					
-					p.affected += v.affected
-					p.status[v.status].affected += v.affected
-					
+					p.affected += v.affected;
+					p.status[v.status].affected += v.affected;
 					return p
 				}
 				, function(p, v) {
-					--p.count
+					--p.count;
 
 					p.affected -= v.affected
 					p.status[v.status].affected -= v.affected
@@ -333,7 +333,7 @@
 			map.raionsLayer.eachLayer(function(layer) {
 				var containerNodes = layer._container ? [layer._container] : d3.values(layer._layers).map(function(layer) { return layer._container })
 
-				var $paths = d3.selectAll(containerNodes).selectAll('path')
+				var $paths = d3.selectAll(containerNodes).selectAll('path');
 
 				if(!(selectedRaionCodes instanceof Array) || selectedRaionCodes.length == 0) {
 					// none raions selected
@@ -342,13 +342,13 @@
 					// all raions selected
 					$paths.classed({ 'js-active': false, 'js-inactive': false })
 				} else {
-					var active = selectedRaionCodes.indexOf(layer.feature.properties['KOATUU']) != -1
+					var active = selectedRaionCodes.indexOf(layer.feature.properties['KOATUU']) != -1;
 					$paths.classed({ 'js-active': active, 'js-inactive': !active })
 				}
 			})
 		}
 
-		var raionFilterDispatcher = d3.dispatch('filtered')
+		var raionFilterDispatcher = d3.dispatch('filtered');
 
 		raionFilterDispatcher.on('filtered.updateRaions', function(filters) {
 			updateRaions(filters)
@@ -783,24 +783,14 @@
 		var initMonthpicker = function() {
 
 			// Retrieving Min and Max date values from date dimension
+            var m = 6;
 			var   dateBegin = cf.dateDim.bottom(1)[0].date
-				, dateEnd = cf.dateDim.top(1)[0].date;
-
-
-			//var $monthpicker = d3.select('#monthpicker')
-
-			// monthpicker = new Monthpicker($monthpicker.node(), dateBegin, dateEnd, {
-			// 	change: function(dateBegin, dateEnd) {
-			// 		cf.dateDim.filterRange([dateBegin, dateEnd])
-            //
-			// 		filterDispatcher.filtered()
-			// 	}
-			// });
-
-			//lrscroll($monthpicker.node(), {anchors: '.monthpicker-month'});
+				, dateEnd = cf.dateDim.top(1)[0].date
+                , dateInitial = new Date(dateEnd.getFullYear(),1,1);
+                dateInitial.setMonth(dateEnd.getMonth()-6);
 
             slider = $("#slider");
-            var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
             slider.dateRangeSlider({
                 bounds: {
                     min: dateBegin,
@@ -810,24 +800,42 @@
                     min: dateBegin,
                     max: dateEnd
 				},
+                defaultValues: {
+                	min: dateInitial,
+					max: dateEnd
+				},
                 valueLabels: "change",
                 delayOut: 600,
-                scales: [{
-                    first: function(value){ return value; },
+                scales: [
+				// Annual scale
+				{
+                    first: function(value) { return value; },
                     end: function(value) {return value; },
-                    next: function(value){
+                    next: function(value) {
                         var next = new Date(value);
-                        return new Date(next.setMonth(value.getMonth() + 1));
+                        return new Date(next.setFullYear(value.getFullYear() + 1));
                     },
-                    label: function(value){
-                        return months[value.getMonth()];
+                    label: function(value) {
+                        return value.getFullYear();
                     },
                     format: function(tickContainer, tickStart, tickEnd){
                         tickContainer.addClass("myCustomClass");
                     }
-                }]
+                },
+				// Monthly scale
+				{
+					first: function(value){ return value; },
+					next: function(value) {
+                        var next = new Date(value);
+                        return new Date(next.setMonth(value.getMonth() + 1));
+                    },
+					stop: function(value) { return false; },
+					label: function(){ return null; }
+				}]
             });
 
+            cf.dateDim.filterRange([dateInitial, dateEnd]);
+            filterDispatcher.filtered();
 
             slider.bind("valuesChanged", function(e, data){
 
@@ -850,7 +858,6 @@
 				filterDispatcher.filtered();
             });
 
-
 		};
 
 		if(['interactive', 'complete'].indexOf(document.readyState) != -1) {
@@ -866,6 +873,8 @@
             var bounds = slider.dateRangeSlider("bounds");
             //console.log(bounds);
             slider.dateRangeSlider("values", bounds.min, bounds.max);
+
+            //initMonthpicker();
             //console.log(slider.dateRangeSlider("values"));
             //cf.dateDim.filterRange([bounds.min, bounds.max]);
             //filterDispatcher.filtered();
@@ -888,8 +897,9 @@
 		
 		var   $partner = d3.select('#filterPartner') // select with list of partners as option values
 			, $partnerSelected = d3.select('#filterPartnerSelected') // Div with list of selected partners and remove button
-			, $allPartners = d3.select('#filterPartnersAll'); // Checkbox that's intended to select "All partners"
-
+			, $allPartners = d3.select('#filterPartnersAll') // Checkbox that's intended to select "All partners"
+			, $clearPartners = d3.select('#clearPartners')
+            , $clearLocation = d3.select('#clearLocation');
 
 		// Fulfills select with values
 
@@ -899,18 +909,6 @@
 			.append('option')
 				.attr({ 'value': function(datum) { return datum } })
 				.text(function(datum) { return datum });
-
-        // d3.select('#filterPartner2').selectAll('option')
-        //     .data(cf.partnerDim.group().all().map(function(d) { return d.key }))
-        //     .enter()
-        //     .append('option')
-        //     .attr({ 'value': function(datum) { return datum } })
-        //     .text(function(datum) { return datum });
-
-		// $partner.insert('option', ':first-child')
-		// 	.text('- Select partner to filter -')
-		// 	.attr({ 'value': 'none' });
-
 
 		var handleDeselect = function() {
 			var   option = this
@@ -966,9 +964,6 @@
 				var   filters = []
 					, ln = 0;
 
-
-
-
 			$partner.selectAll('option')
 				.each(function() {
 					var self = this, $option = d3.select(self);
@@ -982,7 +977,7 @@
 			
 			if(filters.length == 0) {
 				cf.partnerDim.filter([]);
-				$allPartners.node().checked = false
+				$allPartners.node().checked = true
 
 			} else if (filters.length == ln) {
 
@@ -992,7 +987,7 @@
 			} else {
 
 				cf.partnerDim.filterFunction(function(d) { return filters.indexOf(d) != -1 });
-				$allPartners.node().checked = false
+				$allPartners.node().checked = false;
 
 			}
 
@@ -1030,10 +1025,12 @@
 
            if (filters.length == 0) {
                 cf.partnerDim.filterAll();
-                $allPartners.node().checked = true
+                $allPartners.node().checked = true;
+               	$clearPartners.style({ 'display' : 'none'});
             } else {
                cf.partnerDim.filterFunction(function(d) { return filters.indexOf(d) != -1 });
-               $allPartners.node().checked = false
+               $allPartners.node().checked = false;
+               $clearPartners.style({ 'display':  null });
 		   }
 
             filterDispatcher.filtered();
@@ -1045,6 +1042,7 @@
             Selectize[0].selectize.clear();
             cf.partnerDim.filterAll();
             $allPartners.node().checked = true;
+            $clearPartners.style({ 'display' : 'none'});
 
 
         };
@@ -1075,7 +1073,7 @@
                 $allPartners.node().checked = false;
                 filterDispatcher.filtered()
 			} else {
-				$partner.selectAll('option').each(function() {
+				/*$partner.selectAll('option').each(function() {
 
 					var self = this;
 					self.clear();
@@ -1088,24 +1086,24 @@
 						handleDeselect.call(self)
 					}
 
-				})
+				})*/
+
+				console.log('doCheckAll Fired!');
 			}
 		};
 
 		$allPartners.on('change', function() {
-			//partnerDoCheckAll()
+			partnerDoCheckAll();
 		});
 
+        $clearPartners.on('click', function() {
+            resetPartners();
+        });
+        $clearLocation.on('click', function() {
+            resetLocation();
+        });
+
 		/*=====  End of Partner filer          ======*/
-
-
-
-
-
-
-
-
-
 
 		/*==================================
 		=            Map legend            =
@@ -1115,7 +1113,7 @@
 			.attr({
 				'width': 290
 				, 'height': 265
-			})
+			});
 
 		conf.filterStatus.forEach(function(status, index) {
 			$mapLegend.append('circle')
@@ -1178,7 +1176,8 @@
 				, 'opacity': .5
 				, 'stroke': '#666'
 				, 'stroke-width': 1
-			})
+			});
+
 		$mapLegend.append('text')
 			.attr({
 				'x': 70, 'y': 220
@@ -1238,33 +1237,29 @@
 				.data( self.options.dataAccessor.call(self, dimension) )
 				.enter()
 				.append('div')
-				.classed({ 'checkbox' : true })/*label*/
-
-				/*i = i + 1; var result = id+i+''; */
+				.classed({ 'checkbox' : true });
 
 			// init public properties
 			self.container = $container.node();
 			self.filters = $labels.data().map(function(d) { return d.key });
 			self.totalFiltersNum = self.filters.length;
 
-			// fill each checkbox
+                // fill each checkbox
 			$checks = $labels.append('input')
 				.attr({
 					'type': 'checkbox',
 					'checked': 'checked',
 					'value': function(d) { return self.options.valueAccessor.call(self, d) },
 					'id': function(d) { return self.options.valueAccessor.call(self, d).replace(/\/|\s+/g, '_').toLowerCase() }
-					/*string.toLowerCase()*/
 				})
 				.on('change', function() {
-					self.filters = $checks.filter(':checked').data().map(function(d) { return self.options.valueAccessor.call(self, d) })
+					self.filters = $checks.filter(':checked').data().map(function(d) { return self.options.valueAccessor.call(self, d) });
 
 					if(options.checkAll) {
 						$allCheck.node().checked = self.filters.length == self.totalFiltersNum
 					}
 
-					// self.options.filtering.call(self, dimension, self.filters)
-					self.options.filtering.call(self, dimension, self.filters)
+					self.options.filtering.call(self, dimension, self.filters);
 
 					if(typeof self.options.onChange == 'function') {
 						self.options.onChange.call(self)
@@ -1274,11 +1269,11 @@
 			// add text to each checkbox
 			$labels.append('label')
 				.text( function(d) { return self.options.textAccessor.call(self, d) } )
-				.attr({'for': function(d) { return self.options.valueAccessor.call(self, d).replace(/\/|\s+/g, '_').toLowerCase() }})
+				.attr({'for': function(d) { return self.options.valueAccessor.call(self, d).replace(/\/|\s+/g, '_').toLowerCase() }});
 
 			self.doCheckAll = function(checked) {
 				var checkbox = self.options.checkAll ? $allCheck.node() : new String('dummy');
-				if(checked !== undefined) checkbox.checked = checked
+				if(checked !== undefined) checkbox.checked = checked;
 
 				self.filters = checkbox.checked ? $checks.data().map(function(d) { return self.options.valueAccessor.call(self, d) }) : []
 
@@ -1289,22 +1284,27 @@
 				if(typeof self.options.onChange == 'function') {
 					self.options.onChange.call(self)
 				}
-			}
+			};
 
 			// create "Check all"
 			if(self.options.checkAll) {
-				$allLabel = $container.insert('div', ':first-child')
+				$allLabel = $container.insert('div', ':first-child');
 				$allLabel
-					.classed({ 'filtercheckbox-allcheck': true, 'checkbox' : true })
+					.classed({ 'filtercheckbox-allcheck': true, 'checkbox' : true });
 
 				$allCheck = $allLabel.append('input')
-					.attr({'type': 'checkbox', 'checked': 'checked'})
+					.attr({
+						'id': self.options.checkAll.replace(/\/|\s+/g, '_').toLowerCase(),
+						'type': 'checkbox',
+						'checked': 'checked'
+					})
 					.on('change', function() {
 						self.doCheckAll()
 					});
 
 				$allLabel.append('label')
 					.text(self.options.checkAll)
+                    .attr({ 'for': self.options.checkAll.replace(/\/|\s+/g, '_').toLowerCase() })
 			}
 
 			return self
@@ -1334,41 +1334,40 @@
 
 
 		// init Alert type filter
-		var filterType = new filterCheckboxWidget('#filterType', cf.typeDim, { checkAll: 'All alert types', onChange: function() { filterDispatcher.filtered() } })
+		var filterType = new filterCheckboxWidget('#filterType', cf.typeDim, { checkAll: 'All alert types', onChange: function() { filterDispatcher.filtered() } });
 
 
 		// init Needs filter
-		var filterNeed = new filterCheckboxWidget('#filterNeed', cf.needDim, { checkAll: 'All need types', onChange: function() { filterDispatcher.filtered() } })
-
+		var filterNeed = new filterCheckboxWidget('#filterNeed', cf.needDim, { checkAll: 'All need types', onChange: function() { filterDispatcher.filtered() } });
 
 		// init Location filter
 		var filterRaionDonetsk, filterRaionLuhansk, filtersRes;
 
-		filterRaionDonetsk = new filterCheckboxWidget('#filterRaionDonetsk', cf.raionCodeDim, {
-			checkAll: 'Donetska oblast'
-			, dataAccessor: function(dimension) {
-				return conf.filterOblastRaions.donetsk
-			}
-			, textAccessor: function(d) { return d.value }
-			, filtering: function(dimension, filters) {
-				filtersRes = d3.merge([filterRaionDonetsk.filters, filterRaionLuhansk.filters]);
-				if(filtersRes.length == 0) {
-					dimension.filter([])
-				} else if (filtersRes.length == conf.filterOblastRaions.donetsk.length + conf.filterOblastRaions.luhansk.length) {
-					dimension.filterAll()
-				} else {
-					dimension.filterFunction(function(d) { return filtersRes.indexOf(d) != -1 })
-				}
-			}
-			, onChange: function() {
-				filterDispatcher.filtered();
-				raionFilterDispatcher.filtered(filtersRes)
-			}
-		});
+        /*filterRaionDonetsk = new filterCheckboxWidget('#filterRaionDonetsk', cf.raionCodeDim, {
+            checkAll: 'Donetska oblast'
+            , dataAccessor: function(dimension) {
+                return conf.filterOblastRaions.donetsk
+            }
+            , textAccessor: function(d) { return d.value }
+            , filtering: function(dimension, filters) {
+                filtersRes = d3.merge([filterRaionDonetsk.filters, filterRaionLuhansk.filters]);
+                if(filtersRes.length == 0) {
+                    dimension.filter([])
+                } else if (filtersRes.length == conf.filterOblastRaions.donetsk.length + conf.filterOblastRaions.luhansk.length) {
+                    dimension.filterAll()
+                } else {
+                    dimension.filterFunction(function(d) { return filtersRes.indexOf(d) != -1 })
+                }
+            }
+            , onChange: function() {
+                filterDispatcher.filtered();
+                raionFilterDispatcher.filtered(filtersRes);
+            }
+        });*/
 
 
 
-		filterRaionLuhansk = new filterCheckboxWidget('#filterRaionLuhansk', cf.raionCodeDim, {
+		/*filterRaionLuhansk = new filterCheckboxWidget('#filterRaionLuhansk', cf.raionCodeDim, {
 			checkAll: 'Luhanska oblast'
 			, dataAccessor: function(dimension) {
 				return conf.filterOblastRaions.luhansk
@@ -1389,17 +1388,7 @@
 				raionFilterDispatcher.filtered(filtersRes)
 			}
 		});
-
-        /*function flatten(o) {
-            var prefix = arguments[1] || "", out = arguments[2] || {}, name;
-            for (name in o) {
-                if (o.hasOwnProperty(name)) {
-                    typeof o[name] === "object" ? flatten(o[name], prefix + name + '.', out) :
-                        out[prefix + name] = o[name];
-                }
-            }
-            return out;
-        }*/
+*/
 		var OblastRaions = function() {
 			result = [];
 			var OblastRaions = conf.filterOblastRaions;
@@ -1442,48 +1431,58 @@
             }
         });
 
+
+        var resetLocation = function () {
+            loc[0].selectize.clear();
+            cf.raionCodeDim.filterAll();
+            $clearLocation.style({ 'display' : 'none'});
+        };
+
         loc.on('change', function () {
             var   filters = [];
 
+            //console.log(filterRaionDonetsk.filters);
+            //filtersRes = d3.merge([filterRaionDonetsk.filters, filterRaionLuhansk.filters]);
+
+            var source = cf.raionCodeDim.group().all();
+            filtersRes = source.map(function(d) { return d.key });
+            // console.log(raions)
+            //
+            // console.log(filtersRes);
+
             $("#locations-filter option").each(function() {
                 var value = $(this).val();
-
-                //console.log(value)
-                filters.push(value);
+                filters.push(value)
             });
 
+
+            /*if(filters.length == 0) {
+                cf.raionCodeDim.filter([])
+            } else if (filters.length == conf.filterOblastRaions.donetsk.length + conf.filterOblastRaions.luhansk.length) {
+                cf.raionCodeDim.filterAll()
+            } else {
+                cf.raionCodeDim.filterFunction(function(d) { return filters.indexOf(d) != -1 })
+            }*/
             if (filters.length == 0) {
                 cf.raionCodeDim.filterAll();
-                //$allPartners.node().checked = true
+                raionFilterDispatcher.filtered(filtersRes);
+                $clearLocation.style({ 'display' : 'none'});
             } else {
                 cf.raionCodeDim.filterFunction(function(d) { return filters.indexOf(d) != -1 });
-                //$allPartners.node().checked = false
+                raionFilterDispatcher.filtered(filters);
+                $clearLocation.style({ 'display' : null});
             }
 
-            /*, filtering: function(dimension, filters) {
-                filtersRes = d3.merge([filterRaionDonetsk.filters, filterRaionLuhansk.filters]);
-                if(filtersRes.length == 0) {
-                    dimension.filter([])
-                } else if (filtersRes.length == conf.filterOblastRaions.donetsk.length + conf.filterOblastRaions.luhansk.length) {
-                    dimension.filterAll()
-                } else {
-                    dimension.filterFunction(function(d) { return filtersRes.indexOf(d) != -1 })
-                }
-            }
-            , onChange: function() {
-                filterDispatcher.filtered();
-                raionFilterDispatcher.filtered(filtersRes)
-            }*/
+            filterDispatcher.filtered();
 
-            filterDispatcher.filtered(filters);
-            raionFilterDispatcher.filtered(filters)
+			/*console.log(filters);
+            console.log(filtersRes);
+            console.log(cf.raionCodeDim.group().all(function (d) {
+				return d.key
+            }));*/
+
         });
 
-
-        //console.log(conf.filterOblastRaions)
-		//console.log(d3.merge([conf.filterOblastRaions.donetsk, conf.filterOblastRaions.luhansk]))
-        //console.log(conf.filterOblastRaions.donetsk);
-        //console.log(conf.filterOblastRaions.luhansk);
 		/*=====  End of Checkbox filters (cluster / status / type / need / oblast)  ======*/
 
 
@@ -1528,15 +1527,16 @@
 						var td = this
 							, $td = d3.select(td)
 							, div = document.createElement('div')
-							, $div = d3.select(div)
+							, $div = d3.select(div);
 						
 						// wrap td content into div
 						while(td.hasChildNodes()) {
 							div.appendChild(td.childNodes[0])
 						}
-						td.appendChild(div)
 
-						$div.classed({ 'data-table-spoiled': true })
+						td.appendChild(div);
+
+						$div.classed({ 'data-table-spoiled': true });
 						
 						// it would be fine to reset this property on window resize, but i dont care
 						$div.classed({ 'data-table-spoiled-ready': div.offsetHeight < div.scrollHeight })
@@ -1553,49 +1553,49 @@
 							.on('mouseleave', function() {
 								$div.select('.data-table-spoiler').remove()
 							})
-					})
+					});
 
-			$dataTablePagination.selectAll('li').remove()
+			$dataTablePagination.selectAll('li').remove();
 
 			var $pages = $dataTablePagination.selectAll('li')
-				.data( d3.range(Math.ceil(data.length / conf.paginationStep)) )
+				.data( d3.range(Math.ceil(data.length / conf.paginationStep)) );
 
 			$pages.enter().append('li')
 				.text(function(d) { return d + 1 })
 				.classed('active', function(d) { return d == dataTablePage })
 				.on('click', function(d) {
-					dataTablePage = d
+					dataTablePage = d;
 					updateTable()
 				})
 		}
 
 		$openDataTable.on('click', function() {
 			if( $dataTableContainer.style('display') == 'none' ) {
-				$dataTableContainer.style({ 'display':  null })
-				$openDataTable.classed({ 'active': true })
-				$body.classed({ 'data-table-opened': true })
-				dataTablePage = 0
+				$dataTableContainer.style({ 'display':  null });
+				$openDataTable.classed({ 'active': true });
+				$body.classed({ 'data-table-opened': true });
+				dataTablePage = 0;
 				updateTable()
 			} else {
-				$dataTableContainer.style({ 'display': 'none' })
-				$openDataTable.classed({ 'active': false })
+				$dataTableContainer.style({ 'display': 'none' });
+				$openDataTable.classed({ 'active': false });
 				$body.classed({ 'data-table-opened': false })
 			}
-		})
+		});
 
 		$dataTableClose.on('click', function() {
-			$dataTableContainer.style({ 'display': 'none' })
-			$openDataTable.classed({ 'active': false })
-			$body.classed({ 'data-table-opened': false })
-		})
+			$dataTableContainer.style({ 'display': 'none' });
+			$openDataTable.classed({ 'active': false });
+			$body.classed({ 'data-table-opened': false });
+		});
 
 
 		filterDispatcher.on('filtered.updateTable', function() {
 			if($dataTableContainer.style('display') != 'none') {
-				dataTablePage = 0
+				dataTablePage = 0;
 				updateTable()
 			}
-		})
+		});
 
 		/*=====  End of Data table  ======*/
 
@@ -1612,17 +1612,17 @@
 		=            Show counter of alerts with filters applied            =
 		===================================================================*/
 
-		var $filterCounter = d3.select('#filterCounter')
+		var $filterCounter = d3.select('#filterCounter');
 
 		var updateFilterCounter = function() {
 			$filterCounter.html(conf.tplFilterCounter({ data: { value: cf.allGrp.value(), total: cf.size() } }))
-		}
+		};
 
 		filterDispatcher.on('filtered.updateCounter', function() {
 			updateFilterCounter()
-		})
+		});
 
-		updateFilterCounter()
+		updateFilterCounter();
 
 		/*=====  End of Show counter of alerts with filters applied  ======*/
 
@@ -1650,9 +1650,9 @@
 			filterStatus.doCheckAll(true);
             filterType.doCheckAll(true);
             filterNeed.doCheckAll(true);
-            filterRaionDonetsk.doCheckAll(true);
-            filterRaionLuhansk.doCheckAll(true);
-
+            /*filterRaionDonetsk.doCheckAll(true);
+            filterRaionLuhansk.doCheckAll(true);*/
+			resetLocation();
 			resetMonthpicker(slider);
 		};
 
@@ -1674,8 +1674,53 @@
 		// });
 		
 		/*=====  End of Reset button  ======*/
+		var saveData = function() {
+			var header = [
+				  'date'
+				, 'oblast'
+				, 'raion'
+				, 'settlement'
+				, 'cluster'
+				, 'partner'
+				, 'need'
+				, 'affected'
+				, 'context'
+				, 'latitude'
+			];
+
+			// console.log(cf);
+
+			var data = cf.dateDim.top(Infinity);
+			console.log(data);
+			var format = d3.time.format('%Y-%m-%d')
+			data = data.map(function(record) {
+				return [
+					  format(record['date'])
+					, record['oblast']
+					, record['raion']
+					, record['settlement']
+					, record['cluster']
+					, record['partner']
+					, record['need']
+					, record['affected']
+					, record['context']
+					, record['latitude']
+				]
+			});
+
+			data.unshift(header);
+			var res = d3.csv.formatRows(data);
+			var blob = new Blob([res], {type: "text/csv;charset=utf-8"})
+			saveAs(blob, 'ukraine-alerts-' + (new Date()).getTime() + '.csv')
+		};
+
+		$('button.save-data').on('click', function(e) {
+			saveData();
+
+		});
+
+	});
+
+})();
 
 
-	})
-
-})()
