@@ -102,7 +102,7 @@
 		attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a>'
 	});
 
-	map.leaflet.addLayer(map.osmLayer);
+	map.leaflet.addLayer(map.osmLayer)
 
 	map.ukrainianLayer = L.geoJson(conf.admUkrainian, {
 		style: function(feature) {
@@ -118,7 +118,7 @@
 				, clickable: false
 			}
 		}
-	});
+	})
 	map.leaflet.addLayer(map.ukrainianLayer)
 
 	map.raionsLayer = L.geoJson(conf.admRaions, {
@@ -190,12 +190,14 @@
 		var referals = data.referals;
 
 		var referalsCleaned = referals.data.map(function(record) {
-
+			//console.dir(record)
+			// console.log(record);
+			// console.log(record[referals.fields.date])
 			var res = {
 				settlementRaw: record[referals.fields.settlement]
 				, settlement: record[referals.fields.settlement]
 				, raion: record[referals.fields.raion]
-				, raionCode: record[referals.fields.raionCode].toString()
+				, raionCode: record[referals.fields.raionCode]
 				, oblast: record[referals.fields.oblast]
 				, latitude: parseFloat(record[referals.fields.latitude]) || 0
 				, longitude: parseFloat(record[referals.fields.longitude]) || 0
@@ -213,10 +215,14 @@
 				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
+
 			// console.log(res);
+
 			res.coords = [res.latitude, res.longitude]
 			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast
 			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement
+
+			// console.log(res);
 
 			return res
 
@@ -238,25 +244,25 @@
 		=            Init crossfilter            =
 		========================================*/
 		
-		var cf = crossfilter(referalsCleaned);
+		var cf = crossfilter(referalsCleaned)
 
-		cf.allDim = cf.dimension(function(d) { return d.titleRevers });
-		cf.allGrp = cf.allDim.groupAll();
-		cf.settlementDim = cf.dimension(function(d) { return d.settlementRaw });
+		cf.allDim = cf.dimension(function(d) { return d.titleRevers })
+		cf.allGrp = cf.allDim.groupAll()
+		cf.settlementDim = cf.dimension(function(d) { return d.settlementRaw })
 		cf.affectedGrp = cf.settlementDim.group().reduce(
 				function(p, v) {
-					if(!p.key) p.key = v.settlementRaw;
-					if(!p.coords) p.coords = v.coords;
-					if(!p.record) p.record = v;
+					if(!p.key) p.key = v.settlementRaw
+					if(!p.coords) p.coords = v.coords
+					if(!p.record) p.record = v
 
-					++p.count;
+					++p.count
 					
-					p.affected += v.affected;
-					p.status[v.status].affected += v.affected;
+					p.affected += v.affected
+					p.status[v.status].affected += v.affected
 					return p
 				}
 				, function(p, v) {
-					--p.count;
+					--p.count
 
 					p.affected -= v.affected
 					p.status[v.status].affected -= v.affected
@@ -663,16 +669,16 @@
 
 		var moving // It is used to check whether the event was a map moving or click
 			, clickStartPos
-			, latlng
+			, latlng;
 		map.leaflet.on('mousedown', function(mapEvent) {
 			clickStartPos = [mapEvent.originalEvent.screenX, mapEvent.originalEvent.screenY]
-		})
+		});
 		map.leaflet.on('mouseup', function(mapEvent) {
 			moving =
 				Math.abs(mapEvent.originalEvent.screenX - clickStartPos[0]) > 5
 				|| Math.abs(mapEvent.originalEvent.screenY - clickStartPos[1]) > 5
 			latlng = mapEvent.latlng
-		})
+		});
 
 		var markersResetInactive = function(currentMarker) {
 			markerLayer.getLayers().forEach(function(marker) {
@@ -870,9 +876,9 @@
 
         var resetMonthpicker = function (slider) {
 
-            var bounds = slider.dateRangeSlider("bounds");
+            //var bounds = slider.dateRangeSlider("bounds");
             //console.log(bounds);
-            slider.dateRangeSlider("values", bounds.min, bounds.max);
+            slider.dateRangeSlider("values", null, null);
 
             //initMonthpicker();
             //console.log(slider.dateRangeSlider("values"));
@@ -1452,7 +1458,8 @@
 
             $("#locations-filter option").each(function() {
                 var value = $(this).val();
-                filters.push(value)
+                filters.push(value);
+                console.log(value)
             });
 
 
@@ -1674,67 +1681,8 @@
 		// });
 		
 		/*=====  End of Reset button  ======*/
-		var saveData = function() {
-			var header = [
-				  //'date',
-				 'oblast'
-				, 'raion'
-				, 'settlement'
-				, 'cluster'
-				, 'partner'
-				, 'need'
-				, 'status'
-				, 'conflictRelated'
-				, 'affected'
-				, 'covered'
-				, 'notCoveredNeeds'
-				, 'context'
-				, 'description'
-				, 'infoLink'
-				, 'latitude'
-				, 'longitude'
-			];
-
-			// console.log(cf);
-
-			var data = cf.dateDim.top(Infinity);
-			console.log(data);
-			var format = d3.time.format('%Y-%m-%d')
-			data = data.map(function(record) {
-				return [
-					  //format(record['date']),
-					  record['oblast']
-					, record['raion']
-					, record['settlement']
-					, record['cluster']
-					, record['partner']
-					, record['need']
-					, record['status']
-					, record['conflictRelated']
-					, record['affected']
-					, record['covered']
-					, record['notCoveredNeeds']
-					, record['context']
-					, record['description']
-					, record['infoLink']
-					, record['latitude']
-					, record['longitude']
-				]
-			});
-
-			data.unshift(header);
-			var res = d3.csv.formatRows(data);
-			var blob = new Blob([res], {type: "text/csv;charset=utf-8"})
-			saveAs(blob, 'ukraine-alerts-' + (new Date()).getTime() + '.csv')
-		};
-
-		$('button.save-data').on('click', function(e) {
-			saveData();
-
-		});
-
-	});
-
-})();
 
 
+	})
+
+})()

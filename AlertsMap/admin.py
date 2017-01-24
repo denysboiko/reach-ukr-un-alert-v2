@@ -5,13 +5,13 @@ from moderation.admin import ModerationAdmin
 class AlertAdmin(ModerationAdmin):
     # ModerationAdmin
     # admin.ModelAdmin
+    list_filter = ['date_referal','oblast']
     list_display = [
         'oblast',
         'affected',
         'alert_type',
         'need_type'
     ]
-
 
     fields = [
         'oblast',
