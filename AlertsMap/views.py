@@ -22,18 +22,14 @@ class AlertsViewSet(viewsets.ModelViewSet):
         'settlement__settlement_name',
         'settlement__latitude',
         'settlement__longitude',
-
         'oblast__oblast_name',
         'raion__raion_name',
         'raion',
-
         'oblast',
         'settlement',
-
         'status',
         'cluster',
         'response_partner',
-
         'informant',
         'referral_agency',
         'conflict_related',
@@ -59,6 +55,7 @@ class AlertsViewSet(viewsets.ModelViewSet):
     # .values('settlement')
     # .values('gca_ngca')
     # .values('settlement',)
+    permission_classes = (AllowAny,)
     serializer_class = AlertsSerializer
     pagination_class = None
 

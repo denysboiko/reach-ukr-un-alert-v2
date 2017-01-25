@@ -858,6 +858,16 @@
 				filterDispatcher.filtered();
             });
 
+            $('#filterdate').on('click', function () {
+				var from = $('#from-date').datepicker('getDate');
+				var to = $('#to-date').datepicker('getDate');
+
+				console.log(from);
+				console.log(to);
+				cf.dateDim.filterRange([from, to]);
+				filterDispatcher.filtered();
+			});
+
 		};
 
 		if(['interactive', 'complete'].indexOf(document.readyState) != -1) {
@@ -1676,8 +1686,8 @@
 		/*=====  End of Reset button  ======*/
 		var saveData = function() {
 			var header = [
-				  //'date',
-				 'oblast'
+				  'date'
+				, 'oblast'
 				, 'raion'
 				, 'settlement'
 				, 'cluster'
@@ -1702,8 +1712,8 @@
 			var format = d3.time.format('%Y-%m-%d')
 			data = data.map(function(record) {
 				return [
-					  //format(record['date']),
-					  record['oblast']
+					  format(record['date'])
+					, record['oblast']
 					, record['raion']
 					, record['settlement']
 					, record['cluster']

@@ -104,26 +104,27 @@ WSGI_APPLICATION = 'alerts_map.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Alerts',
-            'USER': 'postgres',
-            'PASSWORD': '3w_reach',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+# DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'Alerts',
+#             'USER': 'postgres',
+#             'PASSWORD': '3w_reach',
+#             'HOST': '127.0.0.1',
+#             'PORT': '5432',
+#         }
+#     }
 
-    # $db = new medoo((object)array(
-		# 'database_type' => 'mssql'
-		# , 'database_name' => 'web_ukr_framework'
-		# , 'server' => '188.184.78.26'
-		# , 'username' => 'ukr_framework'
-		# , 'password' => 'reach%123'
-		# , 'port' => '1433'
-		# // , 'charset' => 'utf8'
-    # ));
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alerts',
+        'USER': 'dbadmin',
+        'PASSWORD': 'pgk6vsnA',
+        'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -165,8 +166,8 @@ MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'AKIAIBCENXV4NXKGE5DQ'
-EMAIL_HOST_PASSWORD = 'AgNaVerGvOx6DE9l9Y2asZszbrCA2ueXaeq6zovB6Qfk'
+EMAIL_HOST_USER = 'AKIAILTFHUZKNYE5AG6Q'
+EMAIL_HOST_PASSWORD = 'AjiVBlsm22wadyieSbwqhGreXzUXF0I6BbPP1e9ZAKR7'
 EMAIL_USE_TLS = True
 
 

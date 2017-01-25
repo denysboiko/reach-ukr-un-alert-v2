@@ -59,17 +59,18 @@
 
         <link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
-
+        {% comment %}<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap-theme.css' %}">{% endcomment %}
+        <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.min.css' %}">
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
         <link rel="stylesheet" href="{% static 'css/awesome-bootstrap-checkbox.css' %}" type="text/css" />
 
         <script src="{% static 'js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'js/jQDateRangeSlider-withRuler-min.js' %}"></script>
-
+        <script src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/FileSaver.js' %}"></script>
         <style type="text/css">
-            header .button, header button {
+            .header-button {
                 background: #1da7ee;
                 color: #ffffff;
                 border: 1px solid #0073bb;
@@ -87,9 +88,10 @@
                 filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1da7ee', endColorstr='#ff178ee9', GradientType=0);
                 -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
                 box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
+                padding: 5px 1em 3.5px;
             }
 
-            header button:hover, header button:hover {
+            .header-button:hover {
                 background: #48b0ef;
                 border: 1px solid #0073bb;
             }
@@ -122,28 +124,72 @@
                 /* symbol for "collapsed" panels */
                 content: "\e079";    /* adjust as needed, taken from bootstrap.css */
             }
+
+            a.header-button:focus, a.header-button:hover {
+                color: #fff;
+                text-decoration: none;
+            }
         </style>
 
 	</head>
 	<body>
-		<div class="header-wrapper">
-			<header>
-				<button class="header-button fleft translate resetFilters" id = "resetFilters">RESET FILTERS</button>
-				<a href="/admin/AlertsMap/alert/add/"><button class="header-button fleft translate">ADD AN ALERT</button></a>
-				{% comment %}<div class="header-button fleft">
-					<button class="button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
-					<button class="button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
-					<button class="button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
-				</div>{% endcomment %}
-				<span class="header-text" id="filterCounter"></span>
-				<div class="header-separator"></div>
+    <div class="header-wrapper">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header header" style="width: 100%">
+                    <ul class="nav navbar-nav">
+                            <li><button class="header-button fleft translate resetFilters" id="resetFilters">RESET FILTERS</button></li>
 
-				<script type="text/template" id="tplFilterCounter"><%= data.value %> <span class="translate">alerts selected of</span> <%= data.total %></script>
-				<button class="header-button translate" id="openDataTable">DATA TABLE</button>
-				<button class="button header-button translate save-data">DOWNLOAD DATA</button>
-				
-			</header>
-		</div>
+                    {% if user.is_authenticated %}
+
+
+
+                            <li>
+                                <div class="header-controls">
+                                    <a href="/admin/AlertsMap/alert/add/" class="header-button fleft translate">ADD AN ALERT</a>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="z" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/admin">Admin Panel</a></li>
+                                    {% comment %}<li><a href="/admin/moderation/moderatedobject/">Moderation</a></li>{% endcomment %}
+                                    <li><a href="/admin/password_change/">Change Password</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="/admin/logout">Log Out</a></li>
+                                </ul>
+                            </li>
+
+                        {% comment %}
+                            <div class="header-button fleft">
+                                <button class="button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
+                                <button class="button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
+                                <button class="button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
+                            </div>
+                        {% endcomment %}
+                    {% else %}
+                        <li><a href="/admin/login/">Log In</a></li>
+                    {% endif %}
+
+                    </ul>
+
+                    <div class="navbar-right">
+
+                        <p class="header-text navbar-text" id="filterCounter"></p>
+                        <script type="text/template" id="tplFilterCounter">
+                            <%= data.value %> <span class="translate">alerts selected of</span> <%= data.total %>
+                        </script>
+                        <button class="header-button translate" id="openDataTable">DATA TABLE</button>
+                        <button class="button header-button translate save-data">DOWNLOAD DATA</button>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+
 
 		<div class="main-wrapper">
 			<main>
@@ -238,7 +284,28 @@
                             <a href="#" class="dropdown-button" onclick="this.classList.toggle('open');"></a>
                         </div>-->
 					</div>
+                    <div class="input-group date">
+                        <input id = "from-date" type="text" class="form-control" value="01-01-2016">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    <div class="input-group date">
+                        <input id = "to-date" type="text" class="form-control" value="01-01-2017">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                    <button id = "filterdate" class="btn btn-default">Filter</button>
+                    <script type="text/javascript">
+                        $('#from-date').datepicker({
+                        });
+                        $('#to-date').datepicker({
+                        });
 
+
+
+                    </script>
 				</div>
 
 			</aside>

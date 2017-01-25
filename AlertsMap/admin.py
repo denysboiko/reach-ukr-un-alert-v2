@@ -1,6 +1,10 @@
 from django.contrib import admin
 from .models import Alert
 from moderation.admin import ModerationAdmin
+from django.contrib.admin import AdminSite
+
+# class MyAdminSite(AdminSite):
+#     site_header = 'Alerts Map Administration'
 
 class AlertAdmin(ModerationAdmin):
     # ModerationAdmin
