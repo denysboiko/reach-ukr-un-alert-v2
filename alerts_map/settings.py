@@ -26,7 +26,11 @@ SECRET_KEY = 'qjo7vjn#xkii$-**1xfy)a)6$vw51)!*zv@w6dlv9w-*=_22vi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '.elasticbeanstalk.com'
+]
 
 
 # Application definition
@@ -89,42 +93,31 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'alerts_map.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-
-# DATABASES = {
-#     'default': {
-#         'NAME': 'web_ukr_framework',
-#         'ENGINE': 'sqlserver_ado',
-#         'HOST': '188.184.78.26',
-#         'USER': 'ukr_framework',
-#         'PASSWORD': 'reach%123',
-#     }
-# }
-
-# DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'Alerts',
-#             'USER': 'postgres',
-#             'PASSWORD': '3w_reach',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'alerts',
-        'USER': 'dbadmin',
-        'PASSWORD': 'pgk6vsnA',
-        'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
-        'PORT': '5432',
+if 'LOCAL_ENV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'Alerts',
+            'USER': 'postgres',
+            'PASSWORD': '3w_reach',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'alerts',
+            'USER': 'dbadmin',
+            'PASSWORD': 'pgk6vsnA',
+            'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
