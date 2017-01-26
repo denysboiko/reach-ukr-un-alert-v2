@@ -858,7 +858,7 @@
 				filterDispatcher.filtered();
             });
 
-            $('#filterdate').on('click', function () {
+            /*$('#filterdate').on('click', function () {
 				var from = $('#from-date').datepicker('getDate');
 				var to = $('#to-date').datepicker('getDate');
 
@@ -866,7 +866,7 @@
 				console.log(to);
 				cf.dateDim.filterRange([from, to]);
 				filterDispatcher.filtered();
-			});
+			});*/
 
 		};
 
