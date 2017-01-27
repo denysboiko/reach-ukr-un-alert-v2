@@ -10,6 +10,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.contrib.auth import authenticate, login
 from AlertsMap.serializers import AlertsSerializer
 
 class AlertsViewSet(viewsets.ModelViewSet):
@@ -91,7 +92,16 @@ def register(request):
                 password=form.cleaned_data['password1'],
                 email=form.cleaned_data['email']
             )
-            return HttpResponseRedirect('/register/success/')
+            user.profile.organization=''.join(form.cleaned_data['organization']),
+            user.profile.phone=form.cleaned_data['phone']
+            user.save()
+            print(form.cleaned_data)
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],
+                                    )
+            login(request, new_user)
+            return HttpResponseRedirect("/")
+            # return HttpResponseRedirect('/register/success/')
 
     else:
         form = RegistrationForm()
@@ -104,10 +114,11 @@ def register(request):
 
 
 def register_success(request):
-    return render(
-        request,
-        'registration/success.html',
-    )
+    return HttpResponseRedirect('/')
+    # return render(
+    #     request,
+    #     'registration/success.html',
+    # )
 
 
 def logout_page(request):

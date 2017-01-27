@@ -2,6 +2,30 @@ from django.contrib import admin
 from .models import Alert
 from moderation.admin import ModerationAdmin
 from django.contrib.admin import AdminSite
+from django.contrib.auth.admin import UserAdmin
+
+from django.contrib import admin
+from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+from .models import Profile
+
+admin.site.unregister(User)
+
+
+class UserProfileInline(admin.StackedInline):
+    model = Profile
+
+    fields = [
+        'organization',
+        'phone'
+    ]
+
+class UserProfileAdmin(UserAdmin):
+    inlines = [UserProfileInline]
+
+
+admin.site.register(User, UserProfileAdmin)
+
 
 # class MyAdminSite(AdminSite):
 #     site_header = 'Alerts Map Administration'

@@ -2,6 +2,29 @@ from __future__ import unicode_literals
 
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    organization = models.TextField(max_length=250, blank=True)
+    phone = models.CharField(max_length=30, blank=True)
+
+    class Meta:
+        db_table = 'user_info'
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 
 class Cluster(models.Model):
@@ -9,6 +32,7 @@ class Cluster(models.Model):
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.cluster_name
+
     class Meta:
         managed = False
         db_table = 'clusters'
@@ -51,6 +75,7 @@ class Settlement(models.Model):
         managed = False
         db_table = 'settlements'
 
+
 class GCA_NGCA(models.Model):
 
     type_of_area = models.CharField(max_length=200)
@@ -61,6 +86,7 @@ class GCA_NGCA(models.Model):
     class Meta:
         managed = False
         db_table = 'gca_ngca'
+
 
 class NeedType(models.Model):
     need_type = models.CharField(max_length=50)
@@ -94,6 +120,7 @@ class AlertType(models.Model):
         managed = False
         db_table = 'alert_types'
 
+
 class Status(models.Model):
     status = models.CharField(max_length=50)
 
@@ -107,6 +134,10 @@ class Status(models.Model):
 
 class Alert(models.Model):
     # admin1 = models.CharField(max_length=10)
+    # admin2 = models.CharField(max_length=10)
+    # admin4 = models.CharField(max_length=10)
+    # user_id = models.IntegerField(null=True)
+
     oblast = models.ForeignKey(Oblast)
     raion = ChainedForeignKey(
         Raion,
@@ -116,9 +147,6 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
-    # admin2 = models.CharField(max_length=10)
-    # admin4 = models.CharField(max_length=10)
-    # user_id = models.IntegerField(null=True)
     date_referal = models.DateField()
     informant = models.TextField(blank=True, null=True)
     referral_agency = models.TextField(blank=True, null=True)
@@ -158,9 +186,7 @@ class Alert(models.Model):
     uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
     additional_info_link = models.CharField(max_length=255, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
-
     # related_name = None, to_field = None
-
 
     class Meta:
         managed = False
