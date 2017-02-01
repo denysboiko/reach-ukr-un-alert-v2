@@ -9,3 +9,9 @@
 !.elasticbeanstalk/*.cfg.yml
 
 !.elasticbeanstalk/*.global.yml
+/test.html
+/test.py
+/schools.json
+/fetch_geocodes.js
+/hi.json
+/addresses.json

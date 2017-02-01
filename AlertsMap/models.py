@@ -2,30 +2,18 @@ from __future__ import unicode_literals
 
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.contrib.auth.models import AbstractUser
 
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    organization = models.TextField(max_length=250, blank=True)
+class User(AbstractUser):
+    organization = models.CharField(max_length=80, blank=True)
     phone = models.CharField(max_length=30, blank=True)
 
     class Meta:
-        db_table = 'user_info'
-
-
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-
-@receiver(post_save, sender=User)
-def save_user_profile(sender, instance, **kwargs):
-    instance.profile.save()
-
+        db_table = 'auth_user'
 
 class Cluster(models.Model):
     cluster_name = models.CharField(max_length=200)

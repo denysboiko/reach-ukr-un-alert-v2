@@ -136,7 +136,8 @@
 			}
 		}
 		, className: 'raions-overlay'
-	})
+	});
+
 	map.leaflet.addLayer(map.raionsLayer)
 
 	map.greyZoneLayer = L.geoJson(conf.greyZone, {
@@ -418,16 +419,18 @@
 
 		var calculateDiameter = function(affectedCount) {
 			// var diam = d3.scale.sqrt().domain([0, affectedMax])(affectedCount) * conf.markerMaxDiam
-			var diam = d3.scale.sqrt().domain([0, affectedMaxRound])(affectedCount) * conf.markerMaxDiam
+			// var diam = d3.scale.sqrt().domain([0, affectedMaxRound])(affectedCount) * conf.markerMaxDiam
+            //
+			// if(diam == 0) {
+			// 	return 0
+			// } else if( diam <= conf.markerMinDiam) {
+			// 	return conf.markerMinDiam
+			// } else {
+			// 	return diam
+			// }
 
-			if(diam == 0) {
-				return 0
-			} else if( diam <= conf.markerMinDiam) {
-				return conf.markerMinDiam
-			} else {
-				return diam
-			}
-		}
+			return conf.markerMinDiam
+		};
 
 		// init markers
 		var markerLayer = L.layerGroup()
@@ -445,13 +448,14 @@
 				, affected: item.affected
 				, initDiameter: calculateDiameter(item.affected)
 				, size: calculateDiameter(item.affected) + 4 // plus space to stroke
-			}
+			};
 
-			markerLayer.addLayer(marker)
+			markerLayer.addLayer(marker);
 
 			marker.setIcon(L.divIcon({ className: 'marker', iconSize: [marker.data.size, marker.data.size] }))
-		})
-		map.leaflet.addLayer(markerLayer)
+		});
+
+		map.leaflet.addLayer(markerLayer);
 
 		// init helpers for markers pies
 		var arc = d3.svg.arc()
@@ -1122,7 +1126,7 @@
 		var $mapLegend = d3.select('#mapLegend').append('svg')
 			.attr({
 				'width': 290
-				, 'height': 265
+				, 'height': 175
 			});
 
 		conf.filterStatus.forEach(function(status, index) {
@@ -1132,17 +1136,17 @@
 					, 'cx': 40
 					, 'cy': 30 * index + 40
 					, 'fill': status.color
-				})
+				});
 			$mapLegend.append('text')
 				.text(status.text)
 				.attr({
 					'x': 60
 					, 'y': 30 * index + 40
 					, 'dominant-baseline': 'middle'
-				})
-		})
+				});
+		});
 
-		var diameters = [
+		/*var diameters = [
 			{value: affectedMaxRound, diam: calculateDiameter(affectedMaxRound)}
 			, {value: Math.round(affectedMaxRound * 0.5), diam: calculateDiameter(Math.round(affectedMaxRound * 0.5))}
 			, {value: '<' + Math.round(affectedMaxRound * 0.25), diam: calculateDiameter(Math.round(affectedMaxRound * 0.25))} ]
@@ -1166,21 +1170,21 @@
 					, 'text-anchor': 'middle'
 				})
 				.style({ 'font-size': '11px' })
-		})
+		})*/
 
-		$mapLegend.append('text')
+		/*$mapLegend.append('text')
 			.attr({'x': 0, 'y': 140 })
 			.selectAll('tspan')
 			.data(['Size depends on number', 'of people affected (cumulative)'])
 			.enter()
 			.append('tspan')
 				.attr({ 'x': 80, 'dy': '1.33em' })
-				.text(function(d) { return d })
+				.text(function(d) { return d })*/
 
 
 		$mapLegend.append('rect')
 			.attr({
-				'x': 19.5, 'y': 219.5
+				'x': 19.5, 'y': 144.5
 				, 'width': 40, 'height': 20
 				, 'fill': 'url("#diagonalHatch")'
 				, 'opacity': .5
@@ -1190,7 +1194,7 @@
 
 		$mapLegend.append('text')
 			.attr({
-				'x': 70, 'y': 220
+				'x': 70, 'y': 145
 				, 'dominant-baseline': 'text-before-edge'
 			})
 			.style({ 'line-height': '20px' })

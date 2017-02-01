@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'smart_selects',
     'moderation',
+    # 'coverage',
     'AlertsMap'
 ]
 
@@ -95,6 +96,17 @@ WSGI_APPLICATION = 'alerts_map.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Alerts',
+#         'USER': 'postgres',
+#         'PASSWORD': '3w_reach',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 if 'LOCAL_ENV' in os.environ:
     DATABASES = {
@@ -154,6 +166,7 @@ USE_TZ = True
 DEFAULT_FROM_EMAIL = 'denys.boiko@reach-initiative.org'
 MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 
+AUTH_USER_MODEL = 'AlertsMap.User'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 

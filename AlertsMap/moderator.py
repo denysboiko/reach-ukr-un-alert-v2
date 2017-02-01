@@ -1,7 +1,6 @@
 from moderation import moderation
 from moderation.moderator import GenericModerator
 from moderation.db import ModeratedModel
-
 from AlertsMap.models import Alert
 
 class AlertModerator(GenericModerator):
