@@ -788,97 +788,131 @@
 
 			// Retrieving Min and Max date values from date dimension
             var m = 6;
+
+            function monthDiff(d1, d2) {
+				var months;
+				months = (d2.getFullYear() - d1.getFullYear()) * 12;
+				months -= d1.getMonth() + 1;
+				months += d2.getMonth();
+				return months <= 0 ? 0 : months;
+			}
+
 			var   dateBegin = cf.dateDim.bottom(1)[0].date
-				, dateEnd = cf.dateDim.top(1)[0].date
-                , dateInitial = new Date(dateEnd.getFullYear(),1,1);
-                dateInitial.setMonth(dateEnd.getMonth()-6);
+				, dateEnd = cf.dateDim.top(1)[0].date;
 
-            slider = $("#slider");
 
-            slider.dateRangeSlider({
-                bounds: {
-                    min: dateBegin,
-                    max: dateEnd
-                },
-				values: {
-                    min: dateBegin,
-                    max: dateEnd
-				},
-                defaultValues: {
-                	min: dateInitial,
-					max: dateEnd
-				},
-                range: {
-                    min: {days: 1}/*,
-					max: {days: 7}*/
-                },
-                valueLabels: "change",
-                delayOut: 600,
-                scales: [
-				// Annual scale
-				{
-                    first: function(value) { return value; },
-                    end: function(value) {return value; },
-                    next: function(value) {
-                        var next = new Date(value);
-                        return new Date(next.setFullYear(value.getFullYear() + 1));
-                    },
-                    label: function(value) {
-                        return value.getFullYear();
-                    },
-                    format: function(tickContainer, tickStart, tickEnd){
-                        tickContainer.addClass("myCustomClass");
-                    }
-                },
-				// Monthly scale
-				{
-					first: function(value){ return value; },
-					next: function(value) {
-                        var next = new Date(value);
-                        return new Date(next.setMonth(value.getMonth() + 1));
-                    },
-					stop: function(value) { return false; },
-					label: function(){ return null; }
-				}]
-            });
-
-            cf.dateDim.filterRange([dateInitial, dateEnd]);
-            filterDispatcher.filtered();
-
-            slider.bind("valuesChanged", function(e, data){
-
-                var values = slider.dateRangeSlider("values");
-                var bounds = slider.dateRangeSlider("bounds");
-
-                var dateBeginNew;
-                var dateEndNew;
-
-                if (values.min.getTime() === values.max.getTime()) {
-                    dateBeginNew = bounds.min;
-                    dateEndNew = bounds.max;
-				} else {
-                    dateBeginNew = values.min;
-                    dateEndNew = values.max;
+			if (dateBegin.getDate() != dateEnd.getDate()) {
+					// dateEnd.setDate(dateEnd.getDate() + 2);
+				if (monthDiff(dateBegin, dateEnd) > m) {
+					var dateInitial = new Date(dateEnd.getFullYear(),1,1);
+					dateInitial.setMonth(dateEnd.getMonth() - m);
 				}
-				//console.log(dateBeginNew);
-                //console.log(dateEndNew);
-                cf.dateDim.filterRange([dateBeginNew, dateEndNew]);
-				filterDispatcher.filtered();
-            });
+				else {
+					dateInitial = dateBegin
+				}
 
-            /*$('#filterdate').on('click', function () {
-				var from = $('#from-date').datepicker('getDate');
-				var to = $('#to-date').datepicker('getDate');
+				console.log(dateInitial);
+				console.log(dateEnd);
 
-				console.log(from);
-				console.log(to);
-				cf.dateDim.filterRange([from, to]);
+
+				slider = $("#slider");
+
+				slider.dateRangeSlider({
+					bounds: {
+						min: dateBegin,
+						max: dateEnd
+					},
+					values: {
+						min: dateBegin,
+						max: dateEnd
+					},
+					defaultValues: {
+						min: dateInitial,
+						max: dateEnd
+					},
+					range: {
+						min: {days: 1}/*,
+						max: {days: 7}*/
+					},
+					valueLabels: "change",
+					delayOut: 600,
+					scales: [
+					// Annual scale
+					{
+						first: function(value) { return value; },
+						end: function(value) {return value; },
+						next: function(value) {
+							var next = new Date(value);
+							return new Date(next.setFullYear(value.getFullYear() + 1));
+						},
+						label: function(value) {
+							return value.getFullYear();
+						},
+						format: function(tickContainer, tickStart, tickEnd){
+							tickContainer.addClass("myCustomClass");
+						}
+					},
+					// Monthly scale
+					{
+						first: function(value){ return value; },
+						next: function(value) {
+							var next = new Date(value);
+							return new Date(next.setMonth(value.getMonth() + 1));
+						},
+						stop: function(value) { return false; },
+						label: function(){ return null; }
+					}]
+				});
+
+				cf.dateDim.filterRange(
+					[
+						new Date(dateInitial.setDate(dateInitial.getDate()+1)),
+						new Date(dateEnd.setDate(dateEnd.getDate()+1))
+					]);
+
 				filterDispatcher.filtered();
-			});*/
+
+				slider.bind("valuesChanged", function(e, data){
+
+					var values = slider.dateRangeSlider("values");
+					var bounds = slider.dateRangeSlider("bounds");
+
+					var dateBeginNew;
+					var dateEndNew;
+
+					if (values.min.getTime() === values.max.getTime()) {
+						dateBeginNew = bounds.min;
+						dateEndNew = bounds.max;
+					} else {
+						dateBeginNew = values.min;
+						dateEndNew = values.max;
+					}
+					cf.dateDim.filterRange(
+						[
+							dateBeginNew,
+							new Date(dateEndNew.setDate(dateEndNew.getDate()+1))
+						]
+					);
+					console.log(dateBeginNew);
+					console.log(dateEndNew);
+					filterDispatcher.filtered();
+				});
+
+				/*$('#filterdate').on('click', function () {
+					var from = $('#from-date').datepicker('getDate');
+					var to = $('#to-date').datepicker('getDate');
+
+					console.log(from);
+					console.log(to);
+					cf.dateDim.filterRange([from, to]);
+					filterDispatcher.filtered();
+				});*/
+			}
 
 		};
 
 		if(['interactive', 'complete'].indexOf(document.readyState) != -1) {
+
 			initMonthpicker();
 			//monthpicker.startPos();
             //console.log(monthpicker.startPos());
@@ -888,9 +922,13 @@
 
         var resetMonthpicker = function (slider) {
 
-            var bounds = slider.dateRangeSlider("bounds");
+
             //console.log(bounds);
-            slider.dateRangeSlider("values", bounds.min, bounds.max);
+			if (slider) {
+				var bounds = slider.dateRangeSlider("bounds");
+				slider.dateRangeSlider("values", bounds.min, bounds.max);
+			}
+
 
             //initMonthpicker();
             //console.log(slider.dateRangeSlider("values"));
