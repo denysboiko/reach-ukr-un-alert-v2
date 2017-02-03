@@ -103,39 +103,50 @@ WSGI_APPLICATION = 'alerts_map.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'Alerts',
-        'USER': 'postgres',
-        'PASSWORD': '3w_reach',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'Alerts',
+#         'USER': 'postgres',
+#         'PASSWORD': '3w_reach',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
-# if 'LOCAL_ENV' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'Alerts',
-#             'USER': 'postgres',
-#             'PASSWORD': '3w_reach',
-#             'HOST': '127.0.0.1',
-#             'PORT': '5432',
-#         }
-#     }
-# else:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql',
-#             'NAME': 'alerts',
-#             'USER': 'dbadmin',
-#             'PASSWORD': 'pgk6vsnA',
-#             'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
-#             'PORT': '5432',
-#         }
-#     }
+if 'LOCAL_ENV' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'Alerts',
+            'USER': 'postgres',
+            'PASSWORD': '3w_reach',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
+elif 'RDS_DB_NAME' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
+        }
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'alerts',
+            'USER': 'dbadmin',
+            'PASSWORD': 'pgk6vsnA',
+            'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+            'PORT': '5432',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
