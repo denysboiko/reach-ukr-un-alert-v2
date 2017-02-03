@@ -16,6 +16,7 @@ class AlertsSerializer(serializers.ModelSerializer):
     cluster = serializers.ReadOnlyField(source='cluster__cluster_name')
     type = serializers.ReadOnlyField(source='alert_type__alert_type')
     need = serializers.ReadOnlyField(source='need_type__need_type')
+    response_partner = serializers.ReadOnlyField(source='response_partner__organization_name')
 
     class Meta:
 
@@ -40,6 +41,7 @@ class AlertsSerializer(serializers.ModelSerializer):
             'gap_beneficiaries',
             'context',
             'description',
+            'population',
             'additional_info_link',
             'uncovered_needs',
             'conflict_related'

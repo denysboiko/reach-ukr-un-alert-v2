@@ -766,7 +766,7 @@
 				}
 
 			})
-		})
+		});
 
 		/*=====  End of Markers and Marker's Rose  ======*/
 
@@ -808,6 +808,10 @@
                 	min: dateInitial,
 					max: dateEnd
 				},
+                range: {
+                    min: {days: 1}/*,
+					max: {days: 7}*/
+                },
                 valueLabels: "change",
                 delayOut: 600,
                 scales: [

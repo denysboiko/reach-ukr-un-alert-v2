@@ -21,7 +21,7 @@ class AlertsViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = Alert.objects.all().values(
+    queryset = Alert.objects.filter(confirmation_status=2).values(
         'id',
         'date_referal',
         'settlement__settlement_name',
@@ -34,7 +34,7 @@ class AlertsViewSet(viewsets.ModelViewSet):
         'settlement',
         'status',
         'cluster',
-        'response_partner',
+        'response_partner__organization_name',
         'informant',
         'referral_agency',
         'conflict_related',
@@ -47,7 +47,6 @@ class AlertsViewSet(viewsets.ModelViewSet):
         'alert_type__alert_type',
         'need_type__need_type',
         'source_info',
-        'confirmation',
         'action',
         'no_beneficiaries',
         'date_update',

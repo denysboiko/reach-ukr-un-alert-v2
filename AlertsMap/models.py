@@ -22,7 +22,6 @@ class Cluster(models.Model):
         return self.cluster_name
 
     class Meta:
-        managed = False
         db_table = 'clusters'
 
 
@@ -66,7 +65,7 @@ class Settlement(models.Model):
 
 class GCA_NGCA(models.Model):
 
-    type_of_area = models.CharField(max_length=200)
+    type_of_area = models.CharField(max_length=20)
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.type_of_area
@@ -83,7 +82,7 @@ class NeedType(models.Model):
         return self.need_type
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'need_types'
 
 
@@ -120,6 +119,26 @@ class Status(models.Model):
         db_table = 'status'
 
 
+class ConfirmationStatus(models.Model):
+    confirmation_status = models.CharField(max_length=30)
+
+    def __unicode__(self):
+        return self.confirmation_status
+
+    class Meta:
+        db_table = 'confirmation_status'
+
+
+class Organization(models.Model):
+
+    organization_name = models.CharField(max_length=80)
+
+    def __unicode__(self):
+        return self.organization_name
+
+    class Meta:
+        db_table = 'organizations'
+
 class Alert(models.Model):
     # admin1 = models.CharField(max_length=10)
     # admin2 = models.CharField(max_length=10)
@@ -135,9 +154,10 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
-    date_referal = models.DateField()
+    date_referal = models.DateField(verbose_name='Date of Incident')
     informant = models.TextField(blank=True, null=True)
-    referral_agency = models.TextField(blank=True, null=True)
+    referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id')
+        # models.TextField(blank=True, null=True)
     settlement = ChainedForeignKey(
         Settlement,
         chained_field="raion",
@@ -146,7 +166,7 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
-    gca_ngca = models.ForeignKey(GCA_NGCA)
+    gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name='GCA/NGCA')
     yes_no = (
         (0, 'No'),
         (1, 'Yes')
@@ -155,27 +175,94 @@ class Alert(models.Model):
     conflict_related = models.IntegerField(
         choices=yes_no
     )
-    need_type = models.ForeignKey(NeedType)
+    need_type = models.ForeignKey(NeedType, verbose_name='Primary need type')
     description = models.TextField(blank=True, null=True)
     context = models.TextField(blank=True, null=True)
-    affected = models.ForeignKey(AffectedGroup)
-    no_affected = models.IntegerField()
+    affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name='Affected group')
+
     source_info = models.CharField(max_length=255, blank=True, null=True)
-    cluster = models.ForeignKey(Cluster)
-    response_partner = models.CharField(max_length=255, blank=True, null=True)
-    confirmation = models.IntegerField(
-        choices=yes_no
-    )
+    cluster = models.ForeignKey(Cluster, verbose_name='Primary cluster')
+    response_partner = models.ForeignKey(Organization, related_name='response_partner_id', verbose_name='Primary response partner')
+    # models.CharField(max_length=255, blank=True, null=True)
+    # confirmation = models.IntegerField(
+    #     choices=yes_no,
+    #     blank=True,
+    #     null=True
+    # )
+
     action = models.CharField(max_length=255, blank=True, null=True)
-    no_beneficiaries = models.IntegerField(blank=True, null=True)
+
     status = models.ForeignKey(Status)
+    confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1)
     date_update = models.DateField(blank=True, null=True)
-    gap_beneficiaries = models.IntegerField(blank=True, null=True)
+
     uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
     additional_info_link = models.CharField(max_length=255, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
+
+    population = models.BigIntegerField(blank=True, null=True, verbose_name='Baseline population')
+
+
+
+    population_males = models.BigIntegerField(blank=True, null=True)
+    population_females = models.BigIntegerField(blank=True, null=True)
+    population_children = models.BigIntegerField(blank=True, null=True)
+    population_adult = models.BigIntegerField(blank=True, null=True)
+    population_elderly = models.BigIntegerField(blank=True, null=True)
+
+    no_affected = models.IntegerField(verbose_name='Number of affected (ind.)')
+
+    no_affected_males = models.BigIntegerField(blank=True, null=True)
+    no_affected_females = models.BigIntegerField(blank=True, null=True)
+    no_affected_children = models.BigIntegerField(blank=True, null=True)
+    no_affected_adult = models.BigIntegerField(blank=True, null=True)
+    no_affected_elderly = models.BigIntegerField(blank=True, null=True)
+
+    no_beneficiaries = models.IntegerField(blank=True, null=True, verbose_name='Number of beneficiaries')
+
+    no_beneficiaries_males = models.BigIntegerField(blank=True, null=True)
+    no_beneficiaries_females = models.BigIntegerField(blank=True, null=True)
+    no_beneficiaries_children = models.BigIntegerField(blank=True, null=True)
+    no_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
+    no_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
+
+    gap_beneficiaries = models.IntegerField(blank=True, null=True)
+
+    gap_beneficiaries_males = models.BigIntegerField(blank=True, null=True)
+    gap_beneficiaries_females = models.BigIntegerField(blank=True, null=True)
+    gap_beneficiaries_children = models.BigIntegerField(blank=True, null=True)
+    gap_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
+    gap_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
+
+    response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
+    clusters = models.ManyToManyField(Cluster, related_name='clusters_id')
+    need_types = models.ManyToManyField(NeedType, related_name='need_types_id')
+
+
     # related_name = None, to_field = None
 
+    def location(self):
+        location = ' / '.join([str(self.oblast), str(self.raion), str(self.settlement)])
+        return location
+
+    location.admin_order_field = 'location'
+
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'alerts'
+
+
+class BaselinePopulation(models.Model):
+    population_total = models.IntegerField(blank=True, null=True)
+    population_males = models.IntegerField(blank=True, null=True)
+    population_females = models.IntegerField(blank=True, null=True)
+    population_adult = models.IntegerField(blank=True, null=True)
+    population_children = models.IntegerField(blank=True, null=True)
+    population_elderly = models.IntegerField(blank=True, null=True)
+    alert = models.OneToOneField(Alert)
+
+    def __unicode__(self):
+        return self.population_total
+
+    class Meta:
+        db_table = 'baseline_population'
