@@ -1,29 +1,46 @@
-from AlertsMap.models import Alert
+from AlertsMap.models import Alert, Cluster, Organization, NeedType
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 
 
+class ClustersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Cluster
+        fields = ('cluster_name',)
+
+
+class ResponsePartnersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Organization
+        fields = ('organization_name',)
+
 class AlertsSerializer(serializers.ModelSerializer):
 
-    # HyperlinkedModelSerializer
-    settlement = serializers.ReadOnlyField(source='settlement__settlement_name')
-    oblast = serializers.ReadOnlyField(source='oblast__oblast_name')
-    raion = serializers.ReadOnlyField(source='raion__raion_name')
-    raionCode = serializers.ReadOnlyField(source='raion')
-    longitude = serializers.ReadOnlyField(source='settlement__longitude')
-    latitude = serializers.ReadOnlyField(source='settlement__latitude')
-    status = serializers.ReadOnlyField(source='status__status')
-    cluster = serializers.ReadOnlyField(source='cluster__cluster_name')
-    type = serializers.ReadOnlyField(source='alert_type__alert_type')
-    need = serializers.ReadOnlyField(source='need_type__need_type')
-    response_partner = serializers.ReadOnlyField(source='response_partner__organization_name')
+    settlement = serializers.ReadOnlyField(source='settlement.settlement_name')
+    oblast = serializers.ReadOnlyField(source='oblast.oblast_name')
+    raion = serializers.ReadOnlyField(source='raion.raion_name')
+    raionCode = serializers.ReadOnlyField(source='raion.id')
+    longitude = serializers.ReadOnlyField(source='settlement.longitude')
+    latitude = serializers.ReadOnlyField(source='settlement.latitude')
+    status = serializers.ReadOnlyField(source='status.status')
+    cluster = serializers.ReadOnlyField(source='cluster.cluster_name')
+    clusters = ClustersSerializer(many=True)
+    type = serializers.ReadOnlyField(source='alert_type.alert_type')
+    need = serializers.ReadOnlyField(source='need_type.need_type')
+    response_partner = serializers.ReadOnlyField(source='response_partner.organization_name')
+
+    # settlement = serializers.ReadOnlyField(source='settlement.settlement_name')
+
+    response_partners = ResponsePartnersSerializer(many=True)
+    # clusters = serializers.ReadOnlyField(source='clusters.cluster_name')
 
     class Meta:
 
         model = Alert
 
         fields = (
-
             'id',
             'settlement',
             'oblast',
@@ -35,6 +52,7 @@ class AlertsSerializer(serializers.ModelSerializer):
             'date_referal',
             'status',
             'cluster',
+            'clusters',
             'response_partner',
             'type',
             'need',
@@ -44,6 +62,7 @@ class AlertsSerializer(serializers.ModelSerializer):
             'population',
             'additional_info_link',
             'uncovered_needs',
-            'conflict_related'
+            'conflict_related',
+
+            'response_partners'
         )
-        # '__all__'

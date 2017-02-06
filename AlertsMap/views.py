@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from AlertsMap.models import Alert
+from AlertsMap.models import Alert, Cluster, Organization
 from rest_framework import viewsets
 from AlertsMap.forms import *
 
@@ -15,53 +15,26 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from django.contrib.auth import authenticate, login
-from AlertsMap.serializers import AlertsSerializer
+from AlertsMap.serializers import AlertsSerializer, ClustersSerializer, ResponsePartnersSerializer
+
+
+class ClustersViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Cluster.objects.all()
+    serializer_class = ClustersSerializer
+
+class ResponsePartnersViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Organization.objects.all()
+    serializer_class = ResponsePartnersSerializer
+
 
 class AlertsViewSet(viewsets.ReadOnlyModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = Alert.objects.filter(confirmation_status=2).values(
-        'id',
-        'date_referal',
-        'settlement__settlement_name',
-        'settlement__latitude',
-        'settlement__longitude',
-        'oblast__oblast_name',
-        'raion__raion_name',
-        'raion',
-        'oblast',
-        'settlement',
-        'status',
-        'cluster',
-        'response_partner__organization_name',
-        'informant',
-        'referral_agency',
-        'conflict_related',
-        'description',
-        'context',
-        'affected__affected_group_name',
-        'no_affected',
-        'status__status',
-        'cluster__cluster_name',
-        'alert_type__alert_type',
-        'need_type__need_type',
-        'source_info',
-        'action',
-        'no_beneficiaries',
-        'date_update',
-        'gap_beneficiaries',
-        'uncovered_needs',
-        'additional_info_link',
-        'comments'
 
-    )
-    # .values('settlement')
-    # .values('gca_ngca')
-    # .values('settlement',)
+    queryset = Alert.objects.filter(confirmation_status=2)
+
     permission_classes = (AllowAny,)
     serializer_class = AlertsSerializer
     pagination_class = None
+
 
 def home(request):
     return render(

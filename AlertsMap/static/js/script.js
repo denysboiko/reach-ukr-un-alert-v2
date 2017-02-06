@@ -210,7 +210,8 @@
 				, covered: record[referals.fields.covered]
 				, context: record[referals.fields.context]
 				, description: record[referals.fields.description]
-				, infoLink: record[referals.fields.infoLink]
+				, infoLink: ""
+					// record[referals.fields.infoLink]
 				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
@@ -732,34 +733,33 @@
 
 				var currentMarker = d3.select(self).datum().marker
 
-				map.leaflet.closePopup() // close popup if any
+				map.leaflet.closePopup();// close popup if any
 	
-				var $target = d3.select(d3.event.target)
+				var $target = d3.select(d3.event.target);
 
 				if(currentMarker.data.count == 1) {
 
 					if(rose.state == 'open') {
-						markersResetInactive()
-						markersResetActive()
+						markersResetInactive();
+						markersResetActive();
 						rose.close()
 					}
 
-					markersResetActive(currentMarker)
+					markersResetActive(currentMarker);
 					popup(currentMarker.data.record, latlng)
 				} else {
 					if(rose.state != 'open') {
-						markersResetInactive(currentMarker)
-						markersResetActive(currentMarker)
+						markersResetInactive(currentMarker);
+						markersResetActive(currentMarker);
 
 						rose.open(currentMarker)
 					} else {
 						if($target.classed('js-submarker')) {
-							submarkersResetActive($target)
+							submarkersResetActive($target);
 							popup($target.datum().record, latlng)
 						} else {
-							markersResetInactive()
-							markersResetActive()
-
+							markersResetInactive();
+							markersResetActive();
 							rose.close()
 						}
 					}
@@ -801,6 +801,7 @@
 				, dateEnd = cf.dateDim.top(1)[0].date;
 
 
+
 			if (dateBegin.getDate() != dateEnd.getDate()) {
 					// dateEnd.setDate(dateEnd.getDate() + 2);
 				if (monthDiff(dateBegin, dateEnd) > m) {
@@ -811,11 +812,18 @@
 					dateInitial = dateBegin
 				}
 
-				console.log(dateInitial);
-				console.log(dateEnd);
+
 
 
 				slider = $("#slider");
+
+				console.log(dateEnd.getTimezoneOffset());
+				dateBegin.setHours(0,0,0,0);
+				dateInitial.setHours(0,0,0,0);
+				dateEnd.setDate(dateEnd.getDate()+2);
+				dateEnd.setHours(0,0,0,0);
+
+				console.log(dateEnd);
 
 				slider.dateRangeSlider({
 					bounds: {
@@ -834,8 +842,11 @@
 						min: {days: 1}/*,
 						max: {days: 7}*/
 					},
-					valueLabels: "change",
-					delayOut: 600,
+                    step: {
+                        days: 1
+                    },
+					// valueLabels: "change",
+					// delayOut: 600,
 					scales: [
 					// Annual scale
 					{
@@ -866,8 +877,10 @@
 
 				cf.dateDim.filterRange(
 					[
-						new Date(dateInitial.setDate(dateInitial.getDate()+1)),
-						new Date(dateEnd.setDate(dateEnd.getDate()+1))
+						// new Date(dateInitial.setDate(dateInitial.getDate()+1)),
+						// new Date(dateEnd.setDate(dateEnd.getDate()+1))
+						dateInitial,
+						dateEnd
 					]);
 
 				filterDispatcher.filtered();
@@ -883,18 +896,22 @@
 					if (values.min.getTime() === values.max.getTime()) {
 						dateBeginNew = bounds.min;
 						dateEndNew = bounds.max;
+
+						dateBeginNew.setHours(0,0,0,0);
+						dateEndNew.setHours(0,0,0,0);
+						dateEndNew.setDate(dateEndNew.getDate()+1)
 					} else {
 						dateBeginNew = values.min;
 						dateEndNew = values.max;
+
+						dateBeginNew.setHours(0,0,0,0);
+						dateEndNew.setHours(0,0,0,0);
+						dateEndNew.setDate(dateEndNew.getDate()+1)
 					}
 					cf.dateDim.filterRange(
-						[
-							dateBeginNew,
-							new Date(dateEndNew.setDate(dateEndNew.getDate()+1))
-						]
+						[dateBeginNew, dateEndNew]
 					);
-					console.log(dateBeginNew);
-					console.log(dateEndNew);
+					console.log(dateEndNew.getTimezoneOffset());
 					filterDispatcher.filtered();
 				});
 
@@ -914,7 +931,7 @@
 		if(['interactive', 'complete'].indexOf(document.readyState) != -1) {
 
 			initMonthpicker();
-			//monthpicker.startPos();
+			// monthpicker.startPos();
             //console.log(monthpicker.startPos());
 		} else {
 			$window.on('load', initMonthpicker);
@@ -922,18 +939,13 @@
 
         var resetMonthpicker = function (slider) {
 
-
-            //console.log(bounds);
 			if (slider) {
 				var bounds = slider.dateRangeSlider("bounds");
+
+				bounds.max.setDate(bounds.max.getDate()+1);
 				slider.dateRangeSlider("values", bounds.min, bounds.max);
+				console.log(bounds);
 			}
-
-
-            //initMonthpicker();
-            //console.log(slider.dateRangeSlider("values"));
-            //cf.dateDim.filterRange([bounds.min, bounds.max]);
-            //filterDispatcher.filtered();
 
         };
 		/*=====  End of Month filter  ======*/
@@ -1626,6 +1638,7 @@
 		}
 
 		$openDataTable.on('click', function() {
+			// updateTable();
 			if( $dataTableContainer.style('display') == 'none' ) {
 				$dataTableContainer.style({ 'display':  null });
 				$openDataTable.classed({ 'active': true });
@@ -1647,6 +1660,8 @@
 
 
 		filterDispatcher.on('filtered.updateTable', function() {
+			// dataTablePage = 0;
+			// updateTable();
 			if($dataTableContainer.style('display') != 'none') {
 				dataTablePage = 0;
 				updateTable()

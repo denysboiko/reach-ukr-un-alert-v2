@@ -15,6 +15,7 @@ class User(AbstractUser):
     class Meta:
         db_table = 'auth_user'
 
+
 class Cluster(models.Model):
     cluster_name = models.CharField(max_length=200)
 
