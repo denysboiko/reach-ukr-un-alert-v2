@@ -58,18 +58,20 @@ admin.site.register(User, UserAdmin)
 # GuardedModelAdmin
 # ModerationAdmin
 
+
 def check_access(user, group):
     if user:
         return user.groups.filter(name=group).count() > 0
     return False
 
 
-
-
 class PopulationInline(admin.TabularInline):
     model = BaselinePopulation
 
 
+# class ResponsePartnersInline(admin.StackedInline):
+#     model = Alert
+#
 
 
 class AlertAdmin(ModelAdmin):
@@ -108,8 +110,8 @@ class AlertAdmin(ModelAdmin):
     editor_fields = (
 
                 ('need_types','need_type'),
-                ('clusters', 'response_partners'),
-                ('cluster','response_partner'),
+                ('clusters', 'cluster'),
+                ('response_partners','response_partner'),
                 ('status','action','uncovered_needs'),
                 ('referral_agency','date_referal'),
                 # ('source_info','additional_info_link'),
@@ -136,6 +138,8 @@ class AlertAdmin(ModelAdmin):
             self.fieldsets[2][1]['fields'] = self.editor_fields
 
         return super(AlertAdmin, self).get_form(request, obj, **kwargs)
+
+    filter_horizontal = ('response_partners',)
 
     actions = ['confirm_alerts', 'reject_alerts']
 
