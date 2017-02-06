@@ -1,4 +1,5 @@
 from django.contrib import admin
+import json
 from .models import Alert, User, Cluster, BaselinePopulation
 # from moderation.admin import ModerationAdmin
 from django.contrib.admin import AdminSite, ModelAdmin
@@ -109,9 +110,8 @@ class AlertAdmin(ModelAdmin):
 
     editor_fields = (
 
-                ('need_types','need_type'),
-                ('clusters', 'cluster'),
-                ('response_partners','response_partner'),
+                ('need_types','clusters'),#,'need_type'
+                ('response_partners'),#,'response_partner'
                 ('status','action','uncovered_needs'),
                 ('referral_agency','date_referal'),
                 # ('source_info','additional_info_link'),
@@ -166,34 +166,14 @@ class AlertAdmin(ModelAdmin):
     confirm_alerts.short_description = "Confirm selected alerts"
     reject_alerts.short_description = "Reject selected alerts"
 
-    # fields = [
-    #     'oblast',
-    #     'raion',
-    #     'settlement',
-    #     'gca_ngca',
-    #     'conflict_related',
-    #     'alert_type',
-    #     'cluster',
-    #     'need_type',
-    #     'affected',
-    #     'date_referal',
-    #     'date_update',
-    #     'source_info',
-    #     'confirmation',
-    #     'informant',
-    #     'no_affected',
-    #     'no_beneficiaries',
-    #     'gap_beneficiaries',
-    #     'response_partner',
-    #     'referral_agency',
-    #     'description',
-    #     'context',
-    #     'action',
-    #     'status',
-    #     'uncovered_needs',
-    #     'comments',
-    #     'additional_info_link'
-    # ]
+    def save_model(self, request, obj, form, change):
+        new_data = form.__dict__['cleaned_data']
+
+        obj.cluster =new_data['clusters'][0]
+        obj.response_partner = new_data['response_partners'][0]
+        obj.need_type = new_data['need_types'][0]
+
+        obj.save()
 
 
 
