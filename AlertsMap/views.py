@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 from django.contrib.auth import authenticate, login
 from AlertsMap.serializers import AlertsSerializer
 
-class AlertsViewSet(viewsets.ModelViewSet):
+class AlertsViewSet(viewsets.ReadOnlyModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
