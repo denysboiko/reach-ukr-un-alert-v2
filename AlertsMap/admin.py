@@ -173,6 +173,10 @@ class AlertAdmin(ModelAdmin):
         obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
+        # print(new_data['confirmation_status'])
+        # if obj.new_data['clusters'] != 2:
+        #     obj.confirmation_status = 1
+
         obj.save()
 
 

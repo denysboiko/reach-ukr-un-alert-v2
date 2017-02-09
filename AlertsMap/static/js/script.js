@@ -175,14 +175,6 @@
 	/*=====  End of Init map  ======*/
 
 
-
-
-
-
-
-
-
-
 	myLoad(conf.data, function(data) {
 		/*==================================
 		=            Clean data            =
@@ -215,7 +207,6 @@
 				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
-			// console.log(res);
 			res.coords = [res.latitude, res.longitude]
 			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast
 			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement
@@ -348,16 +339,15 @@
 					$paths.classed({ 'js-active': active, 'js-inactive': !active })
 				}
 			})
-		}
+		};
 
 		var raionFilterDispatcher = d3.dispatch('filtered');
 
 		raionFilterDispatcher.on('filtered.updateRaions', function(filters) {
-			updateRaions(filters)
-			//console.log(filters)
-		})
+			updateRaions(filters);
+		});
 
-		updateRaions(allRaionCodes)
+		updateRaions(allRaionCodes);
 
 		/*=====  End of Update raions on map when filtered  ======*/
 
@@ -900,8 +890,6 @@
                         [dateBeginNew, dateEndNew]
                     );
 
-                    console.log([dateBeginNew, dateEndNew]);
-
                     filterDispatcher.filtered();
                 });
             }
@@ -954,9 +942,6 @@
 			
 			$deselect.remove();
 
-
-			//console.log(option);
-
 			partnerChange()
 
 		};
@@ -981,14 +966,7 @@
 
 			$option.datum({ selected: true/*, deselect: $deselect.node()*/ });
 
-
-
-            //console.log($partner.node().value);
-
-			//$partner.node().value = 'none';
-
 			partnerChange();
-
 
 		};
 
@@ -1002,10 +980,8 @@
 					var self = this, $option = d3.select(self);
 					//if(self.value == 'none') { return }
 					//++ln;
-					if(self.selected) { filters.push(self.value); console.log(self.value) }
-                    // console.log(self);
-					//filters.push(self.value);
-					//console.log(filters)
+					if(self.selected) { filters.push(self.value) }
+
 				});
 			
 			if(filters.length == 0) {
@@ -1034,7 +1010,6 @@
         var selectObj = $("#filterPartner");
         //$('#filterPartner');
 
-        //console.log(selectObj.css('display'));
         var Selectize = selectObj.selectize({
             plugins: ['remove_button'],
             delimiter: ',',
@@ -1121,7 +1096,6 @@
 
 				})*/
 
-				// console.log('doCheckAll Fired!');
 			}
 		};
 
@@ -1473,15 +1447,9 @@
 
         loc.on('change', function () {
             var   filters = [];
-
-            //console.log(filterRaionDonetsk.filters);
             //filtersRes = d3.merge([filterRaionDonetsk.filters, filterRaionLuhansk.filters]);
-
             var source = cf.raionCodeDim.group().all();
             filtersRes = source.map(function(d) { return d.key });
-            // console.log(raions)
-            //
-            // console.log(filtersRes);
 
             $("#locations-filter option").each(function() {
                 var value = $(this).val();
@@ -1508,23 +1476,9 @@
 
             filterDispatcher.filtered();
 
-			/*console.log(filters);
-            console.log(filtersRes);
-            console.log(cf.raionCodeDim.group().all(function (d) {
-				return d.key
-            }));*/
-
         });
 
 		/*=====  End of Checkbox filters (cluster / status / type / need / oblast)  ======*/
-
-
-
-
-
-
-
-
 
 
 		/*==================================
@@ -1573,8 +1527,6 @@
 						$div.classed({ 'data-table-spoiled': true });
 						
 						// it would be fine to reset this property on window resize, but i dont care
-						// console.log(div.offsetHeight);
-						// console.log(div.scrollHeight);
 						$div.classed({ 'data-table-spoiled-ready': div.offsetHeight < div.scrollHeight });
 					
 						$div
@@ -1621,7 +1573,6 @@
 				// dataTablePage = 0;
 				// updateTable()
 			}
-		  // console.log(12);
 		});
 
 		$openDataTable.on('click', function() {
@@ -1651,7 +1602,6 @@
 			// dataTablePage = 0;
 			// updateTable();
 			if($body.classed('modal-open')) {
-				console.log(12)
 				dataTablePage = 0;
 				updateTable()
 			}
@@ -1755,10 +1705,7 @@
 				, 'longitude'
 			];
 
-			// console.log(cf);
-
 			var data = cf.dateDim.top(Infinity);
-			// console.log(data);
 			var format = d3.time.format('%Y-%m-%d')
 			data = data.map(function(record) {
 				return [
