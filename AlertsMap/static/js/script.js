@@ -662,22 +662,26 @@
 				.setLatLng(latlng)
 				.setContent(conf.tplPopup({ data: recordData }))
 				.openOn(map.leaflet)
-		}
+		};
 
 		/* marker interaction logic */
 
 		var moving // It is used to check whether the event was a map moving or click
 			, clickStartPos
-			, latlng
+			, latlng;
 		map.leaflet.on('mousedown', function(mapEvent) {
 			clickStartPos = [mapEvent.originalEvent.screenX, mapEvent.originalEvent.screenY]
-		})
+		});
+
 		map.leaflet.on('mouseup', function(mapEvent) {
-			moving =
+			if (typeof clickStartPos !== 'undefined') {
+				moving =
 				Math.abs(mapEvent.originalEvent.screenX - clickStartPos[0]) > 5
-				|| Math.abs(mapEvent.originalEvent.screenY - clickStartPos[1]) > 5
+				|| Math.abs(mapEvent.originalEvent.screenY - clickStartPos[1]) > 5;
+			}
+
 			latlng = mapEvent.latlng
-		})
+		});
 
 		var markersResetInactive = function(currentMarker) {
 			markerLayer.getLayers().forEach(function(marker) {
@@ -786,172 +790,138 @@
 
 		var initMonthpicker = function() {
 
-			// Retrieving Min and Max date values from date dimension
+            // Retrieving Min and Max date values from date dimension
+
             var m = 6;
 
             function monthDiff(d1, d2) {
-				var months;
-				months = (d2.getFullYear() - d1.getFullYear()) * 12;
-				months -= d1.getMonth() + 1;
-				months += d2.getMonth();
-				return months <= 0 ? 0 : months;
-			}
+                var months;
+                months = (d2.getFullYear() - d1.getFullYear()) * 12;
+                months -= d1.getMonth() + 1;
+                months += d2.getMonth();
+                return months <= 0 ? 0 : months;
+            }
 
-			var   dateBegin = cf.dateDim.bottom(1)[0].date
-				, dateEnd = cf.dateDim.top(1)[0].date;
-
-
-
-			if (dateBegin.getDate() != dateEnd.getDate()) {
-					// dateEnd.setDate(dateEnd.getDate() + 2);
-				if (monthDiff(dateBegin, dateEnd) > m) {
-					var dateInitial = new Date(dateEnd.getFullYear(),1,1);
-					dateInitial.setMonth(dateEnd.getMonth() - m);
-				}
-				else {
-					dateInitial = dateBegin
-				}
+            var dateBegin = cf.dateDim.bottom(1)[0].date
+                , dateEnd = cf.dateDim.top(1)[0].date;
 
 
+            if (dateBegin.getDate() != dateEnd.getDate()) {
 
+                if (monthDiff(dateBegin, dateEnd) > m) {
+                    var dateInitial = new Date(dateEnd.getFullYear(), 1, 1);
+                    dateInitial.setMonth(dateEnd.getMonth() - m);
+                }
+                else {
+                    dateInitial = dateBegin
+                }
 
-				slider = $("#slider");
-				dateBegin.setHours(0,0,0,0);
-				dateInitial.setHours(0,0,0,0);
-				dateEnd.setDate(dateEnd.getDate()+2);
-				dateEnd.setHours(0,0,0,0);
+                slider = $("#slider");
 
-
-				slider.dateRangeSlider({
-					bounds: {
-						min: dateBegin,
-						max: dateEnd
-					},
-					values: {
-						min: dateBegin,
-						max: dateEnd
-					},
-					defaultValues: {
-						min: dateInitial,
-						max: dateEnd
-					},
-					range: {
-						min: {days: 1}/*,
-						max: {days: 7}*/
-					},
+                slider.dateRangeSlider({
+                    bounds: {
+                        min: dateBegin,
+                        max: dateEnd
+                    },
+                    values: {
+                    	min: dateBegin,
+                    	max: dateEnd
+                    },
+                    defaultValues: {
+                        min: dateInitial,
+                        max: dateEnd
+                    },
+                    range: {
+                        min: {days: 1}
+                    },
                     step: {
                         days: 1
                     },
-					// valueLabels: "change",
-					// delayOut: 600,
-					scales: [
-					// Annual scale
-					{
-						first: function(value) { return value; },
-						end: function(value) {return value; },
-						next: function(value) {
-							var next = new Date(value);
-							return new Date(next.setFullYear(value.getFullYear() + 1));
-						},
-						label: function(value) {
-							return value.getFullYear();
-						},
-						format: function(tickContainer, tickStart, tickEnd){
-							tickContainer.addClass("myCustomClass");
-						}
-					},
-					// Monthly scale
-					{
-						first: function(value){ return value; },
-						next: function(value) {
-							var next = new Date(value);
-							return new Date(next.setMonth(value.getMonth() + 1));
-						},
-						stop: function(value) { return false; },
-						label: function(){ return null; }
-					}]
-				});
+                    valueLabels: "change",
+                    delayOut: 600,
+                    scales: [
+                        // Annual scale
+                        {
+                            first: function (value) {
+                                return value;
+                            },
+                            end: function (value) {
+                                return value;
+                            },
+                            next: function (value) {
+                                var next = new Date(value);
+                                return new Date(next.setFullYear(value.getFullYear() + 1));
+                            },
+                            label: function (value) {
+                                return value.getFullYear();
+                            },
+                            format: function (tickContainer, tickStart, tickEnd) {
+                                tickContainer.addClass("myCustomClass");
+                            }
+                        },
+                        // Monthly scale
+                        {
+                            first: function (value) {
+                                return value;
+                            },
+                            next: function (value) {
+                                var next = new Date(value);
+                                return new Date(next.setMonth(value.getMonth() + 1));
+                            },
+                            stop: function (value) {
+                                return false;
+                            },
+                            label: function () {
+                                return null;
+                            }
+                        }]
+                });
 
-				cf.dateDim.filterRange(
-					[
-						// new Date(dateInitial.setDate(dateInitial.getDate()+1)),
-						// new Date(dateEnd.setDate(dateEnd.getDate()+1))
-						dateInitial,
-						dateEnd
-					]);
+				var filterDateEnd = new Date(dateEnd);
+				filterDateEnd.setDate(filterDateEnd.getDate() + 1);
 
-				filterDispatcher.filtered();
+                cf.dateDim.filterRange(
+                    [
+                        dateInitial,
+                        filterDateEnd
+                    ]);
 
-				slider.bind("valuesChanged", function(e, data){
+                filterDispatcher.filtered();
 
-					var values = slider.dateRangeSlider("values");
-					var bounds = slider.dateRangeSlider("bounds");
+                slider.bind("valuesChanged", function (e, data) {
 
-					var dateBeginNew;
-					var dateEndNew;
+                    var values = slider.dateRangeSlider("values");
+                    var dateBeginNew = values.min,
+                        dateEndNew = values.max;
 
-					if (values.min.getTime() === values.max.getTime()) {
-						dateBeginNew = bounds.min;
-						dateEndNew = bounds.max;
+                    dateEndNew.setDate(dateEndNew.getDate() + 1);
 
-						dateBeginNew.setHours(0,0,0,0);
-						dateEndNew.setHours(0,0,0,0);
-						dateEndNew.setDate(dateEndNew.getDate()+1)
-					} else {
-						dateBeginNew = values.min;
-						dateEndNew = values.max;
+                    cf.dateDim.filterRange(
+                        [dateBeginNew, dateEndNew]
+                    );
 
-						dateBeginNew.setHours(0,0,0,0);
-						dateEndNew.setHours(0,0,0,0);
-						dateEndNew.setDate(dateEndNew.getDate()+1)
-					}
-					cf.dateDim.filterRange(
-						[dateBeginNew, dateEndNew]
-					);
-					filterDispatcher.filtered();
-				});
+                    console.log([dateBeginNew, dateEndNew]);
 
-				/*$('#filterdate').on('click', function () {
-					var from = $('#from-date').datepicker('getDate');
-					var to = $('#to-date').datepicker('getDate');
-
-					console.log(from);
-					console.log(to);
-					cf.dateDim.filterRange([from, to]);
-					filterDispatcher.filtered();
-				});*/
-			}
-
-		};
+                    filterDispatcher.filtered();
+                });
+            }
+        };
 
 		if(['interactive', 'complete'].indexOf(document.readyState) != -1) {
-
 			initMonthpicker();
-			// monthpicker.startPos();
-            //console.log(monthpicker.startPos());
 		} else {
 			$window.on('load', initMonthpicker);
 		}
 
         var resetMonthpicker = function (slider) {
-
 			if (slider) {
 				var bounds = slider.dateRangeSlider("bounds");
-
 				bounds.max.setDate(bounds.max.getDate()+1);
 				slider.dateRangeSlider("values", bounds.min, bounds.max);
 			}
-
         };
+
 		/*=====  End of Month filter  ======*/
-
-
-
-
-
-
-
-
 
 
 		/*=============================================
