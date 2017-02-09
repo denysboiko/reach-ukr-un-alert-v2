@@ -324,13 +324,13 @@
 
 		var updateRaions = function(selectedRaionCodes) {
 			map.raionsLayer.eachLayer(function(layer) {
-				var containerNodes = layer._container ? [layer._container] : d3.values(layer._layers).map(function(layer) { return layer._container })
+				var containerNodes = layer._container ? [layer._container] : d3.values(layer._layers).map(function(layer) { return layer._container });
 
 				var $paths = d3.selectAll(containerNodes).selectAll('path');
 
 				if(!(selectedRaionCodes instanceof Array) || selectedRaionCodes.length == 0) {
 					// none raions selected
-					$paths.classed({ 'js-active': false, 'js-inactive': true })
+					$paths.classed({ 'js-active': false, 'js-inactive': false })
 				} else if (allRaionCodes.length == selectedRaionCodes.length) {
 					// all raions selected
 					$paths.classed({ 'js-active': false, 'js-inactive': false })
@@ -368,8 +368,8 @@
 
 		var round = function(number, count) {
 
-			var order = 0
-			var i = number
+			var order = 0,
+				i = number;
 			while(i > 1) {
 				i /= 10
 				++order
@@ -392,7 +392,8 @@
 			}
 
 			return roundTo1Num
-		}
+
+		};
 
 
 		var affectedMax = 0
@@ -1464,9 +1465,12 @@
             } else {
                 cf.raionCodeDim.filterFunction(function(d) { return filters.indexOf(d) != -1 })
             }*/
+
+
+
             if (filters.length == 0) {
                 cf.raionCodeDim.filterAll();
-                raionFilterDispatcher.filtered(filtersRes);
+                raionFilterDispatcher.filtered([]);
                 $clearLocation.style({ 'display' : 'none'});
             } else {
                 cf.raionCodeDim.filterFunction(function(d) { return filters.indexOf(d) != -1 });
