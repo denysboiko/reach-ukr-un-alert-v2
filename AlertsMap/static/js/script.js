@@ -816,14 +816,11 @@
 
 
 				slider = $("#slider");
-
-				console.log(dateEnd.getTimezoneOffset());
 				dateBegin.setHours(0,0,0,0);
 				dateInitial.setHours(0,0,0,0);
 				dateEnd.setDate(dateEnd.getDate()+2);
 				dateEnd.setHours(0,0,0,0);
 
-				console.log(dateEnd);
 
 				slider.dateRangeSlider({
 					bounds: {
@@ -911,7 +908,6 @@
 					cf.dateDim.filterRange(
 						[dateBeginNew, dateEndNew]
 					);
-					console.log(dateEndNew.getTimezoneOffset());
 					filterDispatcher.filtered();
 				});
 
@@ -944,7 +940,6 @@
 
 				bounds.max.setDate(bounds.max.getDate()+1);
 				slider.dateRangeSlider("values", bounds.min, bounds.max);
-				console.log(bounds);
 			}
 
         };
@@ -1038,7 +1033,7 @@
 					//if(self.value == 'none') { return }
 					//++ln;
 					if(self.selected) { filters.push(self.value); console.log(self.value) }
-                    console.log(self);
+                    // console.log(self);
 					//filters.push(self.value);
 					//console.log(filters)
 				});
@@ -1156,7 +1151,7 @@
 
 				})*/
 
-				console.log('doCheckAll Fired!');
+				// console.log('doCheckAll Fired!');
 			}
 		};
 
@@ -1572,7 +1567,8 @@
 			, $dataTableHead = $dataTable.append('thead')
 			, $dataTableBody = $dataTable.append('tbody')
 			, $dataTableClose = $dataTableContainer.select('#dataTableClose')
-			, $dataTablePagination = $dataTableContainer.select('#dataTablePagination')
+			, $dataTablePagination = d3.select('#dataTablePagination')
+			//$dataTableContainer
 			, dataTablePage = 0
 
 		$dataTableHead.append('tr')
@@ -1581,9 +1577,9 @@
 		var updateTable = function() {
 			// Clear table, not to write d3 update function.
 			// It will be tricky to update cell with all spoilers stuff.
-			$dataTableBody.selectAll('tr').remove()
+			$dataTableBody.selectAll('tr').remove();
 			
-			var data = cf.allDim.bottom(Infinity)
+			var data = cf.allDim.bottom(Infinity);
 			
 			var $rows = $dataTableBody.selectAll('tr')
 				.data( data.slice( dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep) )
@@ -1607,7 +1603,9 @@
 						$div.classed({ 'data-table-spoiled': true });
 						
 						// it would be fine to reset this property on window resize, but i dont care
-						$div.classed({ 'data-table-spoiled-ready': div.offsetHeight < div.scrollHeight })
+						// console.log(div.offsetHeight);
+						// console.log(div.scrollHeight);
+						$div.classed({ 'data-table-spoiled-ready': div.offsetHeight < div.scrollHeight });
 					
 						$div
 							.on('mouseenter', function() {
@@ -1625,44 +1623,65 @@
 
 			$dataTablePagination.selectAll('li').remove();
 
-			var $pages = $dataTablePagination.selectAll('li')
-				.data( d3.range(Math.ceil(data.length / conf.paginationStep)) );
+			var pgnum = d3.range(Math.ceil(data.length / conf.paginationStep));
 
-			$pages.enter().append('li')
-				.text(function(d) { return d + 1 })
-				.classed('active', function(d) { return d == dataTablePage })
-				.on('click', function(d) {
-					dataTablePage = d;
-					updateTable()
-				})
-		}
+			var $pages = $dataTablePagination.selectAll('li')
+							.data( pgnum );
+
+
+			if (pgnum.length > 1) {
+				$pages.enter().append('li')
+					.text(function(d) { return d + 1 })
+					.classed('active', function(d) { return d == dataTablePage })
+					.on('click', function(d) {
+						dataTablePage = d;
+						updateTable()
+					});
+			}
+
+		};
+
+		$('#dataTableModal').on('shown.bs.modal', function () {
+
+			dataTablePage = 0;
+			updateTable();
+			if( !$body.classed('modal-open') ) {
+				//
+
+				// dataTablePage = 0;
+				// updateTable()
+			}
+		  // console.log(12);
+		});
 
 		$openDataTable.on('click', function() {
-			// updateTable();
-			if( $dataTableContainer.style('display') == 'none' ) {
-				$dataTableContainer.style({ 'display':  null });
-				$openDataTable.classed({ 'active': true });
-				$body.classed({ 'data-table-opened': true });
-				dataTablePage = 0;
-				updateTable()
-			} else {
-				$dataTableContainer.style({ 'display': 'none' });
-				$openDataTable.classed({ 'active': false });
-				$body.classed({ 'data-table-opened': false })
-			}
+
+
+			// if( $dataTableContainer.style('display') == 'none' ) {
+			// 	$dataTableContainer.style({ 'display':  null });
+			// 	$openDataTable.classed({ 'active': true });
+			// 	$body.classed({ 'data-table-opened': true });
+			// 	dataTablePage = 0;
+			// 	updateTable()
+			// } else {
+			// 	$dataTableContainer.style({ 'display': 'none' });
+			// 	$openDataTable.classed({ 'active': false });
+			// 	$body.classed({ 'data-table-opened': false })
+			// }
 		});
 
-		$dataTableClose.on('click', function() {
-			$dataTableContainer.style({ 'display': 'none' });
-			$openDataTable.classed({ 'active': false });
-			$body.classed({ 'data-table-opened': false });
-		});
+		// $dataTableClose.on('click', function() {
+		// 	$dataTableContainer.style({ 'display': 'none' });
+		// 	$openDataTable.classed({ 'active': false });
+		// 	$body.classed({ 'data-table-opened': false });
+		// });
 
 
 		filterDispatcher.on('filtered.updateTable', function() {
 			// dataTablePage = 0;
 			// updateTable();
-			if($dataTableContainer.style('display') != 'none') {
+			if($body.classed('modal-open')) {
+				console.log(12)
 				dataTablePage = 0;
 				updateTable()
 			}
@@ -1769,7 +1788,7 @@
 			// console.log(cf);
 
 			var data = cf.dateDim.top(Infinity);
-			console.log(data);
+			// console.log(data);
 			var format = d3.time.format('%Y-%m-%d')
 			data = data.map(function(record) {
 				return [

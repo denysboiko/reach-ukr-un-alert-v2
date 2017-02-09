@@ -20,6 +20,7 @@
 
 		<link rel="stylesheet" href="{% static 'css/style.css' %}" />
 
+
 		<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
         <!--https://code.jquery.com/jquery-3.1.1.min.js-->
 		<script src="{% static 'js/changeLang.js' %}"></script>
@@ -46,6 +47,9 @@
 			body{
 				font-size: 11pt; 
 			}
+            thead {
+                font-weight: bold;
+            }
 		</style>
 
         {% comment %}<script src="{% static 'js/microplugin.min.js' %}"></script>
@@ -116,6 +120,22 @@
                 line-height: 26.4px;
                 margin-right: 5px;
             }
+{#            .data-table-spoiled {#}
+{#                max-width: 100px;#}
+{#                overflow: hidden;#}
+{#                text-overflow: ellipsis;#}
+{#                max-height: 100px;#}
+{#                white-space: nowrap;#}
+{#            }#}
+{#            .data-table-spoiled:hover {#}
+{#                max-width: 100px;#}
+{#                overflow: hidden;#}
+{#                text-overflow: ellipsis;#}
+{#                position: absolute;#}
+{##}
+{#                max-height: 500px;#}
+{#                white-space: nowrap;#}
+{#            }#}
             .dropdown-button.collapsed:after {
                 /* symbol for "collapsed" panels */
                 content: "\e079";    /* adjust as needed, taken from bootstrap.css */
@@ -129,10 +149,112 @@
                 color: #fff;
                 text-decoration: none;
             }
+            .data-table-spoiled {
+                max-height: 5.6em;
+                line-height: 1.4;
+                overflow: hidden;
+            }
+
+            .data-table-spoiled-ready::after {
+                content: '\b7\b7\b7';
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                background: #fcc;
+                color: #888;
+                font-weight: 500;
+                font-size: 16px;
+                height: 12px;
+                line-height: 12px;
+                width: 20px;
+                text-align: center;
+            }
+
+            #dataTable tbody td {
+                position: relative;
+            }
+
+            #dataTable tbody tr .data-table-spoiler {
+              background: #fff;
+            }
+{#            #dataTable tbody tr:nth-child(2n) .data-table-spoiler {#}
+{#              background: #f6f6f6;#}
+{#            }#}
+{#            .modal-content {#}
+{#                position: static;#}
+{#            }#}
+            #dataTable tbody .data-table-spoiler {
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                padding: 5px;
+                overflow: visible;
+                -webkit-box-sizing: content-box;
+                -moz-box-sizing: content-box;
+                box-sizing: content-box;
+
+                -webkit-background-clip: padding-box;
+                background-clip: padding-box;
+                border: 1px solid #ccc;
+                border: 1px solid rgba(0, 0, 0, .2);
+                border-radius: 0 0 6px 6px;
+                -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+            }
         </style>
 
 	</head>
 	<body>
+    <div class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1" id="dataTableModal" aria-labelledby="myLargeModalLabel">
+                    <div class="modal-dialog modal-lg" role="document" style="width: 95%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">×</span></button>
+{#                                <h4 class="modal-title" id="myLargeModalLabel">Data Table</h4>#}
+                            </div>
+                            <div class="modal-body data">
+
+                                <table class="table-hover table" id="dataTable">
+
+                                            <script type="text/template" id="tplDataTableHead">
+                                                <td style="width:120px;">Oblast / <wbr />Raion / <wbr />Settlement</td>
+                                                <td style="width:80px;">Covered / Affected</td>
+                                                <td style="width:100px;">Type alerts</td>
+                                                <td style="width:140px;">Type needs</td>
+                                                <td style="width:20%;">Description</td>
+                                                <td style="width:20%;">Context</td>
+                                                <td style="width:100px;">Additional information</td>
+                                                <td style="width:80px;">Conflict related</td>
+                                                <td style="width:100px;">Date referral</td>
+                                                <td style="width:80px;">Gaps-not covered need</td>
+                                            </script>
+                                        <script type="text/template" id="tplDataTableRow">
+                                            <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
+                                            <td style="text-align:center;"><%= data.affected %> / <%= data.covered %></td>
+                                            <td style="text-align:center;"><%= data.type %></td>
+                                            <td><%= data.need.join(', ') %></td>
+                                            <td><%= data.description %></td>
+                                            <td><%= data.context %></td>
+                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
+                                            <td style="text-align:center;"><%= data.conflictRelated %></td>
+                                            <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
+                                            <td style="text-align:center;"><%= data.notCoveredNeeds %></td>
+                                        </script>
+
+                                </table>
+
+                            </div>
+
+                            <nav>
+                                <ul id="dataTablePagination" class="pagination">
+                                </ul>
+                            </nav>
+
+                        </div>
+                    </div>
+                </div>
     <div class="header-wrapper">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
@@ -180,8 +302,12 @@
                         <script type="text/template" id="tplFilterCounter">
                             <%= data.value %> <span class="translate">alerts selected of</span> <%= data.total %>
                         </script>
-                        <button class="header-button translate" id="openDataTable">DATA TABLE</button>
+
+
+
+                        <button id="openDataTable" type="button" class="header-button translate" data-toggle="modal" data-target=".bs-example-modal-lg">DATA TABLE</button>
                         <button class="button header-button translate save-data">DOWNLOAD DATA</button>
+
                     </div>
 
                 </div>
@@ -193,6 +319,7 @@
 
 		<div class="main-wrapper">
 			<main>
+
 				<div id="map"></div>
 
 				<div class="bottom-wrapper">
@@ -207,9 +334,9 @@
 				<div class="data-table" style="display: none">
 					<div class="data-table-close" id="dataTableClose">&times;</div>
 					<div class="data-table-overflow">
-						<table id="dataTable"></table>
+						<table ></table>
 					</div>
-					<ul id="dataTablePagination"></ul>
+
 				</div>
 			</main>
 		</div>
@@ -305,10 +432,11 @@
                     </script>{% endcomment %}
 				</div>
 
+
 			</aside>
 		</div>
 
-	
+
 		<script type="text/template" id="tplPopup">
 			<p class="popup-title"><%= data.title %></p>
 			<p>
@@ -353,31 +481,9 @@
 			<% } %>
 		</script>
 
-		<script type="text/template" id="tplDataTableHead">
-			<td style="width:120px;">Oblast / <wbr />Raion / <wbr />Settlement</td>
-			<td style="width:80px;">Covered / Affected</td>
-			<td style="width:100px;">Type alerts</td>
-			<td style="width:140px;">Type needs</td>
-			<td style="width:20%;">Description</td>
-			<td style="width:20%;">Context</td>
-			<td style="width:100px;">Additional information</td>
-			<td style="width:80px;">Conflict related</td>
-			<td style="width:100px;">Date referral</td>
-			<td style="width:80px;">Gaps-not covered need</td>
-		</script>
 
-		<script type="text/template" id="tplDataTableRow">
-			<td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
-			<td style="text-align:center;"><%= data.affected %> / <%= data.covered %></td>
-			<td style="text-align:center;"><%= data.type %></td>
-			<td><%= data.need.join(', ') %></td>
-			<td><%= data.description %></td>
-			<td><%= data.context %></td>
-			<td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
-			<td style="text-align:center;"><%= data.conflictRelated %></td>
-			<td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
-			<td style="text-align:center;"><%= data.notCoveredNeeds %></td>
-		</script>
+
+
 
 		<script type="text/javascript" src="{% static 'data/ukr_adm1b.js' %}"></script>
 		<script type="text/javascript" src="{% static 'data/raions_donetsk_luhansk.js' %}"></script>
@@ -444,20 +550,36 @@
 					, {key: 'Not Addressed', text: 'Not addressed', color: '#EE5859'}
 				]
 				, filterCluster: [
-					{ key: 'Education' }
-					, { key: 'Food Security' }
-					, { key: 'Health/Nutrition' }
-					, { key: 'Livelihoods/Early Recovery' }
-					, { key: 'Logistics' }
-					, { key: 'Protection' }
-					, { key: 'Emergency Shelter/NFI' }
-					, { key: 'Water Sanitation Hygiene' }
+
+
+                    {
+                        key: "Education"
+                    },
+                    {
+                        key: "Food Security & Livelihoods"
+                    },
+                    {
+                        key: "Logistics"
+                    },
+                    {
+                        key: "Protection"
+                    },
+                    {
+                        key: "Water Sanitation Hygiene"
+                    },
+                    {
+                        key: "Emergency Shelter/NFI"
+                    },
+                    {
+                        key: "Health/Nutrition"
+                    }
+
 				]
 				, markerSpacer: 20
 				, tplPopup: _.template(d3.select('#tplPopup').html())
 				, tplDataTableRow: _.template(d3.select('#tplDataTableRow').html())
 				, tplDataTableHead: _.template(d3.select('#tplDataTableHead').html())
-				, paginationStep: 100
+				, paginationStep: 15
 				, filterOblast: {
 					// keyInSourceCode: 'Key data in document'
 					donetsk: 'Donetska'

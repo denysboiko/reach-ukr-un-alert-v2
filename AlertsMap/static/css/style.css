@@ -261,42 +261,6 @@ aside {
 /*==================================
 =            Data table            =
 ==================================*/
-.data-table {
-  position: absolute;
-  top: 20px;
-  bottom: 100px;
-  left: 20px;
-  right: 20px;
-  z-index: 2000;
-}
-.data-table-overflow {
-  height: 100%;
-  overflow: scroll;
-  overflow-y: scroll;
-  overflow-x: auto;
-  background: #fff;
-  position: relative;
-}
-.data-table-close {
-  width: 30px;
-  height: 30px;
-  background: rgba(64, 64, 64, 0.8);
-  position: absolute;
-  right: 0;
-  margin-top: -15px;
-  margin-right: -15px;
-  z-index: 100;
-  border-radius: 50%;
-  background-clip: padding-box;
-  text-align: center;
-  line-height: 30px;
-  color: #fff;
-  font-size: 26px;
-  cursor: pointer;
-}
-.data-table-close:hover {
-  background: rgba(32, 32, 32, 0.9);
-}
 .data-table table {
   border-collapse: collapse;
   white-space: pre-wrap;
@@ -369,7 +333,6 @@ aside {
   display: none;
 }
 #dataTablePagination {
-  position: absolute;
   bottom: 0;
   list-style-type: none;
   padding: 0;
