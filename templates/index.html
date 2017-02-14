@@ -432,6 +432,24 @@
                     </script>{% endcomment %}
 				</div>
 
+                <button type="button"
+                        class="btn btn-default"
+                        data-container="body"
+                        data-toggle="popover"
+                        data-placement="top"
+                        data-html="true"
+                        title='<b>Example popover</b> - title <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+                        data-content="Vivamus
+                        sagittis lacus vel augue laoreet rutrum faucibus.">
+                    Popover on bottom
+                </button>
+                <script>
+
+                    $('button[data-toggle="popover"]').popover();
+                    // $('button[data-toggle="popover"]').popover('hide')
+
+                </script>
+
 			</aside>
 		</div>
 

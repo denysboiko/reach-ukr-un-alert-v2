@@ -161,7 +161,8 @@ form .aligned table p {
 }
 
 .colM .aligned .vLargeTextField, .colM .aligned .vXMLLargeTextField {
-    width: 610px;
+    /*width: 610px;*/
+    width: 80%
 }
 
 .checkbox-row p.help {

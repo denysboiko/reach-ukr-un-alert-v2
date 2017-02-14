@@ -72,6 +72,7 @@ class PopulationInline(admin.TabularInline):
 
 class ItemsInline(admin.TabularInline):
     model = AlertItem
+    extra = 1
 
 # class ResponsePartnersInline(admin.StackedInline):
 #     model = Alert
@@ -120,10 +121,10 @@ class AlertAdmin(ModelAdmin):
                 ('status','action','uncovered_needs'),
                 ('referral_agency','date_referal'),
                 # ('source_info','additional_info_link'),
-                'informant',
-                'context',
-                'description',
-                'comments',
+                ('informant',
+                'context'),
+                ('description',
+                'comments'),
                 'date_update'
 
             )
