@@ -11,5 +11,3 @@ send_mail(
     # , 'jeremy.wetterwald@reach-initiative.org'
     fail_silently=False
 )
-
-send_mail

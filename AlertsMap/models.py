@@ -140,6 +140,9 @@ class Organization(models.Model):
     class Meta:
         db_table = 'organizations'
 
+
+
+
 class Alert(models.Model):
     # admin1 = models.CharField(max_length=10)
     # admin2 = models.CharField(max_length=10)
@@ -251,6 +254,41 @@ class Alert(models.Model):
     class Meta:
         # managed = False
         db_table = 'alerts'
+
+class Item(models.Model):
+
+    item_name = models.CharField(max_length=80, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.item_name
+
+    class Meta:
+        db_table = 'items'
+
+class Unit(models.Model):
+
+    unit_name = models.CharField(max_length=15, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.unit_name
+
+    class Meta:
+        db_table = 'item_units'
+
+
+class AlertItem(models.Model):
+
+    alert = models.ForeignKey(Alert)
+    item = models.ForeignKey(Item)
+    item_details = models.CharField(max_length=120, blank=True, null=True)
+    quantity = models.IntegerField(blank=True, null=True)
+    unit = models.ForeignKey(Unit)
+    #
+    # def __unicode__(self):
+    #     return self.item_name
+
+    class Meta:
+        db_table = 'alert_items'
 
 
 class BaselinePopulation(models.Model):

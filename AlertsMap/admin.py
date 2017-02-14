@@ -1,6 +1,6 @@
 from django.contrib import admin
 import json
-from .models import Alert, User, Cluster, BaselinePopulation
+from .models import Alert, User, Cluster, BaselinePopulation, AlertItem
 # from moderation.admin import ModerationAdmin
 from django.contrib.admin import AdminSite, ModelAdmin
 from django.contrib.auth.admin import UserAdmin
@@ -70,6 +70,9 @@ class PopulationInline(admin.TabularInline):
     model = BaselinePopulation
 
 
+class ItemsInline(admin.TabularInline):
+    model = AlertItem
+
 # class ResponsePartnersInline(admin.StackedInline):
 #     model = Alert
 #
@@ -107,6 +110,8 @@ class AlertAdmin(ModelAdmin):
         }),
         (None, {'fields': ()})
     )
+
+    inlines = [ItemsInline]
 
     editor_fields = (
 
@@ -173,7 +178,7 @@ class AlertAdmin(ModelAdmin):
         obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
-        # print(new_data['confirmation_status'])
+        print(form.__dict__['cleaned_data'])
         # if obj.new_data['clusters'] != 2:
         #     obj.confirmation_status = 1
 
