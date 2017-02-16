@@ -129,10 +129,21 @@ class ConfirmationStatus(models.Model):
     class Meta:
         db_table = 'confirmation_status'
 
+class OrganizationType(models.Model):
+
+    type = models.CharField(max_length=80, null=True)
+
+    def __unicode__(self):
+        return self.organization_type
+
+    class Meta:
+        db_table = 'organization_types'
 
 class Organization(models.Model):
 
     organization_name = models.CharField(max_length=80)
+    organization_acronym = models.CharField(max_length=30, null=True)
+    organization_type = models.ForeignKey(OrganizationType, null=True)
 
     def __unicode__(self):
         return self.organization_name
@@ -255,9 +266,23 @@ class Alert(models.Model):
         # managed = False
         db_table = 'alerts'
 
+class ItemGroup(models.Model):
+
+    item_group_name = models.CharField(max_length=80, blank=True, null=True)
+
+    def __unicode__(self):
+        return self.item_group_name
+
+    class Meta:
+        db_table = 'item_groups'
+
 class Item(models.Model):
 
     item_name = models.CharField(max_length=80, blank=True, null=True)
+    item_label_en = models.CharField(max_length=120, blank=True, null=True)
+    item_label_ua = models.CharField(max_length=120, blank=True, null=True)
+    item_label_ru = models.CharField(max_length=120, blank=True, null=True)
+    item_group = models.ForeignKey(ItemGroup, null=True)
 
     def __unicode__(self):
         return self.item_name
@@ -268,6 +293,9 @@ class Item(models.Model):
 class Unit(models.Model):
 
     unit_name = models.CharField(max_length=15, blank=True, null=True)
+    unit_label_en = models.CharField(max_length=30, blank=True, null=True)
+    unit_label_ua = models.CharField(max_length=30, blank=True, null=True)
+    unit_label_ru = models.CharField(max_length=30, blank=True, null=True)
 
     def __unicode__(self):
         return self.unit_name
