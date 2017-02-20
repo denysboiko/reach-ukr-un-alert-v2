@@ -6,6 +6,8 @@ from smart_selects.db_fields import ChainedForeignKey
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
+from colorful.fields import RGBColorField
+from colorfield.fields import ColorField
 
 
 class User(AbstractUser):
@@ -41,12 +43,13 @@ class Oblast(models.Model):
 class Raion(models.Model):
     raion_name = models.CharField(max_length=100)
     oblast = models.ForeignKey(Oblast)
+    color = ColorField(default='#FF0000')
+    # color = RGBColorField()
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.raion_name
 
     class Meta:
-        managed = False
         db_table = 'raions'
 
 class Settlement(models.Model):

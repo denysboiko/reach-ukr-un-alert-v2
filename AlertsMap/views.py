@@ -21,6 +21,8 @@ from AlertsMap.serializers import AlertsSerializer, ClustersSerializer, Response
 class ClustersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Cluster.objects.all()
     serializer_class = ClustersSerializer
+    pagination_class = None
+
 
 class ResponsePartnersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Organization.objects.all()

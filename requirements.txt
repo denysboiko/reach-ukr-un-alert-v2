@@ -7,3 +7,5 @@ virtualenv==14.0.3
 psycopg2==2.6.2
 django-moderation==0.4.0
 django-guardian
+django-colorful
+django-colorfield

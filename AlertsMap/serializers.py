@@ -5,9 +5,11 @@ from rest_framework import serializers
 
 class ClustersSerializer(serializers.ModelSerializer):
 
+    key = serializers.ReadOnlyField(source='cluster_name')
+
     class Meta:
         model = Cluster
-        fields = ('cluster_name',)
+        fields = ('key',)
 
 
 class ResponsePartnersSerializer(serializers.ModelSerializer):
@@ -49,6 +51,7 @@ class AlertsSerializer(serializers.ModelSerializer):
             'latitude',
             'longitude',
             'no_affected',
+            'no_beneficiaries',
             'date_referal',
             'status',
             'cluster',

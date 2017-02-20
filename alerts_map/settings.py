@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     # 'moderation',
     'guardian',
     # 'coverage',
+    'colorful' ,
+    'colorfield' ,
     'AlertsMap'
 ]
 
@@ -114,18 +116,7 @@ WSGI_APPLICATION = 'alerts_map.wsgi.application'
 #     }
 # }
 
-if 'LOCAL_ENV' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Alerts',
-            'USER': 'postgres',
-            'PASSWORD': '3w_reach',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
-elif 'RDS_DB_NAME' in os.environ:
+if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',

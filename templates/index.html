@@ -42,7 +42,7 @@
 		</script>
 		<style type="text/css">
 			*{
-				font-family: "Arial Narrow",Roboto,verdana,sans-serif !important;
+				font-family: Roboto, "Helvetica Neue", verdana, sans-serif !important;
 			}
 			body{
 				font-size: 11pt; 
@@ -232,7 +232,7 @@
                                             </script>
                                         <script type="text/template" id="tplDataTableRow">
                                             <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
-                                            <td style="text-align:center;"><%= data.affected %> / <%= data.covered %></td>
+                                            <td style="text-align:center;"><%= data.covered %> / <%= data.affected %></td>
                                             <td style="text-align:center;"><%= data.type %></td>
                                             <td><%= data.need.join(', ') %></td>
                                             <td><%= data.description %></td>
@@ -481,11 +481,12 @@
 					<b>Additional information:</b> <a href="<%= data.infoLink %>">Additional information</a>
 				</p>
 			<% } %>
-			<% if(data.conflictRelated) { %>
+
 				<p>
-					<b>Relayed to conflict:</b> <%= data.conflictRelated %>
+                    <b>Relayed to conflict:</b>
+                    <% if(data.conflictRelated) { %> Yes <% } else { %> No <% } %>
 				</p>
-			<% } %>
+
 
 			<p>
 				<b>Date referral:</b> <%= conf.dateFormat(data.date) %>
@@ -507,10 +508,20 @@
 		<script type="text/javascript" src="{% static 'data/grey_zone.js' %}"></script>
 
 		<script type="text/javascript">
-			window.conf = {
+
+            var clusters = null;
+            $.ajax({
+              url: "/clusters/?format=json",
+              async: false,
+              dataType: 'json',
+              success: function (response) {
+                clusters = response
+              }
+            });
+
+            window.conf = {
 				map: {
-					// tiles: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-					// tiles: 'http://c.tile.stamen.com/toner-lite/{z}/{x}/{y}.png'
+
 					tiles: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
 					, center: [48.1, 38.2]
 					, zoom: 8
@@ -534,9 +545,6 @@
 				, data: {
 					referals: {
 						urls: ['{{ data }}']
-
-                        {#{% static 'data/alerts/alerts_1.csv' %}#}
-                        {% comment %}<?= implode("', '", $dataFiles) ?>{% endcomment %}
 						, loader: d3.json
 						, fields: {
 							settlement: 'settlement'
@@ -552,7 +560,7 @@
 							, partner: 'response_partner'
 							, type: 'type'
 							, need: 'need'
-							, covered: 'gap_beneficiaries'
+							, covered: 'no_beneficiaries'
 							, context: 'context'
 							, description: 'description'
 							, infoLink: 'additional_info_link'
@@ -566,32 +574,7 @@
 					, {key: 'Addressed But Unresolved', text: 'Addressed, not resolved', color: '#F69E61'}
 					, {key: 'Not Addressed', text: 'Not addressed', color: '#EE5859'}
 				]
-				, filterCluster: [
-
-
-                    {
-                        key: "Education"
-                    },
-                    {
-                        key: "Food Security & Livelihoods"
-                    },
-                    {
-                        key: "Logistics"
-                    },
-                    {
-                        key: "Protection"
-                    },
-                    {
-                        key: "Water Sanitation Hygiene"
-                    },
-                    {
-                        key: "Emergency Shelter/NFI"
-                    },
-                    {
-                        key: "Health/Nutrition"
-                    }
-
-				]
+				, filterCluster: clusters
 				, markerSpacer: 20
 				, tplPopup: _.template(d3.select('#tplPopup').html())
 				, tplDataTableRow: _.template(d3.select('#tplDataTableRow').html())
@@ -599,7 +582,7 @@
 				, paginationStep: 15
 				, filterOblast: {
 					// keyInSourceCode: 'Key data in document'
-					donetsk: 'Donetska'
+                      donetsk: 'Donetska'
 					, luhansk: 'Luhanska'
 				}
 				, filterOblastRaions: {
@@ -672,6 +655,8 @@
 				c.l += .1;
 				conf.raionColors[k] = c.toString()
 			}
+
+
 			
 		</script>
 

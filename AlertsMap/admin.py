@@ -1,6 +1,6 @@
 from django.contrib import admin
 import json
-from .models import Alert, User, Cluster, BaselinePopulation, AlertItem
+from .models import Alert, User, Cluster, BaselinePopulation, AlertItem, Raion
 # from moderation.admin import ModerationAdmin
 from django.contrib.admin import AdminSite, ModelAdmin
 from django.contrib.auth.admin import UserAdmin
@@ -90,7 +90,8 @@ class AlertAdmin(ModelAdmin):
         'alert_type',
         'need_type',
         'confirmation_status',
-        'description'
+        'description',
+        'date_referal'
     ]
 
     fieldsets = (
@@ -179,7 +180,7 @@ class AlertAdmin(ModelAdmin):
         obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
-        print(form.__dict__['cleaned_data'])
+        # print(form.__dict__['cleaned_data'])
         # if obj.new_data['clusters'] != 2:
         #     obj.confirmation_status = 1
 
@@ -190,3 +191,4 @@ class AlertAdmin(ModelAdmin):
 
 admin.site.register(Alert, AlertAdmin)
 admin.site.register(Cluster)
+admin.site.register(Raion)
