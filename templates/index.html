@@ -238,7 +238,7 @@
                                             <td><%= data.description %></td>
                                             <td><%= data.context %></td>
                                             <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
-                                            <td style="text-align:center;"><%= data.conflictRelated %></td>
+                                            <td style="text-align:center;"><% if (data.conflictRelated) { %>Yes<% } else { %>No<% } %></td>
                                             <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
                                             <td style="text-align:center;"><%= data.notCoveredNeeds %></td>
                                         </script>
