@@ -187,7 +187,7 @@ class AlertAdmin(ModelAdmin):
         new_data = form.__dict__['cleaned_data']
 
         obj.cluster =new_data['clusters'][0]
-        obj.response_partner = new_data['response_partners'][0]
+        # obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
         # print(form.__dict__['cleaned_data'])
