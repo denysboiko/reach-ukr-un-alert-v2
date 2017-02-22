@@ -1,6 +1,6 @@
 from django.contrib import admin
 import json
-from .models import Alert, User, Cluster, BaselinePopulation, AlertItem, Raion
+from .models import *
 # from moderation.admin import ModerationAdmin
 from django.contrib.admin import AdminSite, ModelAdmin
 from django.contrib.auth.admin import UserAdmin
@@ -70,8 +70,18 @@ class PopulationInline(admin.TabularInline):
     model = BaselinePopulation
 
 
+
 class ItemsInline(admin.TabularInline):
     model = AlertItem
+    verbose_name = "Need by item"
+    verbose_name_plural = "Need by item"
+    extra = 1
+
+
+class ResponsesInline(admin.TabularInline):
+    model = Response
+    verbose_name = "Response by item"
+    verbose_name_plural = "Response by item"
     extra = 1
 
 # class ResponsePartnersInline(admin.StackedInline):
@@ -113,12 +123,12 @@ class AlertAdmin(ModelAdmin):
         (None, {'fields': ()})
     )
 
-    inlines = [ItemsInline]
+    inlines = [ItemsInline, ResponsesInline]
 
     editor_fields = (
 
                 ('need_types','clusters'),#,'need_type'
-                ('response_partners'),#,'response_partner'
+                # ('response_partners'),#,'response_partner'
                 ('status','action','uncovered_needs'),
                 ('referral_agency','date_referal'),
                 # ('source_info','additional_info_link'),
@@ -146,7 +156,7 @@ class AlertAdmin(ModelAdmin):
 
         return super(AlertAdmin, self).get_form(request, obj, **kwargs)
 
-    filter_horizontal = ('response_partners',)
+    # filter_horizontal = ('response_partners',)
 
     actions = ['confirm_alerts', 'reject_alerts']
 

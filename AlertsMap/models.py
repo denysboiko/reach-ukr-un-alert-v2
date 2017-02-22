@@ -155,8 +155,6 @@ class Organization(models.Model):
         db_table = 'organizations'
 
 
-
-
 class Alert(models.Model):
     # admin1 = models.CharField(max_length=10)
     # admin2 = models.CharField(max_length=10)
@@ -252,7 +250,7 @@ class Alert(models.Model):
     gap_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
     gap_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
 
-    response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
+    # response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
     clusters = models.ManyToManyField(Cluster, related_name='clusters_id')
     need_types = models.ManyToManyField(NeedType, related_name='need_types_id')
 
@@ -268,6 +266,7 @@ class Alert(models.Model):
     class Meta:
         # managed = False
         db_table = 'alerts'
+
 
 class ItemGroup(models.Model):
 
@@ -320,6 +319,15 @@ class AlertItem(models.Model):
 
     class Meta:
         db_table = 'alert_items'
+
+
+class Response(models.Model):
+    alert = models.ForeignKey(Alert)
+    response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
+    item = models.ForeignKey(Item)
+    item_details = models.CharField(max_length=120, blank=True, null=True)
+    quantity = models.IntegerField(blank=True, null=True)
+    unit = models.ForeignKey(Unit)
 
 
 class BaselinePopulation(models.Model):
