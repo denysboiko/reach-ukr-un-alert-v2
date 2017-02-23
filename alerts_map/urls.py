@@ -8,6 +8,8 @@ router = routers.DefaultRouter()
 router.register(r'alerts', AlertsViewSet)
 router.register(r'clusters', ClustersViewSet)
 router.register(r'response', ResponsePartnersViewSet)
+router.register(r'responses', ResponseViewSet)
+
 
 urlpatterns = [
     url(r'^$', home),

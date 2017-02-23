@@ -158,7 +158,7 @@
 		d3.select(layer._container).select('path')
 			.attr({ 'fill': 'url("#diagonalHatch")'})
 			.style({ 'opacity': .5 })
-	})
+	});
 
 	// add diagonalHatch pattern
 	d3.select(map.leaflet._pathRoot).insert('defs', ':first-child')
@@ -195,12 +195,10 @@
 				, affected: parseInt(record[referals.fields.affected]) || 0
 				, date: conf.dateParse.parse(record[referals.fields.date])
 				, status: record[referals.fields.status]
-				, cluster: record[referals.fields.cluster].split(',').map(function(name) { return name.trim() })
 				, clusters: record[referals.fields.clusters].map(function(name) { return name.trim() })
-                    // .forEach(function(element, index, array) { return element.map(function(name) { return name.trim() })})
-				, partner: record[referals.fields.partner]
+                , partners: record[referals.fields.partners].map(function(name) { return name.trim() })
 				, type: record[referals.fields.type]
-				, need: record[referals.fields.need].split(',').map(function(name) { return name.trim() })
+                , needs: record[referals.fields.needs].map(function(name) { return name.trim() })
 				, covered: record[referals.fields.covered]
 				, context: record[referals.fields.context]
 				, description: record[referals.fields.description]
@@ -213,7 +211,6 @@
 			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast;
 			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement;
 
-            console.log(res);
 			return res
 
 		});
@@ -269,32 +266,29 @@
 
         // cf.clustersDim = cf.dimension(function(d) { return d.clusters }, true);
 
-		function reduceAdd(p, v) {
-		  v.clusters.forEach (function(val, idx) {
-			 p[val] = (p[val] || 0) + 1; //increment counts
-		  });
-		  return p;
-		}
 
-		function reduceRemove(p, v) {
-		  v.clusters.forEach (function(val, idx) {
-			 p[val] = (p[val] || 0) - 1; //decrement counts
-		  });
-		  return p;
+        var clusters = cf.clusterDim.groupAll().reduce(
+            function (p, v) {
+                v.clusters.forEach(function (val, idx) {
+                    p[val] = (p[val] || 0) + 1; //increment counts
+                });
+                return p;
+            }
+            , function (p, v) {
+                v.clusters.forEach(function (val, idx) {
+                    p[val] = (p[val] || 0) - 1; //decrement counts
+                });
+                return p;
 
-		}
-
-		function reduceInitial() {
-		  return {};
-		}
-
-		var tagsGroup = cf.clusterDim.groupAll().reduce(reduceAdd, reduceRemove, reduceInitial).value();
+            }
+            , function reduceInitial() {
+                return {};
+            }
+        ).value();
 
 
-		console.log(cf.clusterDim.group().all())
-		console.log(tagsGroup);
 
-        tagsGroup.all = function () {
+        clusters.all = function () {
             var newObject = [];
             for (var key in this) {
                 if (this.hasOwnProperty(key) && key != "all") {
@@ -307,15 +301,52 @@
             return newObject;
         };
 
-        console.log(tagsGroup.all())
 
 
-		cf.partnerDim = cf.dimension(function(d) { return d.partner })
-		cf.statusDim = cf.dimension(function(d) { return d.status })
-		cf.needDim = cf.dimension(function(d) { return d.need }, true)
-		cf.typeDim = cf.dimension(function(d) { return d.type })
-		cf.oblastDim = cf.dimension(function(d) { return d.oblast })
-		cf.raionCodeDim = cf.dimension(function(d) { return d.raionCode })
+
+
+
+
+		cf.partnerDim = cf.dimension(function(d) { return d.partners }, true);
+
+		var partners = cf.partnerDim.groupAll().reduce(
+            function (p, v) {
+                v.partners.forEach(function (val, idx) {
+                    p[val] = (p[val] || 0) + 1; //increment counts
+                });
+                return p;
+            }
+            , function (p, v) {
+                v.partners.forEach(function (val, idx) {
+                    p[val] = (p[val] || 0) - 1; //decrement counts
+                });
+                return p;
+
+            }
+            , function reduceInitial() {
+                return {};
+            }
+        ).value();
+
+        partners.all = function () {
+            var newObject = [];
+            for (var key in this) {
+                if (this.hasOwnProperty(key) && key != "all") {
+                    newObject.push({
+                        key: key,
+                        value: this[key]
+                    });
+                }
+            }
+            return newObject;
+        };
+
+
+		cf.statusDim = cf.dimension(function(d) { return d.status });
+		cf.needDim = cf.dimension(function(d) { return d.needs }, true);
+		cf.typeDim = cf.dimension(function(d) { return d.type });
+		cf.oblastDim = cf.dimension(function(d) { return d.oblast });
+		cf.raionCodeDim = cf.dimension(function(d) { return d.raionCode });
 		cf.oblastRaionGrp = cf.raionCodeDim.group().reduce(
 				function(p, v) {
 					++p.count;
@@ -965,7 +996,10 @@
 		// Fulfills select with values
 
 		$partner.selectAll('option')
-			.data(cf.partnerDim.group().all().map(function(d) { return d.key }))
+			.data(
+				// cf.partnerDim.group().all()
+				partners.all().map(function(d) { return d.key })
+			)
 			.enter()
 			.append('option')
 				.attr({ 'value': function(datum) { return datum } })
@@ -1048,7 +1082,6 @@
 
 
         var selectObj = $("#filterPartner");
-        //$('#filterPartner');
 
         var Selectize = selectObj.selectize({
             plugins: ['remove_button'],
@@ -1324,9 +1357,9 @@
 
 				self.filters = checkbox.checked ? $checks.data().map(function(d) { return self.options.valueAccessor.call(self, d) }) : []
 
-				$checks.each(function() { this.checked = checkbox.checked })
+				$checks.each(function() { this.checked = checkbox.checked });
 
-				self.options.filtering.call(self, dimension, self.filters)
+				self.options.filtering.call(self, dimension, self.filters);
 
 				if(typeof self.options.onChange == 'function') {
 					self.options.onChange.call(self)
@@ -1733,9 +1766,9 @@
 				, 'oblast'
 				, 'raion'
 				, 'settlement'
-				, 'cluster'
-				, 'partner'
-				, 'need'
+				, 'clusters'
+				, 'partners'
+				, 'needs'
 				, 'status'
 				, 'conflictRelated'
 				, 'affected'
@@ -1756,9 +1789,9 @@
 					, record['oblast']
 					, record['raion']
 					, record['settlement']
-					, record['cluster']
-					, record['partner']
-					, record['need']
+					, record['clusters'].join(', ')
+					, record['partners'].join(', ')
+					, record['needs'].join(', ')
 					, record['status']
 					, record['conflictRelated']
 					, record['affected']

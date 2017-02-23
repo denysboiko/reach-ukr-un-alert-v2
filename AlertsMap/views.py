@@ -1,7 +1,11 @@
 from django.shortcuts import render
-from AlertsMap.models import Alert, Cluster, Organization
-from rest_framework import viewsets
+
+from AlertsMap.models import *
 from AlertsMap.forms import *
+
+from AlertsMap.serializers import *
+
+from rest_framework import viewsets
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -11,22 +15,30 @@ from django.http import HttpResponseRedirect, HttpResponse
 from rest_framework.permissions import AllowAny
 
 from rest_framework.renderers import JSONRenderer
-from rest_framework.response import Response
+# from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from django.contrib.auth import authenticate, login
-from AlertsMap.serializers import AlertsSerializer, ClustersSerializer, ResponsePartnersSerializer
+
 
 
 class ClustersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Cluster.objects.all()
     serializer_class = ClustersSerializer
+    permission_classes = (AllowAny,)
     pagination_class = None
 
 
 class ResponsePartnersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Organization.objects.all()
     serializer_class = ResponsePartnersSerializer
+
+
+class ResponseViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Response.objects.all()
+    serializer_class = ResponseSerializer
+    permission_classes = (AllowAny,)
+    pagination_class = None
 
 
 class AlertsViewSet(viewsets.ReadOnlyModelViewSet):

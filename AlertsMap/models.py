@@ -142,6 +142,7 @@ class OrganizationType(models.Model):
     class Meta:
         db_table = 'organization_types'
 
+
 class Organization(models.Model):
 
     organization_name = models.CharField(max_length=80)
@@ -156,10 +157,6 @@ class Organization(models.Model):
 
 
 class Alert(models.Model):
-    # admin1 = models.CharField(max_length=10)
-    # admin2 = models.CharField(max_length=10)
-    # admin4 = models.CharField(max_length=10)
-    # user_id = models.IntegerField(null=True)
 
     oblast = models.ForeignKey(Oblast)
     raion = ChainedForeignKey(
@@ -172,8 +169,9 @@ class Alert(models.Model):
     )
     date_referal = models.DateField(verbose_name='Date of Incident')
     informant = models.TextField(blank=True, null=True)
+
     referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id')
-        # models.TextField(blank=True, null=True)
+
     settlement = ChainedForeignKey(
         Settlement,
         chained_field="raion",
@@ -182,6 +180,7 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
+
     gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name='GCA/NGCA')
     yes_no = (
         (0, 'No'),
@@ -191,23 +190,13 @@ class Alert(models.Model):
     conflict_related = models.IntegerField(
         choices=yes_no
     )
-    need_type = models.ForeignKey(NeedType, verbose_name='Primary need type')
+
     description = models.TextField(blank=True, null=True)
     context = models.TextField(blank=True, null=True)
     affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name='Affected group')
-
     source_info = models.CharField(max_length=255, blank=True, null=True)
-    cluster = models.ForeignKey(Cluster, verbose_name='Primary cluster')
-    response_partner = models.ForeignKey(Organization, related_name='response_partner_id', verbose_name='Primary response partner')
-    # models.CharField(max_length=255, blank=True, null=True)
-    # confirmation = models.IntegerField(
-    #     choices=yes_no,
-    #     blank=True,
-    #     null=True
-    # )
 
     action = models.CharField(max_length=255, blank=True, null=True)
-
     status = models.ForeignKey(Status)
     confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1)
     date_update = models.DateField(blank=True, null=True)
@@ -217,8 +206,6 @@ class Alert(models.Model):
     comments = models.TextField(blank=True, null=True)
 
     population = models.BigIntegerField(blank=True, null=True, verbose_name='Baseline population')
-
-
 
     population_males = models.BigIntegerField(blank=True, null=True)
     population_females = models.BigIntegerField(blank=True, null=True)
@@ -242,29 +229,19 @@ class Alert(models.Model):
     no_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
     no_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
 
-    gap_beneficiaries = models.IntegerField(blank=True, null=True)
-
-    gap_beneficiaries_males = models.BigIntegerField(blank=True, null=True)
-    gap_beneficiaries_females = models.BigIntegerField(blank=True, null=True)
-    gap_beneficiaries_children = models.BigIntegerField(blank=True, null=True)
-    gap_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
-    gap_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
-
-    # response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
     clusters = models.ManyToManyField(Cluster, related_name='clusters_id')
-    need_types = models.ManyToManyField(NeedType, related_name='need_types_id')
-
-
-    # related_name = None, to_field = None
+    need_types = models.ManyToManyField(NeedType, related_name='needs')
 
     def location(self):
         location = ' / '.join([str(self.oblast), str(self.raion), str(self.settlement)])
         return location
 
+    def __unicode__(self):
+        return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
+
     location.admin_order_field = 'location'
 
     class Meta:
-        # managed = False
         db_table = 'alerts'
 
 
@@ -291,6 +268,7 @@ class Item(models.Model):
 
     class Meta:
         db_table = 'items'
+
 
 class Unit(models.Model):
 
@@ -322,25 +300,16 @@ class AlertItem(models.Model):
 
 
 class Response(models.Model):
-    alert = models.ForeignKey(Alert)
+
     response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
     item = models.ForeignKey(Item)
     item_details = models.CharField(max_length=120, blank=True, null=True)
+
     quantity = models.IntegerField(blank=True, null=True)
     unit = models.ForeignKey(Unit)
+    date = models.DateField(blank=True, null=True)
 
-
-class BaselinePopulation(models.Model):
-    population_total = models.IntegerField(blank=True, null=True)
-    population_males = models.IntegerField(blank=True, null=True)
-    population_females = models.IntegerField(blank=True, null=True)
-    population_adult = models.IntegerField(blank=True, null=True)
-    population_children = models.IntegerField(blank=True, null=True)
-    population_elderly = models.IntegerField(blank=True, null=True)
-    alert = models.OneToOneField(Alert)
-
-    def __unicode__(self):
-        return self.population_total
+    alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
 
     class Meta:
-        db_table = 'baseline_population'
+        db_table='responses'

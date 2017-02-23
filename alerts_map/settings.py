@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     # 'moderation',
     'guardian',
     # 'coverage',
+
     'colorful' ,
     'colorfield' ,
     'AlertsMap'

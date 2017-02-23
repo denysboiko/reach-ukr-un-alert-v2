@@ -18,30 +18,12 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
 
 
-
-
-# class UserCreationFormExtended(UserCreationForm):
-#     def __init__(self, *args, **kwargs):
-#         super(UserCreationFormExtended, self).__init__(*args, **kwargs)
-#         self.fields['email'] = forms.EmailField(label=_("E-mail"), max_length=75)
-#         self.fields['organization'] = forms.CharField(label=_("Organization"), max_length=75)
-#         self.fields['phone'] = forms.CharField(label=_("Phone"), max_length=75)
-#
-# class UserChangeFormExtended(UserCreationForm):
-#     def __init__(self, *args, **kwargs):
-#         super(UserChangeFormExtended, self).__init__(*args, **kwargs)
-#         self.fields['email'] = forms.EmailField(label=_("E-mail"), max_length=75)
-#         self.fields['organization'] = forms.CharField(label=_("Organization"), max_length=75)
-#         self.fields['phone'] = forms.CharField(label=_("Phone"), max_length=75)
-#
-# UserAdmin.add_form = UserCreationFormExtended
 UserAdmin.add_fieldsets = (
     (None, {
         'classes': ('wide',),
         'fields': ('username', 'organization', 'phone', 'email', 'password1', 'password2',)
     }),
 )
-
 
 
 # UserAdmin.add_form = UserChangeFormExtended
@@ -66,11 +48,6 @@ def check_access(user, group):
     return False
 
 
-class PopulationInline(admin.TabularInline):
-    model = BaselinePopulation
-
-
-
 class ItemsInline(admin.TabularInline):
     model = AlertItem
     verbose_name = "Need by item"
@@ -84,6 +61,8 @@ class ResponsesInline(admin.TabularInline):
     verbose_name_plural = "Response by item"
     extra = 1
 
+    filter_horizontal = ('response_partners',)
+
 # class ResponsePartnersInline(admin.StackedInline):
 #     model = Alert
 #
@@ -91,14 +70,15 @@ class ResponsesInline(admin.TabularInline):
 
 class AlertAdmin(ModelAdmin):
 
-    list_filter = ['date_referal','oblast', 'confirmation_status']
+    list_filter = ['date_referal','oblast',
+
+                   'confirmation_status'
+                   ]
 
     list_display = [
         'location',
         'affected',
-        'cluster',
         'alert_type',
-        'need_type',
         'confirmation_status',
         'description',
         'date_referal'
@@ -108,16 +88,16 @@ class AlertAdmin(ModelAdmin):
         (None, {'fields': (
             ('oblast', 'raion', 'settlement', 'gca_ngca'),
             ('affected', 'conflict_related', 'alert_type'),
-            ('no_affected', 'no_beneficiaries', 'gap_beneficiaries', 'population')
+            ('no_affected', 'no_beneficiaries', 'population')
         )}),
         ('Population figures',{
             'classes': ('collapse',),
             'fields': (
-                ('no_affected_males','no_beneficiaries_males','gap_beneficiaries_males','population_males'),
-                ('no_affected_females','no_beneficiaries_females','gap_beneficiaries_females','population_females'),
-                ('no_affected_children','no_beneficiaries_children','gap_beneficiaries_children','population_children'),
-                ('no_affected_adult','no_beneficiaries_adult','gap_beneficiaries_adult','population_adult'),
-                ('no_affected_elderly','no_beneficiaries_elderly','gap_beneficiaries_elderly','population_elderly')
+                ('no_affected_males','no_beneficiaries_males','population_males'),
+                ('no_affected_females','no_beneficiaries_females','population_females'),
+                ('no_affected_children','no_beneficiaries_children','population_children'),
+                ('no_affected_adult','no_beneficiaries_adult','population_adult'),
+                ('no_affected_elderly','no_beneficiaries_elderly','population_elderly')
             )
         }),
         (None, {'fields': ()})
@@ -127,24 +107,17 @@ class AlertAdmin(ModelAdmin):
 
     editor_fields = (
 
-                ('need_types','clusters'),#,'need_type'
-                # ('response_partners'),#,'response_partner'
+                ('need_types','clusters'),
                 ('status','action','uncovered_needs'),
                 ('referral_agency','date_referal'),
-                # ('source_info','additional_info_link'),
-                ('informant',
-                'context'),
-                ('description',
-                'comments'),
+                ('informant','context'),
+                ('description','comments'),
                 'date_update'
 
             )
 
     moderation_fields = ('confirmation_status',)
 
-    # inlines = [
-    #     PopulationInline,
-    # ]
     def get_form(self, request, obj=None, **kwargs):
         # request.user.is_superuser
 
@@ -196,9 +169,18 @@ class AlertAdmin(ModelAdmin):
 
         obj.save()
 
-
-
+    # class Media:
+    #     css = {
+    #         'screen': ('css/admin.css', 'css/selectize/selectize.css',)
+    #     }
+    #     js = (
+    #         'js/jquery.min.js',
+    #         'js/demo/sifter.min.js',
+    #         'js/selectize.min.js',
+    #
+    #     )
 
 admin.site.register(Alert, AlertAdmin)
 admin.site.register(Cluster)
 admin.site.register(Raion)
+admin.site.register(Response)

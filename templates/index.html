@@ -234,7 +234,7 @@
                                             <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
                                             <td style="text-align:center;"><%= data.covered %> / <%= data.affected %></td>
                                             <td style="text-align:center;"><%= data.type %></td>
-                                            <td><%= data.need.join(', ') %></td>
+                                            <td><%= data.needs.join(', ') %></td>
                                             <td><%= data.description %></td>
                                             <td><%= data.context %></td>
                                             <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
@@ -457,7 +457,7 @@
 		<script type="text/template" id="tplPopup">
 			<p class="popup-title"><%= data.title %></p>
 			<p>
-				<b>Custer:</b> <%= data.cluster.join(', ') %>
+				<b>Custer:</b> <%= data.clusters.join(', ') %>
 			</p>
 			<p>
 				<b>Number of covered/affected people:</b> <%= data.covered %>/<%= data.affected %>
@@ -466,7 +466,7 @@
 				<b>Type alert:</b> <%= data.type %>
 			</p>
 			<p>
-				<b>Type needs:</b> <%= data.need %>
+				<b>Type needs:</b> <%= data.needs.join(', ') %>
 			</p>
 			<p>
 				<b>Context:</b><br />
@@ -556,11 +556,10 @@
 							, affected: 'no_affected'
 							, date: 'date_referal'
 							, status: 'status'
-							, cluster: 'cluster'
                             , clusters: 'clusters'
-							, partner: 'response_partner'
+                            , partners: 'response_partners'
 							, type: 'type'
-							, need: 'need'
+                            , needs: 'need_types'
 							, covered: 'no_beneficiaries'
 							, context: 'context'
 							, description: 'description'
