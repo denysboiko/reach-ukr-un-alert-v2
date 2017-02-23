@@ -55,17 +55,21 @@ class ItemsInline(admin.TabularInline):
     extra = 1
 
 
-class ResponsesInline(admin.TabularInline):
+class ResponsesInline(admin.StackedInline):
+
     model = Response
     verbose_name = "Response by item"
     verbose_name_plural = "Response by item"
     extra = 1
 
-    filter_horizontal = ('response_partners',)
+    fieldsets = (
+        (None, {'fields': (
+            ('item', 'item_details', 'quantity', 'unit'),
+        )}),
+        (None, {'fields': ('response_partners',)})
+    )
 
-# class ResponsePartnersInline(admin.StackedInline):
-#     model = Alert
-#
+    filter_horizontal = ('response_partners',)
 
 
 class AlertAdmin(ModelAdmin):
@@ -169,16 +173,16 @@ class AlertAdmin(ModelAdmin):
 
         obj.save()
 
-    # class Media:
-    #     css = {
-    #         'screen': ('css/admin.css', 'css/selectize/selectize.css',)
-    #     }
-    #     js = (
-    #         'js/jquery.min.js',
-    #         'js/demo/sifter.min.js',
-    #         'js/selectize.min.js',
-    #
-    #     )
+    class Media:
+        css = {
+            'screen': ('css/admin.css', 'css/selectize/selectize.css',)
+        }
+        js = (
+            'js/jquery.min.js',
+            'js/demo/sifter.min.js',
+            'js/selectize.min.js',
+
+        )
 
 admin.site.register(Alert, AlertAdmin)
 admin.site.register(Cluster)
