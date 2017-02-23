@@ -196,6 +196,8 @@
 				, date: conf.dateParse.parse(record[referals.fields.date])
 				, status: record[referals.fields.status]
 				, cluster: record[referals.fields.cluster].split(',').map(function(name) { return name.trim() })
+				, clusters: record[referals.fields.clusters].map(function(name) { return name.trim() })
+                    // .forEach(function(element, index, array) { return element.map(function(name) { return name.trim() })})
 				, partner: record[referals.fields.partner]
 				, type: record[referals.fields.type]
 				, need: record[referals.fields.need].split(',').map(function(name) { return name.trim() })
@@ -207,24 +209,17 @@
 				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
-			res.coords = [res.latitude, res.longitude]
-			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast
-			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement
+			res.coords = [res.latitude, res.longitude];
+			res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast;
+			res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement;
 
+            console.log(res);
 			return res
 
 		});
 
 		
 		/*=====  End of Clean data  ======*/
-
-
-
-
-
-
-
-
 
 
 		/*========================================
@@ -267,10 +262,54 @@
 					}
 				}
 			)
-			.order(function(d) { return d.affectedCount })
+			.order(function(d) { return d.affectedCount });
 
-		cf.dateDim = cf.dimension(function(d) { return d.date })
-		cf.clusterDim = cf.dimension(function(d) { return d.cluster }, true)
+		cf.dateDim = cf.dimension(function(d) { return d.date });
+		cf.clusterDim = cf.dimension(function(d) { return d.clusters }, true);
+
+        // cf.clustersDim = cf.dimension(function(d) { return d.clusters }, true);
+
+		function reduceAdd(p, v) {
+		  v.clusters.forEach (function(val, idx) {
+			 p[val] = (p[val] || 0) + 1; //increment counts
+		  });
+		  return p;
+		}
+
+		function reduceRemove(p, v) {
+		  v.clusters.forEach (function(val, idx) {
+			 p[val] = (p[val] || 0) - 1; //decrement counts
+		  });
+		  return p;
+
+		}
+
+		function reduceInitial() {
+		  return {};
+		}
+
+		var tagsGroup = cf.clusterDim.groupAll().reduce(reduceAdd, reduceRemove, reduceInitial).value();
+
+
+		console.log(cf.clusterDim.group().all())
+		console.log(tagsGroup);
+
+        tagsGroup.all = function () {
+            var newObject = [];
+            for (var key in this) {
+                if (this.hasOwnProperty(key) && key != "all") {
+                    newObject.push({
+                        key: key,
+                        value: this[key]
+                    });
+                }
+            }
+            return newObject;
+        };
+
+        console.log(tagsGroup.all())
+
+
 		cf.partnerDim = cf.dimension(function(d) { return d.partner })
 		cf.statusDim = cf.dimension(function(d) { return d.status })
 		cf.needDim = cf.dimension(function(d) { return d.need }, true)
@@ -279,14 +318,14 @@
 		cf.raionCodeDim = cf.dimension(function(d) { return d.raionCode })
 		cf.oblastRaionGrp = cf.raionCodeDim.group().reduce(
 				function(p, v) {
-					++p.count
-					p.oblast = v.oblast
-					p.raion = v.raion
-					p.raionCode = v.raionCode
+					++p.count;
+					p.oblast = v.oblast;
+					p.raion = v.raion;
+					p.raionCode = v.raionCode;
 					return p
 				}
 				, function(p, v) {
-					--p.count
+					--p.count;
 					return p
 				}
 				, function() {
@@ -298,10 +337,10 @@
 					}
 				}
 			)
-			.order(function(d) { return d.raion })
+			.order(function(d) { return d.raion });
 		
 
-		var filterDispatcher = d3.dispatch('filtered')
+		var filterDispatcher = d3.dispatch('filtered');
 
 		/*=====  End of Init crossfilter  ======*/
 
