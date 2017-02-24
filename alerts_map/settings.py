@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'smart_selects',
-    # 'moderation',
+    # 'agnocomplete',
     'guardian',
     # 'coverage',
 
@@ -132,13 +132,23 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Alerts',
-            'USER': 'postgres',
-            'PASSWORD': '3w_reach',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
+            'NAME': os.environ['RDS_DB_NAME'],
+            'USER': os.environ['RDS_USERNAME'],
+            'PASSWORD': os.environ['RDS_PASSWORD'],
+            'HOST': os.environ['RDS_HOSTNAME'],
+            'PORT': os.environ['RDS_PORT'],
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'Alerts',
+    #         'USER': 'postgres',
+    #         'PASSWORD': '3w_reach',
+    #         'HOST': '127.0.0.1',
+    #         'PORT': '5432',
+    #     }
+    # }
     # DATABASES = {
     #     'default': {
     #         'ENGINE': 'django.db.backends.postgresql',
