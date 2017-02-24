@@ -155,7 +155,7 @@ else:
             'NAME': 'alerts',
             'USER': 'dbadmin',
             'PASSWORD': 'pgk6vsnA',
-            'HOST': 'alerts-db.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+            'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
             'PORT': '5432',
         }
     }
