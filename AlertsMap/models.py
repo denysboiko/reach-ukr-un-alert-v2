@@ -311,5 +311,8 @@ class Response(models.Model):
 
     alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
 
+    # def partners(self):
+    #     return obj.
+
     class Meta:
         db_table='responses'

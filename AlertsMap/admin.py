@@ -64,7 +64,7 @@ class ResponsesInline(admin.StackedInline):
 
     fieldsets = (
         (None, {'fields': (
-            ('item', 'item_details', 'quantity', 'unit'),
+            ('item', 'item_details', 'quantity', 'unit', 'date'),
         )}),
         (None, {'fields': ('response_partners',)})
     )
@@ -72,12 +72,30 @@ class ResponsesInline(admin.StackedInline):
     filter_horizontal = ('response_partners',)
 
 
+class ResponseAdmin(ModelAdmin):
+    # list_filter = ['']
+    list_display = [
+        'items',
+        'date'
+    ]
+
+    fieldsets = (
+        (None, {'fields': ('alert',)}),
+        (None, {'fields': (
+            ('item', 'item_details', 'quantity', 'unit', 'date'),
+        )}),
+        (None, {'fields': ('response_partners',)})
+    )
+
+    filter_horizontal = ('response_partners',)
+
+    def items(self, obj):
+        return '%d %s of %s' % (obj.quantity, obj.unit, obj.item)
+
+
 class AlertAdmin(ModelAdmin):
 
-    list_filter = ['date_referal','oblast',
-
-                   'confirmation_status'
-                   ]
+    list_filter = ['date_referal','oblast','confirmation_status']
 
     list_display = [
         'location',
@@ -187,4 +205,4 @@ class AlertAdmin(ModelAdmin):
 admin.site.register(Alert, AlertAdmin)
 admin.site.register(Cluster)
 admin.site.register(Raion)
-admin.site.register(Response)
+admin.site.register(Response, ResponseAdmin)
