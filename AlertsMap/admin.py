@@ -53,6 +53,7 @@ class ItemsInline(admin.TabularInline):
     verbose_name = "Need by item"
     verbose_name_plural = "Need by item"
     extra = 1
+    classes = ('collapse',)
 
 
 class ResponsesInline(admin.StackedInline):
@@ -63,10 +64,13 @@ class ResponsesInline(admin.StackedInline):
     extra = 1
 
     fieldsets = (
-        (None, {'fields': (
-            ('item', 'item_details', 'quantity', 'unit', 'date'),
+        (None,  {
+            # 'classes': ('collapse',),
+            'fields': (
+                ('item', 'item_details', 'quantity', 'unit'),
+                ('response_partners'),
+                ('action', 'uncovered_needs', 'date')
         )}),
-        (None, {'fields': ('response_partners',)})
     )
 
     filter_horizontal = ('response_partners',)
@@ -82,9 +86,10 @@ class ResponseAdmin(ModelAdmin):
     fieldsets = (
         (None, {'fields': ('alert',)}),
         (None, {'fields': (
-            ('item', 'item_details', 'quantity', 'unit', 'date'),
+            ('item', 'item_details', 'quantity', 'unit'),
         )}),
-        (None, {'fields': ('response_partners',)})
+        (None, {'fields': ('response_partners',)}),
+        (None, {'fields': (('action','uncovered_needs', 'date'),)})
     )
 
     filter_horizontal = ('response_partners',)
@@ -130,8 +135,8 @@ class AlertAdmin(ModelAdmin):
     editor_fields = (
 
                 ('need_types','clusters'),
-                ('status','action','uncovered_needs'),
-                ('referral_agency','date_referal'),
+                ('status','referral_agency'),
+                ('date_referal'),
                 ('informant','context'),
                 ('description','comments'),
                 'date_update'
@@ -197,8 +202,10 @@ class AlertAdmin(ModelAdmin):
         }
         js = (
             'js/jquery.min.js',
-            'js/demo/sifter.min.js',
-            'js/selectize.min.js',
+            # 'js/demo/sifter.min.js',
+            'js/collapse_inlines.js',
+            # 'js/collapsed_stacked_inlines.js',
+            # 'js/selectize.min.js',
 
         )
 

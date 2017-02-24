@@ -196,12 +196,11 @@ class Alert(models.Model):
     affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name='Affected group')
     source_info = models.CharField(max_length=255, blank=True, null=True)
 
-    action = models.CharField(max_length=255, blank=True, null=True)
     status = models.ForeignKey(Status)
     confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1)
     date_update = models.DateField(blank=True, null=True)
 
-    uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
+
     additional_info_link = models.CharField(max_length=255, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
@@ -308,6 +307,9 @@ class Response(models.Model):
     quantity = models.IntegerField(blank=True, null=True)
     unit = models.ForeignKey(Unit)
     date = models.DateField(blank=True, null=True)
+
+    uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
+    action = models.CharField(max_length=255, blank=True, null=True)
 
     alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
 
