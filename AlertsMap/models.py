@@ -303,15 +303,13 @@ class Response(models.Model):
     response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
     item = models.ForeignKey(Item)
     item_details = models.CharField(max_length=120, blank=True, null=True)
-
     quantity = models.IntegerField(blank=True, null=True)
     unit = models.ForeignKey(Unit)
     date = models.DateField(blank=True, null=True)
-
+    alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
     uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
     action = models.CharField(max_length=255, blank=True, null=True)
-
-    alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
+    comments = models.TextField(blank=True, null=True)
 
     # def partners(self):
     #     return obj.

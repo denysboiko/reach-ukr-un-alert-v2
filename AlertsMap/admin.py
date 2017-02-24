@@ -69,7 +69,8 @@ class ResponsesInline(admin.StackedInline):
             'fields': (
                 ('item', 'item_details', 'quantity', 'unit'),
                 ('response_partners'),
-                ('action', 'uncovered_needs', 'date')
+                ('action', 'uncovered_needs', 'date'),
+                ('comments')
         )}),
     )
 
@@ -89,7 +90,8 @@ class ResponseAdmin(ModelAdmin):
             ('item', 'item_details', 'quantity', 'unit'),
         )}),
         (None, {'fields': ('response_partners',)}),
-        (None, {'fields': (('action','uncovered_needs', 'date'),)})
+        (None, {'fields': (('action','uncovered_needs', 'date'),)}),
+        (None, {'fields': ('comments',)})
     )
 
     filter_horizontal = ('response_partners',)
