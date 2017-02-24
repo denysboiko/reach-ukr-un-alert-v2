@@ -104,7 +104,6 @@ class AlertsSerializer(serializers.ModelSerializer):
             'description',
             'population',
             'additional_info_link',
-            'uncovered_needs',
             'conflict_related',
             'response_partners'
         )

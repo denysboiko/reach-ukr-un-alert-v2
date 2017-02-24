@@ -204,7 +204,7 @@
 				, description: record[referals.fields.description]
 				, infoLink: ""
 					// record[referals.fields.infoLink]
-				, notCoveredNeeds: record[referals.fields.notCoveredNeeds]
+				// , notCoveredNeeds: record[referals.fields.notCoveredNeeds]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
 			res.coords = [res.latitude, res.longitude];
@@ -1796,7 +1796,7 @@
 					, record['conflictRelated']
 					, record['affected']
 					, record['covered']
-					, record['notCoveredNeeds']
+					, ""
 					, record['context']
 					, record['description']
 					, record['infoLink']

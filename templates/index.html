@@ -240,7 +240,7 @@
                                             <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
                                             <td style="text-align:center;"><% if (data.conflictRelated) { %>Yes<% } else { %>No<% } %></td>
                                             <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
-                                            <td style="text-align:center;"><%= data.notCoveredNeeds %></td>
+                                            <td style="text-align:center;"></td>
                                         </script>
 
                                 </table>
@@ -492,11 +492,11 @@
 				<b>Date referral:</b> <%= conf.dateFormat(data.date) %>
 			</p>
 
-			<% if(data.conflictRelated) { %>
-				<p>
-					<b>Gap-not covered need:</b> <%= data.notCoveredNeeds %>
-				</p>
-			<% } %>
+{#			<% if(data.conflictRelated) { %>#}
+{#				<p>#}
+{#					<b>Gap-not covered need:</b> <%= data.notCoveredNeeds %>#}
+{#				</p>#}
+{#			<% } %>#}
 		</script>
 
 
@@ -564,7 +564,6 @@
 							, context: 'context'
 							, description: 'description'
 							, infoLink: 'additional_info_link'
-							, notCoveredNeeds: 'uncovered_needs'
 							, conflictRelated: 'conflict_related'
 						}
 					}
