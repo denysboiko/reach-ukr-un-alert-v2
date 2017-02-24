@@ -152,7 +152,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'alerts',
+            'NAME': 'ebdb',
             'USER': 'dbadmin',
             'PASSWORD': 'pgk6vsnA',
             'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',

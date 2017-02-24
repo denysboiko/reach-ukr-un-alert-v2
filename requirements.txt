@@ -9,3 +9,4 @@ django-moderation==0.4.0
 django-guardian
 django-colorful
 django-colorfield
+django-agnocomplete

@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^register/success/$', register_success),
     url(r'^', include(router.urls)),
     url(r'^', include('smart_selects.urls')),
+    url(
+        r'^agnocomplete/',
+        include('agnocomplete.urls', namespace='agnocomplete')),
 ]
