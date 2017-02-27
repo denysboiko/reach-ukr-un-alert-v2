@@ -18,7 +18,8 @@ from rest_framework.renderers import JSONRenderer
 # from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, get_user_model
+User = get_user_model()
 
 
 
