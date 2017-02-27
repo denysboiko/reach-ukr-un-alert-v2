@@ -211,7 +211,13 @@ class AlertAdmin(ModelAdmin):
 
         )
 
+class OrganizationAdmin(ModelAdmin):
+
+    search_fields = ['organization_name','organization_acronym']
+
+    list_display = ['organization_name','organization_acronym','organization_type']
+
+admin.site.register([Cluster, Raion])
+admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Alert, AlertAdmin)
-admin.site.register(Cluster)
-admin.site.register(Raion)
 admin.site.register(Response, ResponseAdmin)

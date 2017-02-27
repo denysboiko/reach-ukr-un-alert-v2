@@ -14,6 +14,8 @@ class User(AbstractUser):
     organization = models.CharField(max_length=80, blank=True)
     phone = models.CharField(max_length=30, blank=True)
 
+
+
     class Meta:
         db_table = 'auth_user'
 
@@ -137,7 +139,7 @@ class OrganizationType(models.Model):
     type = models.CharField(max_length=80, null=True)
 
     def __unicode__(self):
-        return self.organization_type
+        return self.type
 
     class Meta:
         db_table = 'organization_types'
@@ -150,10 +152,11 @@ class Organization(models.Model):
     organization_type = models.ForeignKey(OrganizationType, null=True)
 
     def __unicode__(self):
-        return self.organization_name
+        return '%s: %s' % (self.organization_acronym, self.organization_name)
 
     class Meta:
         db_table = 'organizations'
+        ordering = ['organization_name']
 
 
 class Alert(models.Model):
@@ -171,6 +174,8 @@ class Alert(models.Model):
     informant = models.TextField(blank=True, null=True)
 
     referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id')
+
+    referral_agency.admin_order_field = 'organization_name'
 
     settlement = ChainedForeignKey(
         Settlement,
@@ -311,6 +316,7 @@ class Response(models.Model):
     action = models.CharField(max_length=255, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
+    response_partners.admin_order_field = 'organization_name'
     # def partners(self):
     #     return obj.
 
