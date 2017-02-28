@@ -290,7 +290,7 @@ class Unit(models.Model):
 
 class AlertItem(models.Model):
 
-    alert = models.ForeignKey(Alert)
+    alert = models.ForeignKey(Alert, related_name='items')
     item = models.ForeignKey(Item)
     item_details = models.CharField(max_length=120, blank=True, null=True)
     quantity = models.IntegerField(blank=True, null=True)

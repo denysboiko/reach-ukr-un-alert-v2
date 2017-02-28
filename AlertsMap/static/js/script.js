@@ -138,39 +138,39 @@
 		, className: 'raions-overlay'
 	});
 
-	map.leaflet.addLayer(map.raionsLayer)
+	map.leaflet.addLayer(map.raionsLayer);
 
 	map.greyZoneLayer = L.geoJson(conf.greyZone, {
 		style: function(feature) {
 			return {
-				weight: 1
-				, opacity: 1
-				, color: '#666'
-				, fill: false
+				weight: 3
+				, opacity: 0.6
+				, color: 'rgb(238,88,89)'
+				// , stroke: 'rgb(238,88,89)'
 				, clickable: false
 			}
 		}
-	})
-
-	map.leaflet.addLayer(map.greyZoneLayer)
-
-	map.greyZoneLayer.eachLayer(function(layer) {
-		d3.select(layer._container).select('path')
-			.attr({ 'fill': 'url("#diagonalHatch")'})
-			.style({ 'opacity': .5 })
 	});
 
+	map.leaflet.addLayer(map.greyZoneLayer);
+
+	// map.greyZoneLayer.eachLayer(function(layer) {
+	// 	d3.select(layer._container).select('path')
+	// 		.attr({ 'fill': 'url("#diagonalHatch")'})
+	// 		.style({ 'opacity': .5 })
+	// });
+
 	// add diagonalHatch pattern
-	d3.select(map.leaflet._pathRoot).insert('defs', ':first-child')
-		.append('pattern')
-			.attr('id', 'diagonalHatch')
-			.attr('patternUnits', 'userSpaceOnUse')
-			.attr('width', 4)
-			.attr('height', 4)
-			.append('path')
-				.attr('d', 'M -1,1 l 2,-2    M 0, 4 l 4,-4    M 3,5 l 2,-2')
-				.attr('stroke', '#666')
-				.attr('stroke-width', 1)
+	// d3.select(map.leaflet._pathRoot).insert('defs', ':first-child')
+	// 	.append('pattern')
+	// 		.attr('id', 'diagonalHatch')
+	// 		.attr('patternUnits', 'userSpaceOnUse')
+	// 		.attr('width', 4)
+	// 		.attr('height', 4)
+	// 		.append('path')
+	// 			.attr('d', 'M -1,1 l 2,-2    M 0, 4 l 4,-4    M 3,5 l 2,-2')
+	// 			.attr('stroke', '#666')
+	// 			.attr('stroke-width', 1)
 
 	/*=====  End of Init map  ======*/
 
@@ -202,9 +202,7 @@
 				, covered: record[referals.fields.covered]
 				, context: record[referals.fields.context]
 				, description: record[referals.fields.description]
-				, infoLink: ""
-					// record[referals.fields.infoLink]
-				// , notCoveredNeeds: record[referals.fields.notCoveredNeeds]
+				, items: record[referals.fields.items]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
 			res.coords = [res.latitude, res.longitude];
@@ -345,6 +343,9 @@
 		cf.statusDim = cf.dimension(function(d) { return d.status });
 		cf.needDim = cf.dimension(function(d) { return d.needs }, true);
 		cf.typeDim = cf.dimension(function(d) { return d.type });
+
+		cf.itemsDim = cf.dimension(function(d) { return d.items }, true);
+
 		cf.oblastDim = cf.dimension(function(d) { return d.oblast });
 		cf.raionCodeDim = cf.dimension(function(d) { return d.raionCode });
 		cf.oblastRaionGrp = cf.raionCodeDim.group().reduce(
@@ -1192,7 +1193,7 @@
 		var $mapLegend = d3.select('#mapLegend').append('svg')
 			.attr({
 				'width': 290
-				, 'height': 175
+				, 'height': 160
 			});
 
 		conf.filterStatus.forEach(function(status, index) {
@@ -1250,21 +1251,22 @@
 
 		$mapLegend.append('rect')
 			.attr({
-				'x': 19.5, 'y': 144.5
-				, 'width': 40, 'height': 20
-				, 'fill': 'url("#diagonalHatch")'
-				, 'opacity': .5
-				, 'stroke': '#666'
-				, 'stroke-width': 1
+				'x': 25, 'y': 132.5
+				, 'width': 30
+				, 'height': 3
+				 , 'fill': 'rgb(238,88,89)'
+				, 'opacity': .6
+				// , 'stroke': '#666'
+				// , 'stroke-width': 1
 			});
 
 		$mapLegend.append('text')
 			.attr({
-				'x': 70, 'y': 145
+				'x': 70, 'y': 125
 				, 'dominant-baseline': 'text-before-edge'
 			})
-			.style({ 'line-height': '20px' })
-			.text('Area along the "contact line"')
+			.style({ 'line-height': '20px', 'font-weight': 'bold' })
+			.text('Contact line');
 
 
 		/*=====  End of Map legend  ======*/
@@ -1580,9 +1582,68 @@
 			$dataTableBody.selectAll('tr').remove();
 			
 			var data = cf.allDim.bottom(Infinity);
-			
+
+
+			// var data = cf.dateDim.top(Infinity);
+			// var format = d3.time.format('%Y-%m-%d');
+
+            var flatData = [];
+
+            data.forEach(function (datum) {
+            	console.log(datum.items.length)
+
+                if (datum.items.length > 0) {
+            		datum.items.forEach(function (item) {
+						flatData.push({
+							  date: datum['date']
+							, oblast: datum['oblast']
+							, raion: datum['raion']
+							, settlement: datum['settlement']
+							, clusters: datum['clusters']
+							, partners: datum['partners']
+							, needs: datum['needs']
+							, status: datum['status']
+							, conflictRelated: datum['conflictRelated']
+							, affected: datum['affected']
+							, covered: datum['covered']
+							, context: datum['context']
+							, description: datum['description']
+							, item: item.item
+							, quantity: item.quantity
+							, unit: item.unit
+							, latitude: datum['latitude']
+							, longitude: datum['longitude']
+
+						});
+					});
+				} else {
+            		flatData.push({
+						  date: datum['date']
+						, oblast: datum['oblast']
+						, raion: datum['raion']
+						, settlement: datum['settlement']
+						, clusters: datum['clusters'].join(', ')
+						, partners: datum['partners'].join(', ')
+						, needs: datum['needs'].join(', ')
+						, status: datum['status']
+						, conflictRelated: datum['conflictRelated']
+						, affected: datum['affected']
+						, covered: datum['covered']
+						, context: datum['context']
+						, description: datum['description']
+						, item: ''
+						, quantity: ''
+						, unit: ''
+						, latitude: datum['latitude']
+						, longitude: datum['longitude']
+
+					});
+				}
+
+            });
+
 			var $rows = $dataTableBody.selectAll('tr')
-				.data( data.slice( dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep) )
+				.data( flatData.slice( dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep) )
 
 			$rows.enter().append('tr')
 				.html(function(data) { return conf.tplDataTableRow({data: data}) })
@@ -1621,7 +1682,7 @@
 
 			$dataTablePagination.selectAll('li').remove();
 
-			var pgnum = d3.range(Math.ceil(data.length / conf.paginationStep));
+			var pgnum = d3.range(Math.ceil(flatData.length / conf.paginationStep));
 
 			var $pages = $dataTablePagination.selectAll('li')
 							.data( pgnum );
@@ -1761,6 +1822,65 @@
 		
 		/*=====  End of Reset button  ======*/
 		var saveData = function() {
+
+			var data = cf.dateDim.top(Infinity);
+			var format = d3.time.format('%Y-%m-%d');
+
+            var flatData = [];
+			
+            data.forEach(function (datum) {
+            	console.log(datum.items.length)
+
+                if (datum.items.length > 0) {
+            		datum.items.forEach(function (item) {
+						flatData.push({
+							  date: format(datum['date'])
+							, oblast: datum['oblast']
+							, raion: datum['raion']
+							, settlement: datum['settlement']
+							, clusters: datum['clusters'].join(', ')
+							, partners: datum['partners'].join(', ')
+							, needs: datum['needs'].join(', ')
+							, status: datum['status']
+							, conflictRelated: datum['conflictRelated']
+							, affected: datum['affected']
+							, covered: datum['covered']
+							, context: datum['context']
+							, description: datum['description']
+							, item: item.item
+							, quantity: item.quantity
+							, unit: item.unit
+							, latitude: datum['latitude']
+							, longitude: datum['longitude']
+
+						});
+					});
+				} else {
+            		flatData.push({
+						  date: format(datum['date'])
+						, oblast: datum['oblast']
+						, raion: datum['raion']
+						, settlement: datum['settlement']
+						, clusters: datum['clusters'].join(', ')
+						, partners: datum['partners'].join(', ')
+						, needs: datum['needs'].join(', ')
+						, status: datum['status']
+						, conflictRelated: datum['conflictRelated']
+						, affected: datum['affected']
+						, covered: datum['covered']
+						, context: datum['context']
+						, description: datum['description']
+						, item: ''
+						, quantity: ''
+						, unit: ''
+						, latitude: datum['latitude']
+						, longitude: datum['longitude']
+
+					});
+				}
+
+            });
+
 			var header = [
 				  'date'
 				, 'oblast'
@@ -1773,41 +1893,42 @@
 				, 'conflictRelated'
 				, 'affected'
 				, 'covered'
-				, 'notCoveredNeeds'
 				, 'context'
 				, 'description'
-				, 'infoLink'
+				, 'item'
+				, 'quantity'
+				, 'unit'
 				, 'latitude'
 				, 'longitude'
 			];
-
-			var data = cf.dateDim.top(Infinity);
-			var format = d3.time.format('%Y-%m-%d')
-			data = data.map(function(record) {
+			
+			flatData = flatData.map(function(datum) {
 				return [
-					  format(record['date'])
-					, record['oblast']
-					, record['raion']
-					, record['settlement']
-					, record['clusters'].join(', ')
-					, record['partners'].join(', ')
-					, record['needs'].join(', ')
-					, record['status']
-					, record['conflictRelated']
-					, record['affected']
-					, record['covered']
-					, ""
-					, record['context']
-					, record['description']
-					, record['infoLink']
-					, record['latitude']
-					, record['longitude']
+					  datum.date
+					, datum.oblast
+					, datum.raion
+					, datum.settlement
+					, datum.clusters
+					, datum.partners
+					, datum.needs
+					, datum.status
+					, datum.conflictRelated
+					, datum.affected
+					, datum.covered
+					, datum.context
+					, datum.description
+					, datum.item
+					, datum.quantity
+					, datum.unit
+					, datum.latitude
+					, datum.longitude
 				]
 			});
 
-			data.unshift(header);
-			var res = d3.csv.formatRows(data);
-			var blob = new Blob([res], {type: "text/csv;charset=utf-8"})
+			flatData.unshift(header);
+
+			var res = d3.csv.formatRows(flatData); // data
+			var blob = new Blob([res], {type: "text/csv;charset=utf-8"});
 			saveAs(blob, 'ukraine-alerts-' + (new Date()).getTime() + '.csv')
 		};
 

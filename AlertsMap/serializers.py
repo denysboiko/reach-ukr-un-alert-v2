@@ -20,6 +20,25 @@ class ResponsePartnersSerializer(serializers.ModelSerializer):
         fields = ('id', 'organization_name',)
 
 
+class NeedItemsPartnersSerializer(serializers.ModelSerializer):
+
+    item = serializers.StringRelatedField()
+    unit = serializers.StringRelatedField()
+
+    class Meta:
+        model = AlertItem
+        fields = ('item','quantity','unit')
+
+
+class ResponseItemsPartnersSerializer(serializers.ModelSerializer):
+
+    item = serializers.StringRelatedField()
+    unit = serializers.StringRelatedField()
+
+    class Meta:
+        model = Response
+        fields = ('item','quantity','unit')
+
 class ResponseSerializer(serializers.ModelSerializer):
 
     response_partners = serializers.StringRelatedField(many=True)
@@ -68,6 +87,9 @@ class AlertsSerializer(serializers.ModelSerializer):
     # responses = ResponseSerializer(many=True)
     # response_partners = ResponsePartnersField(many=True, source='responses', read_only=True)
     response_partners = ResponsePartnersField()
+
+    items = NeedItemsPartnersSerializer(many=True)
+    responses = ResponseItemsPartnersSerializer(many=True)
     # response_partners = AlertResponsePartnersSerializer(many=True, source='responses')
 
     # serializers.PrimaryKeyRelatedField(many=True, read_only=True)
@@ -105,5 +127,7 @@ class AlertsSerializer(serializers.ModelSerializer):
             'population',
             'additional_info_link',
             'conflict_related',
-            'response_partners'
+            'response_partners',
+            'items',
+            'responses'
         )

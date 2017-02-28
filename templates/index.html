@@ -223,9 +223,11 @@
                                                 <td style="width:80px;">Covered / Affected</td>
                                                 <td style="width:100px;">Type alerts</td>
                                                 <td style="width:140px;">Type needs</td>
-                                                <td style="width:20%;">Description</td>
-                                                <td style="width:20%;">Context</td>
-                                                <td style="width:100px;">Additional information</td>
+{#                                                <td style="width:20%;">Description</td>#}
+{#                                                <td style="width:20%;">Context</td>#}
+                                                <td style="">Item</td>
+                                                <td style="">Quantity Need</td>
+{#                                                <td style="width:100px;">Additional information</td>#}
                                                 <td style="width:80px;">Conflict related</td>
                                                 <td style="width:100px;">Date referral</td>
                                                 <td style="width:80px;">Gaps-not covered need</td>
@@ -235,9 +237,11 @@
                                             <td style="text-align:center;"><%= data.covered %> / <%= data.affected %></td>
                                             <td style="text-align:center;"><%= data.type %></td>
                                             <td><%= data.needs.join(', ') %></td>
-                                            <td><%= data.description %></td>
-                                            <td><%= data.context %></td>
-                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>
+{#                                            <td><%= data.description %></td>#}
+{#                                            <td><%= data.context %></td>#}
+                                            <td><%= data.item %></td>
+                                            <td><%= data.quantity %> <%= data.unit %></td>
+{#                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>#}
                                             <td style="text-align:center;"><% if (data.conflictRelated) { %>Yes<% } else { %>No<% } %></td>
                                             <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
                                             <td style="text-align:center;"></td>
@@ -476,11 +480,11 @@
 				<b>Description:</b><br />
 				<span style="white-space:pre-wrap"><%= data.description %></span>
 			</p>
-			<% if(data.infoLink.trim()) { %>
-				<p>
-					<b>Additional information:</b> <a href="<%= data.infoLink %>">Additional information</a>
-				</p>
-			<% } %>
+{#			<% if(data.infoLink.trim()) { %>#}
+{#				<p>#}
+{#					<b>Additional information:</b> <a href="<%= data.infoLink %>">Additional information</a>#}
+{#				</p>#}
+{#			<% } %>#}
 
 				<p>
                     <b>Relayed to conflict:</b>
@@ -565,6 +569,8 @@
 							, description: 'description'
 							, infoLink: 'additional_info_link'
 							, conflictRelated: 'conflict_related'
+                            , items: 'items'
+                            , responses: 'responses'
 						}
 					}
 				}
