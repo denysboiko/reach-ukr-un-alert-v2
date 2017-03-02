@@ -226,7 +226,7 @@
 {#                                                <td style="width:20%;">Description</td>#}
 {#                                                <td style="width:20%;">Context</td>#}
                                                 <td style="">Item</td>
-                                                <td style="">Quantity Need</td>
+                                                <td style="">Quantity Provided/Needed</td>
 {#                                                <td style="width:100px;">Additional information</td>#}
                                                 <td style="width:80px;">Conflict related</td>
                                                 <td style="width:100px;">Date referral</td>
@@ -236,11 +236,11 @@
                                             <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
                                             <td style="text-align:center;"><%= data.covered %> / <%= data.affected %></td>
                                             <td style="text-align:center;"><%= data.type %></td>
-                                            <td><%= data.needs.join(', ') %></td>
+                                            <td><%= data.needs %></td>
 {#                                            <td><%= data.description %></td>#}
 {#                                            <td><%= data.context %></td>#}
                                             <td><%= data.item %></td>
-                                            <td><%= data.quantity %> <%= data.unit %></td>
+                                            <td><%= data.quantity_response %>/<%= data.quantity %> <%= data.unit %></td>
 {#                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>#}
                                             <td style="text-align:center;"><% if (data.conflictRelated) { %>Yes<% } else { %>No<% } %></td>
                                             <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>

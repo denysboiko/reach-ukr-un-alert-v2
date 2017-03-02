@@ -203,6 +203,7 @@
 				, context: record[referals.fields.context]
 				, description: record[referals.fields.description]
 				, items: record[referals.fields.items]
+				, responses: record[referals.fields.responses]
 				, conflictRelated: record[referals.fields.conflictRelated]
 			};
 			res.coords = [res.latitude, res.longitude];
@@ -345,7 +346,7 @@
 		cf.typeDim = cf.dimension(function(d) { return d.type });
 
 		cf.itemsDim = cf.dimension(function(d) { return d.items }, true);
-
+		cf.responsesDim = cf.dimension(function(d) { return d.responses }, true);
 		cf.oblastDim = cf.dimension(function(d) { return d.oblast });
 		cf.raionCodeDim = cf.dimension(function(d) { return d.raionCode });
 		cf.oblastRaionGrp = cf.raionCodeDim.group().reduce(
@@ -1590,8 +1591,6 @@
             var flatData = [];
 
             data.forEach(function (datum) {
-            	console.log(datum.items.length)
-
                 if (datum.items.length > 0) {
             		datum.items.forEach(function (item) {
 						flatData.push({
@@ -1608,9 +1607,10 @@
 							, covered: datum['covered']
 							, context: datum['context']
 							, description: datum['description']
-							, item: item.item
-							, quantity: item.quantity
-							, unit: item.unit
+							, item: item['item__item_name']
+							, quantity: item['quantity_need']
+							, quantity_response: datum['responses'][item['item__item_name']]
+							, unit: item["unit__unit_name"]
 							, latitude: datum['latitude']
 							, longitude: datum['longitude']
 
@@ -1643,7 +1643,7 @@
             });
 
 			var $rows = $dataTableBody.selectAll('tr')
-				.data( flatData.slice( dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep) )
+				.data( flatData.slice( dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep) );
 
 			$rows.enter().append('tr')
 				.html(function(data) { return conf.tplDataTableRow({data: data}) })
@@ -1847,9 +1847,10 @@
 							, covered: datum['covered']
 							, context: datum['context']
 							, description: datum['description']
-							, item: item.item
-							, quantity: item.quantity
-							, unit: item.unit
+							, item: item['item__item_name']
+							, quantity: item['quantity_need']
+							, quantity_response: datum['responses'][item['item__item_name']]
+							, unit: item["unit__unit_name"]
 							, latitude: datum['latitude']
 							, longitude: datum['longitude']
 
@@ -1872,6 +1873,7 @@
 						, description: datum['description']
 						, item: ''
 						, quantity: ''
+						, quantity_response: ''
 						, unit: ''
 						, latitude: datum['latitude']
 						, longitude: datum['longitude']
@@ -1897,6 +1899,7 @@
 				, 'description'
 				, 'item'
 				, 'quantity'
+				, 'quantity_response'
 				, 'unit'
 				, 'latitude'
 				, 'longitude'
@@ -1919,6 +1922,7 @@
 					, datum.description
 					, datum.item
 					, datum.quantity
+					, datum.quantity_response
 					, datum.unit
 					, datum.latitude
 					, datum.longitude
