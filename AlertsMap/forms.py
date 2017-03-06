@@ -14,7 +14,7 @@ class RegistrationForm(forms.Form):
     username = forms.RegexField(regex=r'^\w+$', widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'class': 'form-control', 'placeholder': 'Username'}), label=_("Username"), error_messages={ 'invalid': _("The username must contain only letters, numbers and underscores.") })
     organization = forms.CharField(
         widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'class': 'form-control', 'placeholder': 'Organization'}),
-        label = _("Organiztion"))
+        label = _("Organization"))
     phone = forms.CharField(
         widget=forms.TextInput(attrs={'required': True, 'max_length': 30, 'class': 'form-control', 'placeholder': 'Phone'}),
         label=_("Phone"))
