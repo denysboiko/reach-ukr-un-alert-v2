@@ -293,7 +293,7 @@ class AlertItem(models.Model):
     alert = models.ForeignKey(Alert, related_name='items')
     item = models.ForeignKey(Item)
     item_details = models.CharField(max_length=120, blank=True, null=True)
-    quantity = models.IntegerField(blank=True, null=True)
+    quantity = models.IntegerField()
     unit = models.ForeignKey(Unit)
     #
     # def __unicode__(self):
@@ -308,7 +308,7 @@ class Response(models.Model):
     response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
     item = models.ForeignKey(Item)
     item_details = models.CharField(max_length=120, blank=True, null=True)
-    quantity = models.IntegerField(blank=True, null=True)
+    quantity = models.IntegerField()
     unit = models.ForeignKey(Unit)
     date = models.DateField(blank=True, null=True)
     alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
