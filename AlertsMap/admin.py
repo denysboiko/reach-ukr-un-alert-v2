@@ -5,7 +5,7 @@ from .models import *
 from django.contrib.admin import AdminSite, ModelAdmin
 from django.contrib.auth.admin import UserAdmin
 from guardian.admin import GuardedModelAdmin
-
+from mail import notify_mail
 # from django.contrib.auth.models import User
 
 # admin.site.unregister(User)
@@ -186,17 +186,19 @@ class AlertAdmin(ModelAdmin):
     reject_alerts.short_description = "Reject selected alerts"
 
     def save_model(self, request, obj, form, change):
-        new_data = form.__dict__['cleaned_data']
 
-        obj.cluster =new_data['clusters'][0]
+        new_data = form.__dict__['cleaned_data']
+        obj.cluster = new_data['clusters'][0]
         # obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
-        # print(form.__dict__['cleaned_data'])
+        print(new_data['settlement'])
+
         # if obj.new_data['clusters'] != 2:
         #     obj.confirmation_status = 1
 
         obj.save()
+        # notify_mail();
 
     class Media:
         css = {
@@ -217,7 +219,31 @@ class OrganizationAdmin(ModelAdmin):
 
     list_display = ['organization_name','organization_acronym','organization_type']
 
-admin.site.register([Cluster, Raion])
+
+
+class RaionAdmin(ModelAdmin):
+    list_filter = ['oblast']
+    search_fields = ['raion_name', 'pcode']
+    list_display = [
+        'pcode',
+        'raion_name',
+        'oblast'
+    ]
+
+class SettlementAdmin(ModelAdmin):
+    list_filter = ['area','raion']
+    search_fields = ['settlement_name', 'pcode']
+    list_display = [
+        'pcode',
+        'settlement_name',
+        'raion',
+        'area'
+    ]
+
+
+admin.site.register([Cluster,Emails,CoordinationHub])
+admin.site.register(Raion, RaionAdmin)
+admin.site.register(Settlement, SettlementAdmin)
 admin.site.register(Organization, OrganizationAdmin)
 admin.site.register(Alert, AlertAdmin)
 admin.site.register(Response, ResponseAdmin)

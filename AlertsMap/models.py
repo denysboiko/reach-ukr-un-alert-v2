@@ -9,11 +9,33 @@ from django.contrib.auth.models import AbstractUser
 from colorful.fields import RGBColorField
 from colorfield.fields import ColorField
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from mail import notify_mail
+# from select_mails import get_mail_lists
+
+def get_mail_lists(id):
+
+    mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list__to_emails').values('to_list__email')
+    mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list__cc_emails').values('cc_list__email')
+
+    to = []
+    copy = []
+
+    for email in mails_copy:
+        copy.append(email['cc_list__email'])
+
+    for email in mails_to:
+        to.append(email['to_list__email'])
+
+    return {'To': to, 'CC': copy}
+
+
 
 class User(AbstractUser):
     organization = models.CharField(max_length=80, blank=True)
     phone = models.CharField(max_length=30, blank=True)
-
 
 
     class Meta:
@@ -29,46 +51,6 @@ class Cluster(models.Model):
     class Meta:
         db_table = 'clusters'
 
-
-class Oblast(models.Model):
-
-    oblast_name = models.CharField(max_length=100)
-
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return self.oblast_name
-
-    class Meta:
-        managed = False
-        db_table = 'oblasts'
-
-
-class Raion(models.Model):
-    raion_name = models.CharField(max_length=100)
-    oblast = models.ForeignKey(Oblast)
-    color = ColorField(default='#FF0000')
-    # color = RGBColorField()
-
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return self.raion_name
-
-    class Meta:
-        db_table = 'raions'
-
-class Settlement(models.Model):
-
-    settlement_name = models.CharField(max_length=120)
-    longitude = models.FloatField()
-    latitude = models.FloatField()
-    raion = models.ForeignKey(Raion)
-
-    def __unicode__(self):  # Python 3: def __str__(self):
-        return self.settlement_name
-
-    class Meta:
-        managed = False
-        db_table = 'settlements'
-
-
 class GCA_NGCA(models.Model):
 
     type_of_area = models.CharField(max_length=20)
@@ -80,6 +62,76 @@ class GCA_NGCA(models.Model):
         managed = False
         db_table = 'gca_ngca'
 
+class Oblast(models.Model):
+    pcode = models.CharField(max_length=10, blank=True, null=True)
+    oblast_name = models.CharField(max_length=100)
+
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.oblast_name
+
+    class Meta:
+        db_table = 'oblasts'
+
+
+class Raion(models.Model):
+    pcode = models.CharField(max_length=10, blank=True, null=True)
+    raion_name = models.CharField(max_length=100)
+    oblast = models.ForeignKey(Oblast)
+    color = ColorField(default='#FF0000')
+    # color = RGBColorField()
+
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.raion_name
+
+    class Meta:
+        db_table = 'raions'
+
+class Emails(models.Model):
+
+    email = models.EmailField()
+
+    def __unicode__(self):
+        return self.email
+
+    class Meta:
+        db_table = 'emails'
+
+
+
+class CoordinationHub(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=25)
+
+    to_list = models.ManyToManyField(Emails, related_name='to_emails')
+    cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'coordination_hubs'
+
+class Settlement(models.Model):
+
+    pcode = models.CharField(max_length=10, blank=True, null=True)
+    pcode_new = models.CharField(max_length=10, blank=True, null=True)
+    settlement_name_old = models.CharField(max_length=120, blank=True, null=True)
+    settlement_name = models.CharField(max_length=120)
+    longitude = models.FloatField()
+    latitude = models.FloatField()
+    raion = models.ForeignKey(Raion)
+    area = models.ForeignKey(GCA_NGCA, blank=True, null=True)
+    hub = models.ForeignKey(CoordinationHub, blank=True, null=True)
+
+    def __unicode__(self):  # Python 3: def __str__(self):
+        return self.settlement_name
+
+    class Meta:
+        db_table = 'settlements'
+
+
+
+
 
 class NeedType(models.Model):
     need_type = models.CharField(max_length=50)
@@ -90,6 +142,9 @@ class NeedType(models.Model):
     class Meta:
         # managed = False
         db_table = 'need_types'
+
+
+
 
 
 class AffectedGroup(models.Model):
@@ -247,6 +302,19 @@ class Alert(models.Model):
 
     class Meta:
         db_table = 'alerts'
+
+
+@receiver(post_save, sender=Alert)
+def handle_new_alert(sender, instance, created, **kwargs):
+    location_id = instance.settlement.pk
+
+    query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
+    responsible_hub = query[0]['hub__id']
+    location = query[0]['settlement_name']
+
+    recepients = get_mail_lists(responsible_hub)
+    notify_mail(recepients['To'], recepients['CC'], location)
+
 
 
 class ItemGroup(models.Model):

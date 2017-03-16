@@ -127,11 +127,9 @@
 				weight: 1
 				, opacity: .3
 				, color: '#aaa'
-
 				, fill: true
 				, fillColor: conf.raionColors[feature.properties['KOATUU']]
 				, fillOpacity: .55
-
 				, clickable: false
 			}
 		}
@@ -468,15 +466,17 @@
 		};
 
 
-		var affectedMax = 0
+		var affectedMax = 0;
 
 		cf.affectedGrp.all().forEach(function(item) {
-			item = item.value
+
+			item = item.value;
 
 			if(affectedMax < item.affected) {
 				affectedMax = item.affected
 			}
-		})
+
+		});
 
 		var affectedMaxRound = round(affectedMax)
 
@@ -484,7 +484,7 @@
 		var calculateDiameter = function(affectedCount) {
 			// var diam = d3.scale.sqrt().domain([0, affectedMax])(affectedCount) * conf.markerMaxDiam
 			// var diam = d3.scale.sqrt().domain([0, affectedMaxRound])(affectedCount) * conf.markerMaxDiam
-            //
+
 			// if(diam == 0) {
 			// 	return 0
 			// } else if( diam <= conf.markerMinDiam) {
@@ -494,17 +494,19 @@
 			// }
 
 			return conf.markerMinDiam
+
 		};
 
 		// init markers
-		var markerLayer = L.layerGroup()
+		var markerLayer = L.layerGroup();
 		cf.affectedGrp.all().forEach(function(item) {
-			item = item.value
+			item = item.value;
 
-			var marker = L.marker(item.coords)
+			var marker = L.marker(item.coords);
 
 			marker.data = {
-				key: item.key
+
+				  key: item.key
 				, record: item.record
 				, coords: item.coords
 				, count: item.count
@@ -512,6 +514,7 @@
 				, affected: item.affected
 				, initDiameter: calculateDiameter(item.affected)
 				, size: calculateDiameter(item.affected) + 4 // plus space to stroke
+
 			};
 
 			markerLayer.addLayer(marker);
@@ -646,16 +649,16 @@
 				var diameters = records.map(function(record) { return calculateDiameter(record.affected)} )
 					, markerDiameter = marker.data.initDiameter
 					, markerSize = marker.data.size
-					, maxDiameter = d3.max(diameters)
+					, maxDiameter = d3.max(diameters);
 
 				// minimalRadius is calculated in such a way that the main marker would not overlap the biggest marker on circle
-				var minimalRadius = markerDiameter / 2 + conf.markerSpacer + maxDiameter / 2
+				var minimalRadius = markerDiameter / 2 + conf.markerSpacer + maxDiameter / 2;
 
 
 				var length = Math.max(d3.sum(diameters) + conf.markerSpacer * diameters.length, minimalRadius  * 2 * Math.PI)
-					, radius = length / 2 / Math.PI
+					, radius = length / 2 / Math.PI;
 
-				var boxSize = radius * 2 + maxDiameter + 4
+				var boxSize = radius * 2 + maxDiameter + 4;
 
 				/* create svg container */
 				self.$el = d3.select(marker._icon).append('svg')
@@ -666,8 +669,8 @@
 						, 'left': - (boxSize - markerSize) / 2 + 'px'
 						, 'top': - (boxSize - markerSize) / 2 + 'px'
 					})
-					.classed({ 'marker-rose': true })
-				self.$container = self.$el.append('g')
+					.classed({ 'marker-rose': true });
+				self.$container = self.$el.append('g');
 				self.$container.attr({ 'transform': 'translate(' + (boxSize / 2) + ',' + (boxSize / 2) + ')' })
 
 
