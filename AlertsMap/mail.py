@@ -2,18 +2,19 @@ from django.template import Context
 from django.template.loader import get_template
 from django.core.mail import EmailMessage
 
-def notify_mail(to_list, cc_list, instance, clusters, needs, url):
+def notify_mail(to_list, cc_list, instance, url):
+    # clusters, needs,
 
     subject = 'Ukraine Alert Map: New alert in ' + instance.settlement.settlement_name
 
-    from_email = 'ocha.im.ukraine@gmail.com'
-
+    from_email = 'ocha.im.ukr.aws@gmail.com'
+    # ocha.im.ukraine @ gmail.com
     ctx = {
         'location': instance.location(),
-        'clusters': ', '.join(clusters),
+        # 'clusters': ', '.join(clusters),
         'no_affected': instance.no_affected,
         'alert_type': instance.alert_type,
-        'needs': ', '.join(needs),
+        # 'needs': ', '.join(needs),
         'context': instance.context,
         'description': instance.description,
         'conflict_related': instance.related_to_conflict(),

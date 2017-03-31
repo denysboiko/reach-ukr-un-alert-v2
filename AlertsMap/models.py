@@ -9,7 +9,7 @@ from django.contrib.auth.models import AbstractUser
 from colorful.fields import RGBColorField
 from colorfield.fields import ColorField
 
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 
 from mail import notify_mail
@@ -326,24 +326,36 @@ class Alert(models.Model):
         db_table = 'alerts'
 
 
-
-@receiver(post_save, sender=Alert)
+@receiver(post_save, sender = Alert)
 def handle_new_alert(sender, instance, created, **kwargs):
-    if created:
-        print('New Alert!')
-    else:
-        location_id = instance.settlement.pk
-        query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
-        responsible_hub = query[0]['hub__id']
+    location_id = instance.settlement.pk
+    query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
+    responsible_hub = query[0]['hub__id']
 
-        recepients = get_mail_lists(responsible_hub)
-        clusters = get_clusters_list(instance.id)
-        needs = get_needs_list(instance.id)
-        change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args = (instance.id,))
+    recepients = get_mail_lists(responsible_hub)
+    clusters = get_clusters_list(instance.id)
+    needs = get_needs_list(instance.id)
+    change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args=(instance.id,))
 
-        notify_mail(recepients['To'], recepients['CC'], instance, clusters, needs, change_url)
+    notify_mail(recepients['To'], recepients['CC'], instance, change_url)
+    # clusters, needs,
+    # if created:
+    #
+    #
+    #
+    # else:
+    #     location_id = instance.settlement.pk
+    #     query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
+    #     responsible_hub = query[0]['hub__id']
+    #
+    #     recepients = get_mail_lists(responsible_hub)
+    #     clusters = get_clusters_list(instance.id)
+    #     needs = get_needs_list(instance.id)
+    #     change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args = (instance.id,))
+    #
+    #     notify_mail(recepients['To'], recepients['CC'], instance, clusters, needs, change_url)
 
-
+# m2m_changed.connect(handle_new_alert, sender=Alert)
 
 class ItemGroup(models.Model):
 
