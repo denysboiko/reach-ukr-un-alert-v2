@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 # from django.contrib.auth.models import User
@@ -14,6 +14,9 @@ from django.dispatch import receiver
 
 from mail import notify_mail
 # from select_mails import get_mail_lists
+from django.contrib.sites.models import Site
+
+
 
 def get_mail_lists(id):
 
@@ -32,6 +35,22 @@ def get_mail_lists(id):
     return {'To': to, 'CC': copy}
 
 
+def get_clusters_list(id):
+    query = Alert.objects.filter(pk=id).prefetch_related('clusters').values('clusters__cluster_name')
+    clusters = []
+    for n in query:
+        clusters.append(n['clusters__cluster_name'])
+
+    return clusters
+
+
+def get_needs_list(id):
+    query = Alert.objects.filter(pk=id).prefetch_related('need_types').values('need_types__need_type')
+    needs = []
+    for n in query:
+        needs.append(n['need_types__need_type'])
+
+    return needs
 
 class User(AbstractUser):
     organization = models.CharField(max_length=80, blank=True)
@@ -292,8 +311,11 @@ class Alert(models.Model):
     need_types = models.ManyToManyField(NeedType, related_name='needs')
 
     def location(self):
-        location = ' / '.join([str(self.oblast), str(self.raion), str(self.settlement)])
+        location = ' / '.join([str(self.raion), str(self.settlement), str(self.oblast)])
         return location
+
+    def related_to_conflict(self):
+        return ("No", "Yes")[self.conflict_related]
 
     def __unicode__(self):
         return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
@@ -304,16 +326,20 @@ class Alert(models.Model):
         db_table = 'alerts'
 
 
+
 @receiver(post_save, sender=Alert)
 def handle_new_alert(sender, instance, created, **kwargs):
-    location_id = instance.settlement.pk
 
+    location_id = instance.settlement.pk
     query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
     responsible_hub = query[0]['hub__id']
-    location = query[0]['settlement_name']
 
     recepients = get_mail_lists(responsible_hub)
-    notify_mail(recepients['To'], recepients['CC'], location)
+    clusters = get_clusters_list(instance.id)
+    needs = get_needs_list(instance.id)
+    change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args = (instance.id,))
+
+    notify_mail(recepients['To'], recepients['CC'], instance, clusters, needs, change_url)
 
 
 
