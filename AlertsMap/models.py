@@ -114,6 +114,7 @@ class Emails(models.Model):
 
     class Meta:
         db_table = 'emails'
+        verbose_name_plural = 'Emails'
 
 
 
@@ -324,7 +325,6 @@ class Alert(models.Model):
 
     class Meta:
         db_table = 'alerts'
-
 
 @receiver(post_save, sender = Alert)
 def handle_new_alert(sender, instance, created, **kwargs):
