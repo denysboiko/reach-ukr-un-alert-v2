@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$', logout_page),
     url(r'^login/$', auth_views.login),
+    # url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/login/$', auth_views.login),
     url(r'^register/$', register),
     url(r'^register/success/$', register_success),

@@ -99,7 +99,7 @@
 	new L.Control.Zoom({ position: 'topright' }).addTo(map.leaflet)
 
 	map.osmLayer = L.tileLayer(conf.map.tiles, {
-		attribution: '<a href="http://osm.org/copyright">OpenStreetMap</a>'
+		attribution: '© <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	});
 
 	map.leaflet.addLayer(map.osmLayer);

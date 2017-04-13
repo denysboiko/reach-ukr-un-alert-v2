@@ -240,7 +240,7 @@ class SettlementAdmin(ModelAdmin):
     ]
 
 
-admin.site.register([Cluster,Emails,CoordinationHub])
+admin.site.register([Cluster, Emails, CoordinationHub])
 admin.site.register(Raion, RaionAdmin)
 admin.site.register(Settlement, SettlementAdmin)
 admin.site.register(Organization, OrganizationAdmin)

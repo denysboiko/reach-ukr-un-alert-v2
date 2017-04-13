@@ -21,10 +21,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'qjo7vjn#xkii$-**1xfy)a)6$vw51)!*zv@w6dlv9w-*=_22vi'
+SECRET_KEY = os.environ['SECRET_KEY']
+# 'qjo7vjn#xkii$-**1xfy)a)6$vw51)!*zv@w6dlv9w-*=_22vi'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ['DEBUG']
 
 ALLOWED_HOSTS = [
     'localhost',
@@ -36,6 +37,9 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # 'allauth',
+    # 'allauth.account',
+    # 'allauth.socialaccount',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -47,10 +51,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'smart_selects',
-    # 'agnocomplete',
     'guardian',
-    # 'coverage',
-
     'colorful' ,
     'colorfield' ,
     'AlertsMap'
@@ -82,6 +83,7 @@ ROOT_URLCONF = 'alerts_map.urls'
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend', # default
     'guardian.backends.ObjectPermissionBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend'
 )
 
 TEMPLATES = [
@@ -103,20 +105,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'alerts_map.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'Alerts',
-#         'USER': 'postgres',
-#         'PASSWORD': '3w_reach',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
-
 if 'RDS_DB_NAME' in os.environ:
     DATABASES = {
         'default': {
@@ -129,36 +117,26 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': os.environ['RDS_DB_NAME'],
-    #         'USER': os.environ['RDS_USERNAME'],
-    #         'PASSWORD': os.environ['RDS_PASSWORD'],
-    #         'HOST': os.environ['RDS_HOSTNAME'],
-    #         'PORT': os.environ['RDS_PORT'],
-    #     }
-    # }
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'Alerts',
-    #         'USER': 'postgres',
-    #         'PASSWORD': '3w_reach',
-    #         'HOST': '127.0.0.1',
-    #         'PORT': '5432',
-    #     }
-    # }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'ebdb',
-            'USER': 'dbadmin',
-            'PASSWORD': 'pgk6vsnA',
-            'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+            'NAME': 'Alerts',
+            'USER': 'postgres',
+            'PASSWORD': '3w_reach',
+            'HOST': '127.0.0.1',
             'PORT': '5432',
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'ebdb',
+    #         'USER': 'dbadmin',
+    #         'PASSWORD': 'pgk6vsnA',
+    #         'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+    #         'PORT': '5432',
+    #     }
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
