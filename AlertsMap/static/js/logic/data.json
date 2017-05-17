@@ -1,0 +1,5026 @@
+[
+
+    {
+        "id": 28,
+        "settlement": "Krasnohorivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 48.009,
+        "longitude": 37.501,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-20",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "A couple (both 57 years old) moved back to Krasnohorivka on 13 March 2016 (returnees from Odesa). On 11 January 2017 the husband got injured by the shelling when in the bed. At the moment of conversation he was in the hospital. Both of them are in need of different kind of medicines, a mattress and two wool blankets.",
+        "population": 8000,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Mattresses"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 26,
+        "settlement": "Avdiivka",
+        "oblast": "Donetska",
+        "raion": "Avdiivska",
+        "raionCode": 1410200000,
+        "latitude": 48.149,
+        "longitude": 37.741,
+        "no_affected": 16000,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-24",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Protection",
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Presence of landmines and/or EWRs",
+            "Access to water"
+        ],
+        "context": "",
+        "description": "Damage to chlorine pipes of the Donetsk Filter Station resulted in rationed water supply to Avdiivka. The existing reserves will suffice until  4 March.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [
+            "People In Need",
+            "Adventist Development and Relief Agency"
+        ],
+        "items": [ ],
+        "responses": {
+            "Water_tank": 15
+        }
+    },
+    {
+        "id": 27,
+        "settlement": "Krasnohorivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 48.009,
+        "longitude": 37.501,
+        "no_affected": 8000,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-13",
+        "status": "Not Addressed",
+        "clusters": [
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "Krasnohorivka Town Hospital",
+        "description": "Hospital continues to operate without heating. Furthermore, one of the hospital wings which currently accommodates neurology and therapeutics departments, does not have running water but operate using 500 litres tanks.  The Head Doctor asked to assist with electric heaters, 500 or 1000 litres water tanks as well as construction material since some parts of the hospital complex that have been partially or completely damaged during the conflict are yet to be repaired.  Additionally, the hospital is in an urgent need for vehicles and it currently operates without any vehicles.",
+        "population": 8000,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "piece",
+                "item__item_name": "Heaters"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "piece",
+                "item__item_name": "Water_tank"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 33,
+        "settlement": "Starohnativka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.541,
+        "longitude": 37.78,
+        "no_affected": 30,
+        "no_beneficiaries": null,
+        "date_referal": "2016-05-31",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to water"
+        ],
+        "context": "Kindergarten in Starohnativka",
+        "description": "The kindergarten in Starohnativka was closed on 08/09/2014. In the end of April 2016, the kindergarten was reopened by means of local community. Before the conflict, there were 42 children, now - 30.  \r\nDue to the recent reopening, the kindergarten lacks many basic things, such as:\r\n- Hygiene items (soap, washing powder, dishwashing liquid, etc.)\r\n- Water filter, bottled water\r\n- 10 cooking pots (10l, 6l); tea-kettles (at least 2pcs); electric tea-kettle\r\n- Bed linen, blankets, towels, pillows\r\n- Chairs for children\r\n- Playground",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "piece",
+                "item__item_name": "Towels"
+            },
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "piece",
+                "item__item_name": "Bedding"
+            },
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Potable_water"
+            },
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "piece",
+                "item__item_name": "School_furniture"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Water_filters"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Kitchen_sets"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 31,
+        "settlement": "Horlivka",
+        "oblast": "Donetska",
+        "raion": "Horlivska",
+        "raionCode": 1410600000,
+        "latitude": 48.326,
+        "longitude": 38.06,
+        "no_affected": 272,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-11",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "KPH met with a representative of the Association of Disabled People in Horlivka “Gorlivchanka” which, in the absence of an official government registration system in Horlivka, represents people with disabilities. The interlocutor stated that 272 people with disabilities are registered with the Association, including 14 children under the age of 18. The “new administration” repaired the windows in the Association’s office but there is still no heating in the office and the gym, which has special equipment for people with disabilities.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 30,
+        "settlement": "Novolaspa",
+        "oblast": "Donetska",
+        "raion": "Telmanivskyi",
+        "raionCode": 1424800000,
+        "latitude": 47.573,
+        "longitude": 37.882,
+        "no_affected": 10,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-10",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "The few remaining people in the village suffer from lack of medical care. The nearest place where they can receive medical care and medicine is Starolaspa, but there is no public transport. Occasionally they receive emergency care from military nurse but that does not cover their daily needs, since in the village live elderly and disabled people. The wife of disabled man / Lyudmila, tel.: 0668958759/ complained of the difficult health condition of her husband.  69 y.o. man/Ekzarov Simeon/ before the conflict had suffered a stroke and on February 14, 2015 was injured.  As a result his condition became worse. From the same interlocutor MPH learned for about 80 y.o. a woman/Maslyuk Tatjana Ivanovich/ who lives alone in almost destroyed house in the village. The patrol couldn’t see the house, because of restriction from “DPR” side.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 59,
+        "settlement": "Popasna",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.63,
+        "longitude": 38.365,
+        "no_affected": 1000,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-21",
+        "status": "Resolved",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to water"
+        ],
+        "context": "Repair of water pipes",
+        "description": "Some water pipes have been damaged during the conflict",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 110,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 35,
+        "settlement": "Novomykhailivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.855,
+        "longitude": 37.484,
+        "no_affected": 30,
+        "no_beneficiaries": null,
+        "date_referal": "2016-11-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Access to water",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Church hospice in Novomykhailivka",
+        "description": "The following items were kindly requested by the church hospice:\r\n- Beds, bed linen \r\n- Washing machine (15kg)\r\n- Bio-toilets\r\n- Other hygiene products for the bedridden.\r\nThe hospice residents are also in need of medical examination",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "piece",
+                "item__item_name": "Bedding"
+            },
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "pack",
+                "item__item_name": "Diapers_for_adults"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 36,
+        "settlement": "Krasnohorivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 48.009,
+        "longitude": 37.501,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2016-08-01",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "A family in Krasnohorivka in dire conditions",
+        "description": "Yeres'ko Liudmila Vasilievna, female, 60y/old, resident of Krasnohorivka, Marinskiy raion. Carer of Danilova Inna Anatolievna, daughter, DOB: 1973, oncology patient, II category of disability since January 2014. Non-displaced, however, reportedly do not have stable accommodation and have not previously received humanitarian assistance. \r\nHygiene kits, food parcels, medicines, NFI",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "ton",
+                "item__item_name": "Coal"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 34,
+        "settlement": "Popasna",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.63,
+        "longitude": 38.365,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-01-27",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Damaged windows replacement",
+        "description": "Mr.Victor Aliper (77 y.o.), resident of Popasna,  informs that windows of his house were broken due to the shelling on 24-25 October, 2016. The man asks to assist him with provision of new windows and its replacement. It is extremely cold in his house.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 0,
+                "unit__unit_name": "piece",
+                "item__item_name": "Glass"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 60,
+        "settlement": "Selydove",
+        "oblast": "Donetska",
+        "raion": "Selydivska",
+        "raionCode": 1413800000,
+        "latitude": 48.147,
+        "longitude": 37.299,
+        "no_affected": 11,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The warm clothes, food and diapers are needed for evacuated families",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "piece",
+                "item__item_name": "Clothes"
+            },
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "pack",
+                "item__item_name": "Diapers_for_children"
+            },
+            {
+                "quantity_need": 11,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 62,
+        "settlement": "Sartana",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.176,
+        "longitude": 37.691,
+        "no_affected": 10647,
+        "no_beneficiaries": 200,
+        "date_referal": "2017-02-09",
+        "status": "Not Addressed",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "First aid kits to scale-up the health interventions.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 200,
+                "unit__unit_name": "piece",
+                "item__item_name": "First_Aid_kits"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 44,
+        "settlement": "Avdiivka",
+        "oblast": "Donetska",
+        "raion": "Avdiivska",
+        "raionCode": 1410200000,
+        "latitude": 48.149,
+        "longitude": 37.741,
+        "no_affected": 16000,
+        "no_beneficiaries": 16000,
+        "date_referal": "2017-02-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Due to increase in number of patients as a result of hostilities, need for blankets as well as surgical kits have significantly increased.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 80,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            },
+            {
+                "quantity_need": 7,
+                "unit__unit_name": "piece",
+                "item__item_name": "Medical_equipment"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 38,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 1900,
+        "no_beneficiaries": null,
+        "date_referal": "2016-11-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Request from Marinka CM Administration for the vulnerable inhabitants",
+        "description": "The following items were kindly requested from the humanitarian organizations:\r\n- Solid fuel: wood, coal. The amount of people in need of the solid fuel is 1,900.\r\n- Electric heaters (multistory buildings) and cast-iron heaters (private HHs)\r\n- Food parcels – for the low income individuals, elderly people and people with special needs\r\n- Bed linen, blankets, other household items – for homeless fire victims\r\n- Diapers, napkins, hygiene items – for the bed-ridden individuals",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 230,
+                "unit__unit_name": "piece",
+                "item__item_name": "Heaters"
+            },
+            {
+                "quantity_need": 150,
+                "unit__unit_name": "piece",
+                "item__item_name": "Bedding"
+            },
+            {
+                "quantity_need": 300,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1000,
+                "unit__unit_name": "ton",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 40,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 37,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-04",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "The electrical system represents a critical fire hazard. When SMM visited fire broke out in third floor with significant smoke development. Also there are no fire extinguishers in any of the 9 floors of the building. URGENT NEED: 9 fire extinguishers, one for each floor and cover electrical wires INTERMEDIATE NEED: assess the electrical systems at each floor and recommend changes to administration.  Most of the stoves (one in the kitchen on each floor) are only partially operational and needs to be replaced. Also insufficient number of fridges (in spite of distribution of four fridge to families with many children last year) is a significant problem. Currently people are simply storing their food next to insufficiently insulated windows, which will not work in the spring/summer. SMM received complaints that the distribution didn't necessary follow vulnerability criteria. We visited two families with 4 and 5 children that had received no fridge while others with 2 were selected.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [
+            "United Nations High Commissioner for Refugees"
+        ],
+        "items": [
+            {
+                "quantity_need": 18,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": {
+            "Other": 9
+        }
+    },
+    {
+        "id": 39,
+        "settlement": "Mykolaivka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.653,
+        "longitude": 37.68,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2016-03-04",
+        "status": "Resolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to shelter"
+        ],
+        "context": "A heavily damaged HH in Mykolaivka, Volnovaskyi raion",
+        "description": "A woman of 60+ is living with her grandson (man with a disability of 20+y.o.) in Mykolaivka. Her house in Novohnativka was damaged during the active phase of the conflict in 2015. The woman did not apply for IDP status (though she moved from her permanent location due to the conflict to Mykolaivka village). She also said she spent 400-500 UAH per month for renting a house in Mykolaivka (the neighboring village).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 41,
+        "settlement": "Berdianske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.09,
+        "longitude": 37.784,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2016-12-13",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to shelter"
+        ],
+        "context": "Shelling-damaged HH needs repairing in Berdyanske",
+        "description": "A HH had been damaged in the shelling (the owner- a male of 62 y.o., disabled (II group)).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 40,
+        "settlement": "Starobilsk",
+        "oblast": "Luhanska",
+        "raion": "Starobilskyi",
+        "raionCode": 4425100000,
+        "latitude": 49.277,
+        "longitude": 38.911,
+        "no_affected": 122,
+        "no_beneficiaries": 122,
+        "date_referal": "2017-02-01",
+        "status": "Not Addressed",
+        "clusters": [
+            "Education",
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "Request from the University evacuated from Luhansk (NGCA) to Starobilsk (GCA)",
+        "description": "Request from Taras Shevchenko National University of Luhansk evacuated from Luhansk city (NGCA) to Starobilsk (GCA) due to the conflict. The most of its students and lecturers are IDPs and face accommodation related issues.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 122,
+                "unit__unit_name": "piece",
+                "item__item_name": "Bedding"
+            },
+            {
+                "quantity_need": 122,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            },
+            {
+                "quantity_need": 80,
+                "unit__unit_name": "Other",
+                "item__item_name": "Bedding"
+            },
+            {
+                "quantity_need": 209,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 122,
+                "unit__unit_name": "piece",
+                "item__item_name": "Mattresses"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 42,
+        "settlement": "Lysychansk",
+        "oblast": "Luhanska",
+        "raion": "Lysychanska",
+        "raionCode": 4411800000,
+        "latitude": 48.935,
+        "longitude": 38.377,
+        "no_affected": 300,
+        "no_beneficiaries": 700,
+        "date_referal": "2017-02-06",
+        "status": "Not Addressed",
+        "clusters": [
+            "Education",
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "Referral from Lysychansk Pedagogical College",
+        "description": "Lysychansk Pedagogical College hosts 2 other colleges evacuated from Brianka and Stakhaniv (NGCA of Luhanska oblast). There are approx. 400 students attending the College between the age of 14 - 19 y.o. including IDPs. Two other evacuated colleges provide education to approx. 150 in each, mostly IDPs. \r\nThe Principal of the Lysychansk Pedagogical College informed that the College provides support to two other institutions as much as it is possible with stationary, space, equipment etc., however they are short of funds. The request for stationary for Brianka and Stakhaniv Colleges and 20 computers for Lysychansk College.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 300,
+                "unit__unit_name": "Other",
+                "item__item_name": "Stationary"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 53,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": 5700,
+        "date_referal": "2017-02-02",
+        "status": "Not Addressed",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Additional basic medicine is indicated as an urgent need as per the MTOT & IDP",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 3430,
+                "unit__unit_name": "piece",
+                "item__item_name": "Basic_medicine"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 48,
+        "settlement": "Kostiantynivka",
+        "oblast": "Donetska",
+        "raion": "Kostiantynivska",
+        "raionCode": 1412600000,
+        "latitude": 48.522,
+        "longitude": 37.701,
+        "no_affected": 1200,
+        "no_beneficiaries": 1200,
+        "date_referal": "2017-02-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Emergency surgery kits to scale-up health response.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10,
+                "unit__unit_name": "pack",
+                "item__item_name": "Medical_equipment"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 45,
+        "settlement": "Kurdiumivka",
+        "oblast": "Donetska",
+        "raion": "Dzerzhynska",
+        "raionCode": 1411200000,
+        "latitude": 48.47,
+        "longitude": 37.955,
+        "no_affected": 800,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "Following the shelling and damage to the civilian houses request was received for the repair materials and generator",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Generator"
+            },
+            {
+                "quantity_need": 300,
+                "unit__unit_name": "piece",
+                "item__item_name": "Slate"
+            },
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "kg",
+                "item__item_name": "Nails"
+            },
+            {
+                "quantity_need": 10,
+                "unit__unit_name": "pack",
+                "item__item_name": "Cement"
+            },
+            {
+                "quantity_need": 200,
+                "unit__unit_name": "m2",
+                "item__item_name": "Glass"
+            },
+            {
+                "quantity_need": 10,
+                "unit__unit_name": "pack",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 56,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 6,
+        "no_beneficiaries": 6,
+        "date_referal": "2017-02-13",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Referral from single parent with 5 children in Stanytsia Luhanska",
+        "description": "The applicant has 6 children (5 - minors) and is expecting the 7th. She is a single parent, living in Stanytsia Luhanska.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [
+            "Adventist Development and Relief Agency",
+            "SOS Children's Villages International"
+        ],
+        "items": [
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "pack",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "m3",
+                "item__item_name": "Coal"
+            },
+            {
+                "quantity_need": 5,
+                "unit__unit_name": "Other",
+                "item__item_name": "Clothes"
+            }
+        ],
+        "responses": {
+            "Psychosocial_support": 5,
+            "Other": 8,
+            "Stationary": 1,
+            "Hygiene_items": 5,
+            "Clothes": 3
+        }
+    },
+    {
+        "id": 51,
+        "settlement": "Petrivka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.481,
+        "longitude": 37.442,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2016-11-21",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "IDP family in Petrivske (close to Lazarivka)",
+        "description": "In the village of Petrivske which is close to Lazarivka (government-controlled, 62km south-west of Donetsk) we today met a nice couple. Natasha and Sasha, appr. 35 years old. They are both IDPs from Donetsk. Both studied. She studied finance and he is a mechanical engineer. A family of 2 (about 35 y.o.) left Donetsk in August 2014, now they are subsistent farming in the village (of 3 HHs).\r\nNeeds: food parcels, hygiene kits, medical examination.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 43,
+        "settlement": "Hnutove",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.206,
+        "longitude": 37.752,
+        "no_affected": 665,
+        "no_beneficiaries": 300,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "",
+        "population": 665,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 300,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 61,
+        "settlement": "Urzuf",
+        "oblast": "Donetska",
+        "raion": "Pershotravnevyi",
+        "raionCode": 1423900000,
+        "latitude": 46.914,
+        "longitude": 37.104,
+        "no_affected": 23,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The clothes and medication are needed for evacuated families",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 101,
+                "unit__unit_name": "piece",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 23,
+                "unit__unit_name": "piece",
+                "item__item_name": "Clothes"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 63,
+        "settlement": "Lysychansk",
+        "oblast": "Luhanska",
+        "raion": "Lysychanska",
+        "raionCode": 4411800000,
+        "latitude": 48.935,
+        "longitude": 38.377,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-02-21",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "Rehabilitation and hygiene to wounded civilian",
+        "description": "A woman, who suffered a spinal cord wound during the shelling in 2014, asks for support with rehabilitation (cash and hygiene).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 65,
+        "settlement": "Sartana",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.176,
+        "longitude": 37.691,
+        "no_affected": 10647,
+        "no_beneficiaries": 2570,
+        "date_referal": "2017-02-09",
+        "status": "Not Addressed",
+        "clusters": [
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "Hygiene kits and adult diapers required to meet the minimum WASH needs of the most vulnerable.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2500,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 70,
+                "unit__unit_name": "piece",
+                "item__item_name": "Diapers_for_adults"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 85,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to water"
+        ],
+        "context": "",
+        "description": "Portable water required to meet the minimum WASH needs of the affected people.",
+        "population": 5700,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1000,
+                "unit__unit_name": "liter",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 66,
+        "settlement": "Maloriazantseve",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.888,
+        "longitude": 38.374,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-02-23",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Shelter repair",
+        "description": "A woman asks for the replacement of windows and door that were damaged due to the conflict.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [
+            "Mercy Corps"
+        ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 4,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": {
+            "Other": 2
+        }
+    },
+    {
+        "id": 78,
+        "settlement": "Luhanske",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.888,
+        "longitude": 37.68,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-25",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The SMM was approached by a 60 year-old female resident who explained that in 2014 due to the stress of the shelling her husband suffered paralysis. She is unable to transport him to the hospital due to a lack of financial means and is therefore, unable to gain a medical certificate to prove his disability.  She is unable to gain support from relatives to assist in remedying the situation.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 73,
+        "settlement": "Sartana",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.176,
+        "longitude": 37.691,
+        "no_affected": 10647,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-09",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Need to restore the damaged households of the most vulnerable including some winterisation intervention",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 7450,
+                "unit__unit_name": "kg",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 276,
+                "unit__unit_name": "piece",
+                "item__item_name": "Slate"
+            },
+            {
+                "quantity_need": 16,
+                "unit__unit_name": "kg",
+                "item__item_name": "Nails"
+            },
+            {
+                "quantity_need": 30,
+                "unit__unit_name": "meter",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 370,
+                "unit__unit_name": "piece",
+                "item__item_name": "Brick"
+            },
+            {
+                "quantity_need": 100,
+                "unit__unit_name": "m2",
+                "item__item_name": "Glass"
+            },
+            {
+                "quantity_need": 2950,
+                "unit__unit_name": "kg",
+                "item__item_name": "Cement"
+            },
+            {
+                "quantity_need": 15,
+                "unit__unit_name": "pack",
+                "item__item_name": "Roof_tar_paper"
+            },
+            {
+                "quantity_need": 69,
+                "unit__unit_name": "m2",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 60,
+                "unit__unit_name": "meter",
+                "item__item_name": "Plank"
+            },
+            {
+                "quantity_need": 650,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 74,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 60,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-04",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The 20 families displaced from Elevatornaya 19 has moved to unknown locations. Their apartment building needs total rehabilitation and although they may have some short term solutions, they would probably need a medium term option in Collective centre. Most of the Old IDPs (23) that used to live in Elevatornaya Street 19a were relocated to Yakornaia Street 21, where five old IDPs (from 2014) from the Donetsk airport area have been living for two year. The latter group has received aid from RAF but not from ICRC. There are five very vulnerable HHs remaining in Elevatornaya 19 that have nowhere to go and with lack of heating, water and gas (only electricity) and precarious security situation would urgently need to be offered an alternative shelter/CC. Maria Yaldovenka (0990580629), 33 years-old and three weeks away from giving birth to her third child, showed DPH her destroyed house in Degtiarova street 26 that she shares with her elderly mother. Currently staying with family, she lacks the resources to rehabilitate her destroyed home. All the old IDPs were offered some initial psychosocial assistance but would probably need some more systematic follow up in the next few weeks",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 76,
+        "settlement": "Debaltseve",
+        "oblast": "Donetska",
+        "raion": "Debaltsevcka",
+        "raionCode": 1410900000,
+        "latitude": 48.334,
+        "longitude": 38.406,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-09",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "On 13 January DPH visited a home in Oktyabryoskaya 3 and met with Lidiya Pavlovna (80 y.o.). The former school teacher told DPH that on 12 January she woke up to the sound of explosions, got up from the sofa where she was sleeping and walked into the bathroom. So when the shell impacted the north facing wall of her house, created a 2x2 hole in the solid 30 cm+ wall and shrapnel and the pressure wave from the explosion impacted the ceiling and wall in the kitchen breaking the inner glass in the south facing windows of the living room on the other side of the house, where the old woman was sleeping just seconds before. With a RUB 4000/month pension and ICRC food aid distribution every 3 months she’s doing well. However, she requested assistance from the local administration to repair the wall and other internal damages but has still to receive any answer.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 81,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "Restricted access to food",
+        "description": "Distribution to the most vulnerable categories of the residents.",
+        "population": 5700,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 13000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 79,
+        "settlement": "Makiivka",
+        "oblast": "Donetska",
+        "raion": "Makiivska",
+        "raionCode": 1413500000,
+        "latitude": 48.057,
+        "longitude": 37.965,
+        "no_affected": 50,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-01",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "The director of the Centre for HIV-positive children Ludmila Ivanovna (contact number 050 814 2246) informed about the following current challenges: repair of sanitary facilities located at the first floor of the centre; replacement of linoleum at the first floor’s hall and wall painting. In addition, SMM was informed of lack of travel opportunities and professional development of the staff due to current conflict.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 32,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to water",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "According to Mr. Dmitry Popov, 'chief of staff' of the 'office of ombudsperson' of the self proclaimed 'DPR', at least two hundred civilians have been evacuated from shelled areas of Kyivskyi district of Donetsk and Makiivka to the IDP/Collective centers in Donetsk this week. The number of IDPs would increase. The IDPs would be in need of food packages, warm clothes, blankets, mattress and hygiene items.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 0,
+                "unit__unit_name": "piece",
+                "item__item_name": "Mattresses"
+            },
+            {
+                "quantity_need": 0,
+                "unit__unit_name": "piece",
+                "item__item_name": "Clothes"
+            },
+            {
+                "quantity_need": 0,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 0,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 64,
+        "settlement": "Avdiivka",
+        "oblast": "Donetska",
+        "raion": "Avdiivska",
+        "raionCode": 1410200000,
+        "latitude": 48.149,
+        "longitude": 37.741,
+        "no_affected": 16000,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "After following shelling and damage civilians houses request was received for repair materials",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [
+            "People In Need"
+        ],
+        "items": [
+            {
+                "quantity_need": 8000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Plank"
+            },
+            {
+                "quantity_need": 11000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Slate"
+            },
+            {
+                "quantity_need": 570,
+                "unit__unit_name": "kg",
+                "item__item_name": "Nails"
+            },
+            {
+                "quantity_need": 5000,
+                "unit__unit_name": "meter",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 70000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Brick"
+            },
+            {
+                "quantity_need": 12000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Glass"
+            },
+            {
+                "quantity_need": 2000,
+                "unit__unit_name": "piece",
+                "item__item_name": "OSB_panels"
+            },
+            {
+                "quantity_need": 15,
+                "unit__unit_name": "ton",
+                "item__item_name": "Cement"
+            },
+            {
+                "quantity_need": 4082,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 250,
+                "unit__unit_name": "m2",
+                "item__item_name": "Plastic_sheets"
+            },
+            {
+                "quantity_need": 3500,
+                "unit__unit_name": "piece",
+                "item__item_name": "Roof_tar_paper"
+            }
+        ],
+        "responses": {
+            "Nails": 455
+        }
+    },
+    {
+        "id": 83,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "Hygiene kits required to meet the minimum WASH needs of the affected people.",
+        "population": 5700,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 7000,
+                "unit__unit_name": "kg",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 21000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Hygiene_items"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 84,
+        "settlement": "Chabanivka",
+        "oblast": "Luhanska",
+        "raion": "Novoaidarskyi",
+        "raionCode": 4423100000,
+        "latitude": 49.032,
+        "longitude": 38.758,
+        "no_affected": 15,
+        "no_beneficiaries": 15,
+        "date_referal": "2017-02-28",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "PSS and access to other medical services is needed",
+        "description": "There are 15 disabled persons in village, 10 out of them have cancer. There is neither a hospital, nor a pharmacy in the village, just some medical point run by one doctor. Reportedly, people stated that they do not have access to confidential medical assistance (including PSS and visit to a gynecologist). People also informed that they have not received any humanitarian aid.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 15,
+                "unit__unit_name": "Other",
+                "item__item_name": "Psychosocial_support"
+            },
+            {
+                "quantity_need": 15,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 86,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "Heaters, kitchen sets required to meet the minimum needs of the affected residents after shelling.",
+        "population": 5700,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Heaters"
+            },
+            {
+                "quantity_need": 13000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Candles"
+            },
+            {
+                "quantity_need": 2000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Kitchen_sets"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 87,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 5700,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "",
+        "population": 5700,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1500,
+                "unit__unit_name": "piece",
+                "item__item_name": "Diapers_for_children"
+            },
+            {
+                "quantity_need": 1500,
+                "unit__unit_name": "piece",
+                "item__item_name": "Diapers_for_adults"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 88,
+        "settlement": "Sieverodonetsk",
+        "oblast": "Luhanska",
+        "raion": "Sievierodonetska",
+        "raionCode": 4412900000,
+        "latitude": 48.946,
+        "longitude": 38.482,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "IDP is in need of health support and cash assistance",
+        "description": "Glebskaya Lyudmila: IDP from Krasnohorivka (Donetsk oblast), Lives in Sievierodonetsk and spends all the income on accommodation (approx. 3500 UAH). Only 1000 UAH is left for food. He has health problems with her legs, it is painful for her to walk and she takes sedative agents. She needs expensive medicine which she cannot afford it. Also she needs surgery, uses wheelchair loaned from the URCS, and also has to take care of disabled mother.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "pack",
+                "item__item_name": "Diapers_for_adults"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 89,
+        "settlement": "Hirske",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.738,
+        "longitude": 38.491,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "A single woman is in need of health support and cash assistance",
+        "description": "Simonik Maria is 76 y.o., lives in Hirske. She has problems with legs (sores, blood vessels) and has diabetes. No one takes care of her. HI reported on visible deterioration in her health situation",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 5000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 90,
+        "settlement": "Popasna",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.63,
+        "longitude": 38.365,
+        "no_affected": 11,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "Urgent health support to conflict-affected child",
+        "description": "Daniil Stepchenko is 14 y.o., he lives in Popasna. The child has a  degeneration of eyesight as a result of post conflict stress. Only 10% out of 100% eyesight is left.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 20000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 91,
+        "settlement": "Hirske",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.738,
+        "longitude": 38.491,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "Cash for medication and medical treatment",
+        "description": "The person has is 71 y.o. and has problems with spinal disks. The income is 3000 UAH only. She has cancer.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 92,
+        "settlement": "Hirske",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.738,
+        "longitude": 38.491,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other"
+        ],
+        "context": "Cash for medical treatment is needed",
+        "description": "The woman is 54 y.o.,  has a tumor in her had which is increasing and she is in urgent need of medical intervention.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 93,
+        "settlement": "Novotoshkivske",
+        "oblast": "Luhanska",
+        "raion": "Kirovska",
+        "raionCode": 4411000000,
+        "latitude": 48.725,
+        "longitude": 38.631,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2016-12-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to shelter"
+        ],
+        "context": "Shelter repairs in a flat damaged due to the conslict",
+        "description": "The person is unemployed,  she is female-headed household with a child under 18. In her flat 4 windows are broken and it is necessary to replace them. The required size of windows is as follows: 125X175, 110X172, 67X171, 70X172.\r\nThere is some damage to the walls due to undated shelling.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 94,
+        "settlement": "Krasnorichenske",
+        "oblast": "Luhanska",
+        "raion": "Kreminskyi",
+        "raionCode": 4421600000,
+        "latitude": 49.211,
+        "longitude": 38.206,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2016-12-27",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "IDP in need of food, hygiene and cash",
+        "description": "An IDP from Pervomaisk, currently living in Krasnorichenske, Kreminskyi raion. According to the person she is in need of cash, food, hygiene. She rents an accommodation, has part-time job, but faces pressure for money.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "pack",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "pack",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 96,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-03",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "School No. 65 in Kyivskyi district of Donetsk, affected by shelling in its vicinity approximately at 00:15 on 3 February - a shell hit an area in the vicinity of the school inflicting damage to the metal fence and breaking some windows.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 97,
+        "settlement": "Popasna",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.63,
+        "longitude": 38.365,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2016-12-23",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Repair of the house damaged in October 2016",
+        "description": "A resident of Popasna applied to LOMCA regarding shelter repair. The person asks for assistance with reconstruction of her house in Popasna that had been damaged in 25 October, 2016 during the shelling. \r\nThe woman is temporarily unemployed.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 98,
+        "settlement": "Makiivka",
+        "oblast": "Donetska",
+        "raion": "Makiivska",
+        "raionCode": 1413500000,
+        "latitude": 48.057,
+        "longitude": 37.965,
+        "no_affected": 387,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-30",
+        "status": "Resolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "School No. 21 was affected by shelling that landed in its yard on 30 January, at 8.45 (local time). Fortunately, no one was injured, because children were not in the school that was closed due to the flare up of hostilities. 85 windows were broken/damaged as a result of shelling. In total, 387 children attend the school, from 1st to 11th classes. The school, due to the increased hostilities and shelling, stopped functioning since 30 January. Windows were still being repaired on 14 February. The school principal expressed her hope that they would be able to resume education process in 2-3 days, after the repair works will be completed.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 99,
+        "settlement": "Makiivka",
+        "oblast": "Donetska",
+        "raion": "Makiivska",
+        "raionCode": 1413500000,
+        "latitude": 48.057,
+        "longitude": 37.965,
+        "no_affected": 245,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-31",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "School No. 25 was affected by near by shelling on 31 January, at approx. 14.00 - 15.00 (local time). Reportedly, 152 mm. mortar landed in a yard of a house in 30-40 meters from the school. Fortunately, children were not in the school that day, teachers were hiding in the school's basement. 16 windows of the school were broken as a result of shrapnel hit and/or blast wave. The schoolchildren could not attend their classes for two weeks from 30 January to 10 February. Most of the children returned to the school only today, 14 February. In total, 245 children attend the school, from 1st to 9th (not 11th) classes. There are 33 employees: 21 teachers and 12 technical staff.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 100,
+        "settlement": "Makiivka",
+        "oblast": "Donetska",
+        "raion": "Makiivska",
+        "raionCode": 1413500000,
+        "latitude": 48.057,
+        "longitude": 37.965,
+        "no_affected": 69,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-31",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "Kindergarten No. 29 was affected by shelling that landed in road close to its premises on 31 January 2017, at 20.30. 9 windows were completely damaged, 8 partially. The windows have not been repaired yet. In total, 69 kids in the age of 2-6 years attend the kindergarten.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 101,
+        "settlement": "Chervonyi Zhovten",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.919,
+        "longitude": 39.348,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2016-12-08",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "Wife (62 y.o.) and husband  (64 y.o.) live in a house that was destroyed by a fire in May, 2016 (short circuit fire). Family lost all their belongings. The man is bed-bound. The wife had a blood-stroke, partially paralyzed. They need at least 10 000 UAH to restore their house partially. The family also is in need of cash, coal, food, medications, anything to survive.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "m3",
+                "item__item_name": "Coal"
+            },
+            {
+                "quantity_need": 10003,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "pack",
+                "item__item_name": "Diapers_for_adults"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 102,
+        "settlement": "Sieverodonetsk",
+        "oblast": "Luhanska",
+        "raion": "Sievierodonetska",
+        "raionCode": 4412900000,
+        "latitude": 48.946,
+        "longitude": 38.482,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2016-12-07",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Multiple assistance for single parent",
+        "description": "A single parent with a baby who are IDPs from Luhansk are in need of multi-sectorial support including cash. She receives social benefits, but spends half of money for accommodation.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "m3",
+                "item__item_name": "Coal"
+            },
+            {
+                "quantity_need": 5003,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 103,
+        "settlement": "Starobilsk",
+        "oblast": "Luhanska",
+        "raion": "Starobilskyi",
+        "raionCode": 4425100000,
+        "latitude": 49.277,
+        "longitude": 38.911,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2016-07-28",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "A 64 y.o. IDP is living with her daughter, also IDP, in Starobilsk since 2014. Their flat in Luhansk (NGCA) was robbed after they moved to GCA. They have basically nothing. The house they rent is poor and very cold in winter. Her pension is 1300 UAH while they pay 1500 UAH for rent + utility bills. Her daughter is working, but they are short in funds.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 5000,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 80,
+        "settlement": "Krasnohorivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 48.009,
+        "longitude": 37.501,
+        "no_affected": 8000,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-08",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "Reconstruction/Repair of damaged HHs/Social Infrastructure",
+        "population": 8000,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 5000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Slate"
+            },
+            {
+                "quantity_need": 300,
+                "unit__unit_name": "kg",
+                "item__item_name": "Nails"
+            },
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "m3",
+                "item__item_name": "Plank"
+            },
+            {
+                "quantity_need": 400,
+                "unit__unit_name": "m2",
+                "item__item_name": "Tarpaulin"
+            },
+            {
+                "quantity_need": 500,
+                "unit__unit_name": "pack",
+                "item__item_name": "Roof_tar_paper"
+            },
+            {
+                "quantity_need": 8000,
+                "unit__unit_name": "m2",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "ton",
+                "item__item_name": "Cement"
+            },
+            {
+                "quantity_need": 1300,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 400,
+                "unit__unit_name": "m2",
+                "item__item_name": "Plastic_sheets"
+            },
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "m3",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 500,
+                "unit__unit_name": "kg",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Plywood"
+            },
+            {
+                "quantity_need": 1400,
+                "unit__unit_name": "m2",
+                "item__item_name": "Glass"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 104,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2016-10-23",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Multiple assistance is needed in Stanytsia Luhanska",
+        "description": "Ischchenko Svitlana Borysivna, lives in Stanytsia Luhanska. She informed that her house has been destroyed. On 6 October her house was hit and burnt out due to the shelling. She has the relevant documents confirming it. She is forced to rent an accommodation and is very short of everything.(Clothes, Food, Hygiene, NFI). She needs support with shelter repairs.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1100,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 105,
+        "settlement": "Yasynuvata",
+        "oblast": "Donetska",
+        "raion": "Yasynuvatska",
+        "raionCode": 1415500000,
+        "latitude": 48.129,
+        "longitude": 37.861,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "While in Yasynuvata, DPH was approached by parents of a two year old girl, Olga, who is blind on her left eye because of cataract and needs an operation.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 95,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 400,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-03",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "School No. 19 in Kyivskyi district of Donetsk, affected by shelling in its vicinity approximately at 00:15 on 3 February. Two shells hit the area in the immediate proximity to the school No. 19. As a result of shelling almost all windows of the school were broken and the façade has multiple shrapnel damages. The school is attended by about 400 children. \r\nThe administration of the school informed us that one of the major concerns is the poor condition of the roof. As a result of numerous damages inflicted to the school by shelling, the structures of the roof were misplaced and they are not properly sealed now. This causes fungus on ceilings and walls on the third floor of the school, what poses serious public health concern. The administration of the school does not have sufficient funds to complete necessary repairs of the roof and therefore, requires help from other actors.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 106,
+        "settlement": "Oleksandrivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.921,
+        "longitude": 37.578,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-09",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "According to the director of the school Valentina Vladimirovna Cherkas (telephone 099 710 9327) the main need is repair of the school’s electricity system (the school often experiences black outs and brown outs as result of old electrical installation system and a year ago there was an explosion at the electricity counter box). This should be a major repair that should take place during summer time when the kids are on their holidays. One laptop computer – can be an old one. Tables in the school canteen – approximately 6 tables. General painting of the premises – According to the director, the last time the school was painted was 20 years ago. Kitchen ventilation fan.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 107,
+        "settlement": "Zolote",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.717,
+        "longitude": 38.484,
+        "no_affected": 23,
+        "no_beneficiaries": 23,
+        "date_referal": "2017-03-01",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Shelter repair in Zolote-4. Houses damaged on 1-2 March 2017",
+        "description": "Due to the shelling on the night from 1 to 2 March 2017 in total 23  private houses were damaged (windows have been broken) in Zolote-4 at the following addresses:\r\nNahimova Str. - №9/2, №10/2, №14/2;\r\nKomsomolska Str. - №11/2;\r\n2-nd Vilna Str. - from № 77 to №94 ;\r\nPolova Str. - №5, №8.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 23,
+                "unit__unit_name": "piece",
+                "item__item_name": "Glass"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 108,
+        "settlement": "Luhansk",
+        "oblast": "Luhanska",
+        "raion": "Luhanska",
+        "raionCode": 4410100000,
+        "latitude": 48.563,
+        "longitude": 39.322,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "Issue: documentation issue / crossing the line of contact for medical reasons \r\nInterlocutor: Mr. Anatoliy Ivanov, Judge in Luhansk Commercial Court relocated in Kharkiv, asking assistance for his 83 years old mother, Maria Feodorovna Vorozhtsova, a resident of Luhansk city. \r\nContact details: Mr. Anatoliy, 050 / 298 0172",
+        "description": "SMM was informed by the interlocutor that he would like to take his mother to Kharkiv for eye surgery, however she is too old to cross the Stanytsia Luhanska Bridge and needs to use the EECP's in Donetsk Oblast where the female could cross with vehicle, yet she does not have passport (lost / stolen for almost 2 years) and possesses only pensioner's ID.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Legal_support"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 110,
+        "settlement": "Donetskyi",
+        "oblast": "Luhanska",
+        "raion": "Kirovska",
+        "raionCode": 4411000000,
+        "latitude": 48.698,
+        "longitude": 38.674,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-27",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "On 27.01.2017 the SMM spoke with a couple living in Donetskyi whose house (grid reference: 48.70679, 038.68169) was damaged in crossfire on 26.01.2017. As a result of this, all windows of the house were blown out and part of the foundation was damaged. There is no electricity and due to the damage caused by the shelling the owners are worried that the house may collapse. They are in need of material assistance. The owner says he is able to carry out the reparation work but would need construction material. Their income is low and does not allow them to buy the material.",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 111,
+        "settlement": "Novooleksandrivka",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.614,
+        "longitude": 38.429,
+        "no_affected": 3,
+        "no_beneficiaries": null,
+        "date_referal": "2017-01-20",
+        "status": "Resolved",
+        "clusters": [
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to water",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Urgent need of humanitarian assistance: With minus degrees in temperature without heating material especially the 3 pensioners mentioned below, along with other villagers, experience life-threatening conditions.  The village has  been without electricity for approximately 30 months. There are no coal supplies to the village so they are reliant upon firewood. As the 3 ladies are housebound and disabled they cannot collect firewood themselves nor can they handle the heavy wood logs themselves to make fire and are reliant upon the good will of a neighbour, to collect firewood for them. The neighbour,  (Male 70 yo), is finding it increasingly difficult to cater for the needs of his neighbours as well as his own household.The pensioners are also too infirm to prepare the fire and prepare meals. Supply of coal (and easy preparation food) to these pensioners and if possible to the villager would be greatly appreciated.",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 112,
+        "settlement": "Zolote",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.717,
+        "longitude": 38.484,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2016-12-12",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "The SMM joined the JCCC representative for an assessment of one house at Torgovaya Street, 40 of Zolote/grey zone. The female owner explained that the roof of the house had been hit in the afternoon of the day before. The neighbours’ house was damaged also by shrapnel; in October another shell hit her house, damaging it. The woman said that she did not get or ask anyone construction material to repair the damages; the JCCC representative said he will pass the info to relevant authorities.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 113,
+        "settlement": "Dolomitne",
+        "oblast": "Donetska",
+        "raion": "Artemivskyi",
+        "raionCode": 1420900000,
+        "latitude": 48.415,
+        "longitude": 38.133,
+        "no_affected": 45,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-10",
+        "status": "Resolved",
+        "clusters": [
+            "Education",
+            "Food Security & Livelihoods",
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The humanitarian situation in Dolomitne is very difficult. At the moment, about 45 residents live the village. Most of the them are elderly people, who cannot and do not want leave their houses. However, there are also 4 children living there. The village is located in the immediate vicinity to the contact line (it is only 1.5 km away from Novoluhanske village, which is controlled by the Government of Ukraine) and therefore, the village is constantly impacted by shelling. \r\nAlthough, Dolomitne is controlled by the armed groups of 'DPR', the village is still considered to be a part of Bakhmut district and therefore all social payments and pensions residents are supposed to receive in Novoluhanske. On 1 January 2017, UAF closed the road between Dolomitne and Novoluhanske villages. Hence, residents of Dolomitne can no longer go there to receive their pensions and/or humanitarian assistance from Rinat Akhmetov Foundation. \r\nAt the moment, the village is completely isolated and “forgotten” as local residents told us. There is no grocery shop, no pharmacy, no hospital and no public transportation. In terms of groceries people depend on occasional visits of relatives who bring them food from near by villages. The phone connection is very unstable. Ambulance does not come to the village. There are two children of school age who attend the school in Novoluhanske and they can go to their school when there is no shelling. Reportedly, only school children and two teachers are allowed to cross the contact line between Dolomitne and Novoluhanske. There is a heavy presence of armed groups and UAF in and around the village that are located very close to each other. The settlement is surrounded by checkpoints and we were reported about regular shelling and sniper activity.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 114,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 20,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-10",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "OHCHR team in Donetsk recently visited a basement - bomb shelter in Trudovskie neighbourhood of Petrovskyi district of Donetsk. Allegedly, approximately 20 civilians regularly stay overnight there (reportedly, no children stay in the basement). People have been continuously living in this basement for already 3 years, since the beginning of the armed conflict. The conditions in the basement are very poor. The walls are affected by fungus and it is quite cold and humid there. There is no running water but the basement was provided with a big water tank by a local 'administration'. There are also toilet facilities and improvised kitchen in the basement (however, in terms of hygiene the situation is quite bad). All elders present at the basement complained that their livelihood depended on the humanitarian assistance from Rinat Akhmetov Foundation and they were not sure how they would survive without it. At the moment, they do not receive any humanitarian assistance.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 115,
+        "settlement": "Volnovakha",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.6,
+        "longitude": 37.502,
+        "no_affected": 23187,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-03",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "Volnovakha State Emergency Service Unit requested assistance in the following: GPS navigators, computers, printers, IP phones, fire-resistant flashlights, construction materials, compressor.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 85,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 116,
+        "settlement": "Verkhnia Krynka",
+        "oblast": "Donetska",
+        "raion": "Makiivska",
+        "raionCode": 1413500000,
+        "latitude": 48.162,
+        "longitude": 38.146,
+        "no_affected": 5,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-19",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "The DPH visited the local home of an elderly woman who asked the DPH if they could assist with aid in order to get household repairs.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 117,
+        "settlement": "Myrne",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.426,
+        "longitude": 37.732,
+        "no_affected": 3753,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-14",
+        "status": "Not Addressed",
+        "clusters": [
+            "Water Sanitation Hygiene",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Myrne ambulatory is in poor state due to insufficient funding, lack of resources, limited personnel and an extremely heavy patient load. The ambulatory services 3,753 persons living in seven villages - Myrne, Novoselivka, Novoselivka-2, Kamyanka, Stepanivka, Malovodne, Zaporizke. The staff includes three doctors, five nurses, one driver and one assistant. The closest ambulance service is in Volnovakha and Mariupol, that is, in good weather conditions, one hour away from Myrne.\r\nMost common conditions people address the ambulatory with - arterial hypertension, ischemia, diabetes,  acute respiratory diseases, etc.\r\nThe needs are as following:\r\n- Water supply in the ambulatory is only 3 times per day (for several hours), and according to the Head doctor, the water in the ambulatory is not potable \r\n- The equipment and medicaments are very scarce and basic.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 118,
+        "settlement": "Loskutivka",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.804,
+        "longitude": 38.41,
+        "no_affected": 460,
+        "no_beneficiaries": 460,
+        "date_referal": "2017-03-07",
+        "status": "Resolved",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to water"
+        ],
+        "context": "Repair works at PVK",
+        "description": "During the shelling on the night from 28 February to 1 March and from 2 to 3 March 2017 the building of the water pipe stations had been damaged.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 119,
+        "settlement": "Orlovske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.261,
+        "longitude": 37.745,
+        "no_affected": 156,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-14",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "OSCE SMM received information that the inhabitants of Orlivske (Volnovaskyi raion) had run out of heating fuel and required assistance from international organizations in the area.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Coal"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 120,
+        "settlement": "Trudivske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.581,
+        "longitude": 37.661,
+        "no_affected": 84,
+        "no_beneficiaries": null,
+        "date_referal": "2017-02-17",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "Volnovaska Raion State Administration (RSA) requested construction materials for the shelling-damaged HHs in Trudivske (shelling occurred on 17.02.2017) and Mykolaivka (incident reported on 11.03.2017).\r\n40HHs damaged in Trudivske (75 indv. affected)\r\n5HHs in Mykolaivka (9 indv. affected)",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 250,
+                "unit__unit_name": "piece",
+                "item__item_name": "Slate"
+            },
+            {
+                "quantity_need": 2000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Brick"
+            },
+            {
+                "quantity_need": 100,
+                "unit__unit_name": "piece",
+                "item__item_name": "Plywood"
+            },
+            {
+                "quantity_need": 361,
+                "unit__unit_name": "m2",
+                "item__item_name": "Glass"
+            },
+            {
+                "quantity_need": 600,
+                "unit__unit_name": "kg",
+                "item__item_name": "Cement"
+            },
+            {
+                "quantity_need": 40,
+                "unit__unit_name": "meter",
+                "item__item_name": "Plank"
+            },
+            {
+                "quantity_need": 78,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 25,
+                "unit__unit_name": "Other",
+                "item__item_name": "Roof_tar_paper"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 121,
+        "settlement": "Holubivske",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.69,
+        "longitude": 38.64,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2016-12-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The OSCE SMM spoke with a local villager (65 y.o. male), Volodymyr Pavlovitsch Lusnechenko  in the village of \"LPR\" controlled Holubivske who is originally from Chernobyl. He has no means of support and is completely dependent on aid from his neighbours. He gets no pension, nor humanitarian aid, Mr. Lusnechenko's home is located  10 meters from the Checkpoint. On August 24, 2016 a mortar directly hit and destroyed his house. He owns 50ha of agricultural land that is located between two checkpoints and is heavily mined. Two of his farm workers died after hitting the mine with a tractor in the fields. He has also lost a cow as a result of the conflict.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 123,
+        "settlement": "Volnovakha",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.6,
+        "longitude": 37.502,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-16",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "Gaponenko Olena Yevhenivna (1967; IDP from Donetsk) and her husband Gaponenko Anatoliy Borysovych (1961; IDP from Donetsk) live in Volnovakha. According to Mrs Gaponenko, she and her husband are in need of expensive medicines as both of them have the disability. She has osteoarthrosis of right knee, osteoarthrosis of the hip, contained disc herniation. Mr Gaponenko had been injured in the shelling (leg); and he also has type 2 diabetes. Mrs Gaponenko had received a voucher for medicine from Caritas in 2016. The family would appreciate any other assistance (in-kind or cash).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 124,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 7000,
+        "no_beneficiaries": 7000,
+        "date_referal": "2017-03-16",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "Need in disposable tableware for the EECP Stanytsia Luhanska",
+        "description": "Due to Oshchadbank verification process many IDP pensioners have received sms from the Bank informing that they have to arrive in the Bank in GCA and pass the verification process. The Bank submitted a deadline as of 3 April 2017. Thus the number of people crossing EECP Stanytsia Luhanska has significantly increased. On 16 march 2017 there was a new EECP Stanytsia Luhanska crossing record - 7853 persons. Reportedly, many of them apply to SES for water/ tea/ coffee and basic food. SES requests partners to mobilize its resources in order to cover this referral urgently.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 125,
+        "settlement": "Novoaidar",
+        "oblast": "Luhanska",
+        "raion": "Novoaidarskyi",
+        "raionCode": 4423100000,
+        "latitude": 48.965,
+        "longitude": 39.004,
+        "no_affected": 1000000,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-14",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Presence of landmines and/or EWRs"
+        ],
+        "context": "Need in deep mine detector",
+        "description": "During the last GCM held in Sievierodonetsk on 23.02.2017 the Deputy Head of State Emergency Service Department in Luhanska oblast (SES) addressed the need in deep mine detector. Apparently they do not have a detector that could find any objects at a depth of 3 meters. It will be used not only in the locations along the contact line, but also in the remote raions.\r\nThe beneficiary in this case would SES and population of the oblast. However the detector should be provided to SES.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 126,
+        "settlement": "Sieverodonetsk",
+        "oblast": "Luhanska",
+        "raion": "Sievierodonetska",
+        "raionCode": 4412900000,
+        "latitude": 48.946,
+        "longitude": 38.482,
+        "no_affected": 55,
+        "no_beneficiaries": 55,
+        "date_referal": "2017-03-02",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to water",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Shelter and WASH needs in the dormitory in Sievierodonetsk",
+        "description": "SVD Professional Vocational Training Lyceum dormitory houses 55 students, of whom two are male (one is an orphan) between 15-18 years of age. Some of the students are IDPs or from families with many children. The building was built in 1952/53 and has many problems, including bad condition of toilets, kitchen needs some repair works, heating system is not adequate, not enough sockets are available.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 127,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 60,
+        "no_beneficiaries": 60,
+        "date_referal": "2017-03-02",
+        "status": "Resolved",
+        "clusters": [
+            "Education",
+            "Food Security & Livelihoods",
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Children organizing an even need support",
+        "description": "On 9 March there will be an event that children of Stanytsia Luhanska organize. However they are in need of support with purchasing of balloons, some food and presents for kids.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 180,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 128,
+        "settlement": "Amvrosiivka",
+        "oblast": "Donetska",
+        "raion": "Amvrosiivskyi",
+        "raionCode": 1420600000,
+        "latitude": 47.79,
+        "longitude": 38.483,
+        "no_affected": 156,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-20",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Food Security & Livelihoods"
+        ],
+        "type": "Mine Risk",
+        "need_types": [
+            "Access to water",
+            "Other"
+        ],
+        "context": "",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 129,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 4,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-13",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "OHCHR team visited Kuibyshevskyi district of Donetsk and talked to Ms. Kateryna Potapova, whose house at 32, Abrosimova street (about 3km. from Donetsk airport),  was damaged on 13 March 2017 as a result of direct shelling (see the photo and map attached). She lives with her two children (4 and 6 years old) in a bigger house next to destroyed premises, Her mother used to live in the destroyed smaller house, but luckily she was not in the house at that time.\r\nAccording to Kateryna, children were scared at first but she managed to calm them down. However, she said that she would not refuse from psychological assistance for herself. She also seeks for any assistance in order to restore her damaged house.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 130,
+        "settlement": "Lozove",
+        "oblast": "Donetska",
+        "raion": "Yasynuvatskyi",
+        "raionCode": 1425500000,
+        "latitude": 48.001,
+        "longitude": 37.643,
+        "no_affected": 4,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-14",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "Interlocutor, Vera Tihova (telephone 050 0485816)  informs that apart from her, only three more persons are left in Lozove village (“DPR” controlled 53 km north east from Donetsk). They “live now like a family, not as neighbours” as stated. She says that she does not want to leave, because she has to protect her livestock. Life is very difficult in the village and the road between Lozove and Vuhlehirsk is very bad. The access to Luhanske is completely blocked. She has to go to Vuhlehirsk for food and other supplies.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 133,
+        "settlement": "Svatove",
+        "oblast": "Luhanska",
+        "raion": "Svativskyi",
+        "raionCode": 4424000000,
+        "latitude": 49.414,
+        "longitude": 38.156,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2017-03-13",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to shelter"
+        ],
+        "context": "Elderly couple in Svatove is in need of shelter assistance",
+        "description": "Elderly couple's apartment in Svatove has been damaged in October 2015 due to the explosion at the ammunition depot near the city. They have not received any compensation from authorities. People are asking to cover the repair needs. More information is available in the letters that they and authorities have provided to OCHA.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 132,
+        "settlement": "Hirske",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.738,
+        "longitude": 38.491,
+        "no_affected": 25,
+        "no_beneficiaries": 25,
+        "date_referal": "2017-03-21",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Access to water",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "25 conflict-affected people and IDPs in Hirske ambulatory are in need of multiple humanitarian assistance",
+        "description": "In the ambulatory in Hirske (Popasnianskyi raion) up to 25 people (conflict-affected and IDPs) are living there on a constant basis. Reportedly, people do not have place to go as they had to relocate from their homes in NGCA or houses in GCA damaged by the conflict. They are elderly and some of them are bedridden and low-mobile. They are carried out only by the hospital which does not have funds for such cases, but the Chief Doctor could not refuse to support these people.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 25,
+                "unit__unit_name": "Other",
+                "item__item_name": "Diapers_for_adults"
+            },
+            {
+                "quantity_need": 75,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 131,
+        "settlement": "Pryvillia",
+        "oblast": "Luhanska",
+        "raion": "Lysychanska",
+        "raionCode": 4411800000,
+        "latitude": 49.001,
+        "longitude": 38.293,
+        "no_affected": 20,
+        "no_beneficiaries": 20,
+        "date_referal": "2017-03-21",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Up to 20 people in Pryvillia have multiple needs",
+        "description": "Up to 20 people (IDPs, conflict affected and non-IDPs) are hosted by the local church. Reportedly, no one of humanitarian organizations did assess/ support them. As of the information provided, the most of them are elderly and have low-income. They will appreciate support with NFI, food and hygiene.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 60,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 134,
+        "settlement": "Novotroitske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.718,
+        "longitude": 37.596,
+        "no_affected": 50,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-23",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "Due to the ongoing process of identification of IDP-pensioners, many people stay overnight at CP Novotroitske, as there is a mobile office of Oshchadbank located at the logistics center.\r\nSES is in need of the following items:\r\n- blankets, bed linen\r\n- beds, mattresses (in case the additional tents are installed)\r\n- paper towels\r\n- toilet paper, wet napkins\r\n- tea, coffee, biscuits\r\n- canned food\r\n- food products for field kitchen (the food truck could be provided either by the Armed Forces or SES (as informed by SES representative)).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "piece",
+                "item__item_name": "Canned_food"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 50,
+                "unit__unit_name": "piece",
+                "item__item_name": "Blankets"
+            },
+            {
+                "quantity_need": 3,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Bedding"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 135,
+        "settlement": "Oktiabr",
+        "oblast": "Donetska",
+        "raion": "Novoazovskyi",
+        "raionCode": 1423600000,
+        "latitude": 47.236,
+        "longitude": 37.864,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-24",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "Over 150 pedestrians were stuck at the area of EECP Oktiabr (NGCA) at the second half of the day before closing time because of the lack of public transport. The situation is repeating frequently since the introduction of identification process, required for pensioners and beneficiaries of social fees in Oschadbank (GCA). Advocacy to the local authorities or organisation of additional transportation could be a solution in this situation. OSCE has shared the information with JCCC.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 137,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 7000,
+        "no_beneficiaries": 7000,
+        "date_referal": "2017-03-24",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to humanitarian assistance"
+        ],
+        "context": "SES request for NFI for the EECP Stanytsia Luhanska",
+        "description": "The recent influx of population arriving to GCA is linked directly to the verification processes. According to SES, many people apply to SES asking for tea/coffee/ water. Some of them stay for a night in SES Unit in the settlement where SES provides food as well. Thus SES requests for some additional 10000 packs of disposable tableware and tea-kettles. Another request on disposable tableware was shared by SES on 16 March 2017",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 4,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 10000,
+                "unit__unit_name": "pack",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 138,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 300,
+        "no_beneficiaries": 300,
+        "date_referal": "2017-03-24",
+        "status": "Resolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "SES request for NFI for people crossing the EECP Stanytsia Luhanska",
+        "description": "Per SES, number of people are forced to stay in Stanytsia Luhanska for a night, as they could not cross the EECP in time.  Raion authorities accommodate people in several premises. Some of people stay at SES Unit in the settlement. Thus, SES requests for additional bed lined to be provided for these people.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 100,
+                "unit__unit_name": "pack",
+                "item__item_name": "Bedding"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 140,
+        "settlement": "Zolote",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.717,
+        "longitude": 38.484,
+        "no_affected": 93,
+        "no_beneficiaries": 93,
+        "date_referal": "2017-03-24",
+        "status": "Not Addressed",
+        "clusters": [
+            "Education",
+            "Protection",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Presence of landmines and/or EWRs",
+            "Other",
+            "Access to shelter"
+        ],
+        "context": "Bomb shelter in the school in Zolote-4 is needed",
+        "description": "School has no shelter / bunker in case of shelling (recently lots of shelling). Children have not attended school in 20th of March due to the deterioration of the security situation. \r\n\r\nThe SMM were informed that 53 students and 40 staff would return in September 2016",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 141,
+        "settlement": "Hrabske",
+        "oblast": "Donetska",
+        "raion": "Amvrosiivskyi",
+        "raionCode": 1420600000,
+        "latitude": 47.903,
+        "longitude": 38.159,
+        "no_affected": 200,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-28",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "Grabskoe is situated about 5 km south-west of Ilovaisk and has also greatly suffered during the fighting in August 2014. Regarding humanitarian aid, the population of the town complained that they do not receive humanitarian aid. According to them, inhabitants of Ilovaisk receive aid once a month but the last time they received aid was over a year ago. Grabskoe depends on the local administration in Amvrosiivka. According to certain local residents, the reason for absence of humanitarian assistance is the passivity of local administration. The type of needs are similar as in Ilovaisk except that the village has received less aid since the end of the fighting in this area. \r\nHere is the name of a contact person in the village: Vera Mefodievna Usik - 095 061 97 54",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 142,
+        "settlement": "Lozove",
+        "oblast": "Donetska",
+        "raion": "Artemivskyi",
+        "raionCode": 1420900000,
+        "latitude": 48.38,
+        "longitude": 38.239,
+        "no_affected": 9,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-28",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": ": Lozove is situated on the front line near Svitlodarsk. HRMMU was informed that the town has been cut off from electricity since 27.01.2015. There is very little mobile coverage and ambulances/firemen do not come to the town. 40 people used to live in the town but only 9 people remain. Most people who stayed are either elderly people or people who stayed to take care of their cattle. HRMMU was informed that these 9 individuals do not receive any humanitarian aid or support. Shelling is constant in the village and no later than on 24.03.2017, an elderly man suffered from concussion due to shelling. The only road inhabitants can use to leave the town goes through Molochnij. HRMMU was informed that three houses are occupied by members of the armed groups. Here is the name of a contact person in the village: Vera Ivanovna - 050 048 58 16 or 073 059 29 25",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 144,
+        "settlement": "Komunarivka",
+        "oblast": "Donetska",
+        "raion": "Starobeshivskyi",
+        "raionCode": 1424500000,
+        "latitude": 47.762,
+        "longitude": 37.791,
+        "no_affected": 50,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-22",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "In Sarabash (former Komunarivka, “DPR”-controlled, 26km south of Donetsk), school and kindergarten need repair as an impact damaged the roof and 35 windows.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 150,
+        "settlement": "Horlivka",
+        "oblast": "Donetska",
+        "raion": "Horlivska",
+        "raionCode": 1410600000,
+        "latitude": 48.326,
+        "longitude": 38.06,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "4-year old child with diabetes type 1  is in urgent need for proper medication and possibility to check-up level of blood sugar to determine the dosage of insulin. This matter is urgent since the 4-year old is in life danger. The mother lives on the “DPR”-controlled area and struggles to survive with low income and limited access to humanitarian aid.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 139,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 7000,
+        "no_beneficiaries": 7000,
+        "date_referal": "2017-03-24",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Access to humanitarian assistance"
+        ],
+        "context": "SES request for NFI and health support for people crossing the EECP Stanytsia Luhanska",
+        "description": "According to SES the number of wheelchairs (4) does not correspond to the number of people in need of support with transporting from the GCA of the EECP closer to the NGCA 0 CP.\r\n\r\nPer SES, number of people are forced to stay in Stanytsia Luhanska for a night, as they could not cross the EECP in time.  Raion authorities accommodate people in several premises. Some of people stay at SES Unit in the settlement. Thus, SES requests for additional bed lined to be provided for these people.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 8,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 100,
+                "unit__unit_name": "pack",
+                "item__item_name": "Bedding"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 151,
+        "settlement": "Novoselivka Druha",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.382,
+        "longitude": 37.758,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-30",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "While in Novoselivka Druha MPH was approached by 65 years old man who asked for help.  He said he is receiving only a minimum pension and that he has no money for heating or for medicine. The interlocutor further stated he had problem with heart.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 169,
+        "settlement": "Troitske",
+        "oblast": "Luhanska",
+        "raion": "Popasnianskyi",
+        "raionCode": 4423800000,
+        "latitude": 48.53,
+        "longitude": 38.39,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-03-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Presence of landmines and/or EWRs",
+            "Access to health services"
+        ],
+        "context": "A wounded elderly is in need of medical treatment support",
+        "description": "Reportedly, on 03 March 2017 in Troitske, Schyorsya street 47, the victim (female 64 y.o.) was trying to stop fire which resulted from burning dry grass around the house. At appr. 18:30 hrs, she was injured by blast shrapnel outside her house. The victim was delivered to Popasna hospital with a diagnose of mine blast traumas, and multiple shrapnel wounds of both legs. Currently she is in Lysychansk hospital, feels good, but has a light injury of both legs. However, she is afraid that the invoice for treatment will be very high and that she will be not ably to pay it because of her very poor financial situation.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 152,
+        "settlement": "Kyrylivka",
+        "oblast": "Donetska",
+        "raion": "Volodarskyi",
+        "raionCode": 1421700000,
+        "latitude": 47.32,
+        "longitude": 37.674,
+        "no_affected": 4,
+        "no_beneficiaries": null,
+        "date_referal": "2017-03-30",
+        "status": "Not Addressed",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "- Non-IDP couple \r\nA woman in her 60s informed that her husband is very sick and that they have no enough money for medicines. The interlocutor emphasised that she receives a pension of 1,400UAH and her husband 1100 UAH, beside other expenses they should spend 800 UAH for medicine.\r\n\r\n-  Non-IDP family - minor and his father\r\nTwo female residents (one in her 50s and one in her 60s) described the situation with a 13y.o. boy whose father is in dire health condition (a victim of Chernobyl Catastrophe). The interlocutors also informed OSCE SMM patrol that the boy and his father often have no enough of food and that from time to time UAF soldiers deliver them food products. OSCE SMM patrol talked with the boy and he informed that he is 13 years old, attending the 5 class and after school, most of time spends in the grocery shop.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 0,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 4,
+                "unit__unit_name": "Other",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            },
+            {
+                "quantity_need": 4,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 153,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 100,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Not Addressed",
+        "clusters": [
+            "Water Sanitation Hygiene"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other"
+        ],
+        "context": "",
+        "description": "The newly installed tent at CP Marinka (will be operating as a heating point), but is not yet equipped with any latrines. There is a need in at least one latrine for both males and females.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 154,
+        "settlement": "Krasnohorivka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 48.009,
+        "longitude": 37.501,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Not Addressed",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "OCHA had been addressed by Ms Golenishchenko Tamara from Krasnohorivka. She informed that her son (Mr Golenishchenko Oleh, 1980) was injured during hostilities in 2015. A metal fragment  got through his back and up to the armpit. The surgeons in Krasnohorivka and Kurakhove refused to conduct a surgery and remove the fragment. In 2016 Ms Golenishchenko has suffered a heart attack. According to her, she and her son had never received any medical humanitarian assistance",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Specific_medicine"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 157,
+        "settlement": "Hnutove",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.206,
+        "longitude": 37.752,
+        "no_affected": 412,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Not Addressed",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 156,
+        "settlement": "Orlovske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.261,
+        "longitude": 37.745,
+        "no_affected": 156,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 155,
+        "settlement": "Starohnativka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.541,
+        "longitude": 37.78,
+        "no_affected": 2100,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Starohnativka (government-controlled, 52 km north-north-east of Mariupol) \r\n The MPH … spoke to 2 men in their 30s. One of them said that the conflict was impacting heavily on people’s nervous systems. He claimed his own mother died from a nervous system collapse during the height of shelling in February 2015. He also said that several people from the village died of various diseases in February of 2017, which he blamed on the conflict.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 159,
+        "settlement": "Sartana",
+        "oblast": "Donetska",
+        "raion": "Mariupolska",
+        "raionCode": 1412300000,
+        "latitude": 47.176,
+        "longitude": 37.691,
+        "no_affected": 10728,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 160,
+        "settlement": "Hranitne",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.458,
+        "longitude": 37.864,
+        "no_affected": 300,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Volnovaska State Raion Administration requested assistance for the damaged HHs which still require repairing/reconstruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 152,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 163,
+        "settlement": "Novohnativka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.642,
+        "longitude": 37.693,
+        "no_affected": 154,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Volnovaska State Raion Administration requested assistance for the damaged HHs which still require repairing/reconstruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 77,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 161,
+        "settlement": "Bohdanivka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.629,
+        "longitude": 37.757,
+        "no_affected": 14,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Volnovaska State Raion Administration requested assistance for the damaged HHs which still require repairing/reconstruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 7,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 165,
+        "settlement": "Novohryhorivka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.562,
+        "longitude": 37.395,
+        "no_affected": 34,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Volnovaska State Raion Administration requested assistance for the damaged HHs which still require repairing/reconstruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 17,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 166,
+        "settlement": "Novotroitske",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.718,
+        "longitude": 37.596,
+        "no_affected": 38,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "Volnovaska State Raion Administration requested assistance for the damaged HHs which still require repairing/reconstruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 19,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 167,
+        "settlement": "Trokhizbenka",
+        "oblast": "Luhanska",
+        "raion": "Slovianoserbskyi",
+        "raionCode": 4424500000,
+        "latitude": 48.757,
+        "longitude": 38.964,
+        "no_affected": 3,
+        "no_beneficiaries": 3,
+        "date_referal": "2017-02-06",
+        "status": "Not Addressed",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Damaged windows in three houses in Trokhizbenka",
+        "description": "Windows of three houses in Trokhizbenka have been damaged due to the shelling on the night of 6 February 2017.\r\nLOMCA asked partners to support with the replacement of the windows.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 5,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 171,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "The shell landed in the immediate vicinity of the house at 167, Petrovskoho street and consequently the roof of the house burnt down and the windows were broken. The owner of the house, Oleg Anatolievich, already started repairing the roof but he does not have sufficient financial means to complete all necessary repair works. Similarly, as in the above mentioned case the local 'administration' did not offer Oleg Anatolievich any help. He is in need of construction materials.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 170,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "The house at 10, Reviakina street was directly impacted by 2 shells and everything that was inside of it burnt down. The owner of the house, Leonid, an elderly man, has lost everything. He currently lives in the house of his neighbours. Also, neighbours gave him clothes and other necessary things but it is not sufficient. The local 'administration' has not offered any help yet and Leonid cannot afford repairing the house by his own means. He is in great need of any assistance (accommodation, construction materials, hygiene items, clothes etc).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 172,
+        "settlement": "Donetsk",
+        "oblast": "Donetska",
+        "raion": "Donetska",
+        "raionCode": 1410100000,
+        "latitude": 48.009,
+        "longitude": 37.763,
+        "no_affected": 500,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-10",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI"
+        ],
+        "context": "",
+        "description": "The coordinator-volunteer of the IDP center informed SMM that the collective IDP Center “Rosa Luxemburg” (accommodating currently approx. 500 IDPs, including 80 children) is currently in need for:\r\n1.       Six (6) washing machines –  Currently – the IDP center has no washing machines. The coordinator suggested each washing machine to be placed on each floor for common use\r\n2.       Repair of the toilet facilities – currently (pls. see the photo attached) the toilets can be reached only by stairs which is a daily challenge for elderly and disabled population. Some of the toilets are broken and they cannot be flushed because of lack of water. Therefore, the IDPs need to carry water buckets or bottles to clean the toilets after they use it. Some of the toilet doors are broken and cannot be closed which affects privacy of the IDPs, particularly children. The toilets are common for male and females thus this is also a gender issue.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 6,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 173,
+        "settlement": "Tavrycheske",
+        "oblast": "Donetska",
+        "raion": "Telmanivskyi",
+        "raionCode": 1424800000,
+        "latitude": 47.329,
+        "longitude": 37.863,
+        "no_affected": 2,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-10",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "Local resident Brigida Sergey, 68 y.o. informed SMM that his wife��s leg recently had to be amputated, because of diabetics.  He added that she needs insulin, but that they cannot afford to buy it. Address: Oktyabrskaya street, 66",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 174,
+        "settlement": "Kabychivka",
+        "oblast": "Luhanska",
+        "raion": "Markivskyi",
+        "raionCode": 4422500000,
+        "latitude": 49.461,
+        "longitude": 39.738,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2017-04-06",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Other",
+            "Access to shelter",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Elderly IDP couple in disperate need of assistance",
+        "description": "Two elderly people - IDPs displaced from Luhansk - currently live in Markivskyi raion, Kabychivka village. Husband is disabled, wife can only grow a garden to survive, but the fence is broken and animals ruin the goods. The couple lives in a old house, their income is very low. IDPs are in need of support with some repairing works at the house, building a fence around the garden and basic items for the house. These people are also food insecure. Mercy Corps has already provided some cash for NFI, but this is not enough to cover even the basic needs. Address: 9, Pokrovska Str., tel.: 050-170-32-12 (Zelenskyi Oleksii Mykhailovych).",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "pack",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 176,
+        "settlement": "Sopyne",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.09,
+        "longitude": 37.758,
+        "no_affected": 5,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-13",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "",
+        "description": "In Sopyne five people, including two children (aged 10 and 1 – both girls. The one-year-old is registered as disabled) have been living without electricity and heating since February – and also without heating as it is an electrical heating system. \r\nThe woman lost her job due to the conflict, was an IDP in Mariupol for some time, and states she does not qualify for subsidies due to her age. \r\nThe woman has not paid her bill since December 2015 and the total is now about 20,000 UAH. She has been in touch with DTEK but she says she cannot manage to pay under any of the terms they propose.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Legal_support"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 177,
+        "settlement": "Kamianka",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.42,
+        "longitude": 37.697,
+        "no_affected": 71,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-13",
+        "status": "Not Addressed",
+        "clusters": [
+            "Education",
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Other",
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "After the shelling in 2015, the foundation of the school building started sinking down, and, as a result, floor in one of the classrooms started falling in. The school principal addressed local NGO with a request to assist with 60 sq.m. of linoleum and 20 sacks of cement, as well as with broken stone and sand. Village inhabitants can be mobilised to repair the classroom and well as bring the necessary broken stone and sand, though there is still a need to assist with linoleum and cement.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 60,
+                "unit__unit_name": "m2",
+                "item__item_name": "Other"
+            },
+            {
+                "quantity_need": 20,
+                "unit__unit_name": "Other",
+                "item__item_name": "Cement"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 178,
+        "settlement": "Marinka",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.943,
+        "longitude": 37.509,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-10",
+        "status": "Not Addressed",
+        "clusters": [
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "",
+        "description": "The incident happened on Sunday, 2.04.2017 at approximately 19:00. Reportedly, mother and her son went from their house, located at 27 Moskalevskogo, Marinka down the street to N 12 Moskalevskogo, to the neighbour’s house to get some drinking water as there was no drinking water available in the interlocutor’s house. The boy filled up five liter containers and with his bicycle went back home, while his mother stayed to talk to her neighbour. According to the boy, while walking back home on Moskalevskogo str. he heard shots but could not state the number. He got scared and tried to hide behind the fence and closed his eyes. Suddenly the boy felt pain in his right leg, above the knee and up to his hip. The boy also saw that his right leg was covered in blood. \r\nAccording to the mother, she cleaned her son’s leg and removed the visible splinters out of his leg. She said that she couldn’t take her son to Kurakove’s hospital the same day as it was already dark. The woman claimed that splinters could have been from the explosive bullet that allegedly hit a surface not far from the boy and exploded bullet’s splinters hit the boy’s legs. \r\nThe boy and his mom went to Kurakhove Hospital the next morning on 3.04.2017. According to the mother, the doctor didn’t remove the splinters out of boy’s leg, but cleaned his wound and put the bandage over the injured area. Reportedly, it would have been impossible to find small splinters in the wounded leg and in order not to cause more pain to the patient it was decided not to take the splinters out. According to the mother, the doctor said that some of the splinters would come up on the surface of the leg in time. The mother continued, that her boy felt a pain in his left leg yesterday evening when they returned back home to Marinka. The mother said that she found some damage in the boy’s left leg as well, below the knee. SMM asked how this happened that she and doctor didn’t notice the injury on the left leg yesterday or the day before. The interlocutor said that she was very much under the stress and the boy could not say a word as reportedly he was also depressed and scared. Thus, today, she and the boy were going back to the doctor to Kurakhove, so that the doctor could take a look on the boy’s left leg as well. SMM followed up on the case and called to the woman in the evening. The woman told SMM that it was decided to operate on the right leg and extract three relatively bigger splinters from the boy’s leg on Monday, 10.04.2017 at the Kurakhove hospital. The woman also informed SMM that splinters were also confirmed as found in the left leg.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 175,
+        "settlement": "Orikhove-Donetske",
+        "oblast": "Luhanska",
+        "raion": "Slovianoserbskyi",
+        "raionCode": 4424500000,
+        "latitude": 48.77,
+        "longitude": 38.803,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-04-07",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Education",
+            "Food Security & Livelihoods",
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to NFI",
+            "Access to health services",
+            "Other",
+            "Access to humanitarian assistance"
+        ],
+        "context": "Underaged pregnant IDP needs humanitarian support.",
+        "description": "Underaged pregnant female IDP from Slovianoserbsk, NGCA (17 y.o.). The potential beneficiary currently lives as registered IDP with her partner and future mother-in-law in Orikhove-Donetske. Apparently she has not been receiving any humanitarian aid in Orikhove-Donetske while other residents of the village receive the aid constantly. The reasons may be either that the local administration in Trokhizbenka did not include her in the list of IDPs who need help or that she is unaccompanied minor.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 179,
+        "settlement": "Chermalyk",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.316,
+        "longitude": 37.806,
+        "no_affected": 300,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-21",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Mine Risk",
+        "need_types": [
+            "Presence of landmines and/or EWRs"
+        ],
+        "context": "",
+        "description": "Head of Chermalyk Village Council states that the cemetery has not been cleared of UXO. They have already contacted State Emergency Service but as yet no response (they had hoped to do this for the week of commemoration); according to local residents villagers know the cemetery is mined, but there are no mine warning signs around it. There is mine awareness material around the village. She estimated 300 – 400 people would visit the cemetery if it was cleared.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 180,
+        "settlement": "Chermalyk",
+        "oblast": "Donetska",
+        "raion": "Volnovaskyi",
+        "raionCode": 1421500000,
+        "latitude": 47.316,
+        "longitude": 37.806,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-21",
+        "status": "Not Addressed",
+        "clusters": [
+            "Protection"
+        ],
+        "type": "Mine Risk",
+        "need_types": [
+            "Presence of landmines and/or EWRs"
+        ],
+        "context": "",
+        "description": "In the village of Chermalyk - UXO reported in the garden of one woman – SMM has reported it to UAF local command, but so far no action has been taken.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 181,
+        "settlement": "Syhnalne",
+        "oblast": "Donetska",
+        "raion": "Marinskyi",
+        "raionCode": 1423300000,
+        "latitude": 47.844,
+        "longitude": 37.641,
+        "no_affected": 3,
+        "no_beneficiaries": null,
+        "date_referal": "2017-04-22",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "",
+        "description": "The interlocutor (DOB: 05.05.1937), a WWII veteran, who, moves around with great difficulty lives in a significantly damaged house with her mentally challenged daughter (44 years old invalid of II group) and her 19-year-old grandson. Her pension (2000 rubles) is the only source of income for the family. According to her, the house was damaged on 25th of August 2014. They applied for assistance to the Administartion in Luhanske but  received nothing so far. They need bricks, roof tiles and other relevant construction materials to prevent the house from further deterioration and ultimate destruction.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [ ],
+        "responses": { }
+    },
+    {
+        "id": 182,
+        "settlement": "Stanytsia Luhanska",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.655,
+        "longitude": 39.475,
+        "no_affected": 1,
+        "no_beneficiaries": 1,
+        "date_referal": "2017-04-24",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Elderly woman needs replacement of 7 windows",
+        "description": "Avstrievska Valentyna Grygorivna, born in 1936. She lives alone at the address: Shevchenko str., 22. Her house was damaged due to the conflict. Humanitarian organization repaired the roof of the house and replaced 1 window. It is necessary to replace 7 more windows as the ones were damaged together with the frames.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 7,
+                "unit__unit_name": "piece",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 183,
+        "settlement": "Zolote",
+        "oblast": "Luhanska",
+        "raion": "Pervomaiska",
+        "raionCode": 4412100000,
+        "latitude": 48.717,
+        "longitude": 38.484,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-05-03",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to health services"
+        ],
+        "context": "Elderly man from Zolote-3 needs medical assistance and support with relocation to some retirement home",
+        "description": "There lives an alone man in Zolote 3 (Popasnyanskyi raion), born in 1940. His wife passed away, his only son was killed by mortar explosion at the outbreak of the conflict in 2014. The man lives in a partially destroyed house. He is a retired coal-miner, gets 4200 UAH pension/ month. Because of age and several illnesses, he hardly walks and needs psychological, medical and dental assistance. He requests to be relocated to some health-care houses for seniors/pensioners. Address: Sadovaya str., 24.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 184,
+        "settlement": "Kramatorsk",
+        "oblast": "Donetska",
+        "raion": "Kramatorska",
+        "raionCode": 1412900000,
+        "latitude": 48.728,
+        "longitude": 37.564,
+        "no_affected": 2,
+        "no_beneficiaries": 2,
+        "date_referal": "2017-04-27",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Protection",
+            "Water Sanitation Hygiene",
+            "Emergency Shelter/NFI",
+            "Health/Nutrition"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to humanitarian assistance"
+        ],
+        "context": "A 17 years old IDP being pregnant had came alone to Kramatorsk. As of 27 April the girl had given birth to a child. \r\nRight now the girl in the maternity hospital in Kramatorsk.",
+        "description": "Access to NFI, Hygiene kits.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "pack",
+                "item__item_name": "Hygiene_items"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Diapers_for_children"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Legal_support"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Clothes"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Basic_medicine"
+            },
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Psychosocial_support"
+            },
+            {
+                "quantity_need": 2,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    },
+    {
+        "id": 185,
+        "settlement": "Nyzhnoteple",
+        "oblast": "Luhanska",
+        "raion": "Stanychno-Luhanskyi",
+        "raionCode": 4424800000,
+        "latitude": 48.793,
+        "longitude": 39.351,
+        "no_affected": 1,
+        "no_beneficiaries": null,
+        "date_referal": "2017-05-04",
+        "status": "Addressed But Unresolved",
+        "clusters": [
+            "Emergency Shelter/NFI"
+        ],
+        "type": "Support Request",
+        "need_types": [
+            "Access to shelter"
+        ],
+        "context": "Alone elderly man needs building materials for his damaged house",
+        "description": "An elderly man who lives in Nyzhneteple (Stanychno-Luhanskyi raion). He asks for assistance with some building materials to fix his house which was damaged during the conflict. His wife was mortally wounded in that house. Their summer kitchen house is completely destroyed due to the conflict. A commission visited his accommodation and promised  to restore it after the death of his wife. No assistance was provided so far. Phone number is unavailable. The address is: 11, Rubova Str.",
+        "population": null,
+        "additional_info_link": null,
+        "conflict_related": 1,
+        "response_partners": [ ],
+        "items": [
+            {
+                "quantity_need": 1,
+                "unit__unit_name": "Other",
+                "item__item_name": "Other"
+            }
+        ],
+        "responses": { }
+    }
+
+]

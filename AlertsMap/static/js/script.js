@@ -769,7 +769,7 @@
         /*====================================
          =            Month filter            =
          ====================================*/
-        var slider;
+        var slider = $("#slider");
 
         var initMonthpicker = function () {
 
@@ -785,11 +785,10 @@
                 return months <= 0 ? 0 : months;
             }
 
-            var dateBegin = cf.dateDim.bottom(1)[0].date
+            var   dateBegin = cf.dateDim.bottom(1)[0].date
                 , dateEnd = cf.dateDim.top(1)[0].date;
 
-
-            if (dateBegin.getDate() != dateEnd.getDate()) {
+            if (dateBegin.getTime() != dateEnd.getTime()) {
 
                 if (monthDiff(dateBegin, dateEnd) > m) {
                     var dateInitial = new Date(dateEnd.getFullYear(), 1, 1);
@@ -799,7 +798,7 @@
                     dateInitial = dateBegin
                 }
 
-                slider = $("#slider");
+
 
                 slider.dateRangeSlider({
                     bounds: {

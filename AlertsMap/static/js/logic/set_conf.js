@@ -114,7 +114,7 @@ function setConf(data_url) {
         , greyZone: window.greyZone
         , data: {
             referals: {
-                urls: ['/alerts?format=json']
+                urls: ['alerts?format=json']
                 , loader: d3.json
                 , fields: {
                     settlement: 'settlement'
