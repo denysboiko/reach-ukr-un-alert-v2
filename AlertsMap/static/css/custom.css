@@ -1,0 +1,118 @@
+*{
+    font-family: Roboto, "Helvetica Neue", verdana, sans-serif !important;
+}
+body{
+    font-size: 11pt;
+}
+thead {
+    font-weight: bold;
+}
+
+.header-button {
+    background: #1da7ee;
+    color: #ffffff;
+    border: 1px solid #0073bb;
+    text-shadow: 0 1px 0 rgba(0, 51, 83, 0.3);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #1b9dec;
+    background-image: -moz-linear-gradient(top, #1da7ee, #178ee9);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#1da7ee), to(#178ee9));
+    background-image: -webkit-linear-gradient(top, #1da7ee, #178ee9);
+    background-image: -o-linear-gradient(top, #1da7ee, #178ee9);
+    background-image: linear-gradient(to bottom, #1da7ee, #178ee9);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff1da7ee', endColorstr='#ff178ee9', GradientType=0);
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.2),inset 0 1px rgba(255,255,255,0.03);
+    padding: 5px 1em 3.5px;
+}
+
+.header-button:hover {
+    background: #48b0ef;
+    border: 1px solid #0073bb;
+}
+
+.header-button {
+
+    border-width: 1px;
+}
+.panel-heading .panel-title:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+}
+.dropdown-button:after {
+    /* symbol for "opening" panels */
+    font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+    content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+    float: right;        /* adjust as needed */
+    color: grey;         /* adjust as needed */
+    line-height: 26.4px;
+    margin-right: 5px;
+}
+
+.dropdown-button.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content: "\e079";    /* adjust as needed, taken from bootstrap.css */
+}
+.panel-heading.collapsed .panel-title:after {
+    /* symbol for "collapsed" panels */
+    content: "\e079";    /* adjust as needed, taken from bootstrap.css */
+}
+
+a.header-button:focus, a.header-button:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.data-table-spoiled {
+    max-height: 5.6em;
+    line-height: 1.4;
+    overflow: hidden;
+}
+
+.data-table-spoiled-ready::after {
+    content: '\b7\b7\b7';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fcc;
+    color: #888;
+    font-weight: 500;
+    font-size: 16px;
+    height: 12px;
+    line-height: 12px;
+    width: 20px;
+    text-align: center;
+}
+
+#dataTable tbody td {
+    position: relative;
+}
+
+#dataTable tbody tr .data-table-spoiler {
+  background: #fff;
+}
+
+#dataTable tbody .data-table-spoiler {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    overflow: visible;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 0 0 6px 6px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
