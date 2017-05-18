@@ -318,6 +318,12 @@ class Alert(models.Model):
     def related_to_conflict(self):
         return ("No", "Yes")[self.conflict_related]
 
+    def edit_url(self):
+        domain = Site.objects.get_current().domain
+        slug =  reverse('admin:AlertsMap_alert_change', args=(self.id,))
+        url = domain + slug
+        return url
+
     def __unicode__(self):
         return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
 
@@ -335,7 +341,7 @@ def handle_new_alert(sender, instance, created, **kwargs):
     recepients = get_mail_lists(responsible_hub)
     clusters = get_clusters_list(instance.id)
     needs = get_needs_list(instance.id)
-    change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args=(instance.id,))
+    change_url = instance.edit_url()
 
     notify_mail(recepients['To'], recepients['CC'], instance, change_url)
     # clusters, needs,

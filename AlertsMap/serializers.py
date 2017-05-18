@@ -122,6 +122,8 @@ class AlertsSerializer(serializers.ModelSerializer):
 
     # items = NeedItemsPartnersSerializer(many=True)
 
+
+    url = serializers.ReadOnlyField(source='edit_url')
     items = ItemsQ()
 
 
@@ -168,5 +170,6 @@ class AlertsSerializer(serializers.ModelSerializer):
             'conflict_related',
             'response_partners',
             'items',
-            'responses'
+            'responses',
+            'url'
         )
