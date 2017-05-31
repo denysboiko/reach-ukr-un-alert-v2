@@ -55,13 +55,15 @@
      =            Init            =
      ============================*/
 
-    var $window = d3.select(window)
-        , $body = d3.select(document.body)
-        , cf = undefined;
+    var   $window = d3.select(window)
+        , $body = d3.select(document.body);
 
     /*=====  End of Init  ======*/
 
     myLoad(conf.data, function (data) {
+
+        var is_staff = (data.referals.full_access == 1);
+
 
         /*==================================
          =            Clean data            =
@@ -71,8 +73,10 @@
 
         var referalsCleaned = referals.data.map(function (record) {
 
+            // console.log(referals);
+
             var res = {
-                settlementRaw: record[referals.fields.settlement]
+                  settlementRaw: record[referals.fields.settlement]
                 , settlement: record[referals.fields.settlement]
                 , raion: record[referals.fields.raion]
                 , raionCode: record[referals.fields.raionCode].toString()
@@ -85,9 +89,9 @@
                 , clusters: record[referals.fields.clusters].map(function (name) {
                     return name.trim()
                 })
-                , partners: record[referals.fields.partners].map(function (name) {
+                , partners: is_staff ? record[referals.fields.partners].map(function (name) {
                     return name.trim()
-                })
+                }) : []
                 , type: record[referals.fields.type]
                 , needs: record[referals.fields.needs].map(function (name) {
                     return name.trim()
@@ -98,7 +102,9 @@
                 , items: record[referals.fields.items]
                 , responses: record[referals.fields.responses]
                 , conflictRelated: record[referals.fields.conflictRelated]
+                , view_url: record[referals.fields.view_url]
             };
+
             res.coords = [res.latitude, res.longitude];
             res.title = res.settlement + ' / ' + res.raion + ' / ' + res.oblast;
             res.titleRevers = res.oblast + ' / ' + res.raion + ' / ' + res.settlement;
@@ -107,6 +113,8 @@
 
         });
 
+
+        // console.log(referalsCleaned);
 
         /*=====  End of Clean data  ======*/
 
@@ -120,12 +128,16 @@
         cf.allDim = cf.dimension(function (d) {
             return d.titleRevers
         });
+
         cf.allGrp = cf.allDim.groupAll();
+
         cf.settlementDim = cf.dimension(function (d) {
             return d.settlementRaw
         });
+
         cf.affectedGrp = cf.settlementDim.group().reduce(
             function (p, v) {
+
                 if (!p.key) p.key = v.settlementRaw;
                 if (!p.coords) p.coords = v.coords;
                 if (!p.record) p.record = v;
@@ -136,14 +148,17 @@
                 p.status[v.status].affected += v.affected;
                 return p
             }
+
             , function (p, v) {
                 --p.count;
 
-                p.affected -= v.affected
-                p.status[v.status].affected -= v.affected
+                p.affected -= v.affected;
+                p.status[v.status].affected -= v.affected;
+
 
                 return p
             }
+
             , function () {
                 return {
                     key: undefined
@@ -158,96 +173,35 @@
                 }
             }
         )
-            .order(function (d) {
-                return d.affectedCount
-            });
+        .order(function (d) {
+            return d.affectedCount
+        });
 
         cf.dateDim = cf.dimension(function (d) {
             return d.date
         });
+
         cf.clusterDim = cf.dimension(function (d) {
             return d.clusters
         }, true);
 
-        // cf.clustersDim = cf.dimension(function(d) { return d.clusters }, true);
 
+        if (is_staff) {
 
-        var clusters = cf.clusterDim.groupAll().reduce(
-            function (p, v) {
-                v.clusters.forEach(function (val, idx) {
-                    p[val] = (p[val] || 0) + 1; //increment counts
-                });
-                return p;
-            }
-            , function (p, v) {
-                v.clusters.forEach(function (val, idx) {
-                    p[val] = (p[val] || 0) - 1; //decrement counts
-                });
-                return p;
+            cf.partnerDim = cf.dimension(function (d) {
+                return d.partners
+            }, true);
 
-            }
-            , function reduceInitial() {
-                return {};
-            }
-        ).value();
-
-
-        clusters.all = function () {
-            var newObject = [];
-            for (var key in this) {
-                if (this.hasOwnProperty(key) && key != "all") {
-                    newObject.push({
-                        key: key,
-                        value: this[key]
-                    });
-                }
-            }
-            return newObject;
-        };
-
-        cf.partnerDim = cf.dimension(function (d) {
-            return d.partners
-        }, true);
-
-        var partners = cf.partnerDim.groupAll().reduce(
-            function (p, v) {
-                v.partners.forEach(function (val, idx) {
-                    p[val] = (p[val] || 0) + 1; //increment counts
-                });
-                return p;
-            }
-            , function (p, v) {
-                v.partners.forEach(function (val, idx) {
-                    p[val] = (p[val] || 0) - 1; //decrement counts
-                });
-                return p;
-
-            }
-            , function reduceInitial() {
-                return {};
-            }
-        ).value();
-
-        partners.all = function () {
-            var newObject = [];
-            for (var key in this) {
-                if (this.hasOwnProperty(key) && key != "all") {
-                    newObject.push({
-                        key: key,
-                        value: this[key]
-                    });
-                }
-            }
-            return newObject;
-        };
-
+        }
 
         cf.statusDim = cf.dimension(function (d) {
             return d.status
         });
+
         cf.needDim = cf.dimension(function (d) {
             return d.needs
         }, true);
+
         cf.typeDim = cf.dimension(function (d) {
             return d.type
         });
@@ -255,15 +209,19 @@
         cf.itemsDim = cf.dimension(function (d) {
             return d.items
         }, true);
+
         cf.responsesDim = cf.dimension(function (d) {
             return d.responses
         }, true);
+
         cf.oblastDim = cf.dimension(function (d) {
             return d.oblast
         });
+
         cf.raionCodeDim = cf.dimension(function (d) {
             return d.raionCode
         });
+
         cf.oblastRaionGrp = cf.raionCodeDim.group().reduce(
             function (p, v) {
                 ++p.count;
@@ -285,9 +243,9 @@
                 }
             }
         )
-            .order(function (d) {
-                return d.raion
-            });
+        .order(function (d) {
+            return d.raion
+        });
 
 
         var filterDispatcher = d3.dispatch('filtered');
@@ -463,7 +421,8 @@
             var data = pie(d3.map(marker.data.status).values()).map(function (pie) {
                 pie.diameter = marker.data.initDiameter
                 return pie
-            })
+            });
+
             $container.selectAll('path')
                 .data(data)
                 .enter()
@@ -478,7 +437,7 @@
                 .attr('fill', function (layout) {
                     return layout.data.color
                 })
-        })
+        });
 
 
         var resetMarkers = function () {
@@ -507,7 +466,7 @@
 
                 // get new marker attributes
                 var diameter = calculateDiameter(record.affected)
-                    , oldData, newData
+                    , oldData, newData;
 
                 // update markers dom
                 var $container = $svg.select('g')
@@ -552,14 +511,15 @@
             $el: undefined
             , state: 'none'
             , open: function (marker) {
-                var self = this
-                self.state = 'open'
-                self.marker = marker
+
+                var self = this;
+                self.state = 'open';
+                self.marker = marker;
 
                 /* get data */
                 var records = cf.settlementDim.top(Infinity).filter(function (record) {
                     return record.settlementRaw == marker.data.key
-                })
+                });
 
                 /* count rose geometry properties */
                 var diameters = records.map(function (record) {
@@ -682,7 +642,7 @@
         var submarkersResetActive = function ($marker) {
             rose.$el.selectAll('circle').classed({'js-active': false})
             $marker.classed({'js-active': true})
-        }
+        };
 
         $window.on('click', function () {
             if (moving) {
@@ -716,11 +676,11 @@
 
         markerLayer.getLayers().forEach(function (marker) {
             // by some reasones, leaflet reset all markers on click, without it
-            marker.on('click', function (event) {
-            })
+            marker.on('click', function (event) {});
 
             d3.select(marker._icon).on('click', function () {
-                var self = this
+
+                var self = this;
 
                 if (moving) {
                     return
@@ -742,6 +702,7 @@
 
                     markersResetActive(currentMarker);
                     popup(currentMarker.data.record, latlng)
+
                 } else {
                     if (rose.state != 'open') {
                         markersResetInactive(currentMarker);
@@ -769,6 +730,7 @@
         /*====================================
          =            Month filter            =
          ====================================*/
+
         var slider = $("#slider");
 
         var initMonthpicker = function () {
@@ -908,219 +870,229 @@
          =            Partner filter                   =
          =============================================*/
 
-        var
-              $partner = d3.select('#filterPartner') // select with list of partners as option values
-            , $partnerSelected = d3.select('#filterPartnerSelected') // Div with list of selected partners and remove button
-            , $allPartners = d3.select('#filterPartnersAll') // Checkbox that's intended to select "All partners"
-            , $clearPartners = d3.select('#clearPartners')
-            , $clearLocation = d3.select('#clearLocation');
-
-        // Fulfills select with values
-
-        $partner.selectAll('option')
-            .data(
-                // cf.partnerDim.group().all()
-                partners.all().map(function (d) {
-                    return d.key
-                })
-            )
-            .enter()
-            .append('option')
-            .attr({
-                'value': function (datum) {
-                    return datum
-                }
-            })
-            .text(function (datum) {
-                return datum
-            });
-
-        var handleDeselect = function () {
-            var option = this
-                , $option = d3.select(option)
-                , $deselect = d3.select($option.datum().deselect);
-
-            $option
-                .style({'display': null})
-                .datum({selected: false});
-
-            $deselect.remove();
-
-            partnerChange()
-
-        };
-
-        var handleSelect = function () {
-
-            var el = this;
-            if (el.value == 'none') {
-                return
-            }
 
 
-            var $option = $partner.select('[value="' + el.value + '"]');
-            //$option.style({ 'display': 'none' });
+        if (is_staff) {
 
-            // var $deselect = $partnerSelected.append('div'); // appends a div
-            // $deselect
-            // 	.classed({ 'filter-deselect': true })
-            // 	.text(el.value)
-            // 	.datum({ 'option': $option.node() })
-            // 	.append('span')
-            // 		.text('x')
-            // 		.on('click', function() { handleDeselect.call($option.node()) });
+            var
+                $partner = d3.select('#filterPartner') // select with list of partners as option values
+                , $partnerSelected = d3.select('#filterPartnerSelected') // Div with list of selected partners and remove button
+                , $allPartners = d3.select('#filterPartnersAll') // Checkbox that's intended to select "All partners"
+                , $clearPartners = d3.select('#clearPartners');
 
-            $option.datum({selected: true/*, deselect: $deselect.node()*/});
-
-            partnerChange();
-
-        };
-
-        var partnerChange = function () {
-
-            var filters = []
-                , ln = 0;
+            // Fulfills select with values
 
             $partner.selectAll('option')
-                .each(function () {
-                    var self = this, $option = d3.select(self);
-                    //if(self.value == 'none') { return }
-                    //++ln;
-                    if (self.selected) {
-                        filters.push(self.value)
+                .data(
+                    cf.partnerDim.group().all().map(function (d) {
+                        return d.key
+                    })
+                )
+                .enter()
+                .append('option')
+                .attr({
+                    'value': function (datum) {
+                        return datum
                     }
-
+                })
+                .text(function (datum) {
+                    return datum
                 });
 
-            if (filters.length == 0) {
-                cf.partnerDim.filter([]);
-                $allPartners.node().checked = true
+            var handleDeselect = function () {
+                var option = this
+                    , $option = d3.select(option)
+                    , $deselect = d3.select($option.datum().deselect);
 
-            } else if (filters.length == ln) {
+                $option
+                    .style({'display': null})
+                    .datum({selected: false});
 
-                cf.partnerDim.filterAll();
-                $allPartners.node().checked = true
+                $deselect.remove();
 
-            } else {
+                partnerChange()
 
-                cf.partnerDim.filterFunction(function (d) {
-                    return filters.indexOf(d) != -1
-                });
-                $allPartners.node().checked = false;
+            };
 
-            }
+            var handleSelect = function () {
 
-            filterDispatcher.filtered()
-
-        };
-
-
-        var selectObj = $("#filterPartner");
-
-        var Selectize = selectObj.selectize({
-            plugins: ['remove_button'],
-            delimiter: ',',
-            persist: false,
-            create: function (input) {
-                return {
-                    value: input,
-                    text: input
+                var el = this;
+                if (el.value == 'none') {
+                    return
                 }
-            },
-            sortField: 'text'
 
-        });
 
-        Selectize.on('change', function () {
-            var filters = [];
-            $("#filterPartner option").each(function () {
-                var value = $(this).val();
-                filters.push(value);
+                var $option = $partner.select('[value="' + el.value + '"]');
+                //$option.style({ 'display': 'none' });
+
+                // var $deselect = $partnerSelected.append('div'); // appends a div
+                // $deselect
+                // 	.classed({ 'filter-deselect': true })
+                // 	.text(el.value)
+                // 	.datum({ 'option': $option.node() })
+                // 	.append('span')
+                // 		.text('x')
+                // 		.on('click', function() { handleDeselect.call($option.node()) });
+
+                $option.datum({selected: true/*, deselect: $deselect.node()*/});
+
+                partnerChange();
+
+            };
+
+            var partnerChange = function () {
+
+                var filters = []
+                    , ln = 0;
+
+                $partner.selectAll('option')
+                    .each(function () {
+                        var self = this, $option = d3.select(self);
+                        //if(self.value == 'none') { return }
+                        //++ln;
+                        if (self.selected) {
+                            filters.push(self.value)
+                        }
+
+                    });
+
+                if (filters.length == 0) {
+                    cf.partnerDim.filter([]);
+                    $allPartners.node().checked = true
+
+                } else if (filters.length == ln) {
+
+                    cf.partnerDim.filterAll();
+                    $allPartners.node().checked = true
+
+                } else {
+
+                    cf.partnerDim.filterFunction(function (d) {
+                        return filters.indexOf(d) != -1
+                    });
+                    $allPartners.node().checked = false;
+
+                }
+
+                filterDispatcher.filtered()
+
+            };
+
+
+            var selectObj = $("#filterPartner");
+
+            var Selectize = selectObj.selectize({
+                plugins: ['remove_button'],
+                delimiter: ',',
+                persist: false,
+                create: function (input) {
+                    return {
+                        value: input,
+                        text: input
+                    }
+                },
+                sortField: 'text'
+
             });
 
-            if (filters.length == 0) {
+            Selectize.on('change', function () {
+                var filters = [];
+                $("#filterPartner option").each(function () {
+                    var value = $(this).val();
+                    filters.push(value);
+                });
+
+                if (filters.length == 0) {
+                    cf.partnerDim.filterAll();
+                    $allPartners.node().checked = true;
+                    $clearPartners.style({'display': 'none'});
+                } else {
+
+                    cf.partnerDim.filterFunction(function (d) {
+                        return filters.indexOf(d) != -1
+                    });
+
+                    $allPartners.node().checked = false;
+                    $clearPartners.style({'display': null});
+                }
+
+                filterDispatcher.filtered();
+
+            });
+
+            var resetPartners = function () {
+
+
+                Selectize[0].selectize.clear();
                 cf.partnerDim.filterAll();
                 $allPartners.node().checked = true;
                 $clearPartners.style({'display': 'none'});
-            } else {
-                cf.partnerDim.filterFunction(function (d) {
-                    return filters.indexOf(d) != -1
-                });
-                $allPartners.node().checked = false;
-                $clearPartners.style({'display': null});
-            }
-
-            filterDispatcher.filtered();
-        });
-
-        var resetPartners = function () {
 
 
-            Selectize[0].selectize.clear();
-            cf.partnerDim.filterAll();
-            $allPartners.node().checked = true;
-            $clearPartners.style({'display': 'none'});
+            };
+
+            //$partner.on('change', handleSelect);
+
+            var partnerDoCheckAll = function (checked) {
+
+                if (checked !== undefined) {
+                    $allPartners.node().checked = checked
+                }
+
+                if ($allPartners.node().checked) {
+                    //	$partner.selectAll('option').each(function() {
+
+                    // var self = this;
+                    //
+                    //
+                    // if(self.value == 'none') { return }
+                    //
+                    // var $option = d3.select(self);
+                    //
+                    // if(!$option.datum().selected) {
+                    // 	handleSelect.call(self)
+                    // }
 
 
-        };
-        //$partner.on('change', handleSelect);
+                    //})
+                    cf.partnerDim.filter([]);
+                    $allPartners.node().checked = false;
+                    filterDispatcher.filtered()
+                } else {
+                    /*$partner.selectAll('option').each(function() {
 
-        var partnerDoCheckAll = function (checked) {
+                     var self = this;
+                     self.clear();
 
-            if (checked !== undefined) {
-                $allPartners.node().checked = checked
-            }
+                     if(self.value == 'none') { return }
 
-            if ($allPartners.node().checked) {
-                //	$partner.selectAll('option').each(function() {
+                     var $option = d3.select(self);
 
-                // var self = this;
-                //
-                //
-                // if(self.value == 'none') { return }
-                //
-                // var $option = d3.select(self);
-                //
-                // if(!$option.datum().selected) {
-                // 	handleSelect.call(self)
-                // }
+                     if($option.datum().selected) {
+                     handleDeselect.call(self)
+                     }
 
+                     })*/
 
-                //})
-                cf.partnerDim.filter([]);
-                $allPartners.node().checked = false;
-                filterDispatcher.filtered()
-            } else {
-                /*$partner.selectAll('option').each(function() {
+                }
+            };
 
-                 var self = this;
-                 self.clear();
+            $allPartners.on('change', function () {
+                partnerDoCheckAll();
+            });
 
-                 if(self.value == 'none') { return }
+            $clearPartners.on('click', function () {
+                resetPartners();
+            });
+        }
 
-                 var $option = d3.select(self);
+        /*=====  End of Partner filer          ======*/
 
-                 if($option.datum().selected) {
-                 handleDeselect.call(self)
-                 }
+        var $clearLocation = d3.select('#clearLocation');
 
-                 })*/
-
-            }
-        };
-
-        $allPartners.on('change', function () {
-            partnerDoCheckAll();
-        });
-
-        $clearPartners.on('click', function () {
-            resetPartners();
-        });
         $clearLocation.on('click', function () {
             resetLocation();
         });
-
-        /*=====  End of Partner filer          ======*/
 
         /*==================================
          =            Map legend            =
@@ -1264,7 +1236,8 @@
                 .attr({
                     'for': function (d) {
                         return self.options.valueAccessor.call(self, d).replace(/\/|\s+/g, '_').toLowerCase()
-                    }
+                    },
+                    'class': 'translate'
                 });
 
             self.doCheckAll = function (checked) {
@@ -1312,6 +1285,7 @@
 
 
         // init Cluster filter
+
         var filterCluster = new filterCheckboxWidget('#filterCluster', cf.clusterDim, {
             checkAll: 'All clusters'
             , onChange: function () {
@@ -1334,6 +1308,7 @@
                 filterDispatcher.filtered()
             }
         });
+
         // d3.select(filterStatus.container).selectAll('label').each(function(d) {
         // 	var $label = d3.select(this)
 
@@ -1523,63 +1498,7 @@
 
             var data = cf.allDim.bottom(Infinity);
 
-
-            // var data = cf.dateDim.top(Infinity);
-            // var format = d3.time.format('%Y-%m-%d');
-
-            var flatData = [];
-
-            data.forEach(function (datum) {
-                if (datum.items.length > 0) {
-                    datum.items.forEach(function (item) {
-                        flatData.push({
-                            date: datum['date']
-                            , oblast: datum['oblast']
-                            , raion: datum['raion']
-                            , settlement: datum['settlement']
-                            , clusters: datum['clusters']
-                            , partners: datum['partners']
-                            , needs: datum['needs']
-                            , status: datum['status']
-                            , conflictRelated: datum['conflictRelated']
-                            , affected: datum['affected']
-                            , covered: datum['covered']
-                            , context: datum['context']
-                            , description: datum['description']
-                            , item: item['item__item_name']
-                            , quantity: item['quantity_need']
-                            , quantity_response: datum['responses'][item['item__item_name']]
-                            , unit: item["unit__unit_name"]
-                            , latitude: datum['latitude']
-                            , longitude: datum['longitude']
-
-                        });
-                    });
-                } else {
-                    flatData.push({
-                        date: datum['date']
-                        , oblast: datum['oblast']
-                        , raion: datum['raion']
-                        , settlement: datum['settlement']
-                        , clusters: datum['clusters'].join(', ')
-                        , partners: datum['partners'].join(', ')
-                        , needs: datum['needs'].join(', ')
-                        , status: datum['status']
-                        , conflictRelated: datum['conflictRelated']
-                        , affected: datum['affected']
-                        , covered: datum['covered']
-                        , context: datum['context']
-                        , description: datum['description']
-                        , item: ''
-                        , quantity: ''
-                        , unit: ''
-                        , latitude: datum['latitude']
-                        , longitude: datum['longitude']
-
-                    });
-                }
-
-            });
+            var flatData = flattenize(data, is_staff);
 
             var $rows = $dataTableBody.selectAll('tr')
                 .data(flatData.slice(dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep));
@@ -1653,7 +1572,6 @@
             updateTable();
             if (!$body.classed('modal-open')) {
                 //
-
                 // dataTablePage = 0;
                 // updateTable()
             }
@@ -1723,9 +1641,7 @@
         var ResetAll = function () {
             filterCluster.doCheckAll(true);
             //partnerDoCheckAll(true);
-
             resetPartners();
-
             filterStatus.doCheckAll(true);
             filterType.doCheckAll(true);
             filterNeed.doCheckAll(true);
@@ -1733,6 +1649,7 @@
              filterRaionLuhansk.doCheckAll(true);*/
             resetLocation();
             resetMonthpicker(slider);
+
         };
 
 
@@ -1742,123 +1659,34 @@
 
 
         /*=====  End of Reset button  ======*/
-        function saveData() {
 
-            var data = cf.dateDim.top(Infinity);
-            var format = d3.time.format('%Y-%m-%d');
+        function saveData(dim) {
 
-            var flatData = [];
-
-            data.forEach(function (datum) {
-                if (datum.items.length > 0) {
-                    datum.items.forEach(function (item) {
-                        flatData.push({
-                            date: format(datum['date'])
-                            , oblast: datum['oblast']
-                            , raion: datum['raion']
-                            , settlement: datum['settlement']
-                            , clusters: datum['clusters'].join(', ')
-                            , partners: datum['partners'].join(', ')
-                            , needs: datum['needs'].join(', ')
-                            , status: datum['status']
-                            , conflictRelated: datum['conflictRelated']
-                            , affected: datum['affected']
-                            , covered: datum['covered']
-                            , context: datum['context']
-                            , description: datum['description']
-                            , item: item['item__item_name']
-                            , quantity: item['quantity_need']
-                            , quantity_response: datum['responses'][item['item__item_name']]
-                            , unit: item["unit__unit_name"]
-                            , latitude: datum['latitude']
-                            , longitude: datum['longitude']
-
-                        });
-                    });
-                } else {
-                    flatData.push({
-                        date: format(datum['date'])
-                        , oblast: datum['oblast']
-                        , raion: datum['raion']
-                        , settlement: datum['settlement']
-                        , clusters: datum['clusters'].join(', ')
-                        , partners: datum['partners'].join(', ')
-                        , needs: datum['needs'].join(', ')
-                        , status: datum['status']
-                        , conflictRelated: datum['conflictRelated']
-                        , affected: datum['affected']
-                        , covered: datum['covered']
-                        , context: datum['context']
-                        , description: datum['description']
-                        , item: ''
-                        , quantity: ''
-                        , quantity_response: ''
-                        , unit: ''
-                        , latitude: datum['latitude']
-                        , longitude: datum['longitude']
-
-                    });
-                }
-
-            });
-
-            var header = [
-                'date'
-                , 'oblast'
-                , 'raion'
-                , 'settlement'
-                , 'clusters'
-                , 'partners'
-                , 'needs'
-                , 'status'
-                , 'conflictRelated'
-                , 'affected'
-                , 'covered'
-                , 'context'
-                , 'description'
-                , 'item'
-                , 'quantity'
-                , 'quantity_response'
-                , 'unit'
-                , 'latitude'
-                , 'longitude'
-            ];
+            var data = dim.top(Infinity);
+            var flatData = flattenize(data, is_staff);
+            var header = Object.keys(flatData[0]);
 
             flatData = flatData.map(function (datum) {
-                return [
-                    datum.date
-                    , datum.oblast
-                    , datum.raion
-                    , datum.settlement
-                    , datum.clusters
-                    , datum.partners
-                    , datum.needs
-                    , datum.status
-                    , datum.conflictRelated
-                    , datum.affected
-                    , datum.covered
-                    , datum.context
-                    , datum.description
-                    , datum.item
-                    , datum.quantity
-                    , datum.quantity_response
-                    , datum.unit
-                    , datum.latitude
-                    , datum.longitude
-                ]
+
+                // console.log(Object.keys(datum))
+
+                return header.map(function(field) {
+                    return datum[field]
+                });
+
             });
 
             flatData.unshift(header);
 
-            var res = d3.csv.formatRows(flatData); // data
-            var blob = new Blob([res], {type: "text/csv;charset=utf-8"});
+            var rawCSV = d3.dsv(';').formatRows(flatData); // data
+            var blob = new Blob([rawCSV], {type: "text/csv;charset=utf-8"});
             saveAs(blob, 'ukraine-alerts-' + (new Date()).getTime() + '.csv')
         }
 
         $('button.save-data').on('click', function (e) {
-            saveData();
+            saveData(cf.dateDim);
         });
 
     });
 
-})()
+})();

@@ -1,5 +1,5 @@
 *{
-    font-family: Roboto, "Helvetica Neue", verdana, sans-serif !important;
+    font-family: Roboto, "Helvetica Neue", Helvetica, verdana, sans-serif !important;
 }
 body{
     font-size: 11pt;
@@ -115,4 +115,14 @@ a.header-button:focus, a.header-button:hover {
     border-radius: 0 0 6px 6px;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.wrapper {
+    height: calc(100vh - 50px);
+    position: relative;
+    float: left;
+}
+
+.main-wrapper {
+    width: calc(100% - 360px);
 }

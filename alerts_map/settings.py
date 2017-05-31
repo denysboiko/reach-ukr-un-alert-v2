@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'AlertsMap'
 ]
 
+#TODO: Remove RGBColorField, I use colorful
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAdminUser',
     ],
     'DEFAULT_RENDERER_CLASSES': [
-        'rest_framework.renderers.JSONRenderer',
-        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.JSONRenderer'
     ],
     'PAGE_SIZE': 250
 }
@@ -81,7 +82,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -101,26 +102,26 @@ if 'RDS_DB_NAME' in os.environ:
         }
     }
 else:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'Alerts',
-    #         'USER': 'postgres',
-    #         'PASSWORD': '3w_reach',
-    #         'HOST': '127.0.0.1',
-    #         'PORT': '5432',
-    #     }
-    # }
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'ebdb',
-            'USER': 'dbadmin',
-            'PASSWORD': 'pgk6vsnA',
-            'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+            'NAME': 'Alerts',
+            'USER': 'postgres',
+            'PASSWORD': '3w_reach',
+            'HOST': '127.0.0.1',
             'PORT': '5432',
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'ebdb',
+    #         'USER': 'dbadmin',
+    #         'PASSWORD': 'pgk6vsnA',
+    #         'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+    #         'PORT': '5432',
+    #     }
+    # }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -166,8 +167,8 @@ MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 # SECURITY WARNING: use environment variables in production!
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_PORT = '25'
-EMAIL_HOST_USER = 'AKIAILTFHUZKNYE5AG6Q'
-EMAIL_HOST_PASSWORD = 'AjiVBlsm22wadyieSbwqhGreXzUXF0I6BbPP1e9ZAKR7'
+EMAIL_HOST_USER = 'AKIAIR7B2ZEUPYAM7EFA'
+EMAIL_HOST_PASSWORD = 'ApNOSctoPCro+lC//G/tEZPGK6S4IDBBnBlTKwh/4zMs'
 EMAIL_USE_TLS = True
 
 

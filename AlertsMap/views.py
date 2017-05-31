@@ -5,23 +5,26 @@ from AlertsMap.forms import *
 
 from AlertsMap.serializers import *
 
-from rest_framework import viewsets
 
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.core import serializers
+
 
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import logout
 from django.http import HttpResponseRedirect, HttpResponse
-from rest_framework.permissions import AllowAny
+from django.shortcuts import get_object_or_404
 
-from rest_framework.renderers import JSONRenderer
-# from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
+from rest_framework import viewsets, generics
+from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+from rest_framework.response import Response as RESTResponse
 from rest_framework.views import APIView
 
 from django.contrib.auth import authenticate, login, get_user_model
+from django.core.urlresolvers import reverse
+
 User = get_user_model()
-
-
 
 class ClustersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Cluster.objects.all()
@@ -44,32 +47,96 @@ class ResponseViewSet(viewsets.ReadOnlyModelViewSet):
 
 class AlertsViewSet(viewsets.ReadOnlyModelViewSet):
 
-    queryset = Alert.objects.filter(confirmation_status=2)
-
     permission_classes = (AllowAny,)
     serializer_class = AlertsSerializer
+    queryset = Alert.objects.filter(confirmation_status=2).values()
     pagination_class = None
 
 
 def home(request):
+
     return render(
         request,
         'index.html',
         {
             'user': request.user,
+            'access': 1 if request.user.is_staff else 0,
+            'new_alert': reverse('admin:AlertsMap_alert_add'),
             'data': '../alerts/?format=json'
         }
     )
 
-def test(request):
+
+def alert(request, **kwargs):
+
+    id = kwargs.pop('alert_id')
+    queryset = Alert.objects.filter(confirmation_status=2, pk = id).all()
+
+    # data = serializers.serialize('json', queryset)
     return render(
         request,
-        'index.html',
+        'alert.html',
         {
             'user': request.user,
-            'data': '../alerts/?format=json'
+            'alerts': queryset
         }
     )
+
+
+def check_access(user):
+    if user:
+        return user.groups.filter(name='Staff').count() > 0
+    return False
+
+
+
+# class AlertViewSet(viewsets.ReadOnlyModelViewSet):
+#
+#     permission_classes = (AllowAny,)
+#     serializer_class = AlertsSerializer
+#     queryset = Alert.objects.filter(confirmation_status=2)
+#     pagination_class = None
+#
+#     def get_serializer(self, *args, **kwargs):
+#
+#         hide = ('response_partners',)
+#         alert = self.get_object
+#
+#         return self.serializer(alert, hide=hide, many=True)
+
+class AlertViewSet(viewsets.ViewSet):
+
+    """
+    A simple ViewSet for listing or retrieving alert.
+    """
+
+    permission_classes = (AllowAny,)
+
+    def list(self, request):
+
+        hide = ('response_partners',)
+        if request.user.is_staff:
+            hide = ()
+            # print 'Listing view. User has access to see response partners'
+
+
+        queryset = Alert.objects.filter(confirmation_status=2).all()
+        serializer = AlertsSerializer(queryset, hide=hide, many=True)
+
+        return RESTResponse(serializer.data)
+
+    def retrieve(self, request, pk=None):
+
+        hide = ('response_partners',)
+        if request.user.is_staff:
+            hide = None
+            # print 'Detailed view. User has access to see response partners'
+
+        queryset = Alert.objects.filter(confirmation_status=2).all()
+        alert = get_object_or_404(queryset, pk=pk)
+        serializer = AlertsSerializer(alert, hide=hide)
+
+        return RESTResponse(serializer.data)
 
 
 

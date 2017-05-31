@@ -1,56 +1,13 @@
 from __future__ import unicode_literals
 from django.core.urlresolvers import reverse
+import urlparse
 from django.db import models
+from django.db.models import Max, Min, Sum
 from smart_selects.db_fields import ChainedForeignKey
-# from django.contrib.auth.models import User
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser
-from colorful.fields import RGBColorField
 from colorfield.fields import ColorField
-
-from django.db.models.signals import post_save, m2m_changed
-from django.dispatch import receiver
-
-from mail import notify_mail
-# from select_mails import get_mail_lists
 from django.contrib.sites.models import Site
 
-
-
-def get_mail_lists(id):
-
-    mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list__to_emails').values('to_list__email')
-    mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list__cc_emails').values('cc_list__email')
-
-    to = []
-    copy = []
-
-    for email in mails_copy:
-        copy.append(email['cc_list__email'])
-
-    for email in mails_to:
-        to.append(email['to_list__email'])
-
-    return {'To': to, 'CC': copy}
-
-
-def get_clusters_list(id):
-    query = Alert.objects.filter(pk=id).prefetch_related('clusters').values('clusters__cluster_name')
-    clusters = []
-    for n in query:
-        clusters.append(n['clusters__cluster_name'])
-
-    return clusters
-
-
-def get_needs_list(id):
-    query = Alert.objects.filter(pk=id).prefetch_related('need_types').values('need_types__need_type')
-    needs = []
-    for n in query:
-        needs.append(n['need_types__need_type'])
-
-    return needs
 
 class User(AbstractUser):
     organization = models.CharField(max_length=80, blank=True)
@@ -80,6 +37,7 @@ class GCA_NGCA(models.Model):
     class Meta:
         managed = False
         db_table = 'gca_ngca'
+
 
 class Oblast(models.Model):
     pcode = models.CharField(max_length=10, blank=True, null=True)
@@ -320,9 +278,70 @@ class Alert(models.Model):
 
     def edit_url(self):
         domain = Site.objects.get_current().domain
-        slug =  reverse('admin:AlertsMap_alert_change', args=(self.id,))
+        slug = reverse('admin:AlertsMap_alert_change', args=(self.id,))
         url = domain + slug
         return url
+
+    def view_url(self):
+        domain = Site.objects.get_current().domain
+        slug = urlparse.urljoin('/alert/', str(self.id))
+        url = urlparse.urljoin(domain, slug)
+        return url
+
+    def get_clusters_list(self):
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('clusters').values('clusters__cluster_name')
+        return map(lambda x: x['clusters__cluster_name'], query)
+
+    def get_needs_list(self):
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('need_types').values('need_types__need_type')
+        return map(lambda x: x['need_types__need_type'], query)
+
+    def get_response_partners(self):
+        res = Response.objects.filter(alert=self.pk).values('response_partners__organization_name').distinct()
+        return map(lambda x: x['response_partners__organization_name'], res)
+
+    def get_items(self):
+        res = AlertItem.objects.filter(alert=self.pk).values('item__item_name','unit__unit_name').annotate(quantity_need=Sum('quantity'))
+        return res
+
+    def get_response_items(self):
+
+        responses = Response.objects.filter(alert=self.pk).values('item__item_name', 'unit__unit_name').annotate(
+            quantity_response=Sum('quantity'))
+
+        res = {}
+
+        for item in responses:
+            name = item['item__item_name']
+            res[name] = item['quantity_response']
+        return res
+
+    def get_recipients(self):
+
+        def get_mail_lists(id):
+
+            mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list__to_emails').values(
+                'to_list__email')
+            mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list__cc_emails').values(
+                'cc_list__email')
+
+            to = []
+            copy = []
+
+            for email in mails_copy:
+                copy.append(email['cc_list__email'])
+
+            for email in mails_to:
+                to.append(email['to_list__email'])
+
+            return {'To': to, 'CC': copy}
+
+        location_id = self.settlement.pk
+        query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
+        responsible_hub = query[0]['hub__id']
+        recipients = get_mail_lists(responsible_hub)
+
+        return recipients
 
     def __unicode__(self):
         return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
@@ -332,36 +351,6 @@ class Alert(models.Model):
     class Meta:
         db_table = 'alerts'
 
-@receiver(post_save, sender = Alert)
-def handle_new_alert(sender, instance, created, **kwargs):
-    location_id = instance.settlement.pk
-    query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
-    responsible_hub = query[0]['hub__id']
-
-    recepients = get_mail_lists(responsible_hub)
-    clusters = get_clusters_list(instance.id)
-    needs = get_needs_list(instance.id)
-    change_url = instance.edit_url()
-
-    notify_mail(recepients['To'], recepients['CC'], instance, change_url)
-    # clusters, needs,
-    # if created:
-    #
-    #
-    #
-    # else:
-    #     location_id = instance.settlement.pk
-    #     query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
-    #     responsible_hub = query[0]['hub__id']
-    #
-    #     recepients = get_mail_lists(responsible_hub)
-    #     clusters = get_clusters_list(instance.id)
-    #     needs = get_needs_list(instance.id)
-    #     change_url = Site.objects.get_current().domain + reverse('admin:AlertsMap_alert_change', args = (instance.id,))
-    #
-    #     notify_mail(recepients['To'], recepients['CC'], instance, clusters, needs, change_url)
-
-# m2m_changed.connect(handle_new_alert, sender=Alert)
 
 class ItemGroup(models.Model):
 
@@ -372,6 +361,7 @@ class ItemGroup(models.Model):
 
     class Meta:
         db_table = 'item_groups'
+
 
 class Item(models.Model):
 

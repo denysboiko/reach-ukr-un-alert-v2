@@ -16,7 +16,7 @@ from django.contrib.auth.admin import UserAdmin
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
-
+from mail import notify_mail
 
 UserAdmin.add_fieldsets = (
     (None, {
@@ -188,16 +188,29 @@ class AlertAdmin(ModelAdmin):
     def save_model(self, request, obj, form, change):
 
         new_data = form.__dict__['cleaned_data']
+
         obj.cluster = new_data['clusters'][0]
-        # obj.response_partner = new_data['response_partners'][0]
         obj.need_type = new_data['need_types'][0]
 
+        clusters = []
+        needs = []
+        status = ''
 
-        # if obj.new_data['clusters'] != 2:
-        #     obj.confirmation_status = 1
+        if not change:
+            clusters = map(lambda x: x.cluster_name, new_data['clusters'])
+            needs = map(lambda x: x.need_type, new_data['need_types'])
+            status = 'New object'
+        else:
+            clusters = obj.get_clusters_list()
+            needs = obj.get_needs_list()
+            status = 'Changed object'
+        recipients = obj.get_recipients()
+        change_url = obj.edit_url()
 
         obj.save()
-        # notify_mail();
+
+        notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
+
 
     class Media:
         css = {

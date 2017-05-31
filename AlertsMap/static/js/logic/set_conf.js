@@ -79,13 +79,18 @@ var raionColors = {
     '4425400000': '#b8e2fd'
 };
 
-function setConf(data_url) {
+function setConf(data_url, full_access) {
+
+    var tiles_list = {
+        ru: 'https://api.mapbox.com/styles/v1/denysboiko/cj31bg47c00072rqpzul3t1qb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
+        ua: 'https://api.mapbox.com/styles/v1/denysboiko/cj31bi4rk000b2socgh8kzaeu/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
+        en: 'https://api.mapbox.com/styles/v1/denysboiko/cj1hz2pno004g2qk8fbfwqrtc/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
+        osm: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
+    };
 
     return {
         map: {
-            tiles: 'https://api.mapbox.com/styles/v1/denysboiko/cj1hz2pno004g2qk8fbfwqrtc/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg'
-                // 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
-            //
+            tiles: tiles_list[window.localStorage['lang']]
             , center: [48.1, 38.2]
             , zoom: 8
             , minZoom: 6
@@ -117,7 +122,7 @@ function setConf(data_url) {
                 urls: ['/alerts?format=json']
                 , loader: d3.json
                 , fields: {
-                    settlement: 'settlement'
+                      settlement: 'settlement'
                     , oblast: 'oblast'
                     , raion: 'raion'
                     , raionCode: 'raionCode'
@@ -137,7 +142,10 @@ function setConf(data_url) {
                     , conflictRelated: 'conflict_related'
                     , items: 'items'
                     , responses: 'responses'
-                }
+                    , view_url: 'view_url'
+
+                },
+                full_access: full_access
             }
         }
         , filterStatus: [

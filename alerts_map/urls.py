@@ -5,15 +5,15 @@ from AlertsMap.views import *
 from rest_framework import routers
 
 router = routers.DefaultRouter()
-router.register(r'alerts', AlertsViewSet)
+# router.register(r'alerts', AlertsViewSet)
 router.register(r'clusters', ClustersViewSet)
 router.register(r'response', ResponsePartnersViewSet)
 router.register(r'responses', ResponseViewSet)
-
+router.register(r'alerts', AlertViewSet, base_name='alerts-list')
 
 urlpatterns = [
     url(r'^$', home),
-    url(r'^test/$', test),
+    url(r'^alert/(?P<alert_id>\d+)/$', alert),
     url(r'^admin/', admin.site.urls),
     url(r'^logout/$', logout_page),
     url(r'^login/$', auth_views.login),

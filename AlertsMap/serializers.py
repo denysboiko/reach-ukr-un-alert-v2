@@ -6,6 +6,28 @@ from rest_framework import serializers
 
 from django.db.models import Max, Min, Sum
 
+class DynamicFieldsModelSerializer(serializers.ModelSerializer):
+    """
+    A ModelSerializer that takes an additional `fields` argument that
+    controls which fields should be displayed.
+    """
+
+    def __init__(self, *args, **kwargs):
+        # Don't pass the 'fields' arg up to the superclass
+        hide = kwargs.pop('hide', None)
+
+        # Instantiate the superclass normally
+        super(DynamicFieldsModelSerializer, self).__init__(*args, **kwargs)
+
+        if hide is not None:
+            # Drop any fields that are specified in the `hide` argument.
+            disallowed = set(hide)
+            existing = set(self.fields.keys())
+
+            for field_name in disallowed:
+                self.fields.pop(field_name)
+
+
 class ClustersSerializer(serializers.ModelSerializer):
 
     key = serializers.ReadOnlyField(source='cluster_name')
@@ -58,50 +80,7 @@ class AlertResponsePartnersSerializer(serializers.ModelSerializer):
         model = Response
         fields = ('response_partners',)
 
-
-class ResponsePartnersField(serializers.Field):
-    def get_attribute(self, obj):
-        return obj
-
-    def to_representation(self, obj):
-        res = Response.objects.filter(alert=obj.pk).values('response_partners__organization_name').distinct()
-        partners = []
-        for partner in res:
-             partners.append(partner['response_partners__organization_name'])
-        return partners
-
-class ItemsQ(serializers.Field):
-    def get_attribute(self, obj):
-        return obj
-
-    def to_representation(self, obj):
-
-        needs = AlertItem.objects.filter(alert=obj.pk).values('item__item_name','unit__unit_name').annotate(quantity_need=Sum('quantity'))
-        # responses = Response.objects.filter(alert=obj.pk).values('item__item_name','unit__unit_name').annotate(quantity_response=Sum('quantity'))
-
-        # result = {}
-        # result['quantity_response'] = responses['quantity_response']
-        # result['quantity_need'] = needs['quantity_need']
-
-        return needs
-
-class ResponseQ(serializers.Field):
-    def get_attribute(self, obj):
-        return obj
-
-    def to_representation(self, obj):
-        responses = Response.objects.filter(alert=obj.pk).values('item__item_name','unit__unit_name').annotate(quantity_response=Sum('quantity'))
-
-        res ={}
-
-        for item in responses:
-            name = item['item__item_name']
-            res[name] = item['quantity_response']
-        return res
-
-
-
-class AlertsSerializer(serializers.ModelSerializer):
+class AlertsSerializer(DynamicFieldsModelSerializer):
 
     settlement = serializers.ReadOnlyField(source='settlement.settlement_name')
     oblast = serializers.ReadOnlyField(source='oblast.oblast_name')
@@ -115,32 +94,11 @@ class AlertsSerializer(serializers.ModelSerializer):
     type = serializers.ReadOnlyField(source='alert_type.alert_type')
     need = serializers.ReadOnlyField(source='need_type.need_type')
     need_types = serializers.StringRelatedField(many=True)
-    response_partner = serializers.ReadOnlyField(source='response_partner.organization_name')
-    # responses = ResponseSerializer(many=True)
-    # response_partners = ResponsePartnersField(many=True, source='responses', read_only=True)
-    response_partners = ResponsePartnersField()
-
-    # items = NeedItemsPartnersSerializer(many=True)
-
-
-    url = serializers.ReadOnlyField(source='edit_url')
-    items = ItemsQ()
-
-
-    # responses = ResponseItemsPartnersSerializer(many=True)
-
-    responses = ResponseQ()
-
-    # response_partners = AlertResponsePartnersSerializer(many=True, source='responses')
-
-    # serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-    # ReadOnlyField(source='alert__responses__item_id')
-    # response_partners = ResponsePartnersSerializer(many=True)
-    # tracks = serializers.SlugRelatedField(
-    #     many=True
-    #     read_only=True,
-    #     slug_field='title'
-    # )
+    response_partners = serializers.ReadOnlyField(source='get_response_partners')
+    edit_url = serializers.ReadOnlyField()
+    view_url = serializers.ReadOnlyField()
+    items = serializers.ReadOnlyField(source='get_items')
+    responses = serializers.ReadOnlyField(source='get_response_items')
 
     class Meta:
 
@@ -159,7 +117,6 @@ class AlertsSerializer(serializers.ModelSerializer):
             'status',
             'cluster',
             'clusters',
-            'response_partner',
             'type',
             'need',
             'need_types',
@@ -171,5 +128,6 @@ class AlertsSerializer(serializers.ModelSerializer):
             'response_partners',
             'items',
             'responses',
-            'url'
+            'edit_url',
+            'view_url'
         )

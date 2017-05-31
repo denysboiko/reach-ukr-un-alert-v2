@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+
+
+    {% block customscripts %}{% endblock %}
+
 {% block content %}
 
     <form method="post" action="../login/" class="form-signin">{% csrf_token %}

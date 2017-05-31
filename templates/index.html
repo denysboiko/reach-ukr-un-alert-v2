@@ -17,7 +17,9 @@
 		<script src="{% static 'js/jquery.min.js' %}"></script>
 
 		<script src="{% static 'js/changeLang.js' %}"></script>
+
 		<script type="text/javascript">
+
             var setLang = function(newLang) {
                 window.localStorage['lang'] = newLang;
             };
@@ -25,11 +27,13 @@
             if(!window.localStorage['lang']) {
                 setLang('en');
             }
+
             changeLang(window.localStorage['lang']);
+
             $(document).ready(function(){
                 $('.button-lang-'+window.localStorage['lang']).css({'background': '#ccc','border-color': '#888','color': '#000'});
-
             });
+
 		</script>
 
         <link rel="stylesheet" href="{% static 'libs/leaflet/leaflet.css' %}" />
@@ -56,7 +60,7 @@
         <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
 
 	</head>
-	<body>
+	<body id ='root'>
 
         <div class="modal fade bs-example-modal-lg" role="dialog" tabindex="-1" id="dataTableModal" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg" role="document" style="width: 95%">
@@ -64,20 +68,15 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
-                        {#                                <h4 class="modal-title" id="myLargeModalLabel">Data Table</h4>#}
+                        {# <h4 class="modal-title" id="myLargeModalLabel">Data Table</h4> #}
                     </div>
                     <div class="modal-body data">
 
                         <table class="table-hover table" id="dataTable">
 
                             <script type="text/template" id="tplDataTableHead">
-                                <td style="width:120px;">Oblast /
-                                    <wbr/>
-                                    Raion /
-                                    <wbr/>
-                                    Settlement
-                                </td>
-                                <td style="width:80px;">Covered / Affected</td>
+                                <td style="width:120px;">Oblast /<wbr/>Raion /<wbr/>Settlement</td>
+                                <td style='width:80px;'>Covered / Affected</td>
                                 <td style="width:100px;">Type alerts</td>
                                 <td style="width:140px;">Type needs</td>
                                 <td style="">Item</td>
@@ -88,7 +87,14 @@
                             </script>
                             <script type="text/template" id="tplDataTableRow">
                                 <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
-                                <td style="text-align:center;"><%= data.covered %> / <%= data.affected %></td>
+                                <td style="text-align:center;">
+{#                                    <% if (data.covered <> '' || data.affected) <> '' { %>#}
+{#                                        <%= data.covered %> / <%= data.affected %>#}
+{#                                    <% } else { %>#}
+{#                                        No#}
+{#                                    <% } %>#}
+                                    <%= data.covered %> / <%= data.affected %>
+                                </td>
                                 <td style="text-align:center;"><%= data.type %></td>
                                 <td><%= data.needs %></td>
                                 {#                                            <td><%= data.description %></td>#}
@@ -96,9 +102,15 @@
                                 <td><%= data.item %></td>
                                 <td><%= data.quantity_response %>/<%= data.quantity %> <%= data.unit %></td>
                                 {#                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>#}
-                                <td style="text-align:center;"><% if (data.conflictRelated) { %>Yes<% } else { %>No<% } %>
+                                <td style="text-align:center;">
+                                    <% if (data.conflictRelated) { %>
+                                        Yes
+                                    <% } else { %>
+                                        No
+                                    <% } %>
                                 </td>
-                                <td style="text-align:center;"><%= conf.dateFormat(data.date) %></td>
+                                <td style="text-align:center;"><%= data.date %></td>
+{#                                conf.dateFormat(data.date)#}
                                 <td style="text-align:center;"></td>
                             </script>
 
@@ -121,37 +133,34 @@
                     <div class="navbar-header header" style="width: 100%">
                         <ul class="nav navbar-nav">
                             <li>
-                                <button class="header-button fleft translate resetFilters" id="resetFilters">RESET
-                                    FILTERS
-                                </button>
+                                <button class="header-button fleft translate resetFilters" id="resetFilters">RESET FILTERS</button>
                             </li>
 
                             {% if user.is_authenticated %}
                                 <li>
                                     <div class="header-controls">
-                                        <a href="/admin/alert_system/alert/add/" class="header-button fleft translate">ADD
-                                            AN ALERT</a>
+                                        <a href="{{ new_alert }}" class="header-button fleft translate">ADD AN ALERT</a>
                                     </div>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                        aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="/admin">Admin Panel</a></li>
+                                        <li><a href="/admin" class="translate">Admin Panel</a></li>
                                         {% comment %}<li><a href="/admin/moderation/moderatedobject/">Moderation</a></li>{% endcomment %}
-                                        <li><a href="/admin/password_change/">Change Password</a></li>
+                                        <li><a href="/admin/password_change/" class="translate">Change Password</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/logout">Log Out</a></li>
+                                        <li><a href="/logout" class="translate">Log Out</a></li>
                                     </ul>
                                 </li>
 
-                                {% comment %}
-                                <div class="header-button fleft">
-                                    <button class="button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
-                                    <button class="button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
-                                    <button class="button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
+
+                                <div style = "display: inline-block">
+                                    <button class="header-button button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
+                                    <button class="header-button button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
+                                    <button class="header-button button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
                                 </div>
-                            {% endcomment %}
+
                             {% else %}
                                 <li><a href="/login/">Sign In</a></li>
                             {% endif %}
@@ -166,8 +175,7 @@
                             </script>
 
                             <button id="openDataTable" type="button" class="header-button translate" data-toggle="modal"
-                                    data-target=".bs-example-modal-lg">DATA TABLE
-                            </button>
+                                    data-target=".bs-example-modal-lg">DATA TABLE</button>
                             <button class="button header-button translate save-data">DOWNLOAD DATA</button>
 
                         </div>
@@ -177,59 +185,38 @@
             </nav>
         </div>
 
-        <div class="main-wrapper">
-            <main>
 
-                <div id="map"></div>
 
-                <div class="bottom-wrapper">
-
-                    <div class="bottom">
-                        <div id="slider"></div>
-                    </div>
-                </div>
-
-                <div id="mapLegend" class="translate-filter"></div>
-
-                <div class="data-table" style="display: none">
-                    <div class="data-table-close" id="dataTableClose">&times;</div>
-                    <div class="data-table-overflow">
-                        <table></table>
-                    </div>
-
-                </div>
-            </main>
-        </div>
-
-        <div class="aside-wrapper">
+        <div class="aside-wrapper wrapper">
             <aside>
 
                 <div class="filter filter-cluster translate-filter">
                     <h3>Cluster</h3>
                     <div id="filterCluster"></div>
                 </div>
+                {% if user.is_staff  %}
+                    <div class="filter filter-partner translate-filter">
 
-                <div class="filter filter-partner translate-filter" style="display: none">
+                        <h3>Response partner
+                            <button id="clearPartners" class="btn btn-sm" style="display: none">Clear</button>
+                        </h3>
 
-                    <h3>Response partner
-                        <button id="clearPartners" class="btn btn-sm" style="display: none">Clear</button>
-                    </h3>
-                    <div class="checkbox" style="display: none">
-                        <input type="checkbox" id="filterPartnersAll"/>
-                        <label for="filterPartnersAll">
-                            All response partners
-                        </label>
+                        <div class="checkbox" style="display: none">
+                            <input type="checkbox" id="filterPartnersAll"/>
+                            <label for="filterPartnersAll">
+                                All response partners
+                            </label>
+                        </div>
+
+
+                        <div id="filterPartnerSelected"></div>
+
+                        <select id="filterPartner" class="demo-default selectized" multiple="multiple"
+                                style="display: none;" placeholder="- Select partner to filter -" tabindex="-1">
+                        </select>
+
                     </div>
-
-
-                    <div id="filterPartnerSelected"></div>
-
-                    <select id="filterPartner" class="demo-default selectized" multiple="multiple"
-                            style="display: none;" placeholder="- Select partner to filter -" tabindex="-1">
-                    </select>
-
-                </div>
-
+                {% endif %}
 
                 <div class="filter filter-status translate-filter">
                     <h3>Status</h3>
@@ -264,50 +251,97 @@
                 </div>
             </aside>
         </div>
+        <div class="main-wrapper wrapper">
+            <main>
 
+                <div id="map"></div>
+
+                <div class="bottom-wrapper">
+
+                    <div class="bottom">
+                        <div id="slider"></div>
+                    </div>
+                </div>
+
+                <div id="mapLegend" class="translate-filter"></div>
+
+                <div class="data-table" style="display: none">
+                    <div class="data-table-close" id="dataTableClose">&times;</div>
+                    <div class="data-table-overflow">
+                        <table></table>
+                    </div>
+
+                </div>
+            </main>
+        </div>
 
         <script type="text/template" id="tplPopup">
-        <p class="popup-title"><%= data.title %></p>
-        <p>
-            <b>Clusters:</b> <%= data.clusters.join(', ') %>
-        </p>
-        <p>
-            <b>Number of covered/affected people:</b> <%= data.covered %>/<%= data.affected %>
-        </p>
-        <p>
-            <b>Type alert:</b> <%= data.type %>
-        </p>
-        <p>
-            <b>Type needs:</b> <%= data.needs.join(', ') %>
-        </p>
-        <p>
-            <b>Context:</b><br/>
-            <span style="white-space:pre-wrap"><%= data.context %></span>
-        </p>
-        <p>
-            <b>Description:</b><br/>
-            <span style="white-space:pre-wrap"><%= data.description %></span>
-        </p>
 
-        <p>
-            <b>Related to conflict:</b>
-            <% if(data.conflictRelated) { %> Yes <% } else { %> No <% } %>
-        </p>
+            <p class="popup-title">
+                <%= data.title %>
+            </p>
+
+            <p>
+                <b>Clusters:</b> <%= data.clusters.join(', ') %>
+            </p>
+            <p>
+                <b>Number of covered/affected people:</b> <%= data.covered %>/<%= data.affected %>
+            </p>
+            <p>
+                <b>Type alert:</b> <%= data.type %>
+            </p>
+            <p>
+                <b>Type needs:</b> <%= data.needs.join(', ') %>
+            </p>
+            <p>
+                <b>Context:</b><br/>
+                <span style="white-space:pre-wrap"><%= data.context %></span>
+            </p>
+            <p>
+                <b>Description:</b><br/>
+                <span style="white-space:pre-wrap"><%= data.description %></span>
+            </p>
+
+            <p>
+                <b>Related to conflict:</b>
+                <% if(data.conflictRelated) { %> Yes <% } else { %> No <% } %>
+            </p>
+
+            <p>
+                <b>Date referral:</b> <%= conf.dateFormat(data.date) %>
+            </p>
 
 
-        <p>
-            <b>Date referral:</b> <%= conf.dateFormat(data.date) %>
-        </p>
+            <p>
+                <a href="<%= data.view_url %>">Learn more</a>
+            </p>
 
-    </script>
+        </script>
 
     <script src="{% static 'js/topojson.v1.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/logic/flattenize.js' %}"></script>
     <script type="text/javascript" src="{% static 'data/grey_zone.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/logic/set_conf.js' %}"></script>
 
 
     <script type="text/javascript">
-        window.conf = setConf('{{ data }}');
+        window.conf = setConf('{{ data }}', {{ access }});
+{#        var menu = document.getElementById('divMenu');#}
+{#        getTextNodesIn(menu, function(textNode, parent) {#}
+{#          if (/^\s+$/.test(textNode.nodeValue)) {#}
+{#            parent.removeChild(textNode);#}
+{#          }#}
+{#        });#}
+        function textNodesUnder(node) {
+            var all = [];
+            for (node = node.firstChild; node; node = node.nextSibling) {
+                if (node.nodeType == 3) all.push(node);
+                else all = all.concat(textNodesUnder(node));
+            }
+            return all;
+        }
+        console.log(textNodesUnder(document.getElementById('root')))
     </script>
 
     <script src="{% static 'js/logic/map.js' %}"></script>
