@@ -75,43 +75,25 @@
                         <table class="table-hover table" id="dataTable">
 
                             <script type="text/template" id="tplDataTableHead">
-                                <td style="width:120px;">Oblast /<wbr/>Raion /<wbr/>Settlement</td>
-                                <td style='width:80px;'>Covered / Affected</td>
-                                <td style="width:100px;">Type alerts</td>
-                                <td style="width:140px;">Type needs</td>
-                                <td style="">Item</td>
-                                <td style="">Quantity Provided/Needed</td>
-                                <td style="width:80px;">Conflict related</td>
-                                <td style="width:100px;">Date referral</td>
-                                <td style="width:80px;">Gaps-not covered need</td>
+                                <td style="width:100px">Date</td>
+                                <td style="width:120px">Oblast /<wbr/>Raion /<wbr/>Settlement</td>
+                                <td style="width:100px">Related to Conflict </td>
+                                <td style="width:140px">Type of Needs</td>
+                                <td style="width:100px">Covered /<wbr/>Affected</td>
+                                <td style="width:100px">Item</td>
+                                <td style="width:100px">Quantity Provided/Needed</td>
+                                <td style="width:80px">Additional info</td>
                             </script>
+
                             <script type="text/template" id="tplDataTableRow">
+                                <td style="text-align:center"><%= data.date %></td>
                                 <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
-                                <td style="text-align:center;">
-{#                                    <% if (data.covered <> '' || data.affected) <> '' { %>#}
-{#                                        <%= data.covered %> / <%= data.affected %>#}
-{#                                    <% } else { %>#}
-{#                                        No#}
-{#                                    <% } %>#}
-                                    <%= data.covered %> / <%= data.affected %>
-                                </td>
-                                <td style="text-align:center;"><%= data.type %></td>
+                                <td style="text-align:center;"><%= data.conflictRelated %></td>
                                 <td><%= data.needs %></td>
-                                {#                                            <td><%= data.description %></td>#}
-                                {#                                            <td><%= data.context %></td>#}
+                                <td style="text-align:center;"><%= data.beneficiaries_gap %></td>
                                 <td><%= data.item %></td>
-                                <td><%= data.quantity_response %>/<%= data.quantity %> <%= data.unit %></td>
-                                {#                                            <td style="text-align:center;"><% if(data.infoLink.trim()) { %><a href="<%= data.infoLink %>">Link</a><% } %></td>#}
-                                <td style="text-align:center;">
-                                    <% if (data.conflictRelated) { %>
-                                        Yes
-                                    <% } else { %>
-                                        No
-                                    <% } %>
-                                </td>
-                                <td style="text-align:center;"><%= data.date %></td>
-{#                                conf.dateFormat(data.date)#}
-                                <td style="text-align:center;"></td>
+                                <td><%=data.items_gap%></td>
+                                <td style="text-align:center;"><a href="<%= data.view_url %>">Learn more</a></td>
                             </script>
 
                         </table>

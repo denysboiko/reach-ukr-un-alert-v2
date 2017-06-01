@@ -1509,7 +1509,7 @@
                 })
                 .selectAll('td')
                 .each(function (data) {
-                    var td = this
+                    var   td = this
                         , $td = d3.select(td)
                         , div = document.createElement('div')
                         , $div = d3.select(div);
