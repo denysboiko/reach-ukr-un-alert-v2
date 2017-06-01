@@ -1546,22 +1546,29 @@
 
             var pgnum = d3.range(Math.ceil(flatData.length / conf.paginationStep));
 
-            var $pages = $dataTablePagination.selectAll('li')
+            var $pages = $dataTablePagination
+                .selectAll('li')
                 .data(pgnum);
 
 
             if (pgnum.length > 1) {
+
                 $pages.enter().append('li')
+                    .append('a')
+                    .attr({'href':'#'})
                     .text(function (d) {
                         return d + 1
                     })
-                    .classed('active', function (d) {
-                        return d == dataTablePage
-                    })
+
                     .on('click', function (d) {
                         dataTablePage = d;
                         updateTable()
                     });
+
+                $pages
+                    .classed('active', function (d) {
+                        return d == dataTablePage
+                    })
             }
 
         };
