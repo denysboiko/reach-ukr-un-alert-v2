@@ -195,7 +195,7 @@ class AlertAdmin(ModelAdmin):
         clusters = []
         needs = []
         status = ''
-
+        cluster_ids = map(lambda x: x.pk, new_data['clusters'])
         if not change:
             clusters = map(lambda x: x.cluster_name, new_data['clusters'])
             needs = map(lambda x: x.need_type, new_data['need_types'])
@@ -204,13 +204,15 @@ class AlertAdmin(ModelAdmin):
             clusters = obj.get_clusters_list()
             needs = obj.get_needs_list()
             status = 'Changed object'
-        recipients = obj.get_recipients()
+        recipients = obj.get_recipients(cluster_ids)
         change_url = obj.edit_url()
 
         obj.save()
 
         notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
 
+    def items(self, obj):
+        return '%d affected in %s, %s raion (%s obl.)' % (obj.no_affected, obj.settlement, obj.raion, obj.oblast)
 
     class Media:
         css = {
