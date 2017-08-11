@@ -7,7 +7,7 @@ from smart_selects.db_fields import ChainedForeignKey
 from django.contrib.auth.models import AbstractUser
 from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
-
+from django.utils.translation import gettext_lazy as _
 
 class User(AbstractUser):
     organization = models.CharField(max_length=80, blank=True)
@@ -17,15 +17,29 @@ class User(AbstractUser):
     class Meta:
         db_table = 'auth_user'
 
+class Emails(models.Model):
+
+    email = models.EmailField()
+
+    def __unicode__(self):
+        return self.email
+
+    class Meta:
+        db_table = 'emails'
+        verbose_name_plural = 'Emails'
 
 class Cluster(models.Model):
+
     cluster_name = models.CharField(max_length=200)
+    to_list = models.ManyToManyField(Emails, related_name='to_emails_cluster')
+    cc_list = models.ManyToManyField(Emails, related_name='cc_emails_cluster')
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.cluster_name
 
     class Meta:
         db_table = 'clusters'
+
 
 class GCA_NGCA(models.Model):
 
@@ -62,18 +76,6 @@ class Raion(models.Model):
 
     class Meta:
         db_table = 'raions'
-
-class Emails(models.Model):
-
-    email = models.EmailField()
-
-    def __unicode__(self):
-        return self.email
-
-    class Meta:
-        db_table = 'emails'
-        verbose_name_plural = 'Emails'
-
 
 
 class CoordinationHub(models.Model):
@@ -203,7 +205,7 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
-    date_referal = models.DateField(verbose_name='Date of Incident')
+    date_referal = models.DateField(verbose_name=_('Date of Incident'))
     informant = models.TextField(blank=True, null=True)
 
     referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id')
@@ -219,10 +221,10 @@ class Alert(models.Model):
         sort=True
     )
 
-    gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name='GCA/NGCA')
+    gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name=_('GCA/NGCA'))
     yes_no = (
-        (0, 'No'),
-        (1, 'Yes')
+        (0, _('No')),
+        (1, _('Yes'))
     )
     alert_type = models.ForeignKey(AlertType)
     conflict_related = models.IntegerField(
@@ -270,11 +272,11 @@ class Alert(models.Model):
     need_types = models.ManyToManyField(NeedType, related_name='needs')
 
     def location(self):
-        location = ' / '.join([str(self.raion), str(self.settlement), str(self.oblast)])
-        return location
+        return '%s / %s / %s' % (self.raion, self.settlement, self.oblast)
+
 
     def related_to_conflict(self):
-        return ("No", "Yes")[self.conflict_related]
+        return (_("No"), _("Yes"))[self.conflict_related]
 
     def edit_url(self):
         domain = Site.objects.get_current().domain
@@ -301,7 +303,7 @@ class Alert(models.Model):
         return map(lambda x: x['response_partners__organization_name'], res)
 
     def get_items(self):
-        res = AlertItem.objects.filter(alert=self.pk).values('item__item_name','unit__unit_name').annotate(quantity_need=Sum('quantity'))
+        res = AlertItem.objects.filter(alert=self.pk).prefetch_related('item','unit').values('item__item_name','unit__unit_name').annotate(quantity_need=Sum('quantity'))
         return res
 
     def get_response_items(self):
@@ -325,14 +327,8 @@ class Alert(models.Model):
             mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list__cc_emails').values(
                 'cc_list__email')
 
-            to = []
-            copy = []
-
-            for email in mails_copy:
-                copy.append(email['cc_list__email'])
-
-            for email in mails_to:
-                to.append(email['to_list__email'])
+            copy = map(lambda x: x['cc_list__email'], mails_copy)
+            to = map(lambda x: x['to_list__email'], mails_to)
 
             return {'To': to, 'CC': copy}
 
@@ -343,8 +339,8 @@ class Alert(models.Model):
 
         return recipients
 
-    def __unicode__(self):
-        return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
+    # def __unicode__(self):
+    #     return _('%d affected in %s, %s raion (%s obl.)') % (self.no_affected, self.settlement, self.raion, self.oblast)
 
     location.admin_order_field = 'location'
 
@@ -365,10 +361,7 @@ class ItemGroup(models.Model):
 
 class Item(models.Model):
 
-    item_name = models.CharField(max_length=80, blank=True, null=True)
-    item_label_en = models.CharField(max_length=120, blank=True, null=True)
-    item_label_ua = models.CharField(max_length=120, blank=True, null=True)
-    item_label_ru = models.CharField(max_length=120, blank=True, null=True)
+    item_name = models.CharField(max_length=120, blank=True, null=True)
     item_group = models.ForeignKey(ItemGroup, null=True)
 
     def __unicode__(self):
@@ -380,10 +373,7 @@ class Item(models.Model):
 
 class Unit(models.Model):
 
-    unit_name = models.CharField(max_length=15, blank=True, null=True)
-    unit_label_en = models.CharField(max_length=30, blank=True, null=True)
-    unit_label_ua = models.CharField(max_length=30, blank=True, null=True)
-    unit_label_ru = models.CharField(max_length=30, blank=True, null=True)
+    unit_name = models.CharField(max_length=30, blank=True, null=True)
 
     def __unicode__(self):
         return self.unit_name
@@ -399,7 +389,7 @@ class AlertItem(models.Model):
     item_details = models.CharField(max_length=120, blank=True, null=True)
     quantity = models.IntegerField()
     unit = models.ForeignKey(Unit)
-    #
+
     # def __unicode__(self):
     #     return self.item_name
 
