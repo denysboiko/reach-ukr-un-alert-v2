@@ -79,11 +79,11 @@ class Raion(models.Model):
 
 
 class CoordinationHub(models.Model):
+
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=25)
-
-    to_list = models.ManyToManyField(Emails, related_name='to_emails')
-    cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
+    # to_list = models.ManyToManyField(Emails, related_name='to_emails')
+    # cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
 
     def __unicode__(self):
         return self.name
@@ -194,9 +194,20 @@ class Organization(models.Model):
         ordering = ['organization_name']
 
 
+class ClusterEmail(models.Model):
+
+    cluster = models.ForeignKey(Cluster)
+    coordination_hub = models.ForeignKey(CoordinationHub)
+    to_list = models.ManyToManyField(Emails, related_name='to_emails')
+    cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
+
+    class Meta:
+        db_table = 'cluster_emails'
+
 class Alert(models.Model):
 
     oblast = models.ForeignKey(Oblast)
+
     raion = ChainedForeignKey(
         Raion,
         chained_field="oblast",
@@ -205,6 +216,7 @@ class Alert(models.Model):
         auto_choose=False,
         sort=True
     )
+
     date_referal = models.DateField(verbose_name=_('Date of Incident'))
     informant = models.TextField(blank=True, null=True)
 
@@ -222,11 +234,14 @@ class Alert(models.Model):
     )
 
     gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name=_('GCA/NGCA'))
+
     yes_no = (
         (0, _('No')),
         (1, _('Yes'))
     )
+
     alert_type = models.ForeignKey(AlertType)
+
     conflict_related = models.IntegerField(
         choices=yes_no
     )
@@ -322,26 +337,31 @@ class Alert(models.Model):
 
         def get_mail_lists(id, cluster_ids):
 
-            mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list').values_list('to_list__email')
-            mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list').values_list('cc_list__email')
-
-            copy = map(lambda x: x[0], mails_copy)
-            to = map(lambda x: x[0], mails_to)
+            # mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list').values_list('to_list__email')
+            # mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list').values_list('cc_list__email')
+            #
+            # copy = map(lambda x: x[0], mails_copy)
+            # to = map(lambda x: x[0], mails_to)
 
             clusters_cc = map(lambda x: x[0], Cluster.objects.filter(pk__in=cluster_ids).prefetch_related('cc_list').values_list('cc_list__email'))
             clusters_to = map(lambda x: x[0], Cluster.objects.filter(pk__in=cluster_ids).prefetch_related('to_list').values_list('to_list__email'))
 
-            return {'To': to + clusters_to, 'CC': copy + clusters_cc}
+            emails_to = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('to_list').values_list('to_list__email')
+            emails_cc = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('cc_list').values_list('cc_list__email')
+
+            return {'To': map(lambda x: x[0], emails_to), 'CC': map(lambda x: x[0], emails_cc)}
 
         location_id = self.settlement.pk
         query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
         responsible_hub = query[0]['hub__id']
+
         # clusters_cc = map(lambda x: x[0], self.clusters.prefetch_related('cc_list').values_list('cc_list__email'))
         # clusters_to = map(lambda x: x[0], self.clusters.prefetch_related('to_list').values_list('to_list__email'))
         # self.settlement.hub.to_list.prefetch_related('cc_emails').values('email')
         # self.settlement.hub.to_list.prefetch_related('to_emails').values('email')
         # obj.settlement.hub.to_list.prefetch_related('email').values('cc_emails__cc_list__email')
         # cluster_ids = map(lambda x : x[0], self.clusters.values_list('pk'))
+
         recipients = get_mail_lists(responsible_hub, cluster_ids)
 
         return recipients
@@ -419,7 +439,6 @@ class Response(models.Model):
 
     response_partners.admin_order_field = 'organization_name'
     # def partners(self):
-    #     return obj.
-
+    #     return obj
     class Meta:
         db_table='responses'

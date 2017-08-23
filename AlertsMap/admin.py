@@ -56,6 +56,17 @@ class ItemsInline(admin.TabularInline):
     classes = ('collapse',)
 
 
+class EmailsInline(admin.TabularInline):
+    model = ClusterEmail
+    verbose_name = "Cluster Recipients List"
+    verbose_name_plural = "Cluster Recipients Lists"
+    extra = 0
+    classes = ('collapse',)
+
+class CoordinationHubAdmin(ModelAdmin):
+
+    inlines = [EmailsInline,]
+
 class ResponsesInline(admin.StackedInline):
 
     model = Response
@@ -255,7 +266,9 @@ class SettlementAdmin(ModelAdmin):
     ]
 
 
-admin.site.register([Cluster, Emails, CoordinationHub])
+admin.site.register([Cluster, Emails])
+
+admin.site.register(CoordinationHub, CoordinationHubAdmin)
 admin.site.register(Raion, RaionAdmin)
 admin.site.register(Settlement, SettlementAdmin)
 admin.site.register(Organization, OrganizationAdmin)
