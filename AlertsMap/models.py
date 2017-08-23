@@ -31,8 +31,6 @@ class Emails(models.Model):
 class Cluster(models.Model):
 
     cluster_name = models.CharField(max_length=200)
-    to_list = models.ManyToManyField(Emails, related_name='to_emails_cluster')
-    cc_list = models.ManyToManyField(Emails, related_name='cc_emails_cluster')
 
     def __unicode__(self):  # Python 3: def __str__(self):
         return self.cluster_name
