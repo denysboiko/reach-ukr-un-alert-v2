@@ -335,15 +335,6 @@ class Alert(models.Model):
 
         def get_mail_lists(id, cluster_ids):
 
-            # mails_to = CoordinationHub.objects.filter(pk=id).prefetch_related('to_list').values_list('to_list__email')
-            # mails_copy = CoordinationHub.objects.filter(pk=id).prefetch_related('cc_list').values_list('cc_list__email')
-            #
-            # copy = map(lambda x: x[0], mails_copy)
-            # to = map(lambda x: x[0], mails_to)
-
-            clusters_cc = map(lambda x: x[0], Cluster.objects.filter(pk__in=cluster_ids).prefetch_related('cc_list').values_list('cc_list__email'))
-            clusters_to = map(lambda x: x[0], Cluster.objects.filter(pk__in=cluster_ids).prefetch_related('to_list').values_list('to_list__email'))
-
             emails_to = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('to_list').values_list('to_list__email')
             emails_cc = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('cc_list').values_list('cc_list__email')
 
@@ -352,13 +343,6 @@ class Alert(models.Model):
         location_id = self.settlement.pk
         query = Settlement.objects.filter(pk=location_id).prefetch_related('hub').values('hub__id', 'settlement_name')
         responsible_hub = query[0]['hub__id']
-
-        # clusters_cc = map(lambda x: x[0], self.clusters.prefetch_related('cc_list').values_list('cc_list__email'))
-        # clusters_to = map(lambda x: x[0], self.clusters.prefetch_related('to_list').values_list('to_list__email'))
-        # self.settlement.hub.to_list.prefetch_related('cc_emails').values('email')
-        # self.settlement.hub.to_list.prefetch_related('to_emails').values('email')
-        # obj.settlement.hub.to_list.prefetch_related('email').values('cc_emails__cc_list__email')
-        # cluster_ids = map(lambda x : x[0], self.clusters.values_list('pk'))
 
         recipients = get_mail_lists(responsible_hub, cluster_ids)
 
