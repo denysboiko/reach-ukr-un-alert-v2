@@ -7,21 +7,22 @@ function flattenize(data, is_staff) {
         var format = d3.time.format('%Y-%m-%d');
         var has_items = item !== null;
 
+        this.id = datum['alertID'];
         this.date = format(datum['date']);
         this.oblast = datum['oblast'];
         this.raion = datum['raion'];
         this.settlement = datum['settlement'];
-        this.clusters = datum['clusters'].join(', ');
+        this.clusters = datum['clusters'].join('; ');
         if (is_staff) {
-            this.partners = datum['partners'].join(', ');
+            this.partners = datum['partners'].join('; ');
         }
-        this.needs = datum['needs'].join(', ');
+        this.needs = datum['needs'].join('; ');
         this.status = datum['status'];
-        this.conflictRelated = (datum['conflictRelated'] == 1) ? "Yes" : 'No';
+        this.conflictRelated = (datum['conflictRelated'] == 1) ? gettext("Yes") : gettext('No');
         this.affected = datum['affected'];
         this.covered = datum['covered'];
-        this.context = datum['context'];
-        this.description = datum['description'];
+        // this.context = datum['context'];
+        // this.description = datum['description'];
         this.item = has_items ? item['item__item_name'] : '';
         this.quantity = has_items ? item['quantity_need'] : '';
         this.quantity_response = has_items ? datum['responses'][item['item__item_name']] : '';

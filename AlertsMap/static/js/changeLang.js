@@ -2,14 +2,32 @@ var translate_i = 0;
 function changeLang(lang_l){
 	
 	if(lang_l=='en') return false;
-	lang = lang_l=='ua'?0:1;
-	$(".translate, .translate-filter h3, .translate-filter label span, .translate-filter option, .monthpicker-month, .translate-filter text, .translate-filter tspan").each(function(i){
+
+	lang = lang_l=='ua'? 0: 1;
+
+	$(
+		".translate," +
+		".translate-filter h3," +
+		".translate-filter label span," +
+		".translate-filter label," +
+		".translate-filter option," +
+		".monthpicker-month," +
+		".translate-filter text," +
+		".translate-filter tspan"
+	).each(function(i){
+
 		text = $(this).text();
-		if(translate_text[text]) $(this).text($(this).text().replace(text,translate_text[text][lang]));
+		if(translate_text[text]) {
+			$(this).text(
+				$(this).text().replace(text, translate_text[text][lang])
+			);
+        }
+
 	});
 
 	if(translate_i++<=5)setTimeout(function(){ changeLang(lang_l); }, 400);
 
+	console.log(translate_i);
 	// conf.map.tiles = tiles_list[lang_l]
 }
 
@@ -23,15 +41,14 @@ translate_text = {
 	'Cluster':['Кластер','Кластер'],
 	'All clusters':['Всі кластери','Все кластеры'],
 	'Education':['Освіта','Образование'],
-	'Food Security':['Продовольча безпека','Продовольственная безопасность'],
+	'Food Security & Livelihoods':['Продовольча безпека та засоби життєзабезпечення','Продовольственная безопасность и жизнеобеспечение'],
 	'Health/Nutrition':['Охорона Здоров`я/Харчування','Здравохранение/Питание'],
-	'Livelihoods/Early Recovery':['Засоби життєзабезпечення/Раннє відновлення','Жизнеобеспечение/Раннее восстановление'],
 	'Logistics':['Логістика','Логистика'],
 	'Protection':['Захист','Защита'],
 	'Emergency Shelter/NFI':['Аварійне Сховище/Нехарчова допомога','Аварийное Убежище/Непищевая помощь'],
 	'Water Sanitation Hygiene':['Вода, Санітарія, Гігієна','Вода, Санитария, Гигиена'],
 
-	'Response partner':['Відповідальний партнер','Ответственный партнер'],
+	'Response partners':['Відповідальний партнер','Ответственный партнер'],
 	'All response partners':['Всі Організації','Все организации'],
 	'- Select partner to filter -':['- Обрати організацію -','- Выбрать Организацию -'],
 	'United Nations OCHA':['Управління з координації гуманітарних питань ООН','Управление по координации гуманитарных вопросов ООН'],
@@ -53,7 +70,7 @@ translate_text = {
 	'Access to shelter':['Доступ до житла','Доступ к жилью'],
 	'Access to water':['Доступ до води','Доступ к воде'],
 	'Other':['Інше','Другое'],
-	'Presence of landmines and/or EWRs':['Наявність наземних мін і ВПВ','Наявность наземных мин и ВПВ'],
+	'Presence of landmines and/or EWRs':['Наявність наземних мін і ВПВ','Присутсвие наземных мин и ВПВ'],
 
 	'Location':['Місцезнаходження','Местоположение'],
 	'Donetska oblast':['Донецька область','Донецкая область'],

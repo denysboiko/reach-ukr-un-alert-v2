@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.utils.translation import ugettext_lazy as _
 from AlertsMap.models import *
 from AlertsMap.forms import *
 
@@ -25,6 +25,9 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.core.urlresolvers import reverse
 
 User = get_user_model()
+
+from django.utils import translation
+
 
 class ClustersViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Cluster.objects.all()

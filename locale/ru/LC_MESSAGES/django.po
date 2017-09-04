@@ -1,0 +1,240 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-03 15:20+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: .\AlertsMap\forms.py:14
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: .\AlertsMap\forms.py:14
+msgid "The username must contain only letters, numbers and underscores."
+msgstr "Пользователь соснул"
+
+#: .\AlertsMap\forms.py:17
+msgid "Organization"
+msgstr "Организация"
+
+#: .\AlertsMap\forms.py:20
+msgid "Phone"
+msgstr "Phone"
+
+#: .\AlertsMap\forms.py:21
+msgid "Email address"
+msgstr "Email address"
+
+#: .\AlertsMap\forms.py:22
+msgid "Password"
+msgstr "Password"
+
+#: .\AlertsMap\forms.py:23
+msgid "Password (again)"
+msgstr "Password (again)"
+
+#: .\AlertsMap\forms.py:30
+msgid "The username already exists. Please try another one."
+msgstr ""
+
+#: .\AlertsMap\forms.py:35
+msgid "The two password fields did not match."
+msgstr ""
+
+#: .\AlertsMap\models.py:208
+msgid "Date of Incident"
+msgstr ""
+
+#: .\AlertsMap\models.py:224
+msgid "GCA/NGCA"
+msgstr ""
+
+#: .\AlertsMap\models.py:226 .\AlertsMap\models.py:279
+msgid "No"
+msgstr ""
+
+#: .\AlertsMap\models.py:227
+msgid "Yes"
+msgstr ""
+
+#: .\AlertsMap\models.py:343
+#, python-format
+msgid "%d affected in %s, %s raion (%s obl.)"
+msgstr ""
+
+#: .\AlertsMap\views.py:40 .\templates\languages\index.html:4
+msgid "Welcome to my site."
+msgstr "Ну, привет, лох!"
+
+#: .\alerts_map\settings.py:154
+msgid "English"
+msgstr ""
+
+#: .\alerts_map\settings.py:155
+msgid "Russian"
+msgstr ""
+
+#: .\alerts_map\settings.py:156
+msgid "Ukrainian"
+msgstr ""
+
+#: .\templates\index.html:61
+msgid "Date"
+msgstr ""
+
+#: .\templates\index.html:62
+msgid "Oblast"
+msgstr ""
+
+#: .\templates\index.html:64
+msgid "Raion"
+msgstr ""
+
+#: .\templates\index.html:66
+msgid "Settlement"
+msgstr ""
+
+#: .\templates\index.html:67 .\templates\index.html:286
+msgid "Related to Conflict"
+msgstr ""
+
+#: .\templates\index.html:68 .\templates\index.html:274
+msgid "Type of Needs"
+msgstr ""
+
+#: .\templates\index.html:69
+msgid "Covered"
+msgstr ""
+
+#: .\templates\index.html:71
+msgid "Affected"
+msgstr ""
+
+#: .\templates\index.html:72
+msgid "Item"
+msgstr ""
+
+#: .\templates\index.html:73
+msgid "Quantity Provided/Needed"
+msgstr ""
+
+#: .\templates\index.html:74
+msgid "Additional info"
+msgstr ""
+
+#: .\templates\index.html:110
+msgid "RESET FILTERS"
+msgstr ""
+
+#: .\templates\index.html:116
+msgid "ADD AN ALERT"
+msgstr ""
+
+#: .\templates\index.html:123
+msgid "Admin Panel"
+msgstr ""
+
+#: .\templates\index.html:124
+#, fuzzy
+#| msgid "Password"
+msgid "Change Password"
+msgstr "Password"
+
+#: .\templates\index.html:126
+msgid "Log Out"
+msgstr ""
+
+#: .\templates\index.html:131
+msgid "Sign In"
+msgstr ""
+
+#: .\templates\index.html:156
+msgid "alerts selected of"
+msgstr ""
+
+#: .\templates\index.html:160
+msgid "DATA TABLE"
+msgstr ""
+
+#: .\templates\index.html:161
+msgid "DOWNLOAD DATA"
+msgstr ""
+
+#: .\templates\index.html:175
+msgid "Cluster"
+msgstr ""
+
+#: .\templates\index.html:181
+msgid "Response partners"
+msgstr ""
+
+#: .\templates\index.html:182
+msgid "Clear"
+msgstr ""
+
+#: .\templates\index.html:188
+msgid "All response partners"
+msgstr ""
+
+#: .\templates\index.html:203
+msgid "Status"
+msgstr ""
+
+#: .\templates\index.html:208
+msgid "Alert type"
+msgstr ""
+
+#: .\templates\index.html:214
+msgid "Needs type"
+msgstr ""
+
+#: .\templates\index.html:222
+msgid "Location"
+msgstr ""
+
+#: .\templates\index.html:265
+msgid "Clusters"
+msgstr ""
+
+#: .\templates\index.html:268
+msgid "Number of covered/affected people"
+msgstr ""
+
+#: .\templates\index.html:271
+msgid "Type alert"
+msgstr ""
+
+#: .\templates\index.html:277
+msgid "Context"
+msgstr ""
+
+#: .\templates\index.html:281
+msgid "Description"
+msgstr ""
+
+#: .\templates\index.html:291
+msgid "Date referral"
+msgstr ""
+
+#: .\templates\index.html:296
+msgid "Learn more"
+msgstr ""
+
+#: .\templates\languages\index.html:3
+msgid "Hello"
+msgstr ""

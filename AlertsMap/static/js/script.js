@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     /*=========================================
      =            Library functions            =
@@ -55,7 +55,7 @@
      =            Init            =
      ============================*/
 
-    var   $window = d3.select(window)
+    var $window = d3.select(window)
         , $body = d3.select(document.body);
 
     /*=====  End of Init  ======*/
@@ -76,7 +76,8 @@
             // console.log(referals);
 
             var res = {
-                  settlementRaw: record[referals.fields.settlement]
+                alertID: record[referals.fields.alertID]
+                , settlementRaw: record[referals.fields.settlement]
                 , settlement: record[referals.fields.settlement]
                 , raion: record[referals.fields.raion]
                 , raionCode: record[referals.fields.raionCode].toString()
@@ -173,9 +174,16 @@
                 }
             }
         )
-        .order(function (d) {
-            return d.affectedCount
-        });
+            .order(function (d) {
+                return d.affectedCount
+            });
+
+        // TODO: FInd out what this thing is for
+        // console.log(conf.filterStatus.reduce(function (init, cur) {
+        //     init[cur.key] = {affected: 0, color: cur.color};
+        //     return init
+        // }, {}));
+
 
         cf.dateDim = cf.dimension(function (d) {
             return d.date
@@ -243,9 +251,9 @@
                 }
             }
         )
-        .order(function (d) {
-            return d.raion
-        });
+            .order(function (d) {
+                return d.raion
+            });
 
 
         var filterDispatcher = d3.dispatch('filtered');
@@ -265,8 +273,8 @@
         var updateRaions = function (selectedRaionCodes) {
             map.raionsLayer.eachLayer(function (layer) {
                 var containerNodes = layer._container ? [layer._container] : d3.values(layer._layers).map(function (layer) {
-                        return layer._container
-                    });
+                    return layer._container
+                });
 
                 var $paths = d3.selectAll(containerNodes).selectAll('path');
 
@@ -676,7 +684,8 @@
 
         markerLayer.getLayers().forEach(function (marker) {
             // by some reasones, leaflet reset all markers on click, without it
-            marker.on('click', function (event) {});
+            marker.on('click', function (event) {
+            });
 
             d3.select(marker._icon).on('click', function () {
 
@@ -747,7 +756,7 @@
                 return months <= 0 ? 0 : months;
             }
 
-            var   dateBegin = cf.dateDim.bottom(1)[0].date
+            var dateBegin = cf.dateDim.bottom(1)[0].date
                 , dateEnd = cf.dateDim.top(1)[0].date;
 
             if (dateBegin.getTime() != dateEnd.getTime()) {
@@ -761,8 +770,8 @@
                 }
 
 
-
                 slider.dateRangeSlider({
+
                     bounds: {
                         min: dateBegin,
                         max: dateEnd
@@ -869,7 +878,6 @@
         /*=============================================
          =            Partner filter                   =
          =============================================*/
-
 
 
         if (is_staff) {
@@ -1138,11 +1146,10 @@
                 , 'dominant-baseline': 'text-before-edge'
             })
             .style({'line-height': '20px', 'font-weight': 'bold'})
-            .text('Contact line');
+            .text(gettext('Contact line'));
 
 
         /*=====  End of Map legend  ======*/
-
 
         /*==================================================================================
          =            Checkbox filters (cluster / status / type / need / oblast)            =
@@ -1201,6 +1208,7 @@
             self.totalFiltersNum = self.filters.length;
 
             // fill each checkbox
+
             $checks = $labels.append('input')
                 .attr({
                     'type': 'checkbox',
@@ -1245,8 +1253,8 @@
                 if (checked !== undefined) checkbox.checked = checked;
 
                 self.filters = checkbox.checked ? $checks.data().map(function (d) {
-                        return self.options.valueAccessor.call(self, d)
-                    }) : []
+                    return self.options.valueAccessor.call(self, d)
+                }) : [];
 
                 $checks.each(function () {
                     this.checked = checkbox.checked
@@ -1277,7 +1285,10 @@
 
                 $allLabel.append('label')
                     .text(self.options.checkAll)
-                    .attr({'for': self.options.checkAll.replace(/\/|\s+/g, '_').toLowerCase()})
+                    .attr({
+                        'for': self.options.checkAll.replace(/\/|\s+/g, '_').toLowerCase(),
+                        'class': 'translate'
+                    })
             }
 
             return self
@@ -1287,7 +1298,7 @@
         // init Cluster filter
 
         var filterCluster = new filterCheckboxWidget('#filterCluster', cf.clusterDim, {
-            checkAll: 'All clusters'
+            checkAll: gettext('All cluster')
             , onChange: function () {
                 filterDispatcher.filtered()
             }
@@ -1320,7 +1331,7 @@
 
         // init Alert type filter
         var filterType = new filterCheckboxWidget('#filterType', cf.typeDim, {
-            checkAll: 'All alert types',
+            checkAll: gettext('All alert types'),
             onChange: function () {
                 filterDispatcher.filtered()
             }
@@ -1329,7 +1340,7 @@
 
         // init Needs filter
         var filterNeed = new filterCheckboxWidget('#filterNeed', cf.needDim, {
-            checkAll: 'All need types',
+            checkAll: gettext('All need types'),
             onChange: function () {
                 filterDispatcher.filtered()
             }
@@ -1404,8 +1415,8 @@
         var loc = $('#locations-filter').selectize({
             options: OblastRaions(),
             optgroups: [
-                {id: 'luhansk', name: 'Luhanska oblast'},
-                {id: 'donetsk', name: 'Donetska oblast'}
+                {id: 'luhansk', name: gettext('Luhanska oblast')},
+                {id: 'donetsk', name: gettext('Donetska oblast')}
             ],
             labelField: 'raion',
             valueField: 'id',
@@ -1486,7 +1497,7 @@
             , $dataTableClose = $dataTableContainer.select('#dataTableClose')
             , $dataTablePagination = d3.select('#dataTablePagination')
             //$dataTableContainer
-            , dataTablePage = 0
+            , dataTablePage = 0;
 
         $dataTableHead.append('tr')
             .html(conf.tplDataTableHead())
@@ -1509,7 +1520,7 @@
                 })
                 .selectAll('td')
                 .each(function (data) {
-                    var   td = this
+                    var td = this
                         , $td = d3.select(td)
                         , div = document.createElement('div')
                         , $div = d3.select(div);
@@ -1555,7 +1566,7 @@
 
                 $pages.enter().append('li')
                     .append('a')
-                    .attr({'href':'#'})
+                    .attr({'href': '#'})
                     .text(function (d) {
                         return d + 1
                     })
@@ -1586,7 +1597,6 @@
 
         $openDataTable.on('click', function () {
 
-
             // if( $dataTableContainer.style('display') == 'none' ) {
             // 	$dataTableContainer.style({ 'display':  null });
             // 	$openDataTable.classed({ 'active': true });
@@ -1598,6 +1608,7 @@
             // 	$openDataTable.classed({ 'active': false });
             // 	$body.classed({ 'data-table-opened': false })
             // }
+
         });
 
         // $dataTableClose.on('click', function() {
@@ -1608,19 +1619,22 @@
 
 
         filterDispatcher.on('filtered.updateTable', function () {
+
             // dataTablePage = 0;
             // updateTable();
+
             if ($body.classed('modal-open')) {
                 dataTablePage = 0;
                 updateTable()
             }
+
         });
 
         /*=====  End of Data table  ======*/
 
 
         /*===================================================================
-         =            Show counter of alerts with filters applied            =
+         =            Show counter of alerts with filters applied           =
          ===================================================================*/
 
         var $filterCounter = d3.select('#filterCounter');
@@ -1671,13 +1685,37 @@
 
             var data = dim.top(Infinity);
             var flatData = flattenize(data, is_staff);
-            var header = Object.keys(flatData[0]);
+            // Object.keys(flatData[0])
+
+            var header = [
+                "id",
+                "date",
+                "oblast",
+                "raion",
+                "settlement",
+                "clusters",
+                "partners",
+                "needs",
+                "status",
+                "conflictRelated",
+                "covered",
+                "affected",
+                // "context",
+                // "description",
+                "item",
+                "quantity",
+                "quantity_response",
+                "unit",
+                "latitude",
+                "longitude",
+                "view_url"
+            ];
 
             flatData = flatData.map(function (datum) {
 
                 // console.log(Object.keys(datum))
 
-                return header.map(function(field) {
+                return header.map(function (field) {
                     return datum[field]
                 });
 

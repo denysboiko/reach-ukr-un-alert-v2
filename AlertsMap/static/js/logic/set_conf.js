@@ -1,4 +1,5 @@
-var raionColors = {
+var raion_colors = {
+
     '1410100000': '#51a9ff',
     '1410200000': '#33ccff',
     '1410300000': '#42bbff',
@@ -77,20 +78,21 @@ var raionColors = {
     '4424800000': '#4282ff',
     '4425100000': '#51a9ff',
     '4425400000': '#b8e2fd'
+
 };
 
-function setConf(data_url, full_access) {
+function setConf(data_url, full_access, lang) {
 
     var tiles_list = {
         ru: 'https://api.mapbox.com/styles/v1/denysboiko/cj31bg47c00072rqpzul3t1qb/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
-        ua: 'https://api.mapbox.com/styles/v1/denysboiko/cj31bi4rk000b2socgh8kzaeu/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
+        uk: 'https://api.mapbox.com/styles/v1/denysboiko/cj31bi4rk000b2socgh8kzaeu/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
         en: 'https://api.mapbox.com/styles/v1/denysboiko/cj1hz2pno004g2qk8fbfwqrtc/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGVueXNib2lrbyIsImEiOiJjaXpxdzlxMGswMHMzMnFxbzdpYjJoZDN1In0.O3O4iBtTiODWN0C8oGOBwg',
         osm: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png'
     };
 
     return {
         map: {
-            tiles: tiles_list[window.localStorage['lang']]
+            tiles: tiles_list[lang]
             , center: [48.1, 38.2]
             , zoom: 8
             , minZoom: 6
@@ -122,7 +124,8 @@ function setConf(data_url, full_access) {
                 urls: ['/alerts?format=json']
                 , loader: d3.json
                 , fields: {
-                      settlement: 'settlement'
+                      alertID: 'id'
+                    , settlement: 'settlement'
                     , oblast: 'oblast'
                     , raion: 'raion'
                     , raionCode: 'raionCode'
@@ -149,9 +152,9 @@ function setConf(data_url, full_access) {
             }
         }
         , filterStatus: [
-              {key: 'Resolved', text: 'Resolved', color: '#70A800'}
-            , {key: 'Addressed But Unresolved', text: 'Addressed, not resolved', color: '#F69E61'}
-            , {key: 'Not Addressed', text: 'Not addressed', color: '#EE5859'}
+              {key: gettext('Resolved'), text: gettext('Resolved'), color: '#70A800'}
+            , {key: gettext('Addressed But Unresolved'), text: gettext('Addressed But Unresolved'), color: '#F69E61'}
+            , {key: gettext('Not Addressed'), text: gettext('Not Addressed'), color: '#EE5859'}
         ]
         // , filterCluster: clusters
         , filterOblast: {
@@ -185,7 +188,7 @@ function setConf(data_url, full_access) {
                 , {key: '1415500000', value: 'Yasynuvatska'}, {key: '1425500000', value: 'Yasynuvatskyi'}
                 , {key: '1412000000', value: 'Yenakiivska'}, {key: '1412100000', value: 'Zhdanivska'}
             ]
-            //'http://127.0.0.1:4000/filter/alert_system/Raion/oblast/alert_system/Alert/raion/1400000000/'
+            //'http://127.0.0.1:3000/filter/alert_system/Raion/oblast/alert_system/Alert/raion/1400000000/'
             , luhansk: [
                 {key: '4411200000', value: 'Alchevska'}, {key: '4420300000', value: 'Antratsytivskyi'}
                 , {key: '4410300000', value: 'Antratsytska'}, {key: '4420900000', value: 'Bilokurakynskyi'}
@@ -206,86 +209,7 @@ function setConf(data_url, full_access) {
             ]
         }
 
-        , raionColors: {
-            '1410100000': '#51a9ff',
-            '1410200000': '#33ccff',
-            '1410300000': '#42bbff',
-            '1410600000': '#4282ff',
-            '1410900000': '#23e2ff',
-            '1411200000': '#b8e2fd',
-            '1413200000': '#51a9ff',
-            '1413300000': '#33ccff',
-            '1413500000': '#42bbff',
-            '1413600000': '#4282ff',
-            '1413800000': '#23e2ff',
-            '1414100000': '#b8e2fd',
-            '1414400000': '#51a9ff',
-            '1414700000': '#33ccff',
-            '1414800000': '#42bbff',
-            '1415000000': '#4282ff',
-            '1422700000': '#b8e2fd',
-            '1423000000': '#23e2ff',
-            '1423300000': '#33ccff',
-            '1423600000': '#51a9ff',
-            '1423900000': '#42bbff',
-            '1424200000': '#4282ff',
-            '1424500000': '#23e2ff',
-            '1424800000': '#b8e2fd',
-            '1425200000': '#b8e2fd',
-            '1425500000': '#23e2ff',
-            '1415300000': '#42bbff',
-            '1415500000': '#4282ff',
-            '1420300000': '#51a9ff',
-            '1420600000': '#33ccff',
-            '1420900000': '#b8e2fd',
-            '1421200000': '#4282ff',
-            '1421500000': '#42bbff',
-            '1421700000': '#33ccff',
-            '1422000000': '#23e2ff',
-            '1422400000': '#51a9ff',
-            '1411300000': '#42bbff',
-            '1411500000': '#33ccff',
-            '1411600000': '#4282ff',
-            '1411700000': '#b8e2fd',
-            '1412000000': '#51a9ff',
-            '1412100000': '#23e2ff',
-            '1412300000': '#4282ff',
-            '1412500000': '#51a9ff',
-            '1412600000': '#23e2ff',
-            '1412900000': '#33ccff',
-            '4410100000': '#42bbff',
-            '4410300000': '#b8e2fd',
-            '4410500000': '#51a9ff',
-            '4411000000': '#33ccff',
-            '4411200000': '#42bbff',
-            '4411400000': '#4282ff',
-            '4411600000': '#23e2ff',
-            '4411800000': '#b8e2fd',
-            '4412100000': '#51a9ff',
-            '4412300000': '#42bbff',
-            '4412500000': '#33ccff',
-            '4412700000': '#4282ff',
-            '4412900000': '#23e2ff',
-            '4413100000': '#b8e2fd',
-            '4420300000': '#33ccff',
-            '4420600000': '#42bbff',
-            '4420900000': '#23e2ff',
-            '4421400000': '#51a9ff',
-            '4421600000': '#4282ff',
-            '4422200000': '#b8e2fd',
-            '4422500000': '#23e2ff',
-            '4422800000': '#51a9ff',
-            '4423100000': '#b8e2fd',
-            '4423300000': '#33ccff',
-            '4423600000': '#4282ff',
-            '4423800000': '#42bbff',
-            '4424000000': '#42bbff',
-            '4424200000': '#33ccff',
-            '4424500000': '#23e2ff',
-            '4424800000': '#4282ff',
-            '4425100000': '#51a9ff',
-            '4425400000': '#b8e2fd'
-        }
+        , raionColors: raion_colors
     };
 
     // return createConfig(clusters, data_url, null);

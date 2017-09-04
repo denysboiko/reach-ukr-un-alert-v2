@@ -1,5 +1,6 @@
 import os
 import psycopg2
+from django.utils.translation import ugettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -15,7 +16,6 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '.elasticbeanstalk.com'
 ]
-
 
 # Application definition
 
@@ -37,10 +37,11 @@ INSTALLED_APPS = [
     'guardian',
     'colorful',
     'colorfield',
-    'AlertsMap'
+    'AlertsMap',
+    'modeltranslation'
 ]
 
-#TODO: Remove RGBColorField, I use colorful
+# TODO: Remove RGBColorField, I use colorful
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -60,6 +61,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'alerts_map.urls'
@@ -82,6 +84,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
                 'django.contrib.messages.context_processors.messages'
             ],
         },
@@ -141,12 +144,21 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
+LANGUAGES = (
+
+    ('en', _('English')),
+    ('ru', _('Russian')),
+    ('uk', _('Ukrainian')),
+
+)
+
+# ru-RU
+# en-us
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -171,10 +183,12 @@ EMAIL_HOST_USER = 'AKIAIR7B2ZEUPYAM7EFA'
 EMAIL_HOST_PASSWORD = 'ApNOSctoPCro+lC//G/tEZPGK6S4IDBBnBlTKwh/4zMs'
 EMAIL_USE_TLS = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 SITE_ID = 1
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'AlertsMap', 'static')
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)

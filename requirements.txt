@@ -10,3 +10,5 @@ django-guardian
 django-colorful
 django-colorfield
 django-agnocomplete
+google-api-python-client
+django-modeltranslation

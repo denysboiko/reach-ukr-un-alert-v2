@@ -146,14 +146,12 @@ class AlertAdmin(ModelAdmin):
     inlines = [ItemsInline, ResponsesInline]
 
     editor_fields = (
-
                 ('need_types','clusters'),
                 ('status','referral_agency'),
                 ('date_referal'),
                 ('informant','context'),
                 ('description','comments'),
                 'date_update'
-
             )
 
     moderation_fields = ('confirmation_status',)
@@ -163,7 +161,6 @@ class AlertAdmin(ModelAdmin):
 
         if check_access(request.user, 'Moderators') | request.user.is_superuser:
             self.fieldsets[2][1]['fields'] = self.editor_fields + self.moderation_fields
-
         else:
             self.fieldsets[2][1]['fields'] = self.editor_fields
 
@@ -245,7 +242,6 @@ class OrganizationAdmin(ModelAdmin):
     list_display = ['organization_name','organization_acronym','organization_type']
 
 
-
 class RaionAdmin(ModelAdmin):
     list_filter = ['oblast']
     search_fields = ['raion_name', 'pcode']
@@ -254,6 +250,7 @@ class RaionAdmin(ModelAdmin):
         'raion_name',
         'oblast'
     ]
+
 
 class SettlementAdmin(ModelAdmin):
     list_filter = ['area','raion']
