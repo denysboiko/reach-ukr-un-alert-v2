@@ -117,7 +117,7 @@ class AlertViewSet(viewsets.ViewSet):
 
     def list(self, request):
 
-        hide = ('response_partners',)
+        hide = ('response_partners','context','description')
         if request.user.is_staff:
             hide = ()
             # print 'Listing view. User has access to see response partners'
