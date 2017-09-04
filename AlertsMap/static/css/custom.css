@@ -118,11 +118,15 @@ a.header-button:focus, a.header-button:hover {
 }
 
 .wrapper {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 52px);
     position: relative;
     float: left;
 }
 
 .main-wrapper {
     width: calc(100% - 360px);
+}
+
+ul.dropdown-menu {
+    z-index: 3000;
 }

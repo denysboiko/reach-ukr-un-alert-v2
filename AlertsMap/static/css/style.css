@@ -139,6 +139,7 @@ header {
 .header-button,
 .header-separator {
   display: inline-block;
+  line-text: 20px;
   margin: 8px 16px 8px 0;
 }
 .header-button {
