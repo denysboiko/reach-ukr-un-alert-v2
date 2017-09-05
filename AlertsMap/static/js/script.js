@@ -146,7 +146,9 @@
                 ++p.count;
 
                 p.affected += v.affected;
+
                 p.status[v.status].affected += v.affected;
+
                 return p
             }
 
@@ -827,7 +829,8 @@
                             label: function () {
                                 return null;
                             }
-                        }]
+                        }
+                    ]
                 });
 
                 var filterDateEnd = new Date(dateEnd);

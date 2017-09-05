@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 from AlertsMap.models import *
 from AlertsMap.forms import *
-
+import json
 from AlertsMap.serializers import *
 
 
@@ -58,6 +58,8 @@ class AlertsViewSet(viewsets.ReadOnlyModelViewSet):
 
 def home(request):
 
+    queryset = list(Raion.objects.values('id', 'raion_name', 'color', 'oblast'))
+
     return render(
         request,
         'index.html',
@@ -65,7 +67,8 @@ def home(request):
             'user': request.user,
             'access': 1 if request.user.is_staff else 0,
             'new_alert': reverse('admin:AlertsMap_alert_add'),
-            'data': '../alerts/?format=json'
+            'data': '../alerts/?format=json',
+            'raions': json.dumps(queryset)
         }
     )
 

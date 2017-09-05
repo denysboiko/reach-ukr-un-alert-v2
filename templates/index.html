@@ -339,8 +339,27 @@
 
 
 <script type="text/javascript">
-    var lang = '{{ LANGUAGE_CODE }}';
-    window.conf = setConf('{{ data }}', {{ access }}, lang);
+
+    function transformRaions(array, oblast) {
+        return array.filter(function (d) {
+            return d.oblast === oblast;
+        }).map(function (o) {
+            return {
+                key: o.id,
+                value: o.raion_name
+            };
+        })
+    }
+
+    const raions = JSON.parse('{{ raions | escapejs }} ');
+    const raionColors = {};
+    raions.map(function (d) {
+        raionColors[d.id] = d.color
+    });
+
+    const lang = '{{ LANGUAGE_CODE }}';
+
+    window.conf = setConf('{{ data }}',{{ access }}, lang, raionColors, [transformRaions(raions, 1400000000), transformRaions(raions, 4400000000)]);
 
     $('.lang-option').on('click', function () {
         var lang = $(this).data('lang');
