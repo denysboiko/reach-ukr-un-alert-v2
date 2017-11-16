@@ -1,6 +1,7 @@
 django-admin makemessages -l uk
-django-admin compilemessages
-
-
+django-admin makemessages -l ru
 django-admin makemessages -d djangojs -l ru
 django-admin makemessages -d djangojs -l uk
+
+
+django-admin compilemessages

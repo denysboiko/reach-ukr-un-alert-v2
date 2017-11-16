@@ -1,0 +1,26 @@
+<div class="header-wrapper">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header header" style="width: 100%">
+                <ul class="nav navbar-nav">
+                    <a class="navbar-brand" href="/" data-i18n="Alerts">Alerts</a>
+                    {% if user.is_authenticated %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/admin" class="translate">Admin Panel</a></li>
+                                {% comment %}<li><a href="/admin/moderation/moderatedobject/">Moderation</a></li>{% endcomment %}
+                                <li><a href="/admin/password_change/" class="translate">Change Password</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout" class="translate">Log Out</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="/login/">Sign In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-04 13:39+0300\n"
+"POT-Creation-Date: 2017-10-25 14:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,38 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
+#: .\AlertsMap\admin.py:53
+#, fuzzy
+#| msgid "Needs type"
+msgid "Need by items"
+msgstr "Типи потреб"
+
+#: .\AlertsMap\admin.py:54
+#, fuzzy
+#| msgid "Needs type"
+msgid "Needs by items"
+msgstr "Типи потреб"
+
+#: .\AlertsMap\admin.py:61
+msgid "Cluster recipient list"
+msgstr "Список отримувачів"
+
+#: .\AlertsMap\admin.py:62
+msgid "Cluster recipient lists"
+msgstr "Списки отримувачів"
+
+#: .\AlertsMap\admin.py:75
+#, fuzzy
+#| msgid "Response partners"
+msgid "Response by items"
+msgstr "Партнер"
+
+#: .\AlertsMap\admin.py:76
+#, fuzzy
+#| msgid "Response partners"
+msgid "Responses by items"
+msgstr "Партнер"
+
 #: .\AlertsMap\forms.py:14
 msgid "Username"
 msgstr "Користувач"
@@ -27,7 +59,7 @@ msgstr "Користувач"
 msgid "The username must contain only letters, numbers and underscores."
 msgstr "Ім'я користувача повинно містити лише літери, цифри та підкреслення."
 
-#: .\AlertsMap\forms.py:17
+#: .\AlertsMap\forms.py:17 .\AlertsMap\models.py:201
 msgid "Organization"
 msgstr "Організація"
 
@@ -55,208 +87,302 @@ msgstr "Ім'я користувача вже існує. Будь ласка, �
 msgid "The two password fields did not match."
 msgstr "Два поля пароля не збігаються."
 
-#: .\AlertsMap\models.py:208
-msgid "Date of Incident"
-msgstr "Дата інциденту"
+#: .\AlertsMap\models.py:19
+#, fuzzy
+#| msgid "Username"
+msgid "User"
+msgstr "Користувач"
 
-#: .\AlertsMap\models.py:224
-msgid "GCA/NGCA"
-msgstr "ТКУ/ТНКУ"
+#: .\AlertsMap\models.py:20
+#, fuzzy
+#| msgid "Username"
+msgid "Users"
+msgstr "Користувач"
 
-#: .\AlertsMap\models.py:226 .\AlertsMap\models.py:279
-msgid "No"
-msgstr "Ні"
+#: .\AlertsMap\models.py:31
+msgid "Email"
+msgstr "Електронна адреса"
 
-#: .\AlertsMap\models.py:227
-msgid "Yes"
-msgstr "Так"
+#: .\AlertsMap\models.py:32
+#, fuzzy
+#| msgid "Email address"
+msgid "Emails"
+msgstr "Електронні адреси"
 
-#: .\AlertsMap\models.py:343
-#, python-format
-msgid "%d affected in %s, %s raion (%s obl.)"
-msgstr "%d постраждалих в %s, %s районі (%s обл.)"
+#: .\AlertsMap\models.py:44 .\templates\index.html:210
+msgid "Cluster"
+msgstr "Кластер"
 
-#: .\AlertsMap\views.py:40 .\templates\languages\index.html:4
-msgid "Welcome to my site."
-msgstr "Добро пожалівать"
+#: .\AlertsMap\models.py:45 .\templates\index.html:300
+msgid "Clusters"
+msgstr "Кластери"
 
-#: .\alerts_map\settings.py:154
-msgid "English"
-msgstr "Англійська"
-
-#: .\alerts_map\settings.py:155
-msgid "Russian"
-msgstr "Російська"
-
-#: .\alerts_map\settings.py:156
-msgid "Ukrainian"
-msgstr "Українська"
-
-#: .\templates\index.html:61
-msgid "Date"
-msgstr "Дата"
-
-#: .\templates\index.html:62
+#: .\AlertsMap\models.py:69 .\templates\index.html:64
 msgid "Oblast"
 msgstr "Область"
 
-#: .\templates\index.html:64
+#: .\AlertsMap\models.py:70
+#, fuzzy
+#| msgid "Oblast"
+msgid "Oblasts"
+msgstr "Область"
+
+#: .\AlertsMap\models.py:85 .\templates\index.html:66
 msgid "Raion"
 msgstr "Район"
 
-#: .\templates\index.html:66
+#: .\AlertsMap\models.py:86
+#, fuzzy
+#| msgid "Raion"
+msgid "Raions"
+msgstr "Район"
+
+#: .\AlertsMap\models.py:101
+msgid "Coordination hub"
+msgstr "Координаційний офіс"
+
+#: .\AlertsMap\models.py:102
+msgid "Coordination hubs"
+msgstr "Координаційні офіси"
+
+#: .\AlertsMap\models.py:121 .\templates\index.html:68
 msgid "Settlement"
 msgstr "Населений пункт"
 
-#: .\templates\index.html:67 .\templates\index.html:286
+#: .\AlertsMap\models.py:122
+#, fuzzy
+#| msgid "Settlement"
+msgid "Settlements"
+msgstr "Населені пункти"
+
+#: .\AlertsMap\models.py:137
+#, fuzzy
+#| msgid "Needs type"
+msgid "Need Type"
+msgstr "Типи потреб"
+
+#: .\AlertsMap\models.py:138
+#, fuzzy
+#| msgid "Needs type"
+msgid "Need Types"
+msgstr "Типи потреб"
+
+#: .\AlertsMap\models.py:153
+#, fuzzy
+#| msgid "Affected"
+msgid "Affected Group"
+msgstr "Постраждалих"
+
+#: .\AlertsMap\models.py:154
+#, fuzzy
+#| msgid "Affected"
+msgid "Affected Groups"
+msgstr "Постраждалих"
+
+#: .\AlertsMap\models.py:166
+#, fuzzy
+#| msgid "Alert type"
+msgid "Alert Type"
+msgstr "Тип алерта"
+
+#: .\AlertsMap\models.py:167
+#, fuzzy
+#| msgid "Alert type"
+msgid "Alert Types"
+msgstr "Тип алерта"
+
+#: .\AlertsMap\models.py:179 .\templates\index.html:238
+msgid "Status"
+msgstr "Статус"
+
+#: .\AlertsMap\models.py:180
+#, fuzzy
+#| msgid "Status"
+msgid "Statuses"
+msgstr "Статус"
+
+#: .\AlertsMap\models.py:202
+#, fuzzy
+#| msgid "Organization"
+msgid "Organizations"
+msgstr "Організації"
+
+#: .\AlertsMap\models.py:207
+#, fuzzy
+#| msgid "Organization"
+msgid "Organization Name"
+msgstr "Організація"
+
+#: .\AlertsMap\models.py:242
+msgid "Date of Incident"
+msgstr "Дата інциденту"
+
+#: .\AlertsMap\models.py:258
+msgid "GCA/NGCA"
+msgstr "ТКУ/ТНКУ"
+
+#: .\AlertsMap\models.py:261 .\AlertsMap\models.py:316
+msgid "No"
+msgstr "Ні"
+
+#: .\AlertsMap\models.py:262 .\AlertsMap\models.py:316
+msgid "Yes"
+msgstr "Так"
+
+# msgid "%d affected in %s, %s raion (%s obl.)"
+# msgstr "%d постраждалих в %s, %s районі (%s обл.)"
+#: .\alerts_map\settings.py:160
+msgid "English"
+msgstr "Англійська"
+
+#: .\alerts_map\settings.py:161
+msgid "Russian"
+msgstr "Російська"
+
+#: .\alerts_map\settings.py:162
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: .\templates\index.html:62
+msgid "ID"
+msgstr "ID"
+
+#: .\templates\index.html:63
+msgid "Date"
+msgstr "Дата"
+
+#: .\templates\index.html:69 .\templates\index.html:321
 msgid "Related to Conflict"
 msgstr "Пов'язані з конфліктом"
 
-#: .\templates\index.html:68 .\templates\index.html:274
+#: .\templates\index.html:70 .\templates\index.html:309
 msgid "Type of Needs"
 msgstr "Тип потреб"
 
-#: .\templates\index.html:69
+#: .\templates\index.html:71
 msgid "Covered"
 msgstr "Охоплено"
 
-#: .\templates\index.html:71
+#: .\templates\index.html:73
 msgid "Affected"
 msgstr "Постраждалих"
 
-#: .\templates\index.html:72
+#: .\templates\index.html:74
 msgid "Item"
 msgstr "Одиниця"
 
-#: .\templates\index.html:73
+#: .\templates\index.html:75
 msgid "Quantity Provided/Needed"
 msgstr "Кількість наданих / необхідних"
 
-#: .\templates\index.html:74
+#: .\templates\index.html:76
 msgid "Additional info"
 msgstr "Додаткова інформація"
 
-#: .\templates\index.html:110
+#: .\templates\index.html:88 .\templates\index.html:331
+msgid "Learn more"
+msgstr "Більше"
+
+#: .\templates\index.html:113
 msgid "RESET FILTERS"
 msgstr "СКИНУТИ ФІЛЬТРИ"
 
-#: .\templates\index.html:116
+#: .\templates\index.html:119
 msgid "ADD AN ALERT"
 msgstr "ДОДАТИ АЛЕРТ"
 
-#: .\templates\index.html:123
+#: .\templates\index.html:126
 msgid "Admin Panel"
 msgstr "Панель адміністрування"
 
-#: .\templates\index.html:124
+#: .\templates\index.html:127
 #, fuzzy
 #| msgid "Password"
 msgid "Change Password"
 msgstr "Змінити пароль"
 
-#: .\templates\index.html:126
+#: .\templates\index.html:129
 msgid "Log Out"
 msgstr "Вийти"
 
-#: .\templates\index.html:131 .\templates\registration\register.html:19
+#: .\templates\index.html:134 .\templates\registration\register.html:19
 msgid "Sign In"
 msgstr "Увійти"
 
-#: .\templates\index.html:156
+#: .\templates\index.html:143
 msgid "alerts selected of"
 msgstr "алертів вибрано з"
 
-#: .\templates\index.html:160
+#: .\templates\index.html:150
 msgid "DATA TABLE"
 msgstr "ТАБЛИЦЯ ДАНИХ"
 
-#: .\templates\index.html:161
+#: .\templates\index.html:152
 msgid "DOWNLOAD DATA"
 msgstr "СКАЧАТИ ДАНІ"
 
-#: .\templates\index.html:175
-msgid "Cluster"
-msgstr "Кластер"
-
-#: .\templates\index.html:181
+#: .\templates\index.html:216
 msgid "Response partners"
 msgstr "Партнер"
 
-#: .\templates\index.html:182
+#: .\templates\index.html:217
 msgid "Clear"
 msgstr "Очистити"
 
-#: .\templates\index.html:188
+#: .\templates\index.html:223
 msgid "All response partners"
 msgstr "Усі партнери"
 
-#: .\templates\index.html:203
-msgid "Status"
-msgstr "Статус"
+#: .\templates\index.html:231
+#, fuzzy
+#| msgid "- Select location to filter -"
+msgid "- Select partner to filter -"
+msgstr "- Виберіть організацію -"
 
-#: .\templates\index.html:208
+#: .\templates\index.html:243
 msgid "Alert type"
 msgstr "Тип алерта"
 
-#: .\templates\index.html:214
+#: .\templates\index.html:249
 msgid "Needs type"
 msgstr "Типи потреб"
 
-#: .\templates\index.html:222
+#: .\templates\index.html:257
 msgid "Location"
 msgstr "Район"
 
-#: .\templates\index.html:265
-msgid "Clusters"
-msgstr "Кластери"
-
-#: .\templates\index.html:268
+#: .\templates\index.html:303
 msgid "Number of covered/affected people"
 msgstr "Кількість охоплено/постраждалих"
 
-#: .\templates\index.html:271
+#: .\templates\index.html:306
 msgid "Type alert"
 msgstr "Тип алерта"
 
-#: .\templates\index.html:277
-msgid "Context"
-msgstr "Контекст"
-
-#: .\templates\index.html:281
-msgid "Description"
-msgstr "Опис"
-
-#: .\templates\index.html:291
+#: .\templates\index.html:326
 msgid "Date referral"
 msgstr "Дата рефералу"
 
-#: .\templates\index.html:296
-msgid "Learn more"
-msgstr "Більше"
-
-#: .\templates\languages\index.html:3
-msgid "Hello"
-msgstr ""
-
-#: .\templates\registration\login.html:12
+#: .\templates\registration\login.html:11
 msgid "Please Sign in"
 msgstr "Увійдіть до системи"
 
-#: .\templates\registration\login.html:19
+#: .\templates\registration\login.html:18
 msgid "Your username and password didn't match. Please try again."
-msgstr "Ваше ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
+msgstr ""
+"Ваше ім'я користувача та пароль не збігаються. Будь ласка спробуйте ще раз."
 
-#: .\templates\registration\login.html:22
+#: .\templates\registration\login.html:21
 msgid "Login"
 msgstr "Увійти"
 
-#: .\templates\registration\login.html:25
+#: .\templates\registration\login.html:24
 #, fuzzy
 #| msgid "Already have an account?"
 msgid "Don't have an account?"
 msgstr "Ще не маєте облікового запису?"
 
-#: .\templates\registration\login.html:25
+#: .\templates\registration\login.html:24
 #, fuzzy
 #| msgid "Register"
 msgid "Register Here"
@@ -271,8 +397,17 @@ msgstr "Зареєструватися"
 msgid "Already have an account?"
 msgstr "Вже маєте обліковий запис?"
 
-#~ msgid "- Select location to filter -"
-#~ msgstr "- Виберіть район для фільтрації -"
+#~ msgid "Home"
+#~ msgstr "Головна"
+
+#~ msgid "Welcome to my site."
+#~ msgstr "Добро пожалівать"
+
+#~ msgid "Context"
+#~ msgstr "Контекст"
+
+#~ msgid "Description"
+#~ msgstr "Опис"
 
 #, fuzzy
 #~| msgid "Type of Needs"

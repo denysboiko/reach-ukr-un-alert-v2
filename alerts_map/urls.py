@@ -4,6 +4,8 @@ from django.contrib.auth import views as auth_views
 from AlertsMap.views import *
 from rest_framework import routers
 from django.conf.urls.i18n import i18n_patterns
+from django.views.i18n import javascript_catalog
+
 
 router = routers.DefaultRouter()
 # router.register(r'alerts', AlertsViewSet)
@@ -20,7 +22,6 @@ js_info_dict = {
 }
 
 urlpatterns = [
-
     url(r'^logout/$', logout_page),
     url(r'^login/$', auth_views.login),
     url(r'^$', home),
@@ -33,12 +34,11 @@ urlpatterns = [
     url(r'^register/success/$', register_success),
     url(r'^', include(router.urls)),
     url(r'^', include('smart_selects.urls')),
-    url(
-        r'^agnocomplete/',
-        include('agnocomplete.urls', namespace='agnocomplete')),
+    url(r'^agnocomplete/', include('agnocomplete.urls', namespace='agnocomplete')),
+    url(r'^jsi18n/$', javascript_catalog, js_info_dict)
 ]
 
 
-urlpatterns += i18n_patterns(
-    url(r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
-)
+# urlpatterns += i18n_patterns(
+#
+# )

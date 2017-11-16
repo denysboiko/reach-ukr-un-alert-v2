@@ -28,7 +28,7 @@
 
     <script src="{% static 'js/jQDateRangeSlider-withRuler-min.js' %}"></script>
     <script src="{% static 'js/FileSaver.min.js' %}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/3.3.13/js/tableexport.min.js"></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/selectize/selectize.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/selectize/selectize.default.min.css' %}"/>
@@ -227,7 +227,7 @@
                 <div id="filterPartnerSelected"></div>
 
                 <select id="filterPartner" class="demo-default selectized" multiple="multiple"
-                        style="display: none;" placeholder="- Select partner to filter -" tabindex="-1">
+                        style="display: none;" placeholder="{% trans '- Select partner to filter -' %}" tabindex="-1">
                 </select>
 
             </div>

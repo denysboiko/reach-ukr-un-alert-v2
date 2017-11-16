@@ -16,6 +16,8 @@ class User(AbstractUser):
 
     class Meta:
         db_table = 'auth_user'
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
 
 class Emails(models.Model):
 
@@ -26,7 +28,9 @@ class Emails(models.Model):
 
     class Meta:
         db_table = 'emails'
-        verbose_name_plural = 'Emails'
+        verbose_name = _('Email')
+        verbose_name_plural = _('Emails')
+
 
 class Cluster(models.Model):
 
@@ -37,6 +41,8 @@ class Cluster(models.Model):
 
     class Meta:
         db_table = 'clusters'
+        verbose_name = _('Cluster')
+        verbose_name_plural = _('Clusters')
 
 
 class GCA_NGCA(models.Model):
@@ -60,6 +66,8 @@ class Oblast(models.Model):
 
     class Meta:
         db_table = 'oblasts'
+        verbose_name = _('Oblast')
+        verbose_name_plural = _('Oblasts')
 
 
 class Raion(models.Model):
@@ -74,6 +82,8 @@ class Raion(models.Model):
 
     class Meta:
         db_table = 'raions'
+        verbose_name = _('Raion')
+        verbose_name_plural = _('Raions')
 
 
 class CoordinationHub(models.Model):
@@ -88,6 +98,8 @@ class CoordinationHub(models.Model):
 
     class Meta:
         db_table = 'coordination_hubs'
+        verbose_name = _('Coordination hub')
+        verbose_name_plural = _('Coordination hubs')
 
 class Settlement(models.Model):
 
@@ -106,9 +118,8 @@ class Settlement(models.Model):
 
     class Meta:
         db_table = 'settlements'
-
-
-
+        verbose_name = _("Settlement")
+        verbose_name_plural = _("Settlements")
 
 
 class NeedType(models.Model):
@@ -120,6 +131,8 @@ class NeedType(models.Model):
     class Meta:
         # managed = False
         db_table = 'need_types'
+        verbose_name = _('Need Type')
+        verbose_name_plural = _('Need Types')
 
 
 
@@ -134,6 +147,8 @@ class AffectedGroup(models.Model):
     class Meta:
         managed = False
         db_table = 'affected_groups'
+        verbose_name = _('Affected Group')
+        verbose_name_plural = _('Affected Groups')
 
 
 class AlertType(models.Model):
@@ -145,6 +160,8 @@ class AlertType(models.Model):
     class Meta:
         managed = False
         db_table = 'alert_types'
+        verbose_name = _('Alert Type')
+        verbose_name_plural = _('Alert Types')
 
 
 class Status(models.Model):
@@ -156,6 +173,8 @@ class Status(models.Model):
     class Meta:
         managed = False
         db_table = 'status'
+        verbose_name = _('Status')
+        verbose_name_plural = _('Statuses')
 
 
 class ConfirmationStatus(models.Model):
@@ -176,11 +195,13 @@ class OrganizationType(models.Model):
 
     class Meta:
         db_table = 'organization_types'
+        verbose_name = _('Organization')
+        verbose_name_plural = _('Organizations')
 
 
 class Organization(models.Model):
 
-    organization_name = models.CharField(max_length=80)
+    organization_name = models.CharField(max_length=80, verbose_name=_('Organization Name'))
     organization_acronym = models.CharField(max_length=30, null=True)
     organization_type = models.ForeignKey(OrganizationType, null=True)
 
@@ -348,8 +369,8 @@ class Alert(models.Model):
 
         return recipients
 
-    # def __unicode__(self):
-    #     return _('%d affected in %s, %s raion (%s obl.)') % (self.no_affected, self.settlement, self.raion, self.oblast)
+    def __unicode__(self):
+        return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
 
     location.admin_order_field = 'location'
 
@@ -422,5 +443,8 @@ class Response(models.Model):
     response_partners.admin_order_field = 'organization_name'
     # def partners(self):
     #     return obj
+    # def get_items(self):
+
+
     class Meta:
         db_table='responses'

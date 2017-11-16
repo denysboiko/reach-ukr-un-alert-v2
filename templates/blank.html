@@ -9,95 +9,84 @@
 
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
 
-		<script src="{% static 'js/d3.v3.min.js' %}" charset="utf-8"></script>
-		<script src="{% static 'libs/underscore-min.js' %}"></script>
 		<script src="{% static 'js/jquery.min.js' %}"></script>
-		<script src="{% static 'js/changeLang.js' %}"></script>
-
-		<script type="text/javascript">
-
-            var setLang = function(newLang) {
-                window.localStorage['lang'] = newLang;
-            };
-
-            if(!window.localStorage['lang']) {
-                setLang('en');
-            }
-
-            changeLang(window.localStorage['lang']);
-
-            $(document).ready(function(){
-                $('.button-lang-'+window.localStorage['lang']).css({'background': '#ccc','border-color': '#888','color': '#000'});
-            });
-
-		</script>
-
         <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}" />
+        <style>
+        .form-signin {
+            width:  450px;
+            margin: 0 auto
+        }
+        body {
+          background: #eee !important;
+        }
 
-{#        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css">#}
-{#        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>#}
-{#        <script>hljs.initHighlightingOnLoad();</script>#}
+        .wrapper {
+          margin-top: 80px;
+          margin-bottom: 80px;
+        }
 
+        .form-signin {
+          max-width: 380px;
+          padding: 15px 35px 45px;
+          margin: 0 auto;
+          background-color: #fff;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .form-signin .form-signin-heading,
+        .form-signin .checkbox {
+          margin-bottom: 30px;
+        }
+        .form-signin .checkbox {
+          font-weight: normal;
+        }
+        .form-signin .form-control {
+          position: relative;
+          font-size: 16px;
+          height: auto;
+          padding: 10px;
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+        }
+        .form-signin .form-control:focus {
+          z-index: 2;
+        }
+
+        .top-flat {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .bottom-flat {
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        .last-form-control {
+            margin-bottom: 20px;
+        }
+
+        .first-form-control {
+            margin-bottom: -1px;
+        }
+
+        .bg-danger {
+            padding: 5px 10px;
+        }
+    </style>
 	</head>
 	<body>
 
-        <div class="header-wrapper">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header header" style="width: 100%">
-                        <ul class="nav navbar-nav">
-                            <a class="navbar-brand" href="/" data-i18n="Alerts">Alerts</a>
-                            {% if user.is_authenticated %}
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="/admin" class="translate">Admin Panel</a></li>
-                                        {% comment %}<li><a href="/admin/moderation/moderatedobject/">Moderation</a></li>{% endcomment %}
-                                        <li><a href="/admin/password_change/" class="translate">Change Password</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="/logout" class="translate">Log Out</a></li>
-                                    </ul>
-                                </li>
-
-
-                                <div style = "display: inline-block">
-                                    <button class="header-button button-lang-en translate"  onclick="setLang('en');location.reload();">EN</button>
-                                    <button class="header-button button-lang-ua translate"  onclick="setLang('ua');location.reload();">UA</button>
-                                    <button class="header-button button-lang-ru translate"  onclick="setLang('ru');location.reload();">RU</button>
-                                </div>
-
-                            {% else %}
-                                <li><a href="/login/">Sign In</a></li>
-                            {% endif %}
-
-                        </ul>
-
-                        <div class="navbar-right">
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </nav>
-        </div>
+        {% include 'header.html' %}
 
         <div class="container">
             {% block content %}{% endblock %}
         </div>
 
-
-{#        <script type="text/javascript" src="{% static 'js/logic/set_conf.js' %}"></script>#}
-{##}
-{##}
-{#        <script type="text/javascript">#}
-{#            window.conf = setConf('{{ data }}');#}
-{#        </script>#}
 
 	</body>
 

@@ -50,28 +50,30 @@ def check_access(user, group):
 
 class ItemsInline(admin.TabularInline):
     model = AlertItem
-    verbose_name = "Need by item"
-    verbose_name_plural = "Need by item"
+    verbose_name = _("Need by items")
+    verbose_name_plural = _("Needs by items")
     extra = 1
     classes = ('collapse',)
 
 
 class EmailsInline(admin.TabularInline):
     model = ClusterEmail
-    verbose_name = "Cluster Recipients List"
-    verbose_name_plural = "Cluster Recipients Lists"
+    verbose_name = _("Cluster recipient list")
+    verbose_name_plural = _("Cluster recipient lists")
     extra = 0
     classes = ('collapse',)
+
 
 class CoordinationHubAdmin(ModelAdmin):
 
     inlines = [EmailsInline,]
 
+
 class ResponsesInline(admin.StackedInline):
 
     model = Response
-    verbose_name = "Response by item"
-    verbose_name_plural = "Response by item"
+    verbose_name = _("Response by items")
+    verbose_name_plural = _("Responses by items")
     extra = 1
 
     fieldsets = (
@@ -196,13 +198,16 @@ class AlertAdmin(ModelAdmin):
     def save_model(self, request, obj, form, change):
 
         new_data = form.__dict__['cleaned_data']
-
         obj.cluster = new_data['clusters'][0]
         obj.need_type = new_data['need_types'][0]
 
         clusters = []
         needs = []
         status = ''
+
+        print(obj.need_type)
+
+
         cluster_ids = map(lambda x: x.pk, new_data['clusters'])
         if not change:
             clusters = map(lambda x: x.cluster_name, new_data['clusters'])
@@ -264,7 +269,6 @@ class SettlementAdmin(ModelAdmin):
 
 
 admin.site.register([Cluster, Emails])
-
 admin.site.register(CoordinationHub, CoordinationHubAdmin)
 admin.site.register(Raion, RaionAdmin)
 admin.site.register(Settlement, SettlementAdmin)
