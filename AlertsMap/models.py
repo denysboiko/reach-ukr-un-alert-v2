@@ -267,7 +267,7 @@ class Alert(models.Model):
 
     description = models.TextField(blank=True, null=True)
     context = models.TextField(blank=True, null=True)
-    affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name='Affected group')
+    affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name=_('Affected group'))
     source_info = models.CharField(max_length=255, blank=True, null=True)
 
     status = models.ForeignKey(Status)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-25 14:55+0300\n"
+"POT-Creation-Date: 2017-11-16 19:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr "Користувач"
 msgid "The username must contain only letters, numbers and underscores."
 msgstr "Ім'я користувача повинно містити лише літери, цифри та підкреслення."
 
-#: .\AlertsMap\forms.py:17 .\AlertsMap\models.py:201
+#: .\AlertsMap\forms.py:17 .\AlertsMap\models.py:198
 msgid "Organization"
 msgstr "Організація"
 
@@ -155,79 +155,85 @@ msgstr "Населений пункт"
 msgid "Settlements"
 msgstr "Населені пункти"
 
-#: .\AlertsMap\models.py:137
+#: .\AlertsMap\models.py:134
 #, fuzzy
 #| msgid "Needs type"
 msgid "Need Type"
 msgstr "Типи потреб"
 
-#: .\AlertsMap\models.py:138
+#: .\AlertsMap\models.py:135
 #, fuzzy
 #| msgid "Needs type"
 msgid "Need Types"
 msgstr "Типи потреб"
 
-#: .\AlertsMap\models.py:153
+#: .\AlertsMap\models.py:150
 #, fuzzy
 #| msgid "Affected"
 msgid "Affected Group"
 msgstr "Постраждалих"
 
-#: .\AlertsMap\models.py:154
+#: .\AlertsMap\models.py:151
 #, fuzzy
 #| msgid "Affected"
 msgid "Affected Groups"
 msgstr "Постраждалих"
 
-#: .\AlertsMap\models.py:166
+#: .\AlertsMap\models.py:163
 #, fuzzy
 #| msgid "Alert type"
 msgid "Alert Type"
 msgstr "Тип алерта"
 
-#: .\AlertsMap\models.py:167
+#: .\AlertsMap\models.py:164
 #, fuzzy
 #| msgid "Alert type"
 msgid "Alert Types"
 msgstr "Тип алерта"
 
-#: .\AlertsMap\models.py:179 .\templates\index.html:238
+#: .\AlertsMap\models.py:176 .\templates\index.html:238
 msgid "Status"
 msgstr "Статус"
 
-#: .\AlertsMap\models.py:180
+#: .\AlertsMap\models.py:177
 #, fuzzy
 #| msgid "Status"
 msgid "Statuses"
 msgstr "Статус"
 
-#: .\AlertsMap\models.py:202
+#: .\AlertsMap\models.py:199
 #, fuzzy
 #| msgid "Organization"
 msgid "Organizations"
 msgstr "Організації"
 
-#: .\AlertsMap\models.py:207
+#: .\AlertsMap\models.py:204
 #, fuzzy
 #| msgid "Organization"
 msgid "Organization Name"
 msgstr "Організація"
 
-#: .\AlertsMap\models.py:242
+#: .\AlertsMap\models.py:239
 msgid "Date of Incident"
 msgstr "Дата інциденту"
 
-#: .\AlertsMap\models.py:258
+#: .\AlertsMap\models.py:255
 msgid "GCA/NGCA"
 msgstr "ТКУ/ТНКУ"
 
-#: .\AlertsMap\models.py:261 .\AlertsMap\models.py:316
+#: .\AlertsMap\models.py:258 .\AlertsMap\models.py:313
 msgid "No"
 msgstr "Ні"
 
-#: .\AlertsMap\models.py:262 .\AlertsMap\models.py:316
+#: .\AlertsMap\models.py:259 .\AlertsMap\models.py:313
 msgid "Yes"
 msgstr "Так"
+
+#: .\AlertsMap\models.py:270
+#, fuzzy
+#| msgid "Affected"
+msgid "Affected group"
+msgstr "Постраждалих"
 
 # msgid "%d affected in %s, %s raion (%s obl.)"
 # msgstr "%d постраждалих в %s, %s районі (%s обл.)"

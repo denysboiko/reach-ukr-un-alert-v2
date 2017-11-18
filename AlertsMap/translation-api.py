@@ -37,7 +37,8 @@ def main():
         target='uk',
         q=[
             u"There are 15 disabled persons in village, 10 out of them have cancer. There is neither a hospital, nor a pharmacy in the village, just some medical point run by one doctor. Reportedly, people stated that they do not have access to confidential medical assistance (including PSS and visit to a gynecologist). People also informed that they have not received any humanitarian aid.",
-            u'собака']
+            u'собака'
+        ]
     ).execute()
 
 
