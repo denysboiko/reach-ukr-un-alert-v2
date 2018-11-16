@@ -9,15 +9,17 @@ from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
 
+
 class User(AbstractUser):
+
     organization = models.CharField(max_length=80, blank=True)
     phone = models.CharField(max_length=30, blank=True)
-
 
     class Meta:
         db_table = 'auth_user'
         verbose_name = _('User')
         verbose_name_plural = _('Users')
+
 
 class Emails(models.Model):
 
@@ -53,7 +55,6 @@ class GCA_NGCA(models.Model):
         return self.type_of_area
 
     class Meta:
-        managed = False
         db_table = 'gca_ngca'
 
 
@@ -71,6 +72,7 @@ class Oblast(models.Model):
 
 
 class Raion(models.Model):
+
     pcode = models.CharField(max_length=10, blank=True, null=True)
     raion_name = models.CharField(max_length=100)
     oblast = models.ForeignKey(Oblast)
@@ -129,7 +131,6 @@ class NeedType(models.Model):
         return self.need_type
 
     class Meta:
-        # managed = False
         db_table = 'need_types'
         verbose_name = _('Need Type')
         verbose_name_plural = _('Need Types')
@@ -145,7 +146,6 @@ class AffectedGroup(models.Model):
         return self.affected_group_name
 
     class Meta:
-        managed = False
         db_table = 'affected_groups'
         verbose_name = _('Affected Group')
         verbose_name_plural = _('Affected Groups')
@@ -158,7 +158,6 @@ class AlertType(models.Model):
         return self.alert_type
 
     class Meta:
-        managed = False
         db_table = 'alert_types'
         verbose_name = _('Alert Type')
         verbose_name_plural = _('Alert Types')
@@ -171,7 +170,6 @@ class Status(models.Model):
         return self.status
 
     class Meta:
-        managed = False
         db_table = 'status'
         verbose_name = _('Status')
         verbose_name_plural = _('Statuses')
