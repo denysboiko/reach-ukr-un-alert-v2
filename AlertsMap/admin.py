@@ -53,7 +53,7 @@ class ItemsInline(admin.TabularInline):
     verbose_name = _("Need by items")
     verbose_name_plural = _("Needs by items")
     extra = 1
-    classes = ('collapse',)
+    classes = 'collapse'
 
 
 class EmailsInline(admin.TabularInline):
@@ -61,12 +61,12 @@ class EmailsInline(admin.TabularInline):
     verbose_name = _("Cluster recipient list")
     verbose_name_plural = _("Cluster recipient lists")
     extra = 0
-    classes = ('collapse',)
+    classes = 'collapse'
 
 
 class CoordinationHubAdmin(ModelAdmin):
 
-    inlines = [EmailsInline,]
+    inlines = [EmailsInline]
 
 
 class ResponsesInline(admin.StackedInline):
@@ -81,9 +81,9 @@ class ResponsesInline(admin.StackedInline):
             # 'classes': ('collapse',),
             'fields': (
                 ('item', 'item_details', 'quantity', 'unit'),
-                ('response_partners'),
+                'response_partners',
                 ('action', 'uncovered_needs', 'date'),
-                ('comments')
+                'comments'
         )}),
     )
 
@@ -132,7 +132,7 @@ class AlertAdmin(ModelAdmin):
             ('affected', 'conflict_related', 'alert_type'),
             ('no_affected', 'no_beneficiaries', 'population')
         )}),
-        ('Population figures',{
+        ('Population figures', {
             'classes': ('collapse',),
             'fields': (
                 ('no_affected_males','no_beneficiaries_males','population_males'),
@@ -205,9 +205,6 @@ class AlertAdmin(ModelAdmin):
         needs = []
         status = ''
 
-        print(obj.need_type)
-
-
         cluster_ids = map(lambda x: x.pk, new_data['clusters'])
         if not change:
             clusters = map(lambda x: x.cluster_name, new_data['clusters'])
@@ -217,12 +214,12 @@ class AlertAdmin(ModelAdmin):
             clusters = obj.get_clusters_list()
             needs = obj.get_needs_list()
             status = 'Changed object'
-        recipients = obj.get_recipients(cluster_ids)
-        change_url = obj.edit_url()
 
         obj.save()
 
-        notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
+        recipients = obj.get_recipients(cluster_ids)
+        change_url = obj.edit_url()
+        # notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
 
     def items(self, obj):
         return '%d affected in %s, %s raion (%s obl.)' % (obj.no_affected, obj.settlement, obj.raion, obj.oblast)
@@ -240,14 +237,15 @@ class AlertAdmin(ModelAdmin):
 
         )
 
+
 class OrganizationAdmin(ModelAdmin):
 
     search_fields = ['organization_name','organization_acronym']
-
     list_display = ['organization_name','organization_acronym','organization_type']
 
 
 class RaionAdmin(ModelAdmin):
+
     list_filter = ['oblast']
     search_fields = ['raion_name', 'pcode']
     list_display = [
@@ -258,7 +256,8 @@ class RaionAdmin(ModelAdmin):
 
 
 class SettlementAdmin(ModelAdmin):
-    list_filter = ['area','raion']
+
+    list_filter = ['area', 'raion']
     search_fields = ['settlement_name', 'pcode']
     list_display = [
         'pcode',

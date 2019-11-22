@@ -1,2 +1,4 @@
 .idea/
 .elasticbeanstalk/
+/venv/
+/py36/

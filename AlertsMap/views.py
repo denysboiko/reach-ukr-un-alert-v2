@@ -22,7 +22,7 @@ from rest_framework.response import Response as RESTResponse
 from rest_framework.views import APIView
 
 from django.contrib.auth import authenticate, login, get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 User = get_user_model()
 
@@ -119,7 +119,6 @@ class AlertViewSet(viewsets.ViewSet):
     permission_classes = (AllowAny,)
 
     def list(self, request):
-
         hide = ('response_partners','context','description')
         if request.user.is_staff:
             hide = ()
@@ -187,3 +186,4 @@ def register_success(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+

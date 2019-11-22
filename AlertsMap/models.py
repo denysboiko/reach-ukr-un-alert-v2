@@ -1,9 +1,8 @@
 from __future__ import unicode_literals
-from django.core.urlresolvers import reverse
-import urlparse
+from django.urls import reverse
+from urllib.parse import urljoin
 from django.db import models
 from django.db.models import Max, Min, Sum
-from smart_selects.db_fields import ChainedForeignKey
 from django.contrib.auth.models import AbstractUser
 from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
@@ -25,7 +24,7 @@ class Emails(models.Model):
 
     email = models.EmailField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.email
 
     class Meta:
@@ -38,7 +37,7 @@ class Cluster(models.Model):
 
     cluster_name = models.CharField(max_length=200)
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):
         return self.cluster_name
 
     class Meta:
@@ -51,7 +50,7 @@ class GCA_NGCA(models.Model):
 
     type_of_area = models.CharField(max_length=20)
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):
         return self.type_of_area
 
     class Meta:
@@ -62,7 +61,7 @@ class Oblast(models.Model):
     pcode = models.CharField(max_length=10, blank=True, null=True)
     oblast_name = models.CharField(max_length=100)
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):
         return self.oblast_name
 
     class Meta:
@@ -75,11 +74,11 @@ class Raion(models.Model):
 
     pcode = models.CharField(max_length=10, blank=True, null=True)
     raion_name = models.CharField(max_length=100)
-    oblast = models.ForeignKey(Oblast)
+    oblast = models.ForeignKey(Oblast, on_delete=models.CASCADE)
     color = ColorField(default='#FF0000')
     # color = RGBColorField()
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):  # Python 3: def __str__(self):
         return self.raion_name
 
     class Meta:
@@ -95,13 +94,14 @@ class CoordinationHub(models.Model):
     # to_list = models.ManyToManyField(Emails, related_name='to_emails')
     # cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
         db_table = 'coordination_hubs'
         verbose_name = _('Coordination hub')
         verbose_name_plural = _('Coordination hubs')
+
 
 class Settlement(models.Model):
 
@@ -111,11 +111,11 @@ class Settlement(models.Model):
     settlement_name = models.CharField(max_length=120)
     longitude = models.FloatField()
     latitude = models.FloatField()
-    raion = models.ForeignKey(Raion)
-    area = models.ForeignKey(GCA_NGCA, blank=True, null=True)
-    hub = models.ForeignKey(CoordinationHub, blank=True, null=True)
+    raion = models.ForeignKey(Raion, on_delete=models.CASCADE)
+    area = models.ForeignKey(GCA_NGCA, blank=True, null=True, on_delete=models.CASCADE)
+    hub = models.ForeignKey(CoordinationHub, blank=True, null=True, on_delete=models.CASCADE)
 
-    def __unicode__(self):  # Python 3: def __str__(self):
+    def __str__(self):
         return self.settlement_name
 
     class Meta:
@@ -127,7 +127,7 @@ class Settlement(models.Model):
 class NeedType(models.Model):
     need_type = models.CharField(max_length=50)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.need_type
 
     class Meta:
@@ -136,13 +136,10 @@ class NeedType(models.Model):
         verbose_name_plural = _('Need Types')
 
 
-
-
-
 class AffectedGroup(models.Model):
     affected_group_name = models.CharField(max_length=100)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.affected_group_name
 
     class Meta:
@@ -154,7 +151,7 @@ class AffectedGroup(models.Model):
 class AlertType(models.Model):
     alert_type = models.CharField(max_length=50, blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.alert_type
 
     class Meta:
@@ -166,7 +163,7 @@ class AlertType(models.Model):
 class Status(models.Model):
     status = models.CharField(max_length=50)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.status
 
     class Meta:
@@ -178,134 +175,100 @@ class Status(models.Model):
 class ConfirmationStatus(models.Model):
     confirmation_status = models.CharField(max_length=30)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.confirmation_status
 
     class Meta:
         db_table = 'confirmation_status'
 
+
 class OrganizationType(models.Model):
 
     type = models.CharField(max_length=80, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.type
 
     class Meta:
         db_table = 'organization_types'
-        verbose_name = _('Organization')
-        verbose_name_plural = _('Organizations')
 
 
 class Organization(models.Model):
 
     organization_name = models.CharField(max_length=80, verbose_name=_('Organization Name'))
     organization_acronym = models.CharField(max_length=30, null=True)
-    organization_type = models.ForeignKey(OrganizationType, null=True)
+    organization_type = models.ForeignKey(OrganizationType, null=True, on_delete=models.CASCADE)
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s: %s' % (self.organization_acronym, self.organization_name)
 
     class Meta:
         db_table = 'organizations'
         ordering = ['organization_name']
+        verbose_name = _('Organization')
+        verbose_name_plural = _('Organizations')
 
 
 class ClusterEmail(models.Model):
 
-    cluster = models.ForeignKey(Cluster)
-    coordination_hub = models.ForeignKey(CoordinationHub)
+    cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE)
+    coordination_hub = models.ForeignKey(CoordinationHub, on_delete=models.CASCADE)
     to_list = models.ManyToManyField(Emails, related_name='to_emails')
     cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
 
     class Meta:
         db_table = 'cluster_emails'
 
+
 class Alert(models.Model):
 
-    oblast = models.ForeignKey(Oblast)
-
-    raion = ChainedForeignKey(
-        Raion,
-        chained_field="oblast",
-        chained_model_field="oblast",
-        show_all=False,
-        auto_choose=False,
-        sort=True
-    )
-
+    oblast = models.ForeignKey(Oblast, on_delete=models.CASCADE)
+    raion = models.ForeignKey(Raion, on_delete=models.CASCADE)
     date_referal = models.DateField(verbose_name=_('Date of Incident'))
     informant = models.TextField(blank=True, null=True)
-
-    referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id')
-
+    referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id', on_delete=models.CASCADE)
     referral_agency.admin_order_field = 'organization_name'
-
-    settlement = ChainedForeignKey(
-        Settlement,
-        chained_field="raion",
-        chained_model_field="raion",
-        show_all=False,
-        auto_choose=False,
-        sort=True
-    )
-
-    gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name=_('GCA/NGCA'))
-
+    settlement = models.ForeignKey(Settlement, on_delete=models.CASCADE)
+    gca_ngca = models.ForeignKey(GCA_NGCA, verbose_name=_('GCA/NGCA'), on_delete=models.CASCADE)
     yes_no = (
         (0, _('No')),
         (1, _('Yes'))
     )
-
-    alert_type = models.ForeignKey(AlertType)
-
-    conflict_related = models.IntegerField(
-        choices=yes_no
-    )
-
+    alert_type = models.ForeignKey(AlertType, on_delete=models.CASCADE)
+    conflict_related = models.IntegerField(choices=yes_no)
     description = models.TextField(blank=True, null=True)
     context = models.TextField(blank=True, null=True)
-    affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name=_('Affected group'))
+    affected = models.ForeignKey(AffectedGroup, related_name='affected_id', verbose_name=_('Affected group'),
+                                 on_delete=models.CASCADE)
     source_info = models.CharField(max_length=255, blank=True, null=True)
-
-    status = models.ForeignKey(Status)
-    confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1, on_delete=models.CASCADE)
     date_update = models.DateField(blank=True, null=True)
-
-
     additional_info_link = models.CharField(max_length=255, blank=True, null=True)
     comments = models.TextField(blank=True, null=True)
-
     population = models.BigIntegerField(blank=True, null=True, verbose_name='Baseline population')
-
     population_males = models.BigIntegerField(blank=True, null=True)
     population_females = models.BigIntegerField(blank=True, null=True)
     population_children = models.BigIntegerField(blank=True, null=True)
     population_adult = models.BigIntegerField(blank=True, null=True)
     population_elderly = models.BigIntegerField(blank=True, null=True)
-
     no_affected = models.IntegerField(verbose_name='Number of affected (ind.)')
-
     no_affected_males = models.BigIntegerField(blank=True, null=True)
     no_affected_females = models.BigIntegerField(blank=True, null=True)
     no_affected_children = models.BigIntegerField(blank=True, null=True)
     no_affected_adult = models.BigIntegerField(blank=True, null=True)
     no_affected_elderly = models.BigIntegerField(blank=True, null=True)
-
     no_beneficiaries = models.IntegerField(blank=True, null=True, verbose_name='Number of beneficiaries')
-
     no_beneficiaries_males = models.BigIntegerField(blank=True, null=True)
     no_beneficiaries_females = models.BigIntegerField(blank=True, null=True)
     no_beneficiaries_children = models.BigIntegerField(blank=True, null=True)
     no_beneficiaries_adult = models.BigIntegerField(blank=True, null=True)
     no_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True)
-
     clusters = models.ManyToManyField(Cluster, related_name='clusters_id')
     need_types = models.ManyToManyField(NeedType, related_name='needs')
 
     def location(self):
         return '%s / %s / %s' % (self.raion, self.settlement, self.oblast)
-
 
     def related_to_conflict(self):
         return (_("No"), _("Yes"))[self.conflict_related]
@@ -318,8 +281,8 @@ class Alert(models.Model):
 
     def view_url(self):
         domain = Site.objects.get_current().domain
-        slug = urlparse.urljoin('/alert/', str(self.id))
-        url = urlparse.urljoin(domain, slug)
+        slug = urljoin('/alert/', str(self.id))
+        url = urljoin(domain, slug)
         return url
 
     def get_clusters_list(self):
@@ -335,7 +298,8 @@ class Alert(models.Model):
         return map(lambda x: x['response_partners__organization_name'], res)
 
     def get_items(self):
-        res = AlertItem.objects.filter(alert=self.pk).prefetch_related('item','unit').values('item__item_name','unit__unit_name').annotate(quantity_need=Sum('quantity'))
+        res = AlertItem.objects.filter(alert=self.pk).prefetch_related('item', 'unit')\
+            .values('item__item_name', 'unit__unit_name').annotate(quantity_need=Sum('quantity'))
         return res
 
     def get_response_items(self):
@@ -367,7 +331,7 @@ class Alert(models.Model):
 
         return recipients
 
-    def __unicode__(self):
+    def __str__(self):
         return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
 
     location.admin_order_field = 'location'
@@ -380,7 +344,7 @@ class ItemGroup(models.Model):
 
     item_group_name = models.CharField(max_length=80, blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.item_group_name
 
     class Meta:
@@ -390,9 +354,9 @@ class ItemGroup(models.Model):
 class Item(models.Model):
 
     item_name = models.CharField(max_length=120, blank=True, null=True)
-    item_group = models.ForeignKey(ItemGroup, null=True)
+    item_group = models.ForeignKey(ItemGroup, null=True, on_delete=models.CASCADE)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.item_name
 
     class Meta:
@@ -403,7 +367,7 @@ class Unit(models.Model):
 
     unit_name = models.CharField(max_length=30, blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.unit_name
 
     class Meta:
@@ -412,13 +376,13 @@ class Unit(models.Model):
 
 class AlertItem(models.Model):
 
-    alert = models.ForeignKey(Alert, related_name='items')
-    item = models.ForeignKey(Item)
+    alert = models.ForeignKey(Alert, related_name='items', on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     item_details = models.CharField(max_length=120, blank=True, null=True)
     quantity = models.IntegerField()
-    unit = models.ForeignKey(Unit)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
 
-    # def __unicode__(self):
+    # def __str__(self):
     #     return self.item_name
 
     class Meta:
@@ -428,10 +392,10 @@ class AlertItem(models.Model):
 class Response(models.Model):
 
     response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
-    item = models.ForeignKey(Item)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
     item_details = models.CharField(max_length=120, blank=True, null=True)
     quantity = models.IntegerField()
-    unit = models.ForeignKey(Unit)
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
     date = models.DateField(blank=True, null=True)
     alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
     uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
@@ -442,7 +406,6 @@ class Response(models.Model):
     # def partners(self):
     #     return obj
     # def get_items(self):
-
 
     class Meta:
         db_table='responses'

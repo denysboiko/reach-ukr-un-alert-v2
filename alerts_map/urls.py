@@ -3,8 +3,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from AlertsMap.views import *
 from rest_framework import routers
-from django.views.i18n import javascript_catalog
-
+from django.views.i18n import JavaScriptCatalog
 
 router = routers.DefaultRouter()
 
@@ -21,16 +20,15 @@ js_info_dict = {
 
 urlpatterns = [
     url(r'^logout/$', logout_page),
-    url(r'^login/$', auth_views.login),
+    url(r'^login/$', auth_views.LoginView.as_view()),
     url(r'^$', home),
     url(r'^alert/(?P<alert_id>\d+)/$', alert),
     url(r'^admin/', admin.site.urls),
     url(r'^register/$', register),
-    url(r'^accounts/login/$', auth_views.login),
+    url(r'^accounts/login/$', auth_views.LoginView.as_view()),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^register/success/$', register_success),
     url(r'^', include(router.urls)),
-    url(r'^', include('smart_selects.urls')),
-    url(r'^agnocomplete/', include('agnocomplete.urls', namespace='agnocomplete')),
-    url(r'^jsi18n/$', javascript_catalog, js_info_dict, name='javascript_catalog')
+    url(r'^agnocomplete/', include(('agnocomplete.urls', 'agnocomplete'), namespace='reviews')),
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript_catalog')
 ]

@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 
 import sys
-reload(sys)
-sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -39,15 +39,11 @@ INSTALLED_APPS = [
     'django.core.mail',
     'widget_tweaks',
     'rest_framework',
-    'smart_selects',
     'guardian',
-    'colorful',
     'colorfield',
     'AlertsMap',
     'modeltranslation'
 ]
-
-# TODO: Remove RGBColorField, I use colorful
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
@@ -56,10 +52,11 @@ REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer'
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 250
 }
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
