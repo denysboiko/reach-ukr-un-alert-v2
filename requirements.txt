@@ -1,6 +1,6 @@
 Django==2.2.7
 decorator==4.4.1
-django-registration==3.0.1
+
 django-widget-tweaks==1.4.5
 djangorestframework==3.10.3
 psycopg2-binary==2.8.4
