@@ -1,6 +1,6 @@
 Django==2.2.7
 decorator==4.4.1
-
+cython
 django-widget-tweaks==1.4.5
 djangorestframework==3.10.3
 psycopg2-binary==2.8.4
