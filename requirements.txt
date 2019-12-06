@@ -11,4 +11,4 @@ django-agnocomplete
 google-api-python-client
 django-modeltranslation
 django-autocomplete-light
-django-modeltranslation
+google-cloud-translate

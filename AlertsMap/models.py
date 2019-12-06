@@ -76,9 +76,8 @@ class Raion(models.Model):
     raion_name = models.CharField(max_length=100)
     oblast = models.ForeignKey(Oblast, on_delete=models.CASCADE)
     color = ColorField(default='#FF0000')
-    # color = RGBColorField()
 
-    def __str__(self):  # Python 3: def __str__(self):
+    def __str__(self):
         return self.raion_name
 
     class Meta:
@@ -332,12 +331,14 @@ class Alert(models.Model):
         return recipients
 
     def __str__(self):
-        return '%d affected in %s, %s raion (%s obl.)' % (self.no_affected, self.settlement, self.raion, self.oblast)
+        return _('%d affected in %s, %s raion (%s obl.)') % (self.no_affected, self.settlement, self.raion, self.oblast)
 
     location.admin_order_field = 'location'
 
     class Meta:
         db_table = 'alerts'
+        verbose_name = _('Alert')
+        verbose_name_plural = _('Alerts')
 
 
 class ItemGroup(models.Model):
@@ -407,5 +408,15 @@ class Response(models.Model):
     #     return obj
     # def get_items(self):
 
+    def __str__(self):
+        return _('%d %s of %s') % (self.quantity, self.unit, self.item)
+
     class Meta:
         db_table='responses'
+
+
+class MapConfig(models.Model):
+
+    zoom = models.IntegerField()
+    min_zoom = models.IntegerField()
+    max_zoom = models.IntegerField()

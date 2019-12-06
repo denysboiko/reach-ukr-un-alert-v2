@@ -113,7 +113,7 @@
                     <td>Response Items</td>
                     <td>
                         <ul class="list-unstyled">
-                            {% for key, value in alert.get_response_items.iteritems %}
+                            {% for key, value in alert.get_response_items.items %}
                                 <li>{{ key }}: {{ value }}</li>
                             {% endfor %}
                         </ul>

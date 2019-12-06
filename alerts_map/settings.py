@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'guardian',
     'colorfield',
-    'AlertsMap',
+    'AlertsMap.apps.AlertSystemConfig',
     'modeltranslation'
 ]
 
