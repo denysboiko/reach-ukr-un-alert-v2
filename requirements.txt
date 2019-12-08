@@ -10,4 +10,4 @@ django-agnocomplete==0.14.0
 google-api-python-client==1.7.11
 django-modeltranslation==0.14
 django-autocomplete-light==3.4.1
-google-cloud-translate==2.0.0
+google-cloud-translate==1.7.0

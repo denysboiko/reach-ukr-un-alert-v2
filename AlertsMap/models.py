@@ -331,7 +331,7 @@ class Alert(models.Model):
         return recipients
 
     def __str__(self):
-        return _('%d affected in %s, %s raion (%s obl.)') % (self.no_affected, self.settlement, self.raion, self.oblast)
+        return _('{} affected in {}, {} raion ({} obl.)'.format(self.no_affected, self.settlement, self.raion, self.oblast))
 
     location.admin_order_field = 'location'
 
@@ -409,7 +409,7 @@ class Response(models.Model):
     # def get_items(self):
 
     def __str__(self):
-        return _('%d %s of %s') % (self.quantity, self.unit, self.item)
+        return _('{} {} of {}'.format(self.quantity, self.unit, self.item))
 
     class Meta:
         db_table='responses'
