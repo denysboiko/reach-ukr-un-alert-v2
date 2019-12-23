@@ -4,9 +4,6 @@ from django.utils.translation import ugettext_lazy as _
 
 
 import sys
-# reload(sys)
-# sys.setdefaultencoding('utf8')
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
