@@ -82,6 +82,7 @@ class AlertResponsePartnersSerializer(serializers.ModelSerializer):
 
 class AlertsSerializer(DynamicFieldsModelSerializer):
 
+    pcode = serializers.ReadOnlyField(source='settlement.id')
     settlement = serializers.ReadOnlyField(source='settlement.settlement_name')
     oblast = serializers.ReadOnlyField(source='oblast.oblast_name')
     raion = serializers.ReadOnlyField(source='raion.raion_name')
@@ -105,6 +106,7 @@ class AlertsSerializer(DynamicFieldsModelSerializer):
         model = Alert
         fields = (
             'id',
+            'pcode',
             'settlement',
             'oblast',
             'raion',

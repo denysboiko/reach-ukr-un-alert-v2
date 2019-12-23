@@ -49,6 +49,7 @@ function setConf(data_url, full_access, lang, colors, oblasts) {
                 , loader: d3.json
                 , fields: {
                     alertID: 'id'
+                    , pcode: 'pcode'
                     , settlement: 'settlement'
                     , oblast: 'oblast'
                     , raion: 'raion'

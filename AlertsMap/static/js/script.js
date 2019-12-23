@@ -77,7 +77,7 @@
 
             var res = {
                 alertID: record[referals.fields.alertID]
-                , settlementRaw: record[referals.fields.settlement]
+                , settlementRaw: record[referals.fields.pcode]
                 , settlement: record[referals.fields.settlement]
                 , raion: record[referals.fields.raion]
                 , raionCode: record[referals.fields.raionCode].toString()
