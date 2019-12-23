@@ -40,7 +40,7 @@ class ItemsInline(admin.TabularInline):
     verbose_name = _("Need by items")
     verbose_name_plural = _("Needs by items")
     extra = 1
-    classes = 'collapse'
+    classes = ('grp-collapse grp-open',)
 
 
 
@@ -56,22 +56,25 @@ class CoordinationHubAdmin(ModelAdmin):
     inlines = [EmailsInline]
 
 
-class ResponsesInline(admin.TabularInline):
+class ResponsesInline(admin.StackedInline):
     model = Response
     verbose_name = _("Response by items")
     verbose_name_plural = _("Responses by items")
     extra = 1
-    classes = 'collapse'
+    classes = ('grp-collapse grp-open',)
 
-    # fieldsets = (
-    #     (None, {
-    #         'fields': (
-    #             ('item', 'item_details', 'quantity', 'unit'),
-    #             'response_partners',
-    #             ('action', 'uncovered_needs', 'date'),
-    #             'comments'
-    #         )}),
-    # )
+    fieldsets = (
+        (None, {
+            'fields': (
+                ('item', 'item_details', 'quantity', 'unit'),
+                'response_partners'
+            )}),
+        (None, {
+            'fields': (
+                ('action', 'uncovered_needs', 'date'),
+                'comments'
+            )})
+    )
 
 
 class ResponseAdmin(ModelAdmin):
@@ -115,8 +118,8 @@ class AlertAdmin(ModelAdmin):
             ('affected', 'conflict_related', 'alert_type'),
             ('no_affected', 'no_beneficiaries', 'population')
         )}),
-        ('Population figures', {
-            'classes': ('collapse',),
+        (_('Population figures'), {
+            'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('no_affected_males', 'no_beneficiaries_males', 'population_males'),
                 ('no_affected_females', 'no_beneficiaries_females', 'population_females'),
@@ -125,46 +128,43 @@ class AlertAdmin(ModelAdmin):
                 ('no_affected_elderly', 'no_beneficiaries_elderly', 'population_elderly')
             )
         }),
-    )
-
-    inlines = [ResponsesInline, ItemsInline,]
-
-    editor_fields = (
         (None, {'fields': (
             ('need_types', 'clusters'),
             ('status', 'referral_agency'),
             ('date_referal',)
         )}),
-        (None, {'fields': ('informant', 'context')}),
+        (None, {'fields': (('informant', 'context'),)}),
         ('Translation', {
-            'classes': ('collapse',),
+            'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('informant_en', 'context_en'),
                 ('informant_uk', 'context_uk'),
                 ('informant_ru', 'context_ru')
             )
         }),
-        (None, {'fields': ('description', 'comments')}),
+        (None, {'fields': (('description', 'comments'),)}),
         ('Translation', {
-            'classes': ('collapse',),
+            'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('description_en', 'comments_en'),
                 ('description_uk', 'comments_uk'),
                 ('description_ru', 'comments_ru')
             )
         }),
-        (None, {'fields': ('date_update',)}),
+        (None, {'fields': ('date_update',)})
     )
+
+    inlines = [ItemsInline, ResponsesInline]
 
     moderation_fields = (None, {'fields': (('confirmation_status',))})
 
     def get_form(self, request, obj=None, **kwargs):
-        if check_access(request.user, 'Moderators') | request.user.is_superuser:
-            self.fieldsets += self.editor_fields + (self.moderation_fields,)
-        else:
-            self.fieldsets += self.editor_fields
 
-        return super(AlertAdmin, self).get_form(request, obj, **kwargs)
+        if check_access(request.user, 'Moderators') | request.user.is_superuser:
+            self.fieldsets = self.fieldsets + ((self.moderation_fields,))
+
+        return super(AlertAdmin, self)\
+            .get_form(request, obj, **kwargs)
 
     actions = ['confirm_alerts', 'reject_alerts']
 
@@ -215,7 +215,7 @@ class AlertAdmin(ModelAdmin):
 
         recipients = obj.get_recipients(cluster_ids)
         change_url = obj.edit_url()
-        # notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
+        notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
 
     def items(self, obj):
         return '%d affected in %s, %s raion (%s obl.)' % (obj.no_affected, obj.settlement, obj.raion, obj.oblast)
@@ -227,9 +227,9 @@ class AlertAdmin(ModelAdmin):
         js = (
             'js/jquery.min.js',
             # 'js/demo/sifter.min.js',
-            'js/collapse_inlines.js',
+            # 'js/collapse_inlines.js',
             # 'js/collapsed_stacked_inlines.js',
-            # 'js/selectize.min.js',
+            'js/selectize.min.js',
 
         )
 

@@ -1,3 +1,8 @@
 /*.form-row {*/
     /*overflow: visible;*/
 /*}*/
+
+
+.grp-row textarea, .grp-row .vLargeTextField {
+    width: 300px !important;
+}

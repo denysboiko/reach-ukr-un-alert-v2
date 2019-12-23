@@ -1,0 +1,409 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-08 23:47-0500\n"
+"PO-Revision-Date: 2019-12-08 16:55-0500\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.2.4\n"
+
+#: AlertsMap/admin.py:32
+msgid "Need by items"
+msgstr "Потребность в предметах"
+
+#: AlertsMap/admin.py:33
+msgid "Needs by items"
+msgstr "Потребности в предметах"
+
+#: AlertsMap/admin.py:41
+msgid "Cluster recipient list"
+msgstr "Список получателей кластера"
+
+#: AlertsMap/admin.py:42
+msgid "Cluster recipient lists"
+msgstr "Списки получателей кластера"
+
+#: AlertsMap/admin.py:58
+msgid "Response by items"
+msgstr "Помощь в предметах"
+
+#: AlertsMap/admin.py:59
+msgid "Responses by items"
+msgstr "Помощь в предметах"
+
+#: AlertsMap/admin.py:115
+msgid "Population figures"
+msgstr ""
+
+#: AlertsMap/apps.py:9
+msgid "Alert System"
+msgstr "Система оповещений"
+
+#: AlertsMap/forms.py:18
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: AlertsMap/forms.py:18
+msgid "The username must contain only letters, numbers and underscores."
+msgstr ""
+"Имя пользователя может содержать только буквы, цифры и нижние подчеркивания."
+
+#: AlertsMap/forms.py:21 AlertsMap/models.py:207
+msgid "Organization"
+msgstr "Организация"
+
+#: AlertsMap/forms.py:24
+msgid "Phone"
+msgstr "Phone"
+
+#: AlertsMap/forms.py:25
+msgid "Email address"
+msgstr "Email адрес"
+
+#: AlertsMap/forms.py:26
+msgid "Password"
+msgstr "Пароль"
+
+#: AlertsMap/forms.py:27
+msgid "Password (again)"
+msgstr "Пароль (повторно)"
+
+#: AlertsMap/forms.py:34
+msgid "The username already exists. Please try another one."
+msgstr "Имя пользователя уже существует. Пожалуйста, попробуйте еще один."
+
+#: AlertsMap/forms.py:39
+msgid "The two password fields did not match."
+msgstr "Пароли не совпадают."
+
+#: AlertsMap/models.py:19
+msgid "User"
+msgstr "Пользователь"
+
+#: AlertsMap/models.py:20
+msgid "Users"
+msgstr "Пользователи"
+
+#: AlertsMap/models.py:32
+msgid "Email"
+msgstr "Эл. адрес"
+
+#: AlertsMap/models.py:33
+msgid "Emails"
+msgstr "Email'ы"
+
+#: AlertsMap/models.py:45 templates/index.html:210
+msgid "Cluster"
+msgstr "Кластер"
+
+#: AlertsMap/models.py:46 templates/index.html:300
+msgid "Clusters"
+msgstr "Кластеры"
+
+#: AlertsMap/models.py:69 templates/index.html:64
+msgid "Oblast"
+msgstr "Область"
+
+#: AlertsMap/models.py:70
+msgid "Oblasts"
+msgstr "Области"
+
+#: AlertsMap/models.py:85 templates/index.html:66
+msgid "Raion"
+msgstr "Район"
+
+#: AlertsMap/models.py:86
+msgid "Raions"
+msgstr "Районы"
+
+#: AlertsMap/models.py:101
+msgid "Coordination hub"
+msgstr "Координационный центр"
+
+#: AlertsMap/models.py:102
+msgid "Coordination hubs"
+msgstr "Координационные центры"
+
+#: AlertsMap/models.py:122 templates/index.html:68
+msgid "Settlement"
+msgstr "Населенный пункт"
+
+#: AlertsMap/models.py:123
+msgid "Settlements"
+msgstr "Населенные пункты"
+
+#: AlertsMap/models.py:134
+msgid "Need Type"
+msgstr "Тип потребности"
+
+#: AlertsMap/models.py:135
+msgid "Need Types"
+msgstr "Типы потребностей"
+
+#: AlertsMap/models.py:146
+msgid "Affected Group"
+msgstr "Пострадавшая группа"
+
+#: AlertsMap/models.py:147
+msgid "Affected Groups"
+msgstr "Пострадавшие группы"
+
+#: AlertsMap/models.py:158
+msgid "Alert Type"
+msgstr "Тип оповещения"
+
+#: AlertsMap/models.py:159
+msgid "Alert Types"
+msgstr "Типы оповещений"
+
+#: AlertsMap/models.py:170 templates/index.html:238
+msgid "Status"
+msgstr "Статус"
+
+#: AlertsMap/models.py:171
+msgid "Statuses"
+msgstr "Статусы"
+
+#: AlertsMap/models.py:197
+msgid "Organization Name"
+msgstr "Название организации"
+
+#: AlertsMap/models.py:208
+msgid "Organizations"
+msgstr "Организации"
+
+#: AlertsMap/models.py:226
+msgid "Date of Incident"
+msgstr "Дата инцидента"
+
+#: AlertsMap/models.py:231
+msgid "GCA/NGCA"
+msgstr "GCA/NGCA"
+
+#: AlertsMap/models.py:233 AlertsMap/models.py:273
+msgid "No"
+msgstr "Нет"
+
+#: AlertsMap/models.py:234 AlertsMap/models.py:273
+msgid "Yes"
+msgstr "Да"
+
+#: AlertsMap/models.py:240
+msgid "Affected group"
+msgstr "Пострадавшая группа"
+
+#: AlertsMap/models.py:248
+msgid "Baseline population"
+msgstr ""
+
+#: AlertsMap/models.py:254
+#, fuzzy
+#| msgid "Number of covered/affected people"
+msgid "Number of affected (ind.)"
+msgstr "Число охваченных/пострадавших людей"
+
+#: AlertsMap/models.py:260
+msgid "Number of beneficiaries"
+msgstr ""
+
+#: AlertsMap/models.py:334
+#, python-format
+msgid ""
+"%(no_affected)d affected in %(settlement)s, %(raion)s raion (%(oblast)s obl.)"
+msgstr ""
+"%(no_affected)d пострадавших в %(settlement)s, %(raion)s рай. (%(oblast)s "
+"обл.)"
+
+#: AlertsMap/models.py:345
+msgid "Alert"
+msgstr "Оповещение"
+
+#: AlertsMap/models.py:346
+msgid "Alerts"
+msgstr "Оповещения"
+
+#: AlertsMap/models.py:417
+#, python-format
+msgid "%(quantity)d %(unit)s of %(item)s"
+msgstr "%(quantity)d %(unit)s, %(item)s"
+
+#: alerts_map/settings.py:159
+msgid "English"
+msgstr "Английский"
+
+#: alerts_map/settings.py:160
+msgid "Russian"
+msgstr "Русский"
+
+#: alerts_map/settings.py:161
+msgid "Ukrainian"
+msgstr "Украинский"
+
+#: templates/index.html:62
+msgid "ID"
+msgstr "ID"
+
+#: templates/index.html:63
+msgid "Date"
+msgstr "Дата"
+
+#: templates/index.html:69 templates/index.html:321
+msgid "Related to Conflict"
+msgstr "Связанные с конфликтом"
+
+#: templates/index.html:70 templates/index.html:309
+msgid "Type of Needs"
+msgstr "Тип потребностей"
+
+#: templates/index.html:71
+msgid "Covered"
+msgstr "Покрыто"
+
+#: templates/index.html:73
+msgid "Affected"
+msgstr "Пострадавших"
+
+#: templates/index.html:74
+msgid "Item"
+msgstr "Позиция"
+
+#: templates/index.html:75
+msgid "Quantity Provided/Needed"
+msgstr "Предоставлено/Необходимое количество"
+
+#: templates/index.html:76
+msgid "Additional info"
+msgstr "Доп. информация"
+
+#: templates/index.html:88 templates/index.html:331
+msgid "Learn more"
+msgstr "Подробнее"
+
+#: templates/index.html:113
+msgid "RESET FILTERS"
+msgstr "СБРОСИТЬ ФИЛЬТРЫ"
+
+#: templates/index.html:119
+msgid "ADD AN ALERT"
+msgstr "СОЗДАТЬ ОПОВЕЩЕНИЕ"
+
+#: templates/index.html:126
+msgid "Admin Panel"
+msgstr "Панель управления"
+
+#: templates/index.html:127
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: templates/index.html:129
+msgid "Log Out"
+msgstr "Выйти"
+
+#: templates/index.html:134 templates/registration/register.html:19
+msgid "Sign In"
+msgstr "Войти"
+
+#: templates/index.html:143
+msgid "alerts selected of"
+msgstr "оповещения, выбранные из"
+
+#: templates/index.html:150
+msgid "DATA TABLE"
+msgstr "ТАБЛИЦА ДАННЫХ"
+
+#: templates/index.html:152
+msgid "DOWNLOAD DATA"
+msgstr "ЗАГРУЗИТЬ ДАННЫЕ"
+
+#: templates/index.html:216
+msgid "Response partners"
+msgstr "Реагирующие партнеры"
+
+#: templates/index.html:217
+msgid "Clear"
+msgstr ""
+
+#: templates/index.html:223
+msgid "All response partners"
+msgstr "Все реагирующие партнеры"
+
+#: templates/index.html:231
+msgid "- Select partner to filter -"
+msgstr "- Выберите фильтр по партнеру -"
+
+#: templates/index.html:243
+msgid "Alert type"
+msgstr "Тип оповещения"
+
+#: templates/index.html:249
+msgid "Needs type"
+msgstr "Тип потребностей"
+
+#: templates/index.html:257
+msgid "Location"
+msgstr "Местоположение"
+
+#: templates/index.html:263
+msgid "- Select location to filter -"
+msgstr "- Выберите фильтр по локации -"
+
+#: templates/index.html:303
+msgid "Number of covered/affected people"
+msgstr "Число охваченных/пострадавших людей"
+
+#: templates/index.html:306
+msgid "Type alert"
+msgstr "Тип оповещения"
+
+#: templates/index.html:326
+msgid "Date referral"
+msgstr "Дата отчета"
+
+#: templates/registration/login.html:11
+msgid "Please Sign in"
+msgstr "Пожалуйста, авторизуйтесь"
+
+#: templates/registration/login.html:18
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+"Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз."
+
+#: templates/registration/login.html:21
+msgid "Login"
+msgstr "Войти"
+
+#: templates/registration/login.html:24
+msgid "Don't have an account?"
+msgstr "Ещё нет аккаунта?"
+
+#: templates/registration/login.html:24
+msgid "Register Here"
+msgstr "Регистрация"
+
+#: templates/registration/register.html:12
+#: templates/registration/register.html:17
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: templates/registration/register.html:19
+msgid "Already have an account?"
+msgstr "Уже зарегистрированы?"
+
+#~ msgid "Enter a valid color."
+#~ msgstr "Введите действительный цвет."
+
+#~ msgid "Messages"
+#~ msgstr "Сообщения"

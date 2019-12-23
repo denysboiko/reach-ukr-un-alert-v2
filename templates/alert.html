@@ -1,26 +1,20 @@
 {% extends "blank.html" %}
-
+{% load i18n %}
 {% block content %}
-
     {% for alert in alerts %}
-
         <div class="container">
-
             <div class="page-header">
-              <h1>{{ alert }}<small></small></h1>
+              <h1>{{ alert }}</h1>
             </div>
-
             {% if request.user.is_staff %}
                 <a href="{{ alert.edit_url }}" class="btn btn-default">Edit Alert</a>
             {% endif %}
-
-{#             {% for fieldname in alert.keys %}<p>{{ fieldname }}</p>{% endfor %}#}
             <table class="table table-striped">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Field</th>
-                    <th>Value</th>
+                    <th>{% trans 'Field' %}</th>
+                    <th>{% trans 'Value' %}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +25,7 @@
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Date Refferal</td>
+                    <td>{% trans 'Date Refferal' %}</td>
                     <td>{{ alert.date_referal }}</td>
                 </tr>
                 <tr>
@@ -101,7 +95,6 @@
                     <td>Need Items</td>
                     <td>
                         <ul class="list-unstyled">
-{#                            {{ alert.get_items }}#}
                             {% for item in alert.get_items %}
                                 <li>{{ item.item__item_name }}: {{ item.quantity_need }} {{ item.unit__unit_name }}</li>
                             {% endfor %}
@@ -122,22 +115,5 @@
             </table>
 
         </div>
-
-
-
-{#        clusters#}
-{#        #}
-
-
     {% endfor %}
-
-    <script>
-
-{#        var data = JSON.parse({{ alert }});#}
-{#        #}
-{#        #}
-{#        consol.log(data);#}
-            //JSON.stringify(, null, 2)
-            //$('#alert').html(data)
-    </script>
 {% endblock %}
