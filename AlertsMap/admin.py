@@ -2,19 +2,12 @@ from django.contrib import admin
 import json
 from .models import *
 from django.contrib.admin import AdminSite, ModelAdmin
-from django.contrib.auth.admin import UserAdmin
-from guardian.admin import GuardedModelAdmin
-from mail import notify_mail
-# from django.contrib.auth.models import User
+from .mail import notify_mail
 
-# admin.site.unregister(User)
-
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-# from django.contrib.auth.models import User
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 from django.contrib import admin
-from mail import notify_mail
+from AlertsMap.translate import translate_text, translate_field
 
 UserAdmin.add_fieldsets = (
     (None, {

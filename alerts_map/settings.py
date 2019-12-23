@@ -8,7 +8,6 @@ import sys
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -108,9 +107,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'Alerts',
-            'USER': 'postgres',
-            'PASSWORD': '3w_reach',
+            'NAME': 'alert_system',
+            'USER': 'denysboiko',
+            'PASSWORD': 'csdjhjnrf4',
             'HOST': '127.0.0.1',
             'PORT': '5432',
         }
@@ -122,6 +121,7 @@ else:
     #         'USER': 'dbadmin',
     #         'PASSWORD': 'pgk6vsnA',
     #         'HOST': 'aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com',
+    #         # aa1jnxr5cnvhbxx.cjzycczlrnst.eu-west-1.rds.amazonaws.com:5432
     #         'PORT': '5432',
     #     }
     # }
