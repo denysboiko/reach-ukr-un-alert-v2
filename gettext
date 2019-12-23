@@ -1,5 +1,5 @@
-django-admin makemessages -l uk
-django-admin makemessages -l ru
-django-admin makemessages -d djangojs -l ru
-django-admin makemessages -d djangojs -l uk
+django-admin makemessages -l uk --ignore=alerts/*
+django-admin makemessages -l ru --ignore=alerts/*
+django-admin makemessages -d djangojs -l ru --ignore=alerts/*
+django-admin makemessages -d djangojs -l uk --ignore=alerts/*
 django-admin compilemessages
