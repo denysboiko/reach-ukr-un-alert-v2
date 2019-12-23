@@ -22,9 +22,9 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    # 'allauth',
-    # 'allauth.account',
-    # 'allauth.socialaccount',
+    'dal',
+    'dal_select2',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

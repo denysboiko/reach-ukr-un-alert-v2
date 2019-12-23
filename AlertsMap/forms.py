@@ -1,7 +1,12 @@
 import re
+
+from dal import autocomplete
 from django import forms
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+
+from AlertsMap.models import Raion
+
 User = get_user_model()
 
 # from AlertsMap.models import User
@@ -34,3 +39,12 @@ class RegistrationForm(forms.Form):
                 raise forms.ValidationError(_("The two password fields did not match."))
         return self.cleaned_data
 
+
+class RaionForm(forms.ModelForm):
+    birth_country = forms.ModelChoiceField(
+        queryset=Raion.objects.all(),
+        widget=autocomplete.ModelSelect2(url='raions')
+    )
+    class Meta:
+        model = Raion
+        fields = ('__all__')

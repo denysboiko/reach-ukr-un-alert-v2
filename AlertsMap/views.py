@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.utils.translation import ugettext_lazy as _
 from AlertsMap.models import *
+from dal import autocomplete
 from AlertsMap.forms import *
 import json
 from AlertsMap.serializers import *
@@ -95,6 +96,18 @@ def check_access(user):
     return False
 
 
+class RaionAutocomplete(autocomplete.Select2QuerySetView):
+    def get_queryset(self):
+        # Don't forget to filter out results depending on the visitor !
+        # if not self.request.user.is_authenticated():
+        #     return Raion.objects.none()
+
+        qs = Raion.objects.all()
+
+        if self.q:
+            qs = qs.filter(raion_name__istartswith=self.q)
+
+        return qs
 
 # class AlertViewSet(viewsets.ReadOnlyModelViewSet):
 #

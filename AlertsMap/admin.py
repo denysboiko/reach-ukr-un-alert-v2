@@ -1,5 +1,4 @@
-from django.contrib import admin
-import json
+from AlertsMap.forms import RaionForm
 from .models import *
 from django.contrib.admin import AdminSite, ModelAdmin
 from .mail import notify_mail

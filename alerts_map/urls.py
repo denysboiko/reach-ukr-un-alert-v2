@@ -30,5 +30,7 @@ urlpatterns = [
     url(r'^register/success/$', register_success),
     url(r'^', include(router.urls)),
     url(r'^agnocomplete/', include(('agnocomplete.urls', 'agnocomplete'), namespace='reviews')),
-    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript_catalog')
+    url(r'^raions/$', RaionAutocomplete.as_view(), name='raions'),
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript_catalog'),
+    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
 ]
