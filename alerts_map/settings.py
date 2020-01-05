@@ -177,6 +177,8 @@ AUTH_USER_MODEL = 'AlertsMap.User'
 DEFAULT_FROM_EMAIL = 'denys.boiko@reach-initiative.org'
 MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 
+GRAPPELLI_ADMIN_TITLE = 'Alert System Administration'
+
 # SECURITY WARNING: use environment variables in production!
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_PORT = '25'
