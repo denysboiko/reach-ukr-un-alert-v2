@@ -104,7 +104,7 @@ class CoordinationHub(models.Model):
 
 class Settlement(models.Model):
 
-    pcode = models.CharField(max_length=10, blank=True, null=True)
+    pcode = models.CharField(max_length=12, blank=True, null=True)
     pcode_new = models.CharField(max_length=10, blank=True, null=True)
     settlement_name_old = models.CharField(max_length=120, blank=True, null=True)
     settlement_name = models.CharField(max_length=120)
