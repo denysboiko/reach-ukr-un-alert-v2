@@ -104,7 +104,7 @@ class AlertAdmin(ModelAdmin):
         'date_referal'
     ]
 
-    fieldsets = (
+    regular_fields = (
         (None, {'fields': (
             ('oblast', 'raion', 'settlement', 'gca_ngca'),
             ('affected', 'conflict_related', 'alert_type'),
@@ -146,14 +146,16 @@ class AlertAdmin(ModelAdmin):
         (None, {'fields': ('date_update',)})
     )
 
-    inlines = [ItemsInline, ResponsesInline]
-
     moderation_fields = (None, {'fields': (('confirmation_status',))})
+
+    fieldsets = regular_fields
+
+    inlines = [ItemsInline, ResponsesInline]
 
     def get_form(self, request, obj=None, **kwargs):
 
         if check_access(request.user, 'Moderators') | request.user.is_superuser:
-            self.fieldsets = self.fieldsets + ((self.moderation_fields,))
+            self.fieldsets = self.regular_fields + (self.moderation_fields,)
 
         return super(AlertAdmin, self)\
             .get_form(request, obj, **kwargs)
@@ -214,10 +216,15 @@ class AlertAdmin(ModelAdmin):
 
     class Media:
         css = {
-            'screen': ('css/admin.css', 'css/selectize/selectize.css',)
+            'screen': (
+                'css/admin.css',
+                'css/selectize/selectize.css',
+                'css/selectize/selectize.default.min.css',
+                'admin/selectize.css')
         }
         js = (
             'js/jquery.min.js',
+            'admin/selectize.js',
             # 'js/demo/sifter.min.js',
             # 'js/collapse_inlines.js',
             # 'js/collapsed_stacked_inlines.js',
