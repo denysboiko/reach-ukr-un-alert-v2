@@ -74,7 +74,7 @@ class OrganizationTypeTranslation(TranslationOptions):
 
 @register(Organization)
 class OrganizationTranslation(TranslationOptions):
-    fields = ('organization_name', 'organization_acronym')
+    fields = ('organization_name',)
 
 
 @register(Alert)
