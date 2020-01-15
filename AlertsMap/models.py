@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
+from django.utils.translation import get_language
 
 
 class User(AbstractUser):
@@ -293,23 +294,39 @@ class Alert(models.Model):
         return map(lambda x: x['need_types__need_type'], query)
 
     def get_response_partners(self):
-        res = Response.objects.filter(alert=self.pk).values('response_partners__organization_name').distinct()
+
+        res = Response.objects.filter(alert=self.pk)\
+            .values('response_partners__organization_name')\
+            .distinct()
+
         return map(lambda x: x['response_partners__organization_name'], res)
 
     def get_items(self):
-        res = AlertItem.objects.filter(alert=self.pk).prefetch_related('item', 'unit')\
-            .values('item__item_name', 'unit__unit_name').annotate(quantity_need=Sum('quantity'))
+
+        lang = get_language()
+        item_name = 'item__item_name' + '_' + lang
+        unit_name = 'unit__unit_name' + '_' + lang
+
+        res = AlertItem.objects.filter(alert=self.pk)\
+            .prefetch_related('item', 'unit')\
+            .values(item_name, unit_name)\
+            .annotate(quantity_need=Sum('quantity'))
         return res
 
     def get_response_items(self):
 
-        responses = Response.objects.filter(alert=self.pk).values('item__item_name', 'unit__unit_name').annotate(
-            quantity_response=Sum('quantity'))
+        lang = get_language()
+        item_name = 'item__item_name' + '_' + lang
+        unit_name = 'unit__unit_name' + '_' + lang
+
+        responses = Response.objects.filter(alert=self.pk)\
+            .values(item_name, unit_name)\
+            .annotate(quantity_response=Sum('quantity'))
 
         res = {}
 
         for item in responses:
-            name = item['item__item_name']
+            name = item[item_name]
             res[name] = item['quantity_response']
         return res
 

@@ -1,6 +1,7 @@
 {% extends "blank.html" %}
 {% load i18n %}
 {% block content %}
+    {% get_current_language as lang %}
     {% for alert in alerts %}
         <div class="container">
             <div class="page-header">

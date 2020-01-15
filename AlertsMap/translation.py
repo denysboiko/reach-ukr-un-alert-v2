@@ -80,3 +80,14 @@ class OrganizationTranslation(TranslationOptions):
 @register(Alert)
 class AlertTranslation(TranslationOptions):
     fields = ('informant', 'description', 'context', 'comments')
+
+
+@register(Response)
+class ResponseTranslation(TranslationOptions):
+    pass
+
+
+@register(AlertItem)
+class AlertItemTranslation(TranslationOptions):
+    fields = ('item_details',)
+

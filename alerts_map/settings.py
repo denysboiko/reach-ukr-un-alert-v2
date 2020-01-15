@@ -179,6 +179,8 @@ MODERATION_MODERATORS = ['denys.boiko@reach-initiative.org']
 
 GRAPPELLI_ADMIN_TITLE = 'Alert System Administration'
 
+MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en',), 'uk': ('ru','en')}
+
 # SECURITY WARNING: use environment variables in production!
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
 EMAIL_PORT = '25'
