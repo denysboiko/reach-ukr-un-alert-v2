@@ -286,20 +286,22 @@ class Alert(models.Model):
         return url
 
     def get_clusters_list(self):
-        query = Alert.objects.filter(pk=self.pk).prefetch_related('clusters').values('clusters__cluster_name')
-        return map(lambda x: x['clusters__cluster_name'], query)
+        lang = get_language()
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('clusters').values('clusters__cluster_name' + '_' + lang)
+        return map(lambda x: x['clusters__cluster_name' + '_' + lang], query)
 
     def get_needs_list(self):
-        query = Alert.objects.filter(pk=self.pk).prefetch_related('need_types').values('need_types__need_type')
-        return map(lambda x: x['need_types__need_type'], query)
+        lang = get_language()
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('need_types').values('need_types__need_type' + '_' + lang)
+        return map(lambda x: x['need_types__need_type' + '_' + lang], query)
 
     def get_response_partners(self):
-
+        lang = get_language()
         res = Response.objects.filter(alert=self.pk)\
-            .values('response_partners__organization_name')\
+            .values('response_partners__organization_name' + '_' + lang)\
             .distinct()
 
-        return map(lambda x: x['response_partners__organization_name'], res)
+        return map(lambda x: x['response_partners__organization_name' + '_' + lang], res)
 
     def get_items(self):
 
