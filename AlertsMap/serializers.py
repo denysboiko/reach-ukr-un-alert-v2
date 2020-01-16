@@ -100,6 +100,7 @@ class AlertsSerializer(DynamicFieldsModelSerializer):
     view_url = serializers.ReadOnlyField()
     items = serializers.ReadOnlyField(source='get_items')
     responses = serializers.ReadOnlyField(source='get_response_items')
+    conflict_related = serializers.ReadOnlyField(source='get_conflict_related_display')
 
     class Meta:
 

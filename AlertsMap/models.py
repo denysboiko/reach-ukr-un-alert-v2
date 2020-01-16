@@ -8,6 +8,7 @@ from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
 from django.utils.translation import gettext_lazy as _
 from django.utils.translation import get_language
+from django.db.models import F
 
 
 class User(AbstractUser):
@@ -306,29 +307,31 @@ class Alert(models.Model):
     def get_items(self):
 
         lang = get_language()
-        item_name = 'item__item_name' + '_' + lang
-        unit_name = 'unit__unit_name' + '_' + lang
+        item_name_field = 'item__item_name' + '_' + lang
+        unit_name_field = 'unit__unit_name' + '_' + lang
 
         res = AlertItem.objects.filter(alert=self.pk)\
-            .prefetch_related('item', 'unit')\
-            .values(item_name, unit_name)\
+            .prefetch_related('item', 'unit') \
+            .annotate(item_name=F(item_name_field), unit_name=F(unit_name_field)) \
+            .values('item_name', 'unit_name') \
             .annotate(quantity_need=Sum('quantity'))
         return res
 
     def get_response_items(self):
 
         lang = get_language()
-        item_name = 'item__item_name' + '_' + lang
-        unit_name = 'unit__unit_name' + '_' + lang
+        item_name_field = 'item__item_name' + '_' + lang
+        unit_name_field = 'unit__unit_name' + '_' + lang
 
         responses = Response.objects.filter(alert=self.pk)\
-            .values(item_name, unit_name)\
+            .annotate(item_name=F(item_name_field), unit_name=F(unit_name_field))\
+            .values('item_name', 'unit_name')\
             .annotate(quantity_response=Sum('quantity'))
 
         res = {}
 
         for item in responses:
-            name = item[item_name]
+            name = item['item_name']
             res[name] = item['quantity_response']
         return res
 

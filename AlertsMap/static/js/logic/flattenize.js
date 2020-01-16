@@ -23,10 +23,10 @@ function flattenize(data, is_staff) {
         this.covered = datum['covered'];
         // this.context = datum['context'];
         // this.description = datum['description'];
-        this.item = has_items ? item['item__item_name'] : '';
+        this.item = has_items ? item['item_name'] : '';
         this.quantity = has_items ? item['quantity_need'] : '';
-        this.quantity_response = has_items ? datum['responses'][item['item__item_name']] : '';
-        this.unit = has_items ? item["unit__unit_name"] : '';
+        this.quantity_response = has_items ? datum['responses'][item['item_name']] : '';
+        this.unit = has_items ? item["unit_name"] : '';
         this.latitude = datum['latitude'];
         this.longitude = datum['longitude'];
         this.view_url = datum['view_url'];
@@ -37,8 +37,8 @@ function flattenize(data, is_staff) {
 
         function items_gap() {
             var quantity = item['quantity_need'],
-                response = datum['responses'][item['item__item_name']],
-                unit = item["unit__unit_name"];
+                response = datum['responses'][item['item_name']],
+                unit = item["unit_name"];
             return (response ? response : 0) + ' / ' + quantity + ' ' + unit
         }
 
@@ -54,7 +54,6 @@ function flattenize(data, is_staff) {
             });
 
         } else {
-
             flatData.push(new FlatObj(datum, null, is_staff));
 
         }

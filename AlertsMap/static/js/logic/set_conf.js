@@ -29,8 +29,8 @@ function setConf(data_url, full_access, lang, colors, oblasts) {
         //, admUkrainian: window.adm1
         //, admRaions: window.raionsDonetskLuhansk
 
-        , dateFormat: d3.time.format('%e %b %Y')
-        , dateFormatString: '%e %b %Y'
+        , dateFormat: d3.time.format('%Y-%m-%d')
+        , dateFormatString: '%Y-%m-%d'
         , dateFormatShort: d3.time.format('%b %y')
         , dateFormatShortString: '%b %y'
         , dateParse: d3.time.format('%Y-%m-%d')

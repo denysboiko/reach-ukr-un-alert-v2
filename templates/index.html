@@ -317,8 +317,7 @@
     {#    </p>#}
 
     <p>
-        <b>{% trans 'Related to Conflict' %}:</b>
-        <% if(data.conflictRelated) { %> Yes <% } else { %> No <% } %>
+        <b>{% trans 'Related to Conflict' %}:</b> <%= data.conflictRelated %>
     </p>
 
     <p>
