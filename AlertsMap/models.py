@@ -446,6 +446,15 @@ class Response(models.Model):
         db_table='responses'
 
 
+class MailConfig(models.Model):
+
+    from_email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    body = models.TextField()
+
+    class Meta:
+        db_table='mail_config'
+
 class MapConfig(models.Model):
 
     zoom = models.IntegerField()

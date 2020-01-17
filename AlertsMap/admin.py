@@ -259,7 +259,16 @@ class SettlementAdmin(ModelAdmin):
     ]
 
 
+class MailConfigAdmin(ModelAdmin):
+    list_display = [
+        'from_email',
+        'subject',
+        'body'
+    ]
+
+
 admin.site.register(User, UserAdmin)
+admin.site.register(MailConfig, MailConfigAdmin)
 admin.site.register([Cluster, Emails])
 admin.site.register(CoordinationHub, CoordinationHubAdmin)
 admin.site.register(Raion, RaionAdmin)

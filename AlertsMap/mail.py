@@ -1,12 +1,14 @@
-from django.template import Context
-from django.template.loader import get_template
+from django.template import Template, Context
 from django.core.mail import EmailMessage
+from .models import MailConfig
 
 
 def notify_mail(to_list, cc_list, instance, clusters, needs, url):
 
-    subject = 'Ukraine Alert Map: New alert in ' + instance.settlement.settlement_name
-    from_email = 'ocha.im.ukr.aws@gmail.com' # ocha.im.ukraine @ gmail.com
+    config = MailConfig.objects.filter(pk=1).first()
+
+    subject = config.subject + instance.settlement.settlement_name
+    from_email = config.from_email
 
     ctx = {
         'location': instance.location(),
@@ -21,7 +23,8 @@ def notify_mail(to_list, cc_list, instance, clusters, needs, url):
         'url': url
     }
 
-    message = get_template('email/email.html').render(ctx)
+    template = Template(config.body)
+    message = template.render(Context(ctx))
 
     email = EmailMessage(subject=subject, body=message, from_email=from_email, to=to_list, cc=cc_list)
     email.content_subtype = 'html'
