@@ -7,7 +7,7 @@ def notify_mail(to_list, cc_list, instance, clusters, needs, url):
 
     config = MailConfig.objects.filter(pk=1).first()
 
-    subject = config.subject + instance.settlement.settlement_name
+    subject = config.subject + ' ' + instance.settlement.settlement_name
     from_email = config.from_email
 
     ctx = {
