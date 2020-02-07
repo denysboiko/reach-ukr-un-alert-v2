@@ -14,11 +14,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # DEBUG = os.environ['DEBUG']
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.elasticbeanstalk.com'
-]
+ALLOWED_HOSTS = ('*',)
 
 # Application definition
 
