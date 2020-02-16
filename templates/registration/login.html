@@ -7,7 +7,7 @@
 
 {% block content %}
 
-    <form method="post" action="../login/" class="form-signin">{% csrf_token %}
+    <form method="post" action="{% url 'login' %}" class="form-signin">{% csrf_token %}
         <h2 class="form-signin-heading">{% trans 'Please Sign in' %}</h2>
         {% load widget_tweaks %}
 
@@ -21,7 +21,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans 'Login' %}</button>
         <input type="hidden" name="next" value="/" />
         <div class="form-control-static">
-            {% trans "Don't have an account?" %} <a href="../register">{% trans 'Register Here' %}</a>
+            {% trans "Don't have an account?" %} <a href="{% url 'register' %}">{% trans 'Register Here' %}</a>
         </div>
     </form>
 

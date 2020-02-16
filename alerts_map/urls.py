@@ -19,18 +19,23 @@ js_info_dict = {
 }
 
 urlpatterns = [
-    url(r'^logout/$', logout_page),
-    url(r'^login/$', auth_views.LoginView.as_view()),
+
+    url(r'^register/$', register, name='register'),
+    url(r'^register/success/$', register_success),
+    url(r'^logout/$', logout_page, name='logout'),
+    url(r'^login/$', auth_views.LoginView.as_view(), name='login'),
+    url(r'^admin/logout/$', logout_page),
+    url(r'^admin/login/$', auth_views.LoginView.as_view()),
+
+    url(r'^admin/', admin.site.urls),
+
     url(r'^$', home),
     url(r'^alert/(?P<alert_id>\d+)/$', alert),
-    url(r'^admin/', admin.site.urls),
-    url(r'^register/$', register),
-    url(r'^accounts/login/$', auth_views.LoginView.as_view()),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^register/success/$', register_success),
     url(r'^', include(router.urls)),
-    url(r'^agnocomplete/', include(('agnocomplete.urls', 'agnocomplete'), namespace='reviews')),
     url(r'^raions/$', RaionAutocomplete.as_view(), name='raions'),
+
+    url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name='javascript_catalog'),
-    url(r'^grappelli/', include('grappelli.urls')), # grappelli URLS
+    url(r'^agnocomplete/', include(('agnocomplete.urls', 'agnocomplete'), namespace='reviews')),
+    url(r'^grappelli/', include('grappelli.urls')),
 ]

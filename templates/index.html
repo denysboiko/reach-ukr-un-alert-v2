@@ -19,7 +19,6 @@
 
 
     <link rel="stylesheet" href="{% static 'libs/leaflet/leaflet.css' %}"/>
-    <link rel='stylesheet prefetch' href='{% static 'css/flag-icon.min.css' %}'>
 
     <script src="{% static 'js/selectize.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
@@ -102,105 +101,7 @@
     </div>
 </div>
 
-<div class="header-wrapper">
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="navbar-header header" style="width: 100%">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <button class="header-button fleft resetFilters"
-                                id="resetFilters">{% trans "RESET FILTERS" %}</button>
-                    </li>
-
-                    {% if user.is_authenticated %}
-                        <li>
-                            <div class="header-controls">
-                                <a href="{{ new_alert }}" class="header-button fleft">{% trans 'ADD AN ALERT' %}</a>
-                            </div>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="/admin">{% trans 'Admin Panel' %}</a></li>
-                                <li><a href="/admin/password_change/">{% trans 'Change Password' %}</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="/logout">{% trans 'Log Out' %}</a></li>
-                            </ul>
-                        </li>
-
-                    {% else %}
-                        <li><a href="/login/">{% trans 'Sign In' %}</a></li>
-                    {% endif %}
-
-                </ul>
-
-                <div class="navbar-right">
-
-                    <p class="header-text navbar-text" id="filterCounter"></p>
-                    <script type="text/template" id="tplFilterCounter">
-                        <%= data.value %> <span>{% trans 'alerts selected of' %}</span> <%= data.total %>
-                    </script>
-
-
-                    <ul class="nav navbar-nav">
-                        <li>
-                            <button id="openDataTable" type="button" class="header-button" data-toggle="modal"
-                                    data-target=".bs-example-modal-lg">{% trans 'DATA TABLE' %}</button>
-                            {% if user.is_authenticated %}
-                                <button class="button header-button save-data">{% trans 'DOWNLOAD DATA' %}</button>
-                            {% endif %}
-                        </li>
-                        <li>
-                            <form action="{% url 'set_language' %}" method="post" id="setlang"
-                                  style="display: none">
-                                {% csrf_token %}
-                                <input name="next" type="hidden" value="{{ redirect_to }}"/>
-                                <select name="language" id="selectlang">
-                                    {% get_current_language as LANGUAGE_CODE %}
-                                    {% get_available_languages as LANGUAGES %}
-                                    {% for lang in LANGUAGES %}
-                                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}
-                                                selected="selected"{% endif %}>
-                                            {{ lang.1 }} ({{ lang.0 }})
-                                        </option>
-                                    {% endfor %}
-                                </select>
-                                <input type="submit" value="Go"/>
-                            </form>
-                        </li>
-
-                        <li class="dropdown" id="lang">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="langswitch"
-                                                                                             class="flag-icon"></span>
-                                <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="lang-option" data-lang='en' href="#">
-                                        <span class="flag-icon flag-icon-gb"></span> English
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="lang-option" data-lang='uk' href="#">
-                                        <span class="flag-icon flag-icon-ua"></span> Українська
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="lang-option" data-lang='ru' href="#">
-                                        <span class="flag-icon flag-icon-ru"></span> Русский
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </nav>
-</div>
-
+{% include 'header.html' %}
 
 <div class="aside-wrapper wrapper">
     <aside>
@@ -335,7 +236,7 @@
 <script type="text/javascript" src="{% static 'js/logic/flattenize.js' %}"></script>
 <script type="text/javascript" src="{% static 'data/grey_zone.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/logic/set_conf.js' %}"></script>
-
+<script src="{% static 'js/languages.js' %}"></script>
 
 <script type="text/javascript">
 
@@ -356,30 +257,11 @@
         raionColors[d.id] = d.color
     });
 
-    const lang = '{{ LANGUAGE_CODE }}';
 
     window.conf = setConf('{{ data }}',{{ access }}, lang, raionColors, [transformRaions(raions, 1400000000), transformRaions(raions, 4400000000)]);
 
-    $('.lang-option').on('click', function () {
-        var lang = $(this).data('lang');
-        setLang(lang);
-    });
-
-    function setLang(lang) {
-        $('#selectlang').val(lang);
-        $('#setlang').submit();
-        return false;
-    }
-
-    var langs = {
-        'en': 'gb',
-        'uk': 'ua',
-        'ru': 'ru'
-    };
-
-    $('#langswitch').addClass('flag-icon-' + langs[lang])
-
 </script>
+
 
 <script src="{% static 'js/logic/map.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>

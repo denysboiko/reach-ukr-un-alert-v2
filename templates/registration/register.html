@@ -16,7 +16,7 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">{% trans 'Register' %}</button>
         <div class="form-control-static">
-            {% trans 'Already have an account?' %} <a href="../login/">{% trans 'Sign In' %}</a>
+            {% trans 'Already have an account?' %} <a href="{% url 'login' %}">{% trans 'Sign In' %}</a>
         </div>
     </form>
 

@@ -1,25 +1,130 @@
+{% load i18n %}
+{% load staticfiles %}
+<link rel='stylesheet prefetch' href='{% static 'css/flag-icon.min.css' %}'>
 <div class="header-wrapper">
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header header" style="width: 100%">
                 <ul class="nav navbar-nav">
-                    <a class="navbar-brand" href="/" data-i18n="Alerts">Alerts</a>
+                {% if request.resolver_match.view_name == 'AlertsMap.views.home' %}
+                    <li>
+                        <button class="header-button fleft resetFilters"
+                                id="resetFilters">{% trans "RESET FILTERS" %}</button>
+                    </li>
+                {% else %}
+                    <li><a class="navbar-brand" href="/" data-i18n="Alerts">{% trans 'Alert System' %}</a></li>
+                {% endif %}
+
                     {% if user.is_authenticated %}
+                        <li>
+                            <div class="header-controls">
+                                <a href="{% url 'admin:AlertsMap_alert_add' %}" class="header-button fleft">{% trans 'ADD AN ALERT' %}</a>
+                            </div>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false">{{ user }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="/admin" class="translate">Admin Panel</a></li>
-                                <li><a href="/admin/password_change/" class="translate">Change Password</a></li>
+                                <li><a href="{% url 'admin:index' %}">{% trans 'Admin Panel' %}</a></li>
+                                <li><a href="{% url 'admin:password_change' %}">{% trans 'Change Password' %}</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/logout" class="translate">Log Out</a></li>
+                                <li><a href="{% url 'logout' %}">{% trans 'Log Out' %}</a></li>
                             </ul>
                         </li>
+
                     {% else %}
-                        <li><a href="/login/">Sign In</a></li>
+                        <li><a href="{% url 'login' %}">{% trans 'Sign In' %}</a></li>
                     {% endif %}
+
                 </ul>
+
+                <div class="navbar-right">
+                    {% if request.resolver_match.view_name == 'AlertsMap.views.home' %}
+                        <p class="header-text navbar-text" id="filterCounter"></p>
+                        <script type="text/template" id="tplFilterCounter">
+                            <%= data.value %> <span>{% trans 'alerts selected of' %}</span> <%= data.total %>
+                        </script>
+                    {% endif %}
+
+                    <ul class="nav navbar-nav">
+                        {% if request.resolver_match.view_name == 'AlertsMap.views.home' %}
+                            <li>
+                                <button id="openDataTable" type="button" class="header-button" data-toggle="modal"
+                                        data-target=".bs-example-modal-lg">{% trans 'DATA TABLE' %}</button>
+                                {% if user.is_authenticated %}
+                                    <button class="button header-button save-data">{% trans 'DOWNLOAD DATA' %}</button>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+                        <li>
+                            <form action="{% url 'set_language' %}" method="post" id="setlang"
+                                  style="display: none">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                                <select name="language" id="selectlang">
+                                    {% get_current_language as LANGUAGE_CODE %}
+                                    {% get_available_languages as LANGUAGES %}
+                                    {% for lang in LANGUAGES %}
+                                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}
+                                                selected="selected"{% endif %}>
+                                            {{ lang.1 }} ({{ lang.0 }})
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                                <input type="submit" value="Go"/>
+                            </form>
+                        </li>
+
+                        <li class="dropdown" id="lang">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="langswitch"
+                                                                                             class="flag-icon"></span>
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="lang-option" data-lang='en' href="#">
+                                        <span class="flag-icon flag-icon-gb"></span> English
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="lang-option" data-lang='uk' href="#">
+                                        <span class="flag-icon flag-icon-ua"></span> Українська
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="lang-option" data-lang='ru' href="#">
+                                        <span class="flag-icon flag-icon-ru"></span> Русский
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </div>
     </nav>
 </div>
+
+<script>
+    const lang = '{{ LANGUAGE_CODE }}';
+
+    $('.lang-option').on('click', function () {
+        var lang = $(this).data('lang');
+        setLang(lang);
+    });
+
+    function setLang(lang) {
+        $('#selectlang').val(lang);
+        $('#setlang').submit();
+        return false;
+    }
+
+    let langs = {
+        'en': 'gb',
+        'uk': 'ua',
+        'ru': 'ru'
+    };
+
+    $('#langswitch').addClass('flag-icon-' + langs[lang]);
+</script>

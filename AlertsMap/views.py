@@ -67,7 +67,6 @@ def home(request):
         {
             'user': request.user,
             'access': 1 if request.user.is_staff else 0,
-            'new_alert': reverse('admin:AlertsMap_alert_add'),
             'data': '../alerts/?format=json',
             'raions': json.dumps(queryset)
         }
@@ -190,10 +189,6 @@ def register(request):
 
 def register_success(request):
     return HttpResponseRedirect('/')
-    # return render(
-    #     request,
-    #     'registration/success.html',
-    # )
 
 
 def logout_page(request):
