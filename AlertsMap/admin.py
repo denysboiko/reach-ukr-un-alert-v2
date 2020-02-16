@@ -35,7 +35,6 @@ class ItemsInline(admin.TabularInline):
     classes = ('grp-collapse grp-open',)
 
 
-
 class EmailsInline(admin.TabularInline):
     model = ClusterEmail
     verbose_name = _("Cluster recipient list")
