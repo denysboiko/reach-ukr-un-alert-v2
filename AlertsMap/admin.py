@@ -16,23 +16,26 @@ UserAdmin.add_fieldsets = (
 )
 
 
-# ModelAdmin
-# GuardedModelAdmin
-# ModerationAdmin
-
-
 def check_access(user, group):
     if user:
         return user.groups.filter(name=group).count() > 0
     return False
 
 
-class ItemsInline(admin.TabularInline):
+class ItemsInline(admin.StackedInline):
     model = AlertItem
     verbose_name = _("Need by items")
     verbose_name_plural = _("Needs by items")
     extra = 1
     classes = ('grp-collapse grp-open',)
+
+    fieldsets = (
+        (None, {
+            'fields': (
+                ('item', 'item_details', 'quantity', 'unit'),
+                ('item_details_en', 'item_details_ru', 'item_details_uk')
+            )}),
+    )
 
 
 class EmailsInline(admin.TabularInline):
@@ -69,9 +72,9 @@ class ResponsesInline(admin.StackedInline):
 
 
 class ResponseAdmin(ModelAdmin):
-    # list_filter = ['']
+
     list_display = [
-        'items',
+        'item',
         'date'
     ]
 
@@ -87,8 +90,9 @@ class ResponseAdmin(ModelAdmin):
 
     filter_horizontal = ('response_partners',)
 
-    def items(self, obj):
-        return '%d %s of %s' % (obj.quantity, obj.unit, obj.item)
+    @staticmethod
+    def items(obj):
+        return '%s, %d %s' % (obj.item, obj.quantity, obj.unit)
 
 
 class AlertAdmin(ModelAdmin):
@@ -109,7 +113,7 @@ class AlertAdmin(ModelAdmin):
             ('affected', 'conflict_related', 'alert_type'),
             ('no_affected', 'no_beneficiaries', 'population')
         )}),
-        (_('Population figures'), {
+        (_('Population figures (by groups)'), {
             'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('no_affected_males', 'no_beneficiaries_males', 'population_males'),
@@ -125,7 +129,7 @@ class AlertAdmin(ModelAdmin):
             ('date_referal',)
         )}),
         (None, {'fields': (('informant', 'context'),)}),
-        ('Translation', {
+        (_('Translation'), {
             'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('informant_en', 'context_en'),
@@ -134,7 +138,7 @@ class AlertAdmin(ModelAdmin):
             )
         }),
         (None, {'fields': (('description', 'comments'),)}),
-        ('Translation', {
+        (_('Translation'), {
             'classes': ('grp-collapse grp-closed',),
             'fields': (
                 ('description_en', 'comments_en'),
@@ -172,12 +176,12 @@ class AlertAdmin(ModelAdmin):
     def confirm_alerts(self, request, queryset):
         queryset.update(confirmation_status=2)
 
-    confirm_alerts.short_description = "Confirm selected alerts"
+    confirm_alerts.short_description = _("Confirm selected alerts")
 
     def reject_alerts(self, request, queryset):
         queryset.update(confirmation_status=3)
 
-    reject_alerts.short_description = "Reject selected alerts"
+    reject_alerts.short_description = _("Reject selected alerts")
 
     def save_model(self, request, obj, form, change):
 

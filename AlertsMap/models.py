@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.urls import reverse
 from urllib.parse import urljoin
 from django.db import models
-from django.db.models import Max, Min, Sum
+from django.db.models import Sum
 from django.contrib.auth.models import AbstractUser
 from colorfield.fields import ColorField
 from django.contrib.sites.models import Site
@@ -47,7 +47,8 @@ class Cluster(models.Model):
         verbose_name = _('Cluster')
         verbose_name_plural = _('Clusters')
 
-
+# GcaNgca
+# GCA_NGCA
 class GCA_NGCA(models.Model):
 
     type_of_area = models.CharField(max_length=20)
@@ -75,9 +76,9 @@ class Oblast(models.Model):
 class Raion(models.Model):
 
     pcode = models.CharField(max_length=10, blank=True, null=True)
-    raion_name = models.CharField(max_length=100)
-    oblast = models.ForeignKey(Oblast, on_delete=models.CASCADE)
-    color = ColorField(default='#FF0000')
+    raion_name = models.CharField(max_length=100, verbose_name=_('Raion Name'))
+    oblast = models.ForeignKey(Oblast, on_delete=models.CASCADE, verbose_name=_('Oblast'))
+    color = ColorField(default='#FF0000', verbose_name=_('Color'))
 
     def __str__(self):
         return self.raion_name
@@ -108,13 +109,16 @@ class Settlement(models.Model):
 
     pcode = models.CharField(max_length=12, blank=True, null=True)
     pcode_new = models.CharField(max_length=10, blank=True, null=True)
-    settlement_name_old = models.CharField(max_length=120, blank=True, null=True)
-    settlement_name = models.CharField(max_length=120)
+    settlement_name_old = models.CharField(max_length=120, blank=True, null=True,
+                                           verbose_name=_('Settlement Name (old)'))
+    settlement_name = models.CharField(max_length=120, verbose_name=_('Settlement Name'))
     longitude = models.FloatField()
     latitude = models.FloatField()
-    raion = models.ForeignKey(Raion, on_delete=models.CASCADE)
-    area = models.ForeignKey(GCA_NGCA, blank=True, null=True, on_delete=models.CASCADE)
-    hub = models.ForeignKey(CoordinationHub, blank=True, null=True, on_delete=models.CASCADE)
+    raion = models.ForeignKey(Raion, on_delete=models.CASCADE, verbose_name=_('Raion'))
+    area = models.ForeignKey(GCA_NGCA, blank=True, null=True, on_delete=models.CASCADE,
+                             verbose_name=_('GCA/NGCA'))
+    hub = models.ForeignKey(CoordinationHub, blank=True, null=True, on_delete=models.CASCADE,
+                            verbose_name=_('Hub'))
 
     def __str__(self):
         return self.settlement_name
@@ -227,7 +231,8 @@ class Alert(models.Model):
     raion = models.ForeignKey(Raion, on_delete=models.CASCADE, verbose_name=_('Raion'))
     date_referal = models.DateField(verbose_name=_('Date of Incident'))
     informant = models.TextField(blank=True, null=True, verbose_name=_('Informant'))
-    referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id', on_delete=models.CASCADE)
+    referral_agency = models.ForeignKey(Organization, related_name='referral_agency_id', on_delete=models.CASCADE,
+                                        verbose_name=_('Referral Agency'))
     referral_agency.admin_order_field = 'organization_name'
     settlement = models.ForeignKey(Settlement, on_delete=models.CASCADE, verbose_name=_('Settlement'))
     gca_ngca = models.ForeignKey(GCA_NGCA, on_delete=models.CASCADE, verbose_name=_('GCA/NGCA'))
@@ -243,28 +248,39 @@ class Alert(models.Model):
                                  on_delete=models.CASCADE)
     source_info = models.CharField(max_length=255, blank=True, null=True)
     status = models.ForeignKey(Status, on_delete=models.CASCADE, verbose_name=_('Status'))
-    confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1, on_delete=models.CASCADE, verbose_name=_('Confirmation Status'))
+    confirmation_status = models.ForeignKey(ConfirmationStatus, null=True, default=1, on_delete=models.CASCADE,
+                                            verbose_name=_('Confirmation Status'))
     date_update = models.DateField(blank=True, null=True, verbose_name=_('Date Updated'))
     additional_info_link = models.CharField(max_length=255, blank=True, null=True)
-    comments = models.TextField(blank=True, null=True)
-    population = models.BigIntegerField(blank=True, null=True, verbose_name=_('Baseline population'))
-    population_males = models.BigIntegerField(blank=True, null=True)
-    population_females = models.BigIntegerField(blank=True, null=True)
-    population_children = models.BigIntegerField(blank=True, null=True)
-    population_adult = models.BigIntegerField(blank=True, null=True)
-    population_elderly = models.BigIntegerField(blank=True, null=True)
-    no_affected = models.IntegerField(verbose_name=_('Number of affected (ind.)'))
-    no_affected_males = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (male)'))
-    no_affected_females = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (female)'))
-    no_affected_children = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (children)'))
-    no_affected_adult = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (adult)'))
-    no_affected_elderly = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (elderly)'))
-    no_beneficiaries = models.IntegerField(blank=True, null=True, verbose_name=_('Number of beneficiaries'))
-    no_beneficiaries_males = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (ind.)'))
-    no_beneficiaries_females = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (ind.)'))
-    no_beneficiaries_children = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (ind.)'))
-    no_beneficiaries_adult = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (ind.)'))
-    no_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of affected (ind.)'))
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
+
+    population = models.BigIntegerField(blank=True, null=True, verbose_name=_('Baseline Population'))
+    population_males = models.BigIntegerField(blank=True, null=True, verbose_name=_('Population (male)'))
+    population_females = models.BigIntegerField(blank=True, null=True, verbose_name=_('Population (female)'))
+    population_children = models.BigIntegerField(blank=True, null=True, verbose_name=_('Population (children)'))
+    population_adult = models.BigIntegerField(blank=True, null=True, verbose_name=_('Population (adult)'))
+    population_elderly = models.BigIntegerField(blank=True, null=True, verbose_name=_('Population (elderly)'))
+
+    no_affected = models.IntegerField(verbose_name=_('Number of Affected'))
+    no_affected_males = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of Affected (male)'))
+    no_affected_females = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of Affected (female)'))
+    no_affected_children = models.BigIntegerField(blank=True, null=True,
+                                                  verbose_name=_('Number of Affected (children)'))
+    no_affected_adult = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of Affected (adult)'))
+    no_affected_elderly = models.BigIntegerField(blank=True, null=True, verbose_name=_('Number of Affected (elderly)'))
+
+    no_beneficiaries = models.IntegerField(blank=True, null=True, verbose_name=_('Number of Beneficiaries'))
+    no_beneficiaries_males = models.BigIntegerField(blank=True, null=True,
+                                                    verbose_name=_('Number of Beneficiaries (male)'))
+    no_beneficiaries_females = models.BigIntegerField(blank=True, null=True,
+                                                      verbose_name=_('Number of Beneficiaries (female)'))
+    no_beneficiaries_children = models.BigIntegerField(blank=True, null=True,
+                                                       verbose_name=_('Number of Beneficiaries (children)'))
+    no_beneficiaries_adult = models.BigIntegerField(blank=True, null=True,
+                                                    verbose_name=_('Number of Beneficiaries (adult)'))
+    no_beneficiaries_elderly = models.BigIntegerField(blank=True, null=True,
+                                                      verbose_name=_('Number of Beneficiaries (elderly)'))
+
     clusters = models.ManyToManyField(Cluster, related_name='clusters_id', verbose_name=_('Clusters'))
     need_types = models.ManyToManyField(NeedType, related_name='needs', verbose_name=_('Need Types'))
 
@@ -288,12 +304,14 @@ class Alert(models.Model):
 
     def get_clusters_list(self):
         lang = get_language()
-        query = Alert.objects.filter(pk=self.pk).prefetch_related('clusters').values('clusters__cluster_name' + '_' + lang)
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('clusters').values('clusters__cluster_name' + '_'
+                                                                                     + lang)
         return map(lambda x: x['clusters__cluster_name' + '_' + lang], query)
 
     def get_needs_list(self):
         lang = get_language()
-        query = Alert.objects.filter(pk=self.pk).prefetch_related('need_types').values('need_types__need_type' + '_' + lang)
+        query = Alert.objects.filter(pk=self.pk).prefetch_related('need_types').values('need_types__need_type' + '_'
+                                                                                       + lang)
         return map(lambda x: x['need_types__need_type' + '_' + lang], query)
 
     def get_response_partners(self):
@@ -328,7 +346,7 @@ class Alert(models.Model):
             .values('item_name', 'unit_name')\
             .annotate(quantity_response=Sum('quantity'))
 
-        res = {}
+        res = dict()
 
         for item in responses:
             name = item['item_name']
@@ -337,10 +355,13 @@ class Alert(models.Model):
 
     def get_recipients(self, cluster_ids):
 
-        def get_mail_lists(id, cluster_ids):
+        def get_mail_lists(hub_id, cluster_ids_list):
 
-            emails_to = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('to_list').values_list('to_list__email')
-            emails_cc = ClusterEmail.objects.filter(coordination_hub=id, cluster__in=cluster_ids).prefetch_related('cc_list').values_list('cc_list__email')
+            emails_to = ClusterEmail.objects.filter(coordination_hub=hub_id, cluster__in=cluster_ids_list)\
+                .prefetch_related('to_list').values_list('to_list__email')
+
+            emails_cc = ClusterEmail.objects.filter(coordination_hub=hub_id, cluster__in=cluster_ids_list)\
+                .prefetch_related('cc_list').values_list('cc_list__email')
 
             return {'To': map(lambda x: x[0], emails_to), 'CC': map(lambda x: x[0], emails_cc)}
 
@@ -381,8 +402,8 @@ class ItemGroup(models.Model):
 
 class Item(models.Model):
 
-    item_name = models.CharField(max_length=120, blank=True, null=True)
-    item_group = models.ForeignKey(ItemGroup, null=True, on_delete=models.CASCADE)
+    item_name = models.CharField(max_length=120, blank=True, null=True, verbose_name=_('Item Name'))
+    item_group = models.ForeignKey(ItemGroup, null=True, on_delete=models.CASCADE, verbose_name=_('Item Group'))
 
     def __str__(self):
         return self.item_name
@@ -393,7 +414,7 @@ class Item(models.Model):
 
 class Unit(models.Model):
 
-    unit_name = models.CharField(max_length=30, blank=True, null=True)
+    unit_name = models.CharField(max_length=30, blank=True, null=True, verbose_name=_('Unit'))
 
     def __str__(self):
         return self.unit_name
@@ -404,14 +425,11 @@ class Unit(models.Model):
 
 class AlertItem(models.Model):
 
-    alert = models.ForeignKey(Alert, related_name='items', on_delete=models.CASCADE)
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    item_details = models.CharField(max_length=120, blank=True, null=True)
-    quantity = models.IntegerField()
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    #
-    # def __str__(self):
-    #     return self.item_name
+    alert = models.ForeignKey(Alert, related_name='items', on_delete=models.CASCADE, verbose_name=_('Alert'))
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name=_('Item'))
+    item_details = models.CharField(max_length=120, blank=True, null=True, verbose_name=_('Item Details'))
+    quantity = models.IntegerField(verbose_name=_('Quantity'))
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name=_('Unit'))
 
     class Meta:
         db_table = 'alert_items'
@@ -419,21 +437,19 @@ class AlertItem(models.Model):
 
 class Response(models.Model):
 
-    response_partners = models.ManyToManyField(Organization, related_name='response_partners_id')
-    item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    item_details = models.CharField(max_length=120, blank=True, null=True)
-    quantity = models.IntegerField()
-    unit = models.ForeignKey(Unit, on_delete=models.CASCADE)
-    date = models.DateField(blank=True, null=True)
-    alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE)
-    uncovered_needs = models.CharField(max_length=255, blank=True, null=True)
-    action = models.CharField(max_length=255, blank=True, null=True)
-    comments = models.TextField(blank=True, null=True)
+    response_partners = models.ManyToManyField(Organization, related_name='response_partners_id',
+                                               verbose_name=_('Response Partners'))
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, verbose_name=_('Item'))
+    item_details = models.CharField(max_length=120, blank=True, null=True, verbose_name=_('Item Details'))
+    quantity = models.IntegerField(verbose_name=_('Quantity'))
+    unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name=_('Unit'))
+    date = models.DateField(blank=True, null=True, verbose_name=_('Date'))
+    alert = models.ForeignKey(Alert, related_name='responses', on_delete=models.CASCADE, verbose_name=_('Alert'))
+    uncovered_needs = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Uncovered Needs'))
+    action = models.CharField(max_length=255, blank=True, null=True, verbose_name=_('Action'))
+    comments = models.TextField(blank=True, null=True, verbose_name=_('Comments'))
 
     response_partners.admin_order_field = 'organization_name'
-    # def partners(self):
-    #     return obj
-    # def get_items(self):
 
     def __str__(self):
         return _('%(quantity)d %(unit)s of %(item)s') % {
@@ -443,17 +459,22 @@ class Response(models.Model):
         }
 
     class Meta:
-        db_table='responses'
+        db_table = 'responses'
+        verbose_name = _('Response')
+        verbose_name_plural = _('Responses')
 
 
 class MailConfig(models.Model):
 
-    from_email = models.EmailField()
-    subject = models.CharField(max_length=200)
-    body = models.TextField()
+    from_email = models.EmailField(verbose_name=_('From'))
+    subject = models.CharField(max_length=200, verbose_name=_('Subject'))
+    body = models.TextField(verbose_name=_('Body'))
 
     class Meta:
-        db_table='mail_config'
+        db_table = 'mail_config'
+        verbose_name = _('Mail Template')
+        verbose_name_plural = _('Mail Templates')
+
 
 class MapConfig(models.Model):
 

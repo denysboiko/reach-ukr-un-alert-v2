@@ -8,7 +8,7 @@
               <h1>{{ alert }}</h1>
             </div>
             {% if request.user.is_staff %}
-                <a href="{{ alert.edit_url }}" class="btn btn-default">Edit Alert</a>
+                <a href="{{ alert.edit_url }}" class="btn btn-default">{% trans 'Edit Alert' %}</a>
             {% endif %}
             <table class="table table-striped">
                 <thead>
@@ -31,37 +31,37 @@
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Raion</td>
+                    <td>{% trans 'Raion' %}</td>
                     <td>{{ alert.raion }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Oblast</td>
+                    <td>{% trans 'Oblast' %}</td>
                     <td>{{ alert.oblast }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Settlement</td>
+                    <td>{% trans 'Settlement' %}</td>
                     <td>{{ alert.settlement }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Number of Affected</td>
+                    <td>{% trans 'Number of Affected' %}</td>
                     <td>{{ alert.no_affected }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Number of Beneficiaries / Affected</td>
+                    <td>{% trans 'Number of Beneficiaries / Affected' %}</td>
                     <td>{% if alert.no_beneficiaries != None %}{{ alert.no_beneficiaries }} / {% endif %}{{ alert.no_affected }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Type of Alert</td>
+                    <td>{% trans 'Type of Alert' %}</td>
                     <td>{{ alert.alert_type }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Type of Needs</td>
+                    <td>{% trans 'Type of Needs' %}</td>
                     <td>
                         {% for need in alert.get_needs_list %}
                             <span class="label label-primary">{{ need }}</span>
@@ -70,7 +70,7 @@
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Clusters</td>
+                    <td>{% trans 'Clusters' %}</td>
                     <td>
                         {% for cluster in alert.get_clusters_list %}
                             <span class="label label-primary">{{ cluster }}</span>
@@ -80,7 +80,7 @@
                 {% if request.user.is_staff %}
                 <tr>
                     <th scope="row"></th>
-                    <td>Response Partners</td>
+                    <td>{% trans 'Response Partners' %}</td>
                     <td>
                         <ul class="list-unstyled">
                             {% for partner in alert.get_response_partners %}
@@ -93,7 +93,7 @@
 
                 <tr>
                     <th scope="row"></th>
-                    <td>Need Items</td>
+                    <td>{% trans 'Need Items' %}</td>
                     <td>
                         <ul class="list-unstyled">
                             {% for item in alert.get_items %}
@@ -104,7 +104,7 @@
                 </tr>
                 <tr>
                     <th scope="row"></th>
-                    <td>Response Items</td>
+                    <td>{% trans 'Response Items' %}</td>
                     <td>
                         <ul class="list-unstyled">
                             {% for key, value in alert.get_response_items.items %}

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-23 00:47+0200\n"
+"POT-Creation-Date: 2020-02-16 23:18+0200\n"
 "PO-Revision-Date: 2019-12-23 00:49+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -27,27 +27,37 @@ msgstr "Потреба за предметами"
 msgid "Needs by items"
 msgstr "Потреби за предметами"
 
-#: AlertsMap/admin.py:41
+#: AlertsMap/admin.py:40
 msgid "Cluster recipient list"
 msgstr "Список отримувачів"
 
-#: AlertsMap/admin.py:42
+#: AlertsMap/admin.py:41
 msgid "Cluster recipient lists"
 msgstr "Списки отримувачів"
 
-#: AlertsMap/admin.py:53
+#: AlertsMap/admin.py:52
 msgid "Response by items"
 msgstr "Відповідь за предметами"
 
-#: AlertsMap/admin.py:54
+#: AlertsMap/admin.py:53
 msgid "Responses by items"
 msgstr "Відповіді за предметами"
 
-#: AlertsMap/admin.py:110
+#: AlertsMap/admin.py:112
 msgid "Population figures"
 msgstr "Чисельність населення"
 
-#: AlertsMap/apps.py:9
+#: AlertsMap/admin.py:175
+msgid "Confirm selected alerts"
+msgstr ""
+
+#: AlertsMap/admin.py:180
+#, fuzzy
+#| msgid "alerts selected of"
+msgid "Reject selected alerts"
+msgstr "алертів вибрано з"
+
+#: AlertsMap/apps.py:9 templates/header.html:15
 msgid "Alert System"
 msgstr "Система оповіщень"
 
@@ -59,7 +69,7 @@ msgstr "Користувач"
 msgid "The username must contain only letters, numbers and underscores."
 msgstr "Ім'я користувача повинно містити лише літери, цифри та підкреслення."
 
-#: AlertsMap/forms.py:21 AlertsMap/models.py:207
+#: AlertsMap/forms.py:21 AlertsMap/models.py:209
 msgid "Organization"
 msgstr "Організація"
 
@@ -87,165 +97,182 @@ msgstr "Ім'я користувача вже існує. Будь ласка, �
 msgid "The two password fields did not match."
 msgstr "Два поля пароля не збігаються."
 
-#: AlertsMap/models.py:19
+#: AlertsMap/models.py:21
 msgid "User"
 msgstr "Користувач"
 
-#: AlertsMap/models.py:20
+#: AlertsMap/models.py:22
 msgid "Users"
 msgstr "Користувачі"
 
-#: AlertsMap/models.py:32
+#: AlertsMap/models.py:34
 msgid "Email"
 msgstr "Електронна адреса"
 
-#: AlertsMap/models.py:33
+#: AlertsMap/models.py:35
 msgid "Emails"
 msgstr "Електронні адреси"
 
-#: AlertsMap/models.py:45 templates/index.html:210
+#: AlertsMap/models.py:47 templates/index.html:111
 msgid "Cluster"
 msgstr "Кластер"
 
-#: AlertsMap/models.py:46 templates/index.html:300
+#: AlertsMap/models.py:48 AlertsMap/models.py:268 templates/alert.html:73
+#: templates/index.html:201
 msgid "Clusters"
 msgstr "Кластери"
 
-#: AlertsMap/models.py:69 AlertsMap/models.py:224 templates/index.html:64
+#: AlertsMap/models.py:71 AlertsMap/models.py:226 templates/alert.html:39
+#: templates/index.html:63
 msgid "Oblast"
 msgstr "Область"
 
-#: AlertsMap/models.py:70
+#: AlertsMap/models.py:72
 msgid "Oblasts"
 msgstr "Області"
 
-#: AlertsMap/models.py:85 AlertsMap/models.py:225 templates/index.html:66
+#: AlertsMap/models.py:87 AlertsMap/models.py:227 templates/alert.html:34
+#: templates/index.html:65
 msgid "Raion"
 msgstr "Район"
 
-#: AlertsMap/models.py:86
+#: AlertsMap/models.py:88
 msgid "Raions"
 msgstr "Райони"
 
-#: AlertsMap/models.py:101
+#: AlertsMap/models.py:103
 msgid "Coordination hub"
 msgstr "Координаційний офіс"
 
-#: AlertsMap/models.py:102
+#: AlertsMap/models.py:104
 msgid "Coordination hubs"
 msgstr "Координаційні офіси"
 
-#: AlertsMap/models.py:122 AlertsMap/models.py:230 templates/index.html:68
+#: AlertsMap/models.py:124 AlertsMap/models.py:232 templates/alert.html:44
+#: templates/index.html:67
 msgid "Settlement"
 msgstr "Населений пункт"
 
-#: AlertsMap/models.py:123
+#: AlertsMap/models.py:125
 msgid "Settlements"
 msgstr "Населені пункти"
 
-#: AlertsMap/models.py:134
+#: AlertsMap/models.py:136
 msgid "Need Type"
 msgstr "Тип потреби"
 
-#: AlertsMap/models.py:135
+#: AlertsMap/models.py:137 AlertsMap/models.py:269
 msgid "Need Types"
 msgstr "Типи потреб"
 
-#: AlertsMap/models.py:146
+#: AlertsMap/models.py:148 AlertsMap/models.py:242
 msgid "Affected Group"
 msgstr "Постраждала група"
 
-#: AlertsMap/models.py:147
+#: AlertsMap/models.py:149
 msgid "Affected Groups"
 msgstr "Постраждалі групи"
 
-#: AlertsMap/models.py:158
+#: AlertsMap/models.py:160 AlertsMap/models.py:238
 msgid "Alert Type"
 msgstr "Тип оповіщення"
 
-#: AlertsMap/models.py:159
+#: AlertsMap/models.py:161
 msgid "Alert Types"
 msgstr "Типи оповіщень"
 
-#: AlertsMap/models.py:170 templates/index.html:238
+#: AlertsMap/models.py:172 AlertsMap/models.py:245 templates/index.html:139
 msgid "Status"
 msgstr "Статус"
 
-#: AlertsMap/models.py:171
+#: AlertsMap/models.py:173
 msgid "Statuses"
 msgstr "Статуси"
 
-#: AlertsMap/models.py:197
+#: AlertsMap/models.py:199
 msgid "Organization Name"
 msgstr "Назва організації"
 
-#: AlertsMap/models.py:208
+#: AlertsMap/models.py:210
 msgid "Organizations"
 msgstr "Організації"
 
-#: AlertsMap/models.py:226
+#: AlertsMap/models.py:228
 msgid "Date of Incident"
 msgstr "Дата інциденту"
 
-#: AlertsMap/models.py:227
+#: AlertsMap/models.py:229
 msgid "Informant"
 msgstr "Інформант"
 
-#: AlertsMap/models.py:231
+#: AlertsMap/models.py:233
 msgid "GCA/NGCA"
 msgstr "ТКУ/ТНКУ"
 
-#: AlertsMap/models.py:233 AlertsMap/models.py:273
+#: AlertsMap/models.py:235 AlertsMap/models.py:275
 msgid "No"
 msgstr "Ні"
 
-#: AlertsMap/models.py:234 AlertsMap/models.py:273
+#: AlertsMap/models.py:236 AlertsMap/models.py:275
 msgid "Yes"
 msgstr "Так"
 
-#: AlertsMap/models.py:237
+#: AlertsMap/models.py:239
 msgid "Conflict related"
 msgstr "Пов'язано з конфліктом"
 
 #: AlertsMap/models.py:240
-msgid "Affected group"
-msgstr "Постраждала група"
+msgid "Description"
+msgstr ""
 
-#: AlertsMap/models.py:248
+#: AlertsMap/models.py:241
+msgid "Context"
+msgstr ""
+
+#: AlertsMap/models.py:246
+#, fuzzy
+#| msgid "Coordination hubs"
+msgid "Confirmation Status"
+msgstr "Координаційні офіси"
+
+#: AlertsMap/models.py:247
+msgid "Date Updated"
+msgstr ""
+
+#: AlertsMap/models.py:250
 msgid "Baseline population"
 msgstr "Базова чисельність населення"
 
-#: AlertsMap/models.py:254 AlertsMap/models.py:261 AlertsMap/models.py:262
-#: AlertsMap/models.py:263 AlertsMap/models.py:264 AlertsMap/models.py:265
-#: AlertsMap/models.py:266 AlertsMap/models.py:267
+#: AlertsMap/models.py:256 AlertsMap/models.py:263 AlertsMap/models.py:264
+#: AlertsMap/models.py:265 AlertsMap/models.py:266 AlertsMap/models.py:267
 msgid "Number of affected (ind.)"
 msgstr "Кількість постраждалих"
 
-#: AlertsMap/models.py:255
+#: AlertsMap/models.py:257
 msgid "Number of affected (male)"
 msgstr "Кількість постраждалих (чоловіки)"
 
-#: AlertsMap/models.py:256
+#: AlertsMap/models.py:258
 msgid "Number of affected (female)"
 msgstr "Кількість постраждалих (жінки)"
 
-#: AlertsMap/models.py:257
+#: AlertsMap/models.py:259
 msgid "Number of affected (children)"
 msgstr "Кількість постраждалих (діти)"
 
-#: AlertsMap/models.py:258
+#: AlertsMap/models.py:260
 msgid "Number of affected (adult)"
 msgstr "Кількість постраждалих (дорослі)"
 
-#: AlertsMap/models.py:259
+#: AlertsMap/models.py:261
 msgid "Number of affected (elderly)"
 msgstr "Кількість постраждалих (літні люди)"
 
-#: AlertsMap/models.py:260
+#: AlertsMap/models.py:262
 msgid "Number of beneficiaries"
 msgstr "Кількість бенефіціарів"
 
-#: AlertsMap/models.py:334
+#: AlertsMap/models.py:356
 #, python-format
 msgid ""
 "%(no_affected)d affected in %(settlement)s, %(raion)s raion (%(oblast)s obl.)"
@@ -253,162 +280,224 @@ msgstr ""
 "%(no_affected)d постраждалих в %(settlement)s, %(raion)s рай. (%(oblast)s "
 "обл.)"
 
-#: AlertsMap/models.py:345
+#: AlertsMap/models.py:367
 msgid "Alert"
 msgstr "Оповіщення"
 
-#: AlertsMap/models.py:346
+#: AlertsMap/models.py:368
 msgid "Alerts"
 msgstr "Оповіщення"
 
-#: AlertsMap/models.py:417
+#: AlertsMap/models.py:439
 #, python-format
 msgid "%(quantity)d %(unit)s of %(item)s"
 msgstr "%(quantity)d %(unit)s, %(item)s"
 
+#: AlertsMap/models.py:447
+#, fuzzy
+#| msgid "Response by items"
+msgid "Response"
+msgstr "Відповідь за предметами"
+
+#: AlertsMap/models.py:448
+#, fuzzy
+#| msgid "Response by items"
+msgid "Responses"
+msgstr "Відповідь за предметами"
+
+#: AlertsMap/models.py:459
+msgid "Mail Template"
+msgstr ""
+
+#: AlertsMap/models.py:460
+msgid "Mail Templates"
+msgstr ""
+
 # msgid "%d affected in %s, %s raion (%s obl.)"
 # msgstr "%d постраждалих в %s, %s районі (%s обл.)"
-#: alerts_map/settings.py:160
+#: alerts_map/settings.py:151
 msgid "English"
 msgstr "Англійська"
 
-#: alerts_map/settings.py:161
+#: alerts_map/settings.py:152
 msgid "Russian"
 msgstr "Російська"
 
-#: alerts_map/settings.py:162
+#: alerts_map/settings.py:153
 msgid "Ukrainian"
 msgstr "Українська"
 
-#: templates/alert.html:16
+#: templates/alert.html:11
+#, fuzzy
+#| msgid "Alert"
+msgid "Edit Alert"
+msgstr "Оповіщення"
+
+#: templates/alert.html:17
 msgid "Field"
 msgstr "Поле"
 
-#: templates/alert.html:17
+#: templates/alert.html:18
 msgid "Value"
 msgstr "Значення"
 
-#: templates/alert.html:28
+#: templates/alert.html:29
 msgid "Date Refferal"
 msgstr "Дата звітування"
 
-#: templates/index.html:62
-msgid "ID"
-msgstr "ID"
+#: templates/alert.html:49
+#, fuzzy
+#| msgid "Number of affected (ind.)"
+msgid "Number of Affected"
+msgstr "Кількість постраждалих"
 
-#: templates/index.html:63
-msgid "Date"
-msgstr "Дата"
+#: templates/alert.html:54
+#, fuzzy
+#| msgid "Number of beneficiaries"
+msgid "Number of Beneficiaries / Affected"
+msgstr "Кількість бенефіціарів"
 
-#: templates/index.html:69 templates/index.html:321
-msgid "Related to Conflict"
-msgstr "Пов'язані з конфліктом"
+#: templates/alert.html:59
+#, fuzzy
+#| msgid "Type alert"
+msgid "Type of Alert"
+msgstr "Тип алерта"
 
-#: templates/index.html:70 templates/index.html:309
+#: templates/alert.html:64 templates/index.html:69 templates/index.html:210
 msgid "Type of Needs"
 msgstr "Тип потреб"
 
-#: templates/index.html:71
-msgid "Covered"
-msgstr "Охоплено"
+#: templates/alert.html:83
+#, fuzzy
+#| msgid "Response partners"
+msgid "Response Partners"
+msgstr "Партнер"
 
-#: templates/index.html:73
-msgid "Affected"
-msgstr "Постраждалих"
+#: templates/alert.html:96
+#, fuzzy
+#| msgid "Need by items"
+msgid "Need Items"
+msgstr "Потреба за предметами"
 
-#: templates/index.html:74
-msgid "Item"
-msgstr "Одиниця"
+#: templates/alert.html:107
+#, fuzzy
+#| msgid "Response by items"
+msgid "Response Items"
+msgstr "Відповідь за предметами"
 
-#: templates/index.html:75
-msgid "Quantity Provided/Needed"
-msgstr "Кількість наданих / необхідних"
-
-#: templates/index.html:76
-msgid "Additional info"
-msgstr "Додаткова інформація"
-
-#: templates/index.html:88 templates/index.html:331
-msgid "Learn more"
-msgstr "Більше"
-
-#: templates/index.html:113
+#: templates/header.html:12
 msgid "RESET FILTERS"
 msgstr "СКИНУТИ ФІЛЬТРИ"
 
-#: templates/index.html:119
+#: templates/header.html:21
 msgid "ADD AN ALERT"
 msgstr "ДОДАТИ АЛЕРТ"
 
-#: templates/index.html:126
+#: templates/header.html:28
 msgid "Admin Panel"
 msgstr "Панель адміністрування"
 
-#: templates/index.html:127
+#: templates/header.html:29
 msgid "Change Password"
 msgstr "Змінити пароль"
 
-#: templates/index.html:129
+#: templates/header.html:31
 msgid "Log Out"
 msgstr "Вийти"
 
-#: templates/index.html:134 templates/registration/register.html:19
+#: templates/header.html:36 templates/registration/register.html:19
 msgid "Sign In"
 msgstr "Увійти"
 
-#: templates/index.html:143
+#: templates/header.html:45
 msgid "alerts selected of"
 msgstr "алертів вибрано з"
 
-#: templates/index.html:150
+#: templates/header.html:53
 msgid "DATA TABLE"
 msgstr "ТАБЛИЦЯ ДАНИХ"
 
-#: templates/index.html:152
+#: templates/header.html:55
 msgid "DOWNLOAD DATA"
 msgstr "СКАЧАТИ ДАНІ"
 
-#: templates/index.html:216
+#: templates/index.html:61
+msgid "ID"
+msgstr "ID"
+
+#: templates/index.html:62
+msgid "Date"
+msgstr "Дата"
+
+#: templates/index.html:68 templates/index.html:222
+msgid "Related to Conflict"
+msgstr "Пов'язані з конфліктом"
+
+#: templates/index.html:70
+msgid "Covered"
+msgstr "Охоплено"
+
+#: templates/index.html:72
+msgid "Affected"
+msgstr "Постраждалих"
+
+#: templates/index.html:73
+msgid "Item"
+msgstr "Одиниця"
+
+#: templates/index.html:74
+msgid "Quantity Provided/Needed"
+msgstr "Кількість наданих / необхідних"
+
+#: templates/index.html:75
+msgid "Additional info"
+msgstr "Додаткова інформація"
+
+#: templates/index.html:87 templates/index.html:231
+msgid "Learn more"
+msgstr "Більше"
+
+#: templates/index.html:117
 msgid "Response partners"
 msgstr "Партнер"
 
-#: templates/index.html:217
+#: templates/index.html:118
 msgid "Clear"
 msgstr "Очистити"
 
-#: templates/index.html:223
+#: templates/index.html:124
 msgid "All response partners"
 msgstr "Усі партнери"
 
-#: templates/index.html:231
+#: templates/index.html:132
 msgid "- Select partner to filter -"
 msgstr "-Виберіть партнера для фільтрування-"
 
-#: templates/index.html:243
+#: templates/index.html:144
 msgid "Alert type"
 msgstr "Тип алерта"
 
-#: templates/index.html:249
+#: templates/index.html:150
 msgid "Needs type"
 msgstr "Типи потреб"
 
-#: templates/index.html:257
+#: templates/index.html:158
 msgid "Location"
 msgstr "Район"
 
-#: templates/index.html:263
+#: templates/index.html:164
 msgid "- Select location to filter -"
 msgstr "-Виберіть місце для фільтрування-"
 
-#: templates/index.html:303
+#: templates/index.html:204
 msgid "Number of covered/affected people"
 msgstr "Кількість охоплено/постраждалих"
 
-#: templates/index.html:306
+#: templates/index.html:207
 msgid "Type alert"
 msgstr "Тип алерта"
 
-#: templates/index.html:326
+#: templates/index.html:226
 msgid "Date referral"
 msgstr "Дата рефералу"
 
@@ -441,3 +530,6 @@ msgstr "Зареєструватися"
 #: templates/registration/register.html:19
 msgid "Already have an account?"
 msgstr "Вже маєте обліковий запис?"
+
+#~ msgid "Affected group"
+#~ msgstr "Постраждала група"
