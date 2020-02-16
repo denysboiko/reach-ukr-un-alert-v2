@@ -208,7 +208,7 @@ class AlertAdmin(ModelAdmin):
 
         recipients = obj.get_recipients(cluster_ids)
         change_url = obj.edit_url()
-        # notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
+        notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
 
     def items(self, obj):
         return '%d affected in %s, %s raion (%s obl.)' % (obj.no_affected, obj.settlement, obj.raion, obj.oblast)
