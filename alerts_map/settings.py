@@ -178,8 +178,9 @@ GRAPPELLI_ADMIN_TITLE = 'Alert System Administration'
 MODELTRANSLATION_FALLBACK_LANGUAGES = {'default': ('en',), 'uk': ('ru','en')}
 
 # SECURITY WARNING: use environment variables in production!
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'email-smtp.eu-west-1.amazonaws.com'
-EMAIL_PORT = '25'
+EMAIL_PORT = '465'
 EMAIL_HOST_USER = 'AKIA47TCBRSVFB3GCQEY'
 EMAIL_HOST_PASSWORD = 'BItPjavmHQDFgaFpWz6x2jrW2ZoGdPxdi7PHzXDhGkwG'
 EMAIL_USE_TLS = True
