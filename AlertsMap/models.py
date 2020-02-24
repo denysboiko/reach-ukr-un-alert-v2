@@ -293,7 +293,7 @@ class Alert(models.Model):
     def edit_url(self):
         domain = Site.objects.get_current().domain
         slug = reverse('admin:AlertsMap_alert_change', args=(self.id,))
-        url = domain + slug
+        url = urljoin(domain, slug)
         return url
 
     def view_url(self):
