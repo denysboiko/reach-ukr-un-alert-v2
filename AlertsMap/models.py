@@ -431,6 +431,13 @@ class AlertItem(models.Model):
     quantity = models.IntegerField(verbose_name=_('Quantity'))
     unit = models.ForeignKey(Unit, on_delete=models.CASCADE, verbose_name=_('Unit'))
 
+    def __str__(self):
+        return _('%(quantity)d %(unit)s of %(item)s') % {
+            'quantity': self.quantity,
+            'unit': self.unit,
+            'item': self.item
+        }
+
     class Meta:
         db_table = 'alert_items'
 

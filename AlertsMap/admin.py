@@ -212,6 +212,11 @@ class AlertAdmin(ModelAdmin):
         change_url = obj.edit_url()
         notify_mail(recipients['To'], recipients['CC'], obj, clusters, needs, change_url)
 
+    def location(self, obj):
+        return obj.location()
+
+    location.short_description = _("Location")
+
     def items(self, obj):
         return '%d affected in %s, %s raion (%s obl.)' % (obj.no_affected, obj.settlement, obj.raion, obj.oblast)
 
