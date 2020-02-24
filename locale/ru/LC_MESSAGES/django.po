@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-24 21:01+0200\n"
-"PO-Revision-Date: 2020-02-24 21:03+0200\n"
+"POT-Creation-Date: 2020-02-24 22:25+0200\n"
+"PO-Revision-Date: 2020-02-24 22:33+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru\n"
@@ -60,7 +60,7 @@ msgstr "Подтвердить выбранные оповещения"
 msgid "Reject selected alerts"
 msgstr "Отклонить выбранные оповещения"
 
-#: AlertsMap/admin.py:219 templates/index.html:161
+#: AlertsMap/admin.py:218 AlertsMap/models.py:95 templates/index.html:161
 msgid "Location"
 msgstr "Местоположение"
 
@@ -77,7 +77,7 @@ msgid "The username must contain only letters, numbers and underscores."
 msgstr ""
 "Имя пользователя может содержать только буквы, цифры и нижние подчеркивания."
 
-#: AlertsMap/forms.py:21 AlertsMap/models.py:213
+#: AlertsMap/forms.py:21 AlertsMap/models.py:212
 msgid "Organization"
 msgstr "Организация"
 
@@ -125,12 +125,12 @@ msgstr "Email'ы"
 msgid "Cluster"
 msgstr "Кластер"
 
-#: AlertsMap/models.py:48 AlertsMap/models.py:284 templates/alert.html:73
+#: AlertsMap/models.py:48 AlertsMap/models.py:283 templates/alert.html:73
 #: templates/index.html:204
 msgid "Clusters"
 msgstr "Кластеры"
 
-#: AlertsMap/models.py:72 AlertsMap/models.py:80 AlertsMap/models.py:230
+#: AlertsMap/models.py:72 AlertsMap/models.py:80 AlertsMap/models.py:229
 #: templates/alert.html:39 templates/index.html:63
 msgid "Oblast"
 msgstr "Область"
@@ -147,7 +147,7 @@ msgstr "Район"
 msgid "Color"
 msgstr "Цвет"
 
-#: AlertsMap/models.py:88 AlertsMap/models.py:117 AlertsMap/models.py:231
+#: AlertsMap/models.py:88 AlertsMap/models.py:115 AlertsMap/models.py:230
 #: templates/alert.html:34 templates/index.html:65
 msgid "Raion"
 msgstr "Район"
@@ -156,196 +156,212 @@ msgstr "Район"
 msgid "Raions"
 msgstr "Районы"
 
-#: AlertsMap/models.py:104
-msgid "Coordination hub"
-msgstr "Координационный центр"
-
-#: AlertsMap/models.py:105
-msgid "Coordination hubs"
-msgstr "Координационные центры"
-
-#: AlertsMap/models.py:113
-msgid "Settlement Name (old)"
-msgstr "Населенный пункт (стар.)"
-
-#: AlertsMap/models.py:114
-msgid "Settlement Name"
-msgstr "Населенный пункт"
-
-#: AlertsMap/models.py:119 AlertsMap/models.py:238
-msgid "GCA/NGCA"
-msgstr "ТКУ/ТНКУ"
-
-#: AlertsMap/models.py:121
+#: AlertsMap/models.py:94 AlertsMap/models.py:119
 msgid "Hub"
 msgstr "Координационный центр"
 
-#: AlertsMap/models.py:128 AlertsMap/models.py:237 templates/alert.html:44
+#: AlertsMap/models.py:102
+msgid "Coordination hub"
+msgstr "Координационный центр"
+
+#: AlertsMap/models.py:103
+msgid "Coordination hubs"
+msgstr "Координационные центры"
+
+#: AlertsMap/models.py:111
+msgid "Settlement Name (old)"
+msgstr "Населенный пункт (стар.)"
+
+#: AlertsMap/models.py:112
+msgid "Settlement Name"
+msgstr "Населенный пункт"
+
+#: AlertsMap/models.py:117 AlertsMap/models.py:237
+msgid "GCA/NGCA"
+msgstr "ТКУ/ТНКУ"
+
+#: AlertsMap/models.py:126 AlertsMap/models.py:236 templates/alert.html:44
 #: templates/index.html:67
 msgid "Settlement"
 msgstr "Населенный пункт"
 
-#: AlertsMap/models.py:129
+#: AlertsMap/models.py:127
 msgid "Settlements"
 msgstr "Населенные пункты"
 
-#: AlertsMap/models.py:140
+#: AlertsMap/models.py:138
 msgid "Need Type"
 msgstr "Тип потребности"
 
-#: AlertsMap/models.py:141 AlertsMap/models.py:285
+#: AlertsMap/models.py:139 AlertsMap/models.py:284
 msgid "Need Types"
 msgstr "Типы потребностей"
 
-#: AlertsMap/models.py:152 AlertsMap/models.py:247
+#: AlertsMap/models.py:150 AlertsMap/models.py:246
 msgid "Affected Group"
 msgstr "Пострадавшая группа"
 
-#: AlertsMap/models.py:153
+#: AlertsMap/models.py:151
 msgid "Affected Groups"
 msgstr "Пострадавшие группы"
 
-#: AlertsMap/models.py:164 AlertsMap/models.py:243
+#: AlertsMap/models.py:162 AlertsMap/models.py:242
 msgid "Alert Type"
 msgstr "Тип оповещения"
 
-#: AlertsMap/models.py:165
+#: AlertsMap/models.py:163
 msgid "Alert Types"
 msgstr "Типы оповещений"
 
-#: AlertsMap/models.py:176 AlertsMap/models.py:250 templates/index.html:142
+#: AlertsMap/models.py:174 AlertsMap/models.py:249 templates/index.html:142
 msgid "Status"
 msgstr "Статус"
 
-#: AlertsMap/models.py:177
+#: AlertsMap/models.py:175
 msgid "Statuses"
 msgstr "Статусы"
 
-#: AlertsMap/models.py:203
+#: AlertsMap/models.py:201
 msgid "Organization Name"
 msgstr "Название организации"
 
-#: AlertsMap/models.py:214
+#: AlertsMap/models.py:202
+msgid "Organization Acronym"
+msgstr "Акроним"
+
+#: AlertsMap/models.py:204
+msgid "Organization Type"
+msgstr "Тип организации"
+
+#: AlertsMap/models.py:213
 msgid "Organizations"
 msgstr "Организации"
 
-#: AlertsMap/models.py:232
+#: AlertsMap/models.py:220
+msgid "To List"
+msgstr "Список получателей"
+
+#: AlertsMap/models.py:221
+msgid "Cc List"
+msgstr "Список в копии"
+
+#: AlertsMap/models.py:231
 msgid "Date of Incident"
 msgstr "Дата инцидента"
 
-#: AlertsMap/models.py:233
+#: AlertsMap/models.py:232
 msgid "Informant"
 msgstr "Информатор"
 
-#: AlertsMap/models.py:235
+#: AlertsMap/models.py:234
 msgid "Referral Agency"
 msgstr "Партнер"
 
-#: AlertsMap/models.py:240 AlertsMap/models.py:291
+#: AlertsMap/models.py:239 AlertsMap/models.py:290
 msgid "No"
 msgstr "Нет"
 
-#: AlertsMap/models.py:241 AlertsMap/models.py:291
+#: AlertsMap/models.py:240 AlertsMap/models.py:290
 msgid "Yes"
 msgstr "Да"
 
-#: AlertsMap/models.py:244
+#: AlertsMap/models.py:243
 msgid "Conflict related"
 msgstr "Связанные с конфликтом"
 
-#: AlertsMap/models.py:245
+#: AlertsMap/models.py:244
 msgid "Description"
 msgstr "Описание"
 
-#: AlertsMap/models.py:246
+#: AlertsMap/models.py:245
 msgid "Context"
 msgstr "Контекст"
 
-#: AlertsMap/models.py:252
+#: AlertsMap/models.py:251
 msgid "Confirmation Status"
 msgstr "Статус подтверждения"
 
-#: AlertsMap/models.py:253
+#: AlertsMap/models.py:252
 msgid "Date Updated"
 msgstr "Дата обновления"
 
-#: AlertsMap/models.py:255 AlertsMap/models.py:457
+#: AlertsMap/models.py:254 AlertsMap/models.py:456
 msgid "Comments"
 msgstr "Комментарии"
 
-#: AlertsMap/models.py:257
+#: AlertsMap/models.py:256
 msgid "Baseline Population"
 msgstr "Численность населения"
 
-#: AlertsMap/models.py:258
+#: AlertsMap/models.py:257
 msgid "Population (male)"
 msgstr "Население (мужчины)"
 
-#: AlertsMap/models.py:259
+#: AlertsMap/models.py:258
 msgid "Population (female)"
 msgstr "Население (женщины)"
 
-#: AlertsMap/models.py:260
+#: AlertsMap/models.py:259
 msgid "Population (children)"
 msgstr "Население (дети)"
 
-#: AlertsMap/models.py:261
+#: AlertsMap/models.py:260
 msgid "Population (adult)"
 msgstr "Население (взрослые)"
 
-#: AlertsMap/models.py:262
+#: AlertsMap/models.py:261
 msgid "Population (elderly)"
 msgstr "Население (пожилые)"
 
-#: AlertsMap/models.py:264 templates/alert.html:49
+#: AlertsMap/models.py:263 templates/alert.html:49
 msgid "Number of Affected"
 msgstr "Количество пострадавших"
 
-#: AlertsMap/models.py:265
+#: AlertsMap/models.py:264
 msgid "Number of Affected (male)"
 msgstr "Количество пострадавших (мужчин)"
 
-#: AlertsMap/models.py:266
+#: AlertsMap/models.py:265
 msgid "Number of Affected (female)"
 msgstr "Количество пострадавших (женщин)"
 
-#: AlertsMap/models.py:268
+#: AlertsMap/models.py:267
 msgid "Number of Affected (children)"
 msgstr "Количество пострадавших (детей)"
 
-#: AlertsMap/models.py:269
+#: AlertsMap/models.py:268
 msgid "Number of Affected (adult)"
 msgstr "Количество пострадавших (взрослых)"
 
-#: AlertsMap/models.py:270
+#: AlertsMap/models.py:269
 msgid "Number of Affected (elderly)"
 msgstr "Количество пострадавших (пожилых)"
 
-#: AlertsMap/models.py:272
+#: AlertsMap/models.py:271
 msgid "Number of Beneficiaries"
 msgstr "Количество получивших помощь"
 
-#: AlertsMap/models.py:274
+#: AlertsMap/models.py:273
 msgid "Number of Beneficiaries (male)"
 msgstr "Количество получивших помощь (мужчины)"
 
-#: AlertsMap/models.py:276
+#: AlertsMap/models.py:275
 msgid "Number of Beneficiaries (female)"
 msgstr "Количество получивших помощь (женщины)"
 
-#: AlertsMap/models.py:278
+#: AlertsMap/models.py:277
 msgid "Number of Beneficiaries (children)"
 msgstr "Количество получивших помощь (дети)"
 
-#: AlertsMap/models.py:280
+#: AlertsMap/models.py:279
 msgid "Number of Beneficiaries (adult)"
 msgstr "Количество получивших помощь (взрослые)"
 
-#: AlertsMap/models.py:282
+#: AlertsMap/models.py:281
 msgid "Number of Beneficiaries (elderly)"
 msgstr "Количество получивших помощь (пожилые)"
 
-#: AlertsMap/models.py:377
+#: AlertsMap/models.py:376
 #, python-format
 msgid ""
 "%(no_affected)d affected in %(settlement)s, %(raion)s raion (%(oblast)s obl.)"
@@ -353,84 +369,84 @@ msgstr ""
 "%(no_affected)d пострадавших в %(settlement)s, %(raion)s рай. (%(oblast)s "
 "обл.)"
 
-#: AlertsMap/models.py:388 AlertsMap/models.py:428 AlertsMap/models.py:454
+#: AlertsMap/models.py:387 AlertsMap/models.py:427 AlertsMap/models.py:453
 msgid "Alert"
 msgstr "Оповещение"
 
-#: AlertsMap/models.py:389
+#: AlertsMap/models.py:388
 msgid "Alerts"
 msgstr "Оповещения"
 
-#: AlertsMap/models.py:405
+#: AlertsMap/models.py:404
 msgid "Item Name"
 msgstr "Название позиции"
 
-#: AlertsMap/models.py:406
+#: AlertsMap/models.py:405
 msgid "Item Group"
 msgstr "Группа элементов"
 
-#: AlertsMap/models.py:417 AlertsMap/models.py:432 AlertsMap/models.py:452
+#: AlertsMap/models.py:416 AlertsMap/models.py:431 AlertsMap/models.py:451
 msgid "Unit"
 msgstr "Ед. изм"
 
-#: AlertsMap/models.py:429 AlertsMap/models.py:449 templates/index.html:73
+#: AlertsMap/models.py:428 AlertsMap/models.py:448 templates/index.html:73
 msgid "Item"
 msgstr "Позиция"
 
-#: AlertsMap/models.py:430 AlertsMap/models.py:450
+#: AlertsMap/models.py:429 AlertsMap/models.py:449
 msgid "Item Details"
 msgstr "Подробности"
 
-#: AlertsMap/models.py:431 AlertsMap/models.py:451
+#: AlertsMap/models.py:430 AlertsMap/models.py:450
 msgid "Quantity"
 msgstr "Количество"
 
-#: AlertsMap/models.py:435 AlertsMap/models.py:462
+#: AlertsMap/models.py:434 AlertsMap/models.py:461
 #, python-format
 msgid "%(quantity)d %(unit)s of %(item)s"
 msgstr "%(quantity)d %(unit)s, %(item)s"
 
-#: AlertsMap/models.py:448 templates/alert.html:83
+#: AlertsMap/models.py:447 templates/alert.html:83
 msgid "Response Partners"
 msgstr "Реагирующие партнеры"
 
-#: AlertsMap/models.py:453 templates/index.html:62
+#: AlertsMap/models.py:452 templates/index.html:62
 msgid "Date"
 msgstr "Дата"
 
-#: AlertsMap/models.py:455
+#: AlertsMap/models.py:454
 msgid "Uncovered Needs"
 msgstr "Нераскрытые потребности"
 
-#: AlertsMap/models.py:456
+#: AlertsMap/models.py:455
 msgid "Action"
 msgstr "Действие"
 
-#: AlertsMap/models.py:470
+#: AlertsMap/models.py:469
 msgid "Response"
 msgstr "Реагирование"
 
-#: AlertsMap/models.py:471
+#: AlertsMap/models.py:470
 msgid "Responses"
 msgstr "Реагирования"
 
-#: AlertsMap/models.py:476
+#: AlertsMap/models.py:475
 msgid "From"
 msgstr "От"
 
-#: AlertsMap/models.py:477
+#: AlertsMap/models.py:476
 msgid "Subject"
 msgstr "Тема"
 
-#: AlertsMap/models.py:478
+#: AlertsMap/models.py:477
 msgid "Body"
 msgstr "Сообщение"
 
-#: AlertsMap/models.py:482
+#: AlertsMap/models.py:481
 msgid "Mail Template"
 msgstr "Шаблон сообщения"
 
-#: AlertsMap/models.py:483
+#: AlertsMap/models.py:482
 msgid "Mail Templates"
 msgstr "Шаблоны сообщений"
 

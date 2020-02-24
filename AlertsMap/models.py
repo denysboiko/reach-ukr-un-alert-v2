@@ -91,10 +91,8 @@ class Raion(models.Model):
 
 class CoordinationHub(models.Model):
 
-    name = models.CharField(max_length=50)
-    location = models.CharField(max_length=25)
-    # to_list = models.ManyToManyField(Emails, related_name='to_emails')
-    # cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
+    name = models.CharField(max_length=50, verbose_name=_("Hub"))
+    location = models.CharField(max_length=25, verbose_name=_("Location"))
 
     def __str__(self):
         return self.name
@@ -201,8 +199,9 @@ class OrganizationType(models.Model):
 class Organization(models.Model):
 
     organization_name = models.CharField(max_length=80, verbose_name=_('Organization Name'))
-    organization_acronym = models.CharField(max_length=30, null=True)
-    organization_type = models.ForeignKey(OrganizationType, null=True, on_delete=models.CASCADE)
+    organization_acronym = models.CharField(max_length=30, null=True, verbose_name=_('Organization Acronym'))
+    organization_type = models.ForeignKey(OrganizationType, null=True, on_delete=models.CASCADE,
+                                          verbose_name=_('Organization Type'))
 
     def __str__(self):
         return '%s: %s' % (self.organization_acronym, self.organization_name)
@@ -218,8 +217,8 @@ class ClusterEmail(models.Model):
 
     cluster = models.ForeignKey(Cluster, on_delete=models.CASCADE)
     coordination_hub = models.ForeignKey(CoordinationHub, on_delete=models.CASCADE)
-    to_list = models.ManyToManyField(Emails, related_name='to_emails')
-    cc_list = models.ManyToManyField(Emails, related_name='cc_emails')
+    to_list = models.ManyToManyField(Emails, related_name='to_emails', verbose_name=_("To List"))
+    cc_list = models.ManyToManyField(Emails, related_name='cc_emails', verbose_name=_("Cc List"))
 
     class Meta:
         db_table = 'cluster_emails'
