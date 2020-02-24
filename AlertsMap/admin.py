@@ -75,6 +75,8 @@ class ResponseAdmin(ModelAdmin):
 
     list_display = [
         'item',
+        'quantity',
+        'unit',
         'date'
     ]
 
@@ -89,10 +91,6 @@ class ResponseAdmin(ModelAdmin):
     )
 
     filter_horizontal = ('response_partners',)
-
-    @staticmethod
-    def items(obj):
-        return '%s, %d %s' % (obj.item, obj.quantity, obj.unit)
 
 
 class AlertAdmin(ModelAdmin):

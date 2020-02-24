@@ -62,7 +62,7 @@
 
     myLoad(conf.data, function (data) {
 
-        var is_staff = (data.referals.full_access == 1);
+        const is_staff = (data.referals.full_access === 1);
 
 
         /*==================================
@@ -703,9 +703,9 @@
 
                 var $target = d3.select(d3.event.target);
 
-                if (currentMarker.data.count == 1) {
+                if (currentMarker.data.count === 1) {
 
-                    if (rose.state == 'open') {
+                    if (rose.state === 'open') {
                         markersResetInactive();
                         markersResetActive();
                         rose.close()
@@ -715,7 +715,7 @@
                     popup(currentMarker.data.record, latlng)
 
                 } else {
-                    if (rose.state != 'open') {
+                    if (rose.state !== 'open') {
                         markersResetInactive(currentMarker);
                         markersResetActive(currentMarker);
 
@@ -1003,7 +1003,6 @@
                     }
                 },
                 sortField: 'text'
-
             });
 
             Selectize.on('change', function () {
@@ -1013,18 +1012,18 @@
                     filters.push(value);
                 });
 
-                if (filters.length == 0) {
+                if (filters.length === 0) {
                     cf.partnerDim.filterAll();
                     $allPartners.node().checked = true;
                     $clearPartners.style({'display': 'none'});
                 } else {
 
                     cf.partnerDim.filterFunction(function (d) {
-                        return filters.indexOf(d) != -1
+                        return filters.indexOf(d) !== -1
                     });
 
                     $allPartners.node().checked = false;
-                    $clearPartners.style({'display': null});
+                    $clearPartners.style({'display': 'inline-block'});
                 }
 
                 filterDispatcher.filtered();
@@ -1664,13 +1663,10 @@
 
         var ResetAll = function () {
             filterCluster.doCheckAll(true);
-            //partnerDoCheckAll(true);
-            resetPartners();
+            if (is_staff) resetPartners();
             filterStatus.doCheckAll(true);
             filterType.doCheckAll(true);
             filterNeed.doCheckAll(true);
-            /*filterRaionDonetsk.doCheckAll(true);
-             filterRaionLuhansk.doCheckAll(true);*/
             resetLocation();
             resetMonthpicker(slider);
 

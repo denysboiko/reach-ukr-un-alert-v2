@@ -1,10 +1,6 @@
 from .models import *
-from django.contrib.auth.models import User, Group
-from django.core import serializers as django_serializers
 from rest_framework import serializers
 
-
-from django.db.models import Max, Min, Sum
 
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     """
@@ -29,7 +25,6 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
 
 
 class ClustersSerializer(serializers.ModelSerializer):
-
     key = serializers.ReadOnlyField(source='cluster_name')
 
     class Meta:
@@ -38,34 +33,32 @@ class ClustersSerializer(serializers.ModelSerializer):
 
 
 class ResponsePartnersSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Organization
         fields = ('id', 'organization_name',)
 
 
 class NeedItemsPartnersSerializer(serializers.ModelSerializer):
-
     item = serializers.StringRelatedField()
     unit = serializers.StringRelatedField()
 
     class Meta:
         model = AlertItem
-        fields = ('item','quantity','unit')
+        fields = ('item', 'quantity', 'unit')
 
 
 class ResponseItemsPartnersSerializer(serializers.ModelSerializer):
-
     item = serializers.StringRelatedField()
     unit = serializers.StringRelatedField()
 
     class Meta:
         model = Response
-        fields = ('item','quantity','unit')
+        fields = ('item', 'quantity', 'unit')
+
 
 class ResponseSerializer(serializers.ModelSerializer):
-
     response_partners = serializers.StringRelatedField(many=True)
+
     # response_partners = ResponsePartnersSerializer(many=True)
     class Meta:
         model = Response
@@ -73,15 +66,14 @@ class ResponseSerializer(serializers.ModelSerializer):
 
 
 class AlertResponsePartnersSerializer(serializers.ModelSerializer):
-
     response_partners = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Response
         fields = ('response_partners',)
 
-class AlertsSerializer(DynamicFieldsModelSerializer):
 
+class AlertsSerializer(DynamicFieldsModelSerializer):
     pcode = serializers.ReadOnlyField(source='settlement.id')
     settlement = serializers.ReadOnlyField(source='settlement.settlement_name')
     oblast = serializers.ReadOnlyField(source='oblast.oblast_name')
@@ -103,7 +95,6 @@ class AlertsSerializer(DynamicFieldsModelSerializer):
     conflict_related = serializers.ReadOnlyField(source='get_conflict_related_display')
 
     class Meta:
-
         model = Alert
         fields = (
             'id',
