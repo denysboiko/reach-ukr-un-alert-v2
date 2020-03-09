@@ -56,6 +56,7 @@
                                 {% endif %}
                             </li>
                         {% endif %}
+
                         <li>
                             <form action="{% url 'set_language' %}" method="post" id="setlang"
                                   style="display: none">
@@ -74,7 +75,6 @@
                                 <input type="submit" value="Go"/>
                             </form>
                         </li>
-
                         <li class="dropdown" id="lang">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="langswitch"
                                                                                              class="flag-icon"></span>

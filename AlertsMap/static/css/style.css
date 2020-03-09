@@ -329,6 +329,11 @@ aside {
   box-sizing: content-box;
   outline: 2px solid rgba(30, 30, 30, 0.5);
 }
+
+.data-table tbody .data-table-spoiler > span {
+  display: block;
+}
+
 .data-table-opened #mapLegend {
   display: none;
 }

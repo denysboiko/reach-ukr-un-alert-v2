@@ -1,0 +1,102 @@
+{% extends "admin/base.html" %}
+{% load i18n grp_tags %}
+{% load static %}
+{% block title %}{{ title }} | {% get_site_title %}{% endblock %}
+
+{% block extrastyle %}
+{#<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">#}
+<link rel='stylesheet prefetch' href='{% static 'css/flag-icon.min.css' %}'>
+{% endblock %}
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
+{% block branding %}
+
+{% endblock %}
+
+{% block user-tools %}
+    {% if user.is_authenticated and user.is_staff %}
+        <ul id="grp-user-tools">
+            <!-- Userlinks -->
+            {% block userlinks %}
+                <!-- Username -->
+                <li class="grp-user-options-container grp-collapse grp-closed {% if request.session.original_user %}grp-switch-user-is-target{% endif %}">
+                    <a href="javascript://" class="user-options-handler grp-collapse-handler {% if request.session.original_user %}grp-switch-user-is-target{% else %}grp-switch-user-is-original{% endif %}">{% firstof user.get_short_name user.get_username %}</a>
+                    <ul class="grp-user-options">
+                        <!-- Change Password -->
+                        {% if user.has_usable_password %}
+                            <li><a href="{% url 'admin:password_change' %}" class="grp-change-password">{% trans 'Change password' %}</a></li>
+                        {% endif %}
+                        <!-- Logout -->
+                        <li><a href="{% url 'admin:logout' %}" class="grp-logout">{% trans 'Log out' %}</a></li>
+                        <!-- Switch -->
+                        {% switch_user_dropdown %}
+                    </ul>
+                </li>
+                <!-- Site URL -->
+                {% if site_url %}
+                    <li><a href="{{ site_url }}">{% trans 'View site' %}</a></li>
+                {% endif %}
+                <li>
+                    <form action="{% url 'set_language' %}" method="post" id="setlang"
+                          style="display: none">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ redirect_to }}"/>
+                        <select name="language" id="selectlang">
+                            {% get_current_language as LANGUAGE_CODE %}
+                            {% get_available_languages as LANGUAGES %}
+                            {% for lang in LANGUAGES %}
+                                <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}
+                                        selected="selected"{% endif %}>
+                                    {{ lang.1 }} ({{ lang.0 }})
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Go"/>
+                    </form>
+                </li>
+                <li>
+                    <a class="lang-option" data-lang='en'>
+                        <span class="flag-icon flag-icon-gb"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lang-option" data-lang='uk'>
+                        <span class="flag-icon flag-icon-ua"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="lang-option" data-lang='ru'>
+                        <span class="flag-icon flag-icon-ru"></span>
+                    </a>
+                </li>
+                <!-- Documentation -->
+                {% url 'django-admindocs-docroot' as docsroot %}
+                {% if docsroot %}
+                    <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                {% endif %}
+            {% endblock %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block nav-global %}
+
+{% endblock %}
+{% block footer %}
+<script>
+    (function($) {
+        $('.lang-option').on('click', function () {
+            let lang = $(this).data('lang');
+            setLang(lang);
+        });
+
+        function setLang(lang) {
+            $('#selectlang').val(lang);
+            $('#setlang').submit();
+            return false;
+        }
+    })(grp.jQuery);
+
+</script>
+{% endblock %}
+

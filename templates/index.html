@@ -69,8 +69,8 @@
                         <td style="width:100px">{% trans 'Covered' %} /
                             <wbr/>
                             {% trans 'Affected' %}</td>
-                        <td style="width:100px">{% trans 'Item' %}</td>
-                        <td style="width:100px">{% trans 'Quantity Provided/Needed' %}</td>
+                        <td style="width:120px">{% trans 'Item' %}</td>
+{#                        <td style="width:100px">{% trans 'Quantity Provided/Needed' %}</td>#}
                         <td style="width:80px">{% trans 'Additional info' %}</td>
                     </script>
 
@@ -78,12 +78,17 @@
                         <td><%= data.id %></td>
                         <td style="text-align:center"><%= data.date %></td>
                         <td><%= data.oblast %> / <%= data.raion %> / <%= data.settlement %></td>
-                        <td style="text-align:center;"><%= data.conflictRelated %></td>
+                        <td style="text-align:center"><%= data.conflictRelated %></td>
                         <td><%= data.needs %></td>
-                        <td style="text-align:center;"><%= data.beneficiaries_gap %></td>
-                        <td><%= data.item %></td>
-                        <td><%=data.items_gap%></td>
-                        <td style="text-align:center;"><a href="<%= data.view_url %>">{% trans 'Learn more' %}</a></td>
+                        <td style="text-align:center"><%= data.beneficiaries_gap %></td>
+
+                        <td>
+                            <% _.each(data.items_gap, function(item, key, list) { %>
+                                <span><%= item %></span><br>
+                            <% }); %>
+                        </td>
+{#                        <td><%= data.items_gap.join('<br>') %></td>#}
+                        <td style="text-align:center"><a href='<%= data.view_url %>'>{% trans 'Learn more' %}</a></td>
                     </script>
 
                 </table>

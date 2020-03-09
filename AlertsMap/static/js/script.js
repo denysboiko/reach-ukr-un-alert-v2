@@ -1504,16 +1504,18 @@
         $dataTableHead.append('tr')
             .html(conf.tplDataTableHead())
 
-        var updateTable = function () {
+        let updateTable = function () {
             // Clear table, not to write d3 update function.
             // It will be tricky to update cell with all spoilers stuff.
             $dataTableBody.selectAll('tr').remove();
 
-            var data = cf.allDim.bottom(Infinity);
+            let data = cf.allDim.bottom(Infinity);
 
-            var flatData = flattenize(data, is_staff);
+            let flatData = data.map(function (data, is_staff) {
+                return new FlatRow(data, is_staff);
+            });
 
-            var $rows = $dataTableBody.selectAll('tr')
+            let $rows = $dataTableBody.selectAll('tr')
                 .data(flatData.slice(dataTablePage * conf.paginationStep, (dataTablePage + 1) * conf.paginationStep));
 
             $rows.enter().append('tr')
@@ -1544,11 +1546,11 @@
                             if (div.offsetHeight >= div.scrollHeight) {
                                 return
                             }
-
+                            let fullContents = $div.html();
                             $div.append('div')
                                 .classed({'data-table-spoiler': true})
                                 .style({'height': div.scrollHeight + 'px'})
-                                .text($div.text())
+                                .html(fullContents)
                         })
                         .on('mouseleave', function () {
                             $div.select('.data-table-spoiler').remove()
@@ -1682,11 +1684,10 @@
 
         function saveData(dim) {
 
-            var data = dim.top(Infinity);
-            var flatData = flattenize(data, is_staff);
-            // Object.keys(flatData[0])
+            let data = dim.top(Infinity);
+            let flatData = flattenize(data, is_staff);
 
-            var header = [
+            const header = [
                 "id",
                 "date",
                 "oblast",
@@ -1699,8 +1700,6 @@
                 "conflictRelated",
                 "covered",
                 "affected",
-                // "context",
-                // "description",
                 "item",
                 "quantity",
                 "quantity_response",
@@ -1711,19 +1710,15 @@
             ];
 
             flatData = flatData.map(function (datum) {
-
-                // console.log(Object.keys(datum))
-
                 return header.map(function (field) {
                     return datum[field]
                 });
-
             });
 
             flatData.unshift(header);
 
-            var rawCSV = d3.dsv(';').formatRows(flatData); // data
-            var blob = new Blob([rawCSV], {type: "text/csv;charset=utf-8"});
+            let rawCSV = d3.dsv(';').formatRows(flatData); // data
+            let blob = new Blob([rawCSV], {type: "text/csv;charset=utf-8"});
             saveAs(blob, 'ukraine-alerts-' + (new Date()).getTime() + '.csv')
         }
 
