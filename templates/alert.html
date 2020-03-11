@@ -5,7 +5,7 @@
     {% for alert in alerts %}
         <div class="container">
             <div class="page-header">
-              <h1>{{ alert }}</h1>
+                <h1>{{ alert }}</h1>
             </div>
             {% if request.user.is_staff %}
                 <a href="{{ alert.edit_url }}" class="btn btn-default">{% trans 'Edit Alert' %}</a>
@@ -52,7 +52,8 @@
                 <tr>
                     <th scope="row"></th>
                     <td>{% trans 'Number of Beneficiaries / Affected' %}</td>
-                    <td>{% if alert.no_beneficiaries != None %}{{ alert.no_beneficiaries }} / {% endif %}{{ alert.no_affected }}</td>
+                    <td>{% if alert.no_beneficiaries != None %}{{ alert.no_beneficiaries }}
+                        / {% endif %}{{ alert.no_affected }}</td>
                 </tr>
                 <tr>
                     <th scope="row"></th>
@@ -78,17 +79,45 @@
                     </td>
                 </tr>
                 {% if request.user.is_staff %}
-                <tr>
-                    <th scope="row"></th>
-                    <td>{% trans 'Response Partners' %}</td>
-                    <td>
-                        <ul class="list-unstyled">
-                            {% for partner in alert.get_response_partners %}
-                                <li>{{ partner }}</li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{% trans 'Response Partners' %}</td>
+                        <td>
+                            <ul class="list-unstyled">
+                                {% for partner in alert.get_response_partners %}
+                                    <li>{{ partner }}</li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{% trans 'Informant' %}</td>
+                        <td>
+                            {{ alert.informant }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{% trans 'Context' %}</td>
+                        <td>
+                            {{ alert.context }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{% trans 'Description' %}</td>
+                        <td>
+                            {{ alert.description }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"></th>
+                        <td>{% trans 'Comments' %}</td>
+                        <td>
+                            {{ alert.comments }}
+                        </td>
+                    </tr>
                 {% endif %}
 
                 <tr>
