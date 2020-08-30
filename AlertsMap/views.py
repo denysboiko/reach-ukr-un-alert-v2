@@ -56,7 +56,7 @@ class AlertsViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Alert.objects.filter(confirmation_status=2).values()
     pagination_class = None
 
-
+@login_required(login_url='/login/')
 def home(request):
 
     queryset = list(Raion.objects.values('id', 'raion_name', 'color', 'oblast'))

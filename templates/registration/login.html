@@ -10,7 +10,7 @@
     <form method="post" action="{% url 'login' %}" class="form-signin">{% csrf_token %}
         <h2 class="form-signin-heading">{% trans 'Please Sign in' %}</h2>
         {% load widget_tweaks %}
-
+        <p>Thank you very much for visiting the AlertMap Application. The content of this website is only available for registered users.</p>
         {% render_field form.username class+="form-control first-form-control bottom-flat" placeholder="Username" type="username"%}
         {% render_field form.password class+="form-control last-form-control top-flat" placeholder="Password" %}
 
